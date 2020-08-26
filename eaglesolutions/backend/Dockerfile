@@ -1,2 +1,0 @@
-FROM node:14.8
-EXPOSE 3000
