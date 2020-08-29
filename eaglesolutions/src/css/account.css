@@ -1,0 +1,41 @@
+.account-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.account-form {
+    text-align: center;
+    background-color: aqua;
+    margin: 50px;
+    height: 450px;
+}
+
+input[type=text] {
+    text-align: center;
+    display: block;
+    position: relative;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+
+input[type=password] {
+    text-align: center;
+    display: block;
+    position: relative;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+input[type=submit] {
+    padding: 10px 50px;
+    margin: 20px;
+}
+
+
+form {
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-bottom: 100px;
+}
