@@ -1,41 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../../css/account.css';
 import { NavLink } from 'react-router-dom';
 
-export default class CreateForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state={
-            name: '',
-            email: '',
-            password: ''
+export default function CreateForm() {
+    const[name, setName] = useState('');
+    const[email, setEmail] = useState('');
+    const[password, setPassword] = useState('');
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (name !== '' && email !== '' && password !== '') {
+            // Validate account creation
+            console.log(email + "has created an acount");
+        } else {
+            console.log("A required field is empty");
         }
     }
-    render() {
-        return (
-            <div className="account-form">
-                <h1>
-                    Eagle Solutions
-                </h1>
-                <h2> 
-                    Create an Account
-                </h2>
-                <form>
-                    <input type="text" value={this.state.Name} placeholder="Name" onChange={this.handleChange} />
-                    <br />
-                    <input type="text" value={this.state.email} placeholder="Email" onChange={this.handleChange}/>
-                    <br />
-                    <input type="password" value={this.state.password} placeholder="Password" onChange={this.handleChange} />
-                    <br />
-                    <NavLink to="login">
-                        Already have an account?
-                    </NavLink>
-                    <br />
-                    <br />
-                    <input type="submit" value="Login" />
-                    <br />
-                </form> 
-            </div>
-        )
-    }
+
+    return (
+        <div className="account-form">
+            <h1>
+                Eagle Solutions
+            </h1>
+            <h2> 
+                Create an Account
+            </h2>
+            <form onSubmit={ handleSubmit }>
+                <input type="text" value={ name } placeholder="Name" onChange={ e => setName(e.target.value) } />
+                <input type="text" value={ email } placeholder="Email" onChange={ e => setEmail(e.target.value) }/>
+                <input type="password" value={ password} placeholder="Password" onChange={ e => setPassword(e.target.value)} />
+                <NavLink to="login">
+                    Already have an account?
+                </NavLink>
+                <br />
+                <input type="submit" value="Login" />
+            </form> 
+        </div>
+    )
 }
