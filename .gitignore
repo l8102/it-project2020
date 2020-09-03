@@ -1,6 +1,7 @@
 node_modules/
 /node_modules
 eaglesolutions/node_modules/
+/eaglesolutions/node_modules
 eaglesolutions/package-lock.json
 .vs/slnx.sqlite
 .vs/it-project2020/v16/.suo
