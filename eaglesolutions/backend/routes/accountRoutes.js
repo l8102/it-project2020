@@ -1,10 +1,10 @@
 const express = require('express');
 const accountRoutes = express.Router();
-const accountController = require('../controllers/accountControllers');
+const accountController = require("../controllers/accountControllers");
 
 // CREATE
 
-accountRoutes.post('/create', accountController.createAccount);
+accountRoutes.post('/googlelogin', accountController.googleLogin);
 
 //
 module.exports = accountRoutes;

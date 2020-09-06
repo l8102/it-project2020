@@ -14,6 +14,9 @@ export default function Landing() {
             <NavLink to="account">
                 Account
             </NavLink>
+            <NavLink to="login">
+                Login
+            </NavLink>
         </div>
     );
 }
