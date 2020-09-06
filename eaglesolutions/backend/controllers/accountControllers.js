@@ -39,14 +39,8 @@ var googleLogin = function(req, res) {
 				 } else {
                        if(user) {
                        console.log("User exists");
-
-                            // const token = jwt.sign({_id: user_id}, process.env.JWT_SIGN_IN_KEY, {expiresIn: '7d'})
-                            const{_id, name, email} = user;
-
-                            res.json({
-                                user: {_id, name, email}             
-							})
-                            
+                        
+                        
 
 
 					   }  else {
