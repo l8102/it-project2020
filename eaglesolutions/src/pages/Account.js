@@ -7,9 +7,10 @@ export default class Account extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
             email: '',
-            password: ''
+            password: '',
+            firstName: '',
+            lastName: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +20,12 @@ export default class Account extends Component {
     render() {
         return (
             <div className="account-container">
-                <this.createAccountForm />
+                <NavLink to="/">
+                    Landing
+                </NavLink>
+                <div className="form-container">
+                    <this.createAccountForm />
+                </div>
             </div>
         )
     }
@@ -42,14 +48,21 @@ export default class Account extends Component {
                     Create an Account
                 </h2>
                 <form onSubmit={ this.handleSubmit }>
-                    <input name="name" type="text" value={ this.state.name } placeholder="Name" onChange={ this.handleChange } />
-                    <input name="email" type="text" value={ this.state.email } placeholder="Email" onChange={ this.handleChange }/>
-                    <input name="password" type="password" value={ this.state.password} placeholder="Password" onChange={ this.handleChange } />
+                    <div className="name-field">
+                        <input name="firstName" style={{marginRight:"10px"}} type="text" value={ this.state.firstName } 
+                            placeholder="First name" onChange={ this.handleChange } />
+                        <input name="lastName" type="text" value={ this.state.lastName } placeholder="Last name" 
+                            onChange={ this.handleChange } />
+                    </div>
+                    <input name="email" type="text" value={ this.state.email } placeholder="Email" 
+                        onChange={ this.handleChange } />
+                    <input name="password" type="password" value={ this.state.password} placeholder="Password" 
+                        onChange={ this.handleChange } />
+                    <input type="submit" value="Login" />
+                    <br />
                     <NavLink to="login">
                         Already have an account?
                     </NavLink>
-                    <br />
-                    <input type="submit" value="Login" />
                 </form> 
             </div>)
     }

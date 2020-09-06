@@ -17,7 +17,12 @@ export default class Login extends Component {
     render() {
         return (
             <div className="account-container">
-                <this.loginForm />
+                <NavLink to="/">
+                    Landing
+                </NavLink>
+                <div className="form-container">
+                    <this.loginForm />
+                </div>`
             </div>
         )
     }
@@ -45,7 +50,7 @@ export default class Login extends Component {
                         <input name="password" type="password" value={ this.state.password } placeholder="Password" onChange={ this.handleChange } />
                         <input type="submit" value="Login" />
                         <br />
-                        <NavLink to="account">
+                        <NavLink to="/account">
                             Create an account
                         </NavLink>
                     </form> 

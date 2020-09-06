@@ -1,0 +1,34 @@
+
+
+.landing-container button {
+    background-color: rgb(224, 135, 103);
+    color: white;
+    transition-duration: 0.2s;
+    width: 300px;
+    height: 400px;
+    font-size: large;
+    border: none;
+}
+
+.nav-buttons-temp {
+    text-align: center;
+}
+
+.nav-buttons-temp button:hover {
+    background-color: orange;
+}
+
+.nav-buttons-temp button:hover {
+    background-color: orange;
+    color: yellow;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 50px;
+}
+
+.nav-link:visited {
+    text-decoration: none;
+}
