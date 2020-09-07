@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../css/portfolio.css";
 
 export default function Landing() {
     
@@ -15,5 +16,6 @@ export default function Landing() {
                 Account
             </NavLink>
         </div>
+        
     );
 }

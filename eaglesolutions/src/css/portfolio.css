@@ -1,4 +1,66 @@
-.info {
-    padding: 200px;
-    background-color: purple;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio-container {
+  padding: 100px;
+  background-color: #a9d8ca;
+}
+
+.tab-list {  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 1rem 4rem;
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.user-info {
+  float: right;
+  width: 50%;
+}
+
+.name {
+  padding-bottom: 1em;
+}
+
+.img-container {
+  padding-left: 5%;
+}
+
+.img {
+  height: 200px;
+  width: 200px;
+  border: 1px dashed black;
+}
+
+textarea {
+
+  width: 100%;
+  height: 100px;
+  margin-top: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.save-btn {
+  float: right;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
 }
