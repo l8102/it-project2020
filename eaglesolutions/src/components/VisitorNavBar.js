@@ -2,15 +2,17 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import "../css/Nav.css"
 
-export default function NavBar() {
+export default function VisitorNavBar() {
   return (
-    <div className="nav-bar">
-      <h2 className="nav-title"> Eagle ePortfolio </h2>
-      <nav>
-        <NavLink exact to="/">Home</NavLink>
-        <NavLink to="/browse">Browse</NavLink>
-        <NavLink to="/login">Login</NavLink>
-      </nav>
+    <div className="nav-bar-container">
+      <h1> Eagle ePortfolio </h1>
+      <div className="nav-bar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/browse">Browse</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+      </div>
     </div>
   )
 }

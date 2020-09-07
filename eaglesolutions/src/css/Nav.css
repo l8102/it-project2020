@@ -1,57 +1,60 @@
-.nav-bar {
-    position: absolute;
+/* This ensure the page fills the whole screen*/
+body {
+    margin: 0;
+    background-color: white;
+}
+
+.nav-bar-container {
+    position: fixed;
+    z-index: 10;
     top: 0;
     left: 0;
-    z-index: 10;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #333;
-    padding: 20px 100px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    color: #10465b;
+    background-color: #c0d0d7;
+    border-top: 5px solid #347b98;
+    border-bottom: 5px solid #347b98;
+    /*border-bottom: 5px solid #347b98;*/
 }
 
-.nav-title {
-    color: #d2b48c;
-    font-weight: bold;
-    font-size: 35px;
+.nav-bar-container h1 {
+    font-size: 36px;
+    text-align: left;
+    vertical-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 0px;
 }
 
-nav {
-    display: flex;
-}
-
-/* todo understand what these sections do and rewrite them*/
-nav a, nav button {
-    font-size: 18px;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-    margin: 0 17px;
-}
-
-nav a:first-child, nav button:first-child {
-    margin-left: 0;
-}
-
-nav a:last-child, nav button:last-child{
-    margin-right: 0;
-}
-
-nav a:hover, nav button:hover {
-    color: #905a2a;
-}
-
-nav a:after, nav button:after {
-    content: "";
+.nav-bar {
     display: block;
-    width: 0;
-    height: 3px;
-    background: #905a2a;
-    transition: width 0.4s;
+    justify-content: space-between;
+    align-items: baseline;
+
 }
 
-nav a:hover:after, nav button:hover:after {
-    width: 100%;
-    color: lightgray;
+.nav-bar ul {
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-bar a {
+    float: right;
+    display: inline;
+    display: block;
+    color: #10465b;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-bar a:hover {
+    color: #347b98;
 }

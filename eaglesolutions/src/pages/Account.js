@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import "../css/account.css";
+import "../css/Account.css";
 
 
 export default class Account extends Component {

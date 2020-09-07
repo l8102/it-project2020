@@ -1,0 +1,33 @@
+.landing-container {
+    margin-top: 120px;
+    margin-bottom: 50px;
+    text-align: center;
+    display: block;
+}
+
+.landing-container button {
+    background-color: #c9dbd5;
+    transition-duration: 0.2s;
+    width: 310px;
+    height: 400px;
+    font-size: large;
+    border: none;
+    color: #176966;
+    border: #239d99 5px solid;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.landing-container button:hover {
+    color: #239d99;
+}
+
+.landing-container a {
+
+    text-decoration: none;
+    margin: 50px;
+}
+
+.landing-container a:visited {
+    text-decoration: none;
+}

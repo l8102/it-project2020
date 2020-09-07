@@ -1,5 +1,5 @@
 import React from "react";
-// todo add css file
+import "../css/Footer.css"
 
 // Footer explains Pear team member and copyright of website
 export default function Footer() {
