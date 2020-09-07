@@ -1,0 +1,57 @@
+.nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    padding: 20px 100px;
+}
+
+.nav-title {
+    color: #d2b48c;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+nav {
+    display: flex;
+}
+
+/* todo understand what these sections do and rewrite them*/
+nav a, nav button {
+    font-size: 18px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    margin: 0 17px;
+}
+
+nav a:first-child, nav button:first-child {
+    margin-left: 0;
+}
+
+nav a:last-child, nav button:last-child{
+    margin-right: 0;
+}
+
+nav a:hover, nav button:hover {
+    color: #905a2a;
+}
+
+nav a:after, nav button:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #905a2a;
+    transition: width 0.4s;
+}
+
+nav a:hover:after, nav button:hover:after {
+    width: 100%;
+    color: lightgray;
+}
