@@ -4,6 +4,14 @@ body {
     background-color: white;
 }
 
+/* This ensures content isn't hidden behind the nav bar */
+.nav-bar-offset {
+    padding-top: 55px;
+    background-color: #fee;
+    position: relative;
+    visibility: hidden;
+}
+
 .nav-bar-container {
     position: fixed;
     z-index: 10;

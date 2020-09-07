@@ -5,11 +5,14 @@
 
 .account-form {
     text-align: center;
-    background-color: aqua;
+    background-color: #c9dbd5;
+    color: #176966;
     padding: 5px;
     margin: 40px;
     width: 400px;
     height: 435px;
+    border-radius: 20px;
+    border: 5px solid #239d99;
 }
 
 input[type=text] {
@@ -50,7 +53,6 @@ form {
     width: 100%;
     box-sizing: border-box;
 }
-
 
 
 
