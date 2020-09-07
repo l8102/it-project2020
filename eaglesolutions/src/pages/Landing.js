@@ -5,9 +5,6 @@ export default function Landing() {
     
     return (
         <div className="landing-container">
-            <h1>
-                Eagle Solutions
-            </h1>
             <NavLink to="portfolio">
                 Portfolio
             </NavLink>

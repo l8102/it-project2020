@@ -1,11 +1,11 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-// todo add css file
+import "../css/Nav.css"
 
 export default function NavBar() {
   return (
-    <div className="nav_bar">
-      <h2> Eagle ePortfolio </h2>
+    <div className="nav-bar">
+      <h2 className="nav-title"> Eagle ePortfolio </h2>
       <nav>
         <NavLink exact to="/">Home</NavLink>
         <NavLink to="/browse">Browse</NavLink>
