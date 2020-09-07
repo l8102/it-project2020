@@ -36,6 +36,7 @@ export default class Account extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        // Needs to be completed 
     }
 
     createAccountForm() {
@@ -49,16 +50,35 @@ export default class Account extends Component {
                 </h2>
                 <form onSubmit={ this.handleSubmit }>
                     <div className="name-field">
-                        <input name="firstName" style={{marginRight:"10px"}} type="text" value={ this.state.firstName } 
-                            placeholder="First name" onChange={ this.handleChange } />
-                        <input name="lastName" type="text" value={ this.state.lastName } placeholder="Last name" 
+                        <input 
+                            name="firstName" 
+                            style={{ marginRight:"10px" }} 
+                            type="text" 
+                            value={ this.state.firstName } 
+                            placeholder="First name" 
+                            onChange={ this.handleChange } />
+                        <input 
+                            name="lastName" 
+                            type="text" 
+                            value={ this.state.lastName } 
+                            placeholder="Last name" 
                             onChange={ this.handleChange } />
                     </div>
-                    <input name="email" type="text" value={ this.state.email } placeholder="Email" 
+                    <input 
+                        name="email" 
+                        type="text" 
+                        value={ this.state.email } 
+                        placeholder="Email" 
                         onChange={ this.handleChange } />
-                    <input name="password" type="password" value={ this.state.password} placeholder="Password" 
+                    <input 
+                        name="password" 
+                        type="password" 
+                        value={ this.state.password} 
+                        placeholder="Password" 
                         onChange={ this.handleChange } />
-                    <input type="submit" value="Login" />
+                    <input 
+                        type="submit" 
+                        value="Login" />
                     <br />
                     <NavLink to="login">
                         Already have an account?
