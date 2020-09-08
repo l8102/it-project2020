@@ -1,0 +1,58 @@
+.form-container {
+   display: flex;
+   justify-content: center;
+}
+
+.account-form {
+    text-align: center;
+    background-color: #c9dbd5;
+    color: #176966;
+    padding: 5px;
+    margin: 40px;
+    width: 400px;
+    height: 435px;
+    border-radius: 20px;
+    border: 5px solid #239d99;
+}
+
+input[type=text] {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+input[type=password] {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    padding: 10px 50px;
+    margin: 10px;
+}
+
+
+form {
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-bottom: 100px;
+}
+
+.name-field {
+    display: flex;
+    flex-direction: row;
+}
+
+.name-field input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+

@@ -1,0 +1,66 @@
+/* This ensure the page fills the whole screen*/
+body {
+    margin: 0;
+    background-color: #c0d0d7;
+}
+
+/* This ensures content isn't hidden behind the nav bar */
+.nav-bar-offset {
+    padding-top: 55px;
+    background-color: #fee;
+    position: relative;
+    visibility: hidden;
+}
+
+.nav-bar-container {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    color: white;
+    background-color: #347b98;
+    box-shadow: 0px 0px 10px #10465b;
+}
+
+.nav-bar-container h1 {
+    font-size: 36px;
+    text-align: left;
+    vertical-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 0px;
+}
+
+.nav-bar {
+    display: block;
+    justify-content: space-between;
+    align-items: baseline;
+
+}
+
+.nav-bar ul {
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-bar a {
+    float: right;
+    display: inline;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-bar a:hover {
+    background-color: #10465b;
+}

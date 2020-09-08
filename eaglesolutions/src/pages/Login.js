@@ -1,36 +1,71 @@
-import React from "react";
-import {
-  BrowserRouter as Router, 
-  Switch, 
-  Route
-} from "react-router-dom";
-import GoogleLogin from "react-google-login";
-import axios from 'axios';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import "../css/Account.css";
 
-export default function Login() {
-    
-    const responseGoogle = response => {
-     console.log(response);
-     axios({
-      method: "POST",
-      url: "http://localhost:3001/account/googleLogin",
-      data: {tokenId: response.tokenId}
-	 }).then(response => {
-        console.log(response);
-	 })
-	}
+export default class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.createLoginForm = this.createLoginForm.bind(this);
+    }
 
-    const responseFailGoogle = response => {
-    
-	}
-    
-    return (
-        <GoogleLogin
-            clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
-            buttonText="Sign in"
-            onSuccess={responseGoogle}
-            onFailure={responseFailGoogle}
-            cookiePolicy={'single_host_origin'}
-         />
-    );
+    render() {
+        return (
+            <div className="account-container">
+                <NavLink to="/">
+                    Landing
+                </NavLink>
+                <div className="form-container">
+                    <this.createLoginForm />
+                </div>`
+            </div>
+        )
+    }
+
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        // Needs to be completed   
+    }
+
+    createLoginForm() {
+        return (
+            <div className="account-form">
+                <h1>
+                    Eagle Solutions
+                </h1>
+                <h2> 
+                    Login 
+                </h2>
+                <form onSubmit={ this.handleSubmit }>
+                    <input 
+                        name="email" 
+                        type="text" 
+                        value={ this.state.email } 
+                        placeholder="Email" 
+                        onChange={ this.handleChange }/>
+                    <input 
+                        name="password" 
+                        type="password" 
+                        value={ this.state.password } 
+                        placeholder="Password" 
+                        onChange={ this.handleChange } />
+                    <input 
+                        type="submit" 
+                        value="Login" />
+                    <br />
+                    <NavLink to="/account">
+                        Create an account
+                    </NavLink>
+                </form> 
+            </div> )
+    }
 }

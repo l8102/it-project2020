@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio-container {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #a9d8ca;
+  overflow: auto;
+}
+
+.tab-list {  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 1rem 0;
+  width: 24.9%;
+  text-align: center;
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.user-info {
+  float: right;
+  width: 40%;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+ }
+
+.name {
+  padding-bottom: 1em;
+}
+
+.img-container {
+  width: 40%;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+  float: left;
+}
+
+.img {
+  height: 200px;
+  width: 200px;
+  border: 1px dashed black;
+}
+
+textarea {
+  width: 80%;
+  height: 100px;
+  margin-top: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.save-btn {
+  float: right;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
