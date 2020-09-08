@@ -38,13 +38,19 @@ var googleLogin = function(req, res) {
 					})        
 				 } else {
                        if(user) {
-                       console.log("User exists");
-                        
+                        console.log("User exists");
+                        res.send(user._id);
+                        return true;
+ 
                         
 
 
 					   }  else {
+
+                            // WHAT TO SET PASSWORD??
                             var password = email;
+
+
                             var newAccount = {
                                 email: email,
                                 password: password,
@@ -67,6 +73,50 @@ var googleLogin = function(req, res) {
 	})
     console.log()
 }
+
+
+
+// Read Account
+
+// todo 
+
+
+
+
+/*
+// Update Name
+var updateName = function(req, res, next) {
+    var id = req.body.id;
+
+    //finds account by an id and updates name
+    Accounts.findById(id, function(err, doc) {
+        if (err || doc == undefined) {
+            console.error('error, no account found');
+        } else {
+            doc.firstName = req.body.firstName;
+            doc.lastName = req.body.lastName;
+            //console.log('name updated');
+
+            doc.save();
+            res.redirect('/');
+        }
+    });
+};
+*/
+
+/*
+
+// Delete account
+var deleteAccount = function(req, res, next) {
+    var id = req.body.id;
+
+    //find account by id and deletes
+    Accounts.findByIdAndRemove(id).exec();
+    //console.log("account removed");
+
+    res.redirect('/');
+};
+*/
 
 // Export controllers
 module.exports = {
