@@ -4,7 +4,7 @@ import {
   Switch, 
   Route
 } from "react-router-dom";
-import "./css/portfolio.css";
+import "./css/Portfolio.css";
 
 // Import pages
 import Landing from "./pages/Landing";
