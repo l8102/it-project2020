@@ -1,10 +1,32 @@
 const express = require('express');
 const accountRoutes = express.Router();
-const accountController = require('../controllers/accountControllers');
+const accountController = require("../controllers/accountControllers");
 
 // CREATE
 
-accountRoutes.post('/create', accountController.createAccount);
+//accountRoutes.post('/create', accountController.createAccount);
+
+
+
+// GOOGLE SIGN IN
+accountRoutes.post('/googlelogin', accountController.googleLogin);
+
+
+// READ
+
+// accountRoutes.get('/read', accountController.readAccount);
+
+
+// UPDATE
+
+//accountRoutes.put('/updateName', accountController.updateName);
+
+
+// DELETE
+
+//accountRoutes.delete('/delete', accountController.deleteAccount);
+
+
 
 //
 module.exports = accountRoutes;

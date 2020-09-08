@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import "../css/Landing.css"
 
+
 export default class Landing extends Component {
     render() {
         return (
