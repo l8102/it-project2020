@@ -3,12 +3,11 @@ footer {
     bottom: 0;
     position: relative;
     text-align: center;
-    color: #10465b;
-    background-color: #c0d0d7;
+    color: white;
+    background-color: #347b98;
     padding-top: 5px;
     padding-bottom: 5px;
-    border-top: 5px solid #347b98;
-    border-bottom: 5px solid #347b98;
+    box-shadow: 0px 0px 10px #10465b;
 }
 
 footer p {
