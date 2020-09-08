@@ -1,7 +1,7 @@
 /* This ensure the page fills the whole screen*/
 body {
     margin: 0;
-    background-color: white;
+    background-color: #c0d0d7;
 }
 
 /* This ensures content isn't hidden behind the nav bar */
@@ -20,11 +20,9 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    color: #10465b;
-    background-color: #c0d0d7;
-    border-top: 5px solid #347b98;
-    border-bottom: 5px solid #347b98;
-    /*border-bottom: 5px solid #347b98;*/
+    color: white;
+    background-color: #347b98;
+    box-shadow: 0px 0px 10px #10465b;
 }
 
 .nav-bar-container h1 {
@@ -55,7 +53,7 @@ body {
     float: right;
     display: inline;
     display: block;
-    color: #10465b;
+    color: white;
     text-align: center;
     padding: 20px 20px;
     text-decoration: none;
@@ -64,5 +62,5 @@ body {
 }
 
 .nav-bar a:hover {
-    color: #347b98;
+    background-color: #10465b;
 }
