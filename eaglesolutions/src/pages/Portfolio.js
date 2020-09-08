@@ -39,33 +39,18 @@ export default function Portfolio() {
           </button>
         </form>
       </div>
-      <div className="img-container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          ref={imageUploader}
-          style={{
-            display: "none"
-          }}
-        />
-        <div className="img"
-          onClick={() => imageUploader.current.click()}
-        >
-          <img
-            ref={uploadedImage}
-            style={{
-              width: "100%",
-              height: "100%"
-            }}
-          />
+      <div className="img-container">
+        
+        <input type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploader} style={{display: "none"}}/>
+        
+        <div className="img" onClick={() => imageUploader.current.click()}>
+          
+          <img ref={uploadedImage} style={{width: "100%", height: "100%"}}/>
+        
         </div>
+        
         Click to Upload Image
+      
       </div>
     </div>
   );   
