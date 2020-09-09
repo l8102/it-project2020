@@ -13,7 +13,7 @@
     font-size: large;
     border: none;
     color: #176966;
-    border: #239d99 5px solid;
+    box-shadow: 0px 2px 10px #032533;
     border-radius: 20px;
     font-weight: bold;
 }
@@ -23,7 +23,6 @@
 }
 
 .landing-container a {
-
     text-decoration: none;
     margin: 50px;
 }

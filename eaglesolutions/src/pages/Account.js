@@ -20,9 +20,6 @@ export default class Account extends Component {
     render() {
         return (
             <div className="account-container">
-                <NavLink to="/">
-                    Landing
-                </NavLink>
                 <div className="form-container">
                     <this.createAccountForm />
                 </div>

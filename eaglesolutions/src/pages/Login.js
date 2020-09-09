@@ -19,9 +19,6 @@ export default class Login extends Component {
     render() {
         return (
             <div className="account-container">
-                <NavLink to="/">
-                    Landing
-                </NavLink>
                 <div className="form-container">
                     <this.createLoginForm />
                 </div>`
@@ -66,6 +63,7 @@ export default class Login extends Component {
                     <br />
                     
                     <GoogleLogin
+                        className="nav-link"
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Sign in with Google"
                         onSuccess={responseGoogle}
