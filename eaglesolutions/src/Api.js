@@ -2,13 +2,27 @@ import axios from "axios";
 import GoogleLogin from "react-google-login";
 
 const BASE_URL = "http://localhost:3000";
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
-
+/*
 function init() {
   gapi.load('auth2', function() {
-    /* Ready. Make a call to gapi.auth2.init or some other API */
+    /* Ready. Make a call to gapi.auth2.init or some other API
   });
+ } 
+*/
+
+export function responseGoogle(response) {
+     console.log(response);
+     axios({
+      method: "POST",
+      url: "http://localhost:3001/account/googleLogin",
+      data: {tokenId: response.tokenId}
+	 }).then(response => {
+        console.log(response);
+	 })
+	}
+
+export function responseFailGoogle(response) {
 }
 
 
