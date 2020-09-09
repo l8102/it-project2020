@@ -63,7 +63,6 @@ export default class Login extends Component {
                     <br />
                     
                     <GoogleLogin
-                        className="nav-link"
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Sign in with Google"
                         onSuccess={responseGoogle}

@@ -74,3 +74,11 @@ textarea {
   padding: 5px;
   border-radius: 5px;
 }
+
+.save-btn-tab {
+  bottom: 0;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+}

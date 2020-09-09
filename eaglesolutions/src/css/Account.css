@@ -8,7 +8,7 @@
     background-color: #c9dbd5;
     color: #176966;
     padding: 5px;
-    margin: 40px;
+    margin: 20px;
     width: 400px;
     height: 435px;
     border-radius: 20px;
@@ -66,9 +66,5 @@ form {
     box-sizing: border-box;
 }
 
-
-.nav-link {
-    margin: 5px;
-}
 
 
