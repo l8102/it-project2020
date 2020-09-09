@@ -7,8 +7,8 @@
     text-align: center;
     background-color: #c9dbd5;
     color: #176966;
+    margin: 4%;
     padding: 5px;
-    margin: 20px;
     width: 400px;
     height: 435px;
     border-radius: 20px;
@@ -22,6 +22,7 @@ form {
 h1 {
     margin: 20px;
 }
+
 
 input[type=text], input[type=password] {
     text-align: center;
@@ -66,5 +67,9 @@ form {
     box-sizing: border-box;
 }
 
+.nav-link {
+    display: block;
+    margin: 20px;
+}
 
 

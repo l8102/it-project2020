@@ -60,8 +60,6 @@ export default class Login extends Component {
                     <input 
                         type="submit" 
                         value="Login" />
-                    <br />
-                    
                     <GoogleLogin
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Sign in with Google"
@@ -69,9 +67,7 @@ export default class Login extends Component {
                         onFailure={responseFailGoogle}
                         cookiePolicy={'single_host_origin'}
                      />
-                     <br />
-
-                    <NavLink to="/account">
+                    <NavLink className="nav-link" to="/account">
                         Create an account
                     </NavLink>
                 </form> 

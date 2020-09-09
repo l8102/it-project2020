@@ -76,8 +76,7 @@ export default class Account extends Component {
                     <input 
                         type="submit" 
                         value="Login" />
-                    <br />
-                    <NavLink to="login">
+                    <NavLink className="nav-link" to="login">
                         Already have an account?
                     </NavLink>
                 </form> 
