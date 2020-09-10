@@ -4,7 +4,7 @@ const accountController = require("../controllers/accountControllers");
 
 // CREATE
 
-//accountRoutes.post('/create', accountController.createAccount);
+accountRoutes.post('/create', accountController.createAccount);
 
 
 
@@ -14,21 +14,21 @@ accountRoutes.post('/googlelogin', accountController.googleLogin);
 
 // READ
 
-// accountRoutes.get('/read', accountController.readAccount);
+accountRoutes.get('/read', accountController.readAccount);
 
 
 // UPDATE
 
-//accountRoutes.put('/updateName', accountController.updateName);
+accountRoutes.put('/updateName', accountController.updateName);
 
 
 // DELETE
 
-//accountRoutes.delete('/delete', accountController.deleteAccount);
+accountRoutes.delete('/delete', accountController.deleteAccount);
 
 
 
-//
+// Export Routes
 module.exports = accountRoutes;
 
 // Michael's previous code

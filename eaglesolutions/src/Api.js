@@ -12,7 +12,9 @@ function init() {
 */
 
 export function responseGoogle(response) {
+
      console.log(response);
+     // Send to backend
      axios({
       method: "POST",
       url: "http://localhost:3001/account/googleLogin",
@@ -23,9 +25,28 @@ export function responseGoogle(response) {
 	}
 
 export function responseFailGoogle(response) {
+
+    console.log("Google Login failed")
+
+}
+
+export function getAccount(account) {
+    const accountId = account.accountId;
+
+    var res = await axios({
+     method: "GET",
+     url: "http://localhost:3001/account/readAccount",
+     data: accountId
+	}).then(function (res) {
+     console.log(res);
+	})
+    return res.data;
+
 }
 
 
+
+/*
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -33,3 +54,4 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
+*/
