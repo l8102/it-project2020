@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import "../css/Account.css";
+import { responseGoogle, responseFailGoogle } from "../Api.js"
+import GoogleLogin from "react-google-login";
 
 export default class Login extends Component {
     constructor(props) {
@@ -62,6 +64,16 @@ export default class Login extends Component {
                         type="submit" 
                         value="Login" />
                     <br />
+                    
+                    <GoogleLogin
+                        clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
+                        buttonText="Sign in with Google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseFailGoogle}
+                        cookiePolicy={'single_host_origin'}
+                     />
+                     <br />
+
                     <NavLink to="/account">
                         Create an account
                     </NavLink>
@@ -69,5 +81,3 @@ export default class Login extends Component {
             </div> )
     }
 }
-
-
