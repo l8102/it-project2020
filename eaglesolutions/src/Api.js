@@ -30,7 +30,7 @@ export function responseFailGoogle(response) {
 
 }
 
-export function getAccount(account) {
+export async function getAccount(account) {
     const accountId = account.accountId;
 
     var res = await axios({
@@ -44,7 +44,16 @@ export function getAccount(account) {
 
 }
 
+export function deleteAccount(account) {
+    const accountId = account.accountId;
 
+    axios({
+     method: "delete",
+     url: "http://localhost:3000/account/deleteAccount",
+     data: accountId
+	})
+
+}
 
 /*
 function onSignIn(googleUser) {

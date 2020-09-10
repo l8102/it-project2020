@@ -4,7 +4,7 @@ const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
 
 // Create new account
-const createAccount = function(req, res, next) {
+var createAccount = function(req, res, next) {
   console.log(req.body)
   const accountInfo = {
     email: req.body.email,
@@ -18,6 +18,7 @@ const createAccount = function(req, res, next) {
   data.save();
 
   res.redirect('/account');
+  return true;
 };
 
 
