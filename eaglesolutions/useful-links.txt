@@ -1,0 +1,26 @@
+For backend and frontend structure
+https://stackoverflow.com/questions/48304513/backend-and-frontend-on-same-port
+https://stackoverflow.com/questions/51126472/how-to-organise-file-structure-of-backend-and-frontend-in-mern
+
+For deploying to Heroku
+https://www.youtube.com/watch?v=5PaUiPyBDJY&ab_channel=EsterlingAccime
+https://www.youtube.com/watch?v=1REonFsWBbY&feature=youtu.be&ab_channel=EsterlingAccime
+https://github.com/accimeesterlin/mernapp_youtube
+
+For node modules troubleshooting
+https://stackoverflow.com/questions/22924633/gitignore-is-not-ignoring-directories
+
+To undo all commits
+git reset
+
+To add to heroku (can / should only be done from master)
+git push heroku master
+
+To check that heroku is added as a remote repo
+git remote -v
+
+To add heroku as a remote repo
+heroku git:remote -a eaglesolutions
+
+Full guide on node deployment
+https://devcenter.heroku.com/articles/deploying-nodejs
