@@ -19,7 +19,7 @@
     "start-frontend": "react-scripts start",
     "start-backend": "cd backend && npm start",
     "heroku-postbuild": "npm run install-frontend && npm run install-backend",
-    "install-frontend": "npm run build",
+    "install-frontend": "npm install && npm run build",
     "install-backend": "cd backend && npm install",
     "build": "react-scripts build",
     "test": "react-scripts test",
