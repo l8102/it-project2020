@@ -1,3 +1,5 @@
+// todo change app.use path to /api/accounts
+
 // libraries
 const express = require('express');
 const cors = require('cors');
