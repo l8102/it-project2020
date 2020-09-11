@@ -24,3 +24,11 @@ heroku git:remote -a eaglesolutions
 
 Full guide on node deployment
 https://devcenter.heroku.com/articles/deploying-nodejs
+
+Very useful guide for easy heroku deployment
+Michael needs to be added to heroku, he then needs to enable permissions in git so we can connect
+https://www.youtube.com/watch?v=qXIG8iKO7Fo&ab_channel=HannahPatellis
+
+For toggle
+https://material-ui.com/components/switches/
+https://reactjs.org/docs/handling-events.html
