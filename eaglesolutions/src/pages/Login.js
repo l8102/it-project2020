@@ -21,7 +21,7 @@ export default class Login extends Component {
             <div className="account-container">
                 <div className="form-container">
                     <this.createLoginForm />
-                </div>`
+                </div>
             </div>
         )
     }
@@ -60,7 +60,10 @@ export default class Login extends Component {
                     <input 
                         type="submit" 
                         value="Login" />
-                    <GoogleLogin
+                    <h3> 
+                           Or
+                    </h3>
+                    <GoogleLogin className="google-button"
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Sign in with Google"
                         onSuccess={responseGoogle}
