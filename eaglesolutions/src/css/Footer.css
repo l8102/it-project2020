@@ -6,11 +6,11 @@ footer {
     bottom: 0;
     position: relative;
     text-align: center;
-    color: var(--whiteText);
-    background-color: var(--blueHighlight);
+    color: var(--white-text);
+    background-color: var(--blue-highlight);
     padding-top: 5px;
     padding-bottom: 5px;
-    box-shadow: 0 0 10px var(--blueShadow);
+    box-shadow: 0 0 10px var(--blue-shadow);
 }
 
 footer p {

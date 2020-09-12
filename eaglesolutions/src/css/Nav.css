@@ -16,9 +16,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    color: var(--whiteText);
-    background-color: var(--blueHighlight);
-    box-shadow: 0 0 10px var(--blueShadow);
+    color: var(--white-text);
+    background-color: var(--blue-highlight);
+    box-shadow: 0 0 10px var(--blue-shadow);
 }
 
 .nav-bar-container h1 {
@@ -57,5 +57,5 @@
 }
 
 .nav-bar a:hover {
-    background-color: var(--blueShadow);
+    background-color: var(--blue-shadow);
 }

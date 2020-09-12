@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import Switch from '@material-ui/core/Switch';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import withStyles from "@material-ui/core/styles/withStyles";
+import "../css/ColourScheme.css"
+
+// todo maybe add custom colours to switch
 
 class PrivacyToggle extends Component {
   constructor(props) {
@@ -23,12 +28,18 @@ class PrivacyToggle extends Component {
   render() {
     return(
       <div>
-        <Switch
-          checked={this.state.isToggleOn}
-          onChange={this.handleChange}
-          color="primary"
-          name="checkedB"
-          inputProps={{ 'aria-label': 'primary checkbox' }}
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.state.isToggleOn}
+              onChange={this.handleChange}
+              color="primary"
+              name="checkedB"
+              inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+          }
+          label="Private Mode"
+          labelPlacement="end"
         />
       </div>
     )
