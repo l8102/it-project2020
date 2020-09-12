@@ -25,7 +25,7 @@ export default function Portfolio() {
     <div className="portfolio-container">
       <div className="user-info">
         <h1 className="name">
-          Name
+          User's Name
         </h1>
         <form>
           <label className="contact-info">
@@ -39,17 +39,16 @@ export default function Portfolio() {
           </button>
         </form>
       </div>
+      
       <div className="img-container">
         
         <input type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploader} style={{display: "none"}}/>
         
-        <div className="img" onClick={() => imageUploader.current.click()}>
+        <button className="img" onClick={() => imageUploader.current.click()}>
           
           <img ref={uploadedImage} style={{width: "100%", height: "100%"}}/>
-        
-        </div>
-        
-        Click to Upload Image
+        </button>
+
       
       </div>
     </div>
