@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently -n 'frontend,backend' -c 'red,green' \"npm run start-frontend\" \"npm run start-backend\"",
     "start-frontend": "cd frontend && npm start",
-    "start-backend": "cd backend && npm start",
+    "start-backend": "",
     "heroku-postbuild": "npm run install-frontend && npm run install-backend",
     "install-frontend": "cd frontend && npm install && npm run build",
     "install-backend": "cd backend && npm install",
