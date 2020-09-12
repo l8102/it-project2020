@@ -1,8 +1,10 @@
 .landing-container {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     text-align: center;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
 }
 
 .landing-container button {
@@ -13,7 +15,7 @@
     font-size: large;
     border: none;
     color: #176966;
-    border: #239d99 5px solid;
+    box-shadow: 0px 2px 10px #032533;
     border-radius: 20px;
     font-weight: bold;
 }
@@ -23,7 +25,6 @@
 }
 
 .landing-container a {
-
     text-decoration: none;
     margin: 50px;
 }

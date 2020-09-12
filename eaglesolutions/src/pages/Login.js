@@ -19,6 +19,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="account-container">
+
                 <NavLink to="/">
                     Landing
                 </NavLink>
@@ -27,7 +28,7 @@ export default class Login extends Component {
                 </NavLink>
                 <div className="form-container">
                     <this.createLoginForm />
-                </div>`
+                </div>
             </div>
         )
     }
@@ -66,18 +67,17 @@ export default class Login extends Component {
                     <input 
                         type="submit" 
                         value="Login" />
-                    <br />
-                    
-                    <GoogleLogin
+                    <h3> 
+                           Or
+                    </h3>
+                    <GoogleLogin className="google-button"
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Sign in with Google"
                         onSuccess={responseGoogle}
                         onFailure={responseFailGoogle}
                         cookiePolicy={'single_host_origin'}
                      />
-                     <br />
-
-                    <NavLink to="/account">
+                    <NavLink className="nav-link" to="/account">
                         Create an account
                     </NavLink>
                 </form> 

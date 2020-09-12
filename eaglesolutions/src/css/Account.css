@@ -7,34 +7,59 @@
     text-align: center;
     background-color: #c9dbd5;
     color: #176966;
+    margin: 4%;
     padding: 5px;
-    margin: 40px;
     width: 400px;
     height: 435px;
     border-radius: 20px;
-    border: 5px solid #239d99;
+    box-shadow: 0px 2px 10px #032533;
 }
 
-input[type=text] {
+form {
+    margin: 40px;
+}
+
+.account-form h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.account-form h3 {
+    font-size: small;
+}
+
+
+input[type=text], input[type=password], select {
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
+    outline: none;
+    border: none;
 }
 
 
-input[type=password] {
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-input[type=submit] {
+input[type=submit], select {
     padding: 10px 50px;
-    margin: 10px;
+    width: 180px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 2px 3px #96a39e;
+    outline: none;
+    color: #176966;
+}
+
+input[type=submit]:hover {
+    background-color: #ffffffce;
+    color: #239d99;
+}
+
+::placeholder {
+    color: #176966;
 }
 
 
@@ -54,5 +79,17 @@ form {
     box-sizing: border-box;
 }
 
+.nav-link, .nav-link:visited {
+    color: #176966;
+    display: block;
+    margin: 20px;
+    text-decoration: none;
+}
 
+.nav-link:hover  {
+    color: #239d99;
+}
 
+.google-button {
+    margin: 10px;
+}

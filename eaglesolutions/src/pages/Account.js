@@ -23,9 +23,6 @@ export default class Account extends Component {
     render() {
         return (
             <div className="account-container">
-                <NavLink to="/">
-                    Landing
-                </NavLink>
                 <div className="form-container">
                     <this.createAccountForm />
                 </div>
@@ -82,7 +79,10 @@ export default class Account extends Component {
                     <input 
                         type="submit" 
                         value="Login" />
-                    <br />
+
+                    <NavLink className="nav-link" to="login">
+
+        
 
                     <GoogleLogin
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
@@ -91,8 +91,6 @@ export default class Account extends Component {
                         onFailure={responseFailGoogle}
                         cookiePolicy={'single_host_origin'}
                      />
-
-                    <NavLink to="login">
                         Already have an account?
                     </NavLink>
                 </form> 
