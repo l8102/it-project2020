@@ -1,7 +1,7 @@
 import axios from "axios";
 import GoogleLogin from "react-google-login";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://eaglesolutions.herokuapp.com";
 
 /*
 function init() {
@@ -17,7 +17,7 @@ export function responseGoogle(response) {
      // Send to backend
      axios({
       method: "POST",
-      url: "http://localhost:3001/account/googleLogin",
+      url: BASE_URL + "/api/account/googleLogin",
       data: {tokenId: response.tokenId}
 	 }).then(response => {
         console.log(response);
@@ -35,7 +35,7 @@ export async function getAccount(account) {
 
     var res = await axios({
      method: "GET",
-     url: "http://localhost:3001/account/readAccount",
+     url: BASE_URL + "/api/account/readAccount",
      data: accountId
 	}).then(function (res) {
      console.log(res);
@@ -49,7 +49,7 @@ export function deleteAccount(account) {
 
     axios({
      method: "delete",
-     url: "http://localhost:3000/account/deleteAccount",
+     url: BASE_URL + "/api/account/deleteAccount",
      data: accountId
 	})
 

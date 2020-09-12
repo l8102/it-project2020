@@ -1,12 +1,3 @@
-// todo change app.use path to /api/accounts
-// todo change file structure and add in the following
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
-// }
-// OR
-// app.use('/', express.static('public'))
-
-
 // libraries
 const express = require('express');
 const cors = require('cors');
@@ -14,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
-//connect to the database
+// connect to the database
 require('./models/database.js');
 
 // for json
@@ -25,15 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true}));
 // handle connection with mongoDB (password stuff ???)
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("<H1>Eagle Solutions</H1>")
-})
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("./frontend/build"))
+}
 
 // importing each of the routes
 const accountRoutes = require('./routes/accountRoutes');
 
 // specifying the path for each of the routes
-app.use("/account", accountRoutes);
+app.use("/api/account", accountRoutes);
 
 // establish connection
 const connection = mongoose.connection;
