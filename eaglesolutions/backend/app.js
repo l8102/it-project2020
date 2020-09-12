@@ -41,8 +41,6 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-app.use("/account", accountRoutes);
-
 // start the app
 const port = process.env.PORT || 3001;
 

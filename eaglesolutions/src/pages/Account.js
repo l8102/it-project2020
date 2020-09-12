@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import "../css/Account.css";
+import { responseGoogle, responseFailGoogle } from "../Api.js"
+import GoogleLogin from "react-google-login";
+
 
 
 export default class Account extends Component {
@@ -80,6 +83,15 @@ export default class Account extends Component {
                         type="submit" 
                         value="Login" />
                     <br />
+
+                    <GoogleLogin
+                        clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
+                        buttonText="Create Account with Google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseFailGoogle}
+                        cookiePolicy={'single_host_origin'}
+                     />
+
                     <NavLink to="login">
                         Already have an account?
                     </NavLink>
