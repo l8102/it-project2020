@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "../css/Portfolio.css";
+import PrivacyToggle from "../components/PrivacyToggle";
 
 
 export default function Portfolio() {
@@ -38,6 +39,7 @@ export default function Portfolio() {
             Save
           </button>
         </form>
+        <PrivacyToggle/>
       </div>
       
       <div className="img-container">
