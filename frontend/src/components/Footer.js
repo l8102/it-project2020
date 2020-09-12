@@ -11,7 +11,6 @@ class Footer extends Component {
       <footer>
         <p>&copy; Copyright 2020, Eagle Solutions</p>
         <p>Gemma Seeley, Glenn Phillips, Jasmine Bond, Michael Lowe</p>
-        <PrivacyToggle text="Hello World!" />
       </footer>
     )
   }
