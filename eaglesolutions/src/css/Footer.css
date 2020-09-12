@@ -1,13 +1,16 @@
+/* Import the default colour scheme for the website */
+@import "ColourScheme.css";
+
 footer {
     width: 100%;
     bottom: 0;
     position: relative;
     text-align: center;
-    color: white;
-    background-color: #347b98;
+    color: var(--white-text);
+    background-color: var(--blue-highlight);
     padding-top: 5px;
     padding-bottom: 5px;
-    box-shadow: 0px 0px 10px #10465b;
+    box-shadow: 0 0 10px var(--blue-shadow);
 }
 
 footer p {

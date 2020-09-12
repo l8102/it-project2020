@@ -26,6 +26,7 @@ import VisitorNavBar from "./components/VisitorNavBar";
 import UserNavBar from "./components/UserNavBar";
 import Footer from "./components/Footer";
 
+// todo rewrite this in class notation
 function App() {
   return (
     <Router>

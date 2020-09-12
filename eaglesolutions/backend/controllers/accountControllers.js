@@ -4,7 +4,7 @@ const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
 
 // Create new account
-const createAccount = function(req, res, next) {
+var createAccount = function(req, res, next) {
   console.log(req.body)
   const accountInfo = {
     email: req.body.email,
@@ -18,6 +18,7 @@ const createAccount = function(req, res, next) {
   data.save();
 
   res.redirect('/account');
+  return true;
 };
 
 
@@ -47,7 +48,6 @@ var googleLogin = function(req, res) {
 
 					   }  else {
 
-                            // WHAT TO SET PASSWORD??
                             var password = email;
 
 
@@ -77,46 +77,55 @@ var googleLogin = function(req, res) {
 
 
 // Read Account
+var readAccount = function(req, res) {
+    var accountId = req.body.accountId;
 
-// todo 
+    Account.findById(id, function(err, doc) {
+     if (err || doc == undefined) {
+      console.error('account not found');
+	 } else {
+      res.send(doc);
+	 }
+	});
+} 
 
 
 
 
-/*
+
 // Update Name
 var updateName = function(req, res, next) {
     var id = req.body.id;
 
     //finds account by an id and updates name
-    Accounts.findById(id, function(err, doc) {
+    Account.findById(id, function(err, doc) {
         if (err || doc == undefined) {
             console.error('error, no account found');
         } else {
             doc.firstName = req.body.firstName;
             doc.lastName = req.body.lastName;
-            //console.log('name updated');
+            console.log('name updated');
 
             doc.save();
             res.redirect('/');
         }
     });
 };
-*/
 
-/*
+
+
 
 // Delete account
 var deleteAccount = function(req, res, next) {
     var id = req.body.id;
 
     //find account by id and deletes
-    Accounts.findByIdAndRemove(id).exec();
-    //console.log("account removed");
+    Account.findByIdAndRemove(id).exec();
+    console.log("account removed");
 
     res.redirect('/');
 };
-*/
+
 
 // Export controllers
 module.exports = {

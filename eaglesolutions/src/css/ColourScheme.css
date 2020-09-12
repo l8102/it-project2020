@@ -1,0 +1,21 @@
+/* Colour Scheme for Eagle ePortfolio */
+
+body {
+    --blue-background: #c0d0d7;
+    --blue-highlight:#347b98;
+    --blue-text: #10465b;
+    --blue-shadow: #10465b;
+
+    --green-background: #c9dbd5;
+    --green-highlight: #239d99;
+    --green-text: #176966;
+
+    --white-text: white;
+    --black-text: black;
+
+    /* This ensure the page fills the whole screen*/
+    margin: 0;
+
+    /* Set the default background colour*/
+    background-color: var(--blue-background);
+}

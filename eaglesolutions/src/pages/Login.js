@@ -19,6 +19,13 @@ export default class Login extends Component {
     render() {
         return (
             <div className="account-container">
+
+                <NavLink to="/">
+                    Landing
+                </NavLink>
+                <NavLink to="/portfolio">
+                    Portfolio
+                </NavLink>
                 <div className="form-container">
                     <this.createLoginForm />
                 </div>

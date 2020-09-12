@@ -6,7 +6,6 @@
 .portfolio-container {
   padding-top: 5%;
   padding-bottom: 5%;
-  background-color: #a9d8ca;
   overflow: auto;
 }
 
@@ -21,6 +20,7 @@
   padding: 1rem 0;
   width: 24.9%;
   text-align: center;
+  background-color: white;
 }
 
 .tab-list-active {
@@ -31,10 +31,8 @@
 
 .user-info {
   float: right;
-  width: 40%;
+  width: 60%;
   text-align: center;
-  padding-left: 5%;
-  padding-right: 5%;
  }
 
 .name {
@@ -42,21 +40,23 @@
 }
 
 .img-container {
-  width: 40%;
-  padding-left: 5%;
-  padding-right: 5%;
+  width: 25%;
+  padding-left: 10%;
   text-align: center;
+  position: relative;
   float: left;
 }
 
 .img {
-  height: 200px;
-  width: 200px;
+  width: 25vh;
+  height: 25vh;
   border: 1px dashed black;
 }
 
 textarea {
   width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
   height: 100px;
   margin-top: 5px;
   padding: 5px;
@@ -71,9 +71,11 @@ textarea {
 .save-btn {
   float: right;
   margin-top: 5px;
+  margin-right: 10%;
   padding: 5px;
   border-radius: 5px;
 }
+
 
 .save-btn-tab {
   bottom: 0;
@@ -127,4 +129,10 @@ textarea {
   margin-bottom: 10px;
   outline: none;
 }
+
+
+.pcontainer {
+  background-color: white;
+}
+
 

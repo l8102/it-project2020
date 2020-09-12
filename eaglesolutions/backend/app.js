@@ -1,3 +1,12 @@
+// todo change app.use path to /api/accounts
+// todo change file structure and add in the following
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+// }
+// OR
+// app.use('/', express.static('public'))
+
+
 // libraries
 const express = require('express');
 const cors = require('cors');
@@ -31,8 +40,6 @@ const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
-
-app.use("/account", accountRoutes);
 
 // start the app
 const port = process.env.PORT || 3001;
