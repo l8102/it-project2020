@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
 import { responseGoogle, responseFailGoogle } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
-export default class Login extends Component {
+ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.createLoginForm = this.createLoginForm.bind(this);
+        this.loginForm = this.loginForm.bind(this);
     }
 
     render() {
         return (
             <div className="account-container">
-
                 <NavLink to="/">
                     Landing
                 </NavLink>
@@ -27,7 +26,7 @@ export default class Login extends Component {
                     Portfolio
                 </NavLink>
                 <div className="form-container">
-                    <this.createLoginForm />
+                    <this.loginForm history={this.props.history} />
                 </div>
             </div>
         )
@@ -39,10 +38,28 @@ export default class Login extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        // Needs to be completed   
+        /*var res;
+        
+        res = await accountLogin({
+            this.state.email,
+            this.state.password
+        });
+
+        console.log(res.data);
+
+        if(res != null) {
+            if(res.data != "False") {
+                sessionStorage.setItem("accountID", res.data);
+
+            } else {
+                alert("Invalid Login Credentials")
+            }
+        } */
+        this.props.history.push("/portfolio");
+    
     }
 
-    createLoginForm() {
+    loginForm() {
         return (
             <div className="account-form">
                 <h1>
@@ -83,4 +100,5 @@ export default class Login extends Component {
                 </form> 
             </div> )
     }
-}
+} 
+export default withRouter(Login);

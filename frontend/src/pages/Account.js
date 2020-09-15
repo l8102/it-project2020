@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
 import { responseGoogle, responseFailGoogle } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
 
 
-export default class Account extends Component {
+class Account extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,14 +17,14 @@ export default class Account extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.createAccountForm = this.createAccountForm.bind(this);
+        this.accountForm = this.accountForm.bind(this);
     }
 
     render() {
         return (
             <div className="account-container">
                 <div className="form-container">
-                    <this.createAccountForm />
+                    <this.accountForm />
                 </div>
             </div>
         )
@@ -37,9 +37,10 @@ export default class Account extends Component {
     handleSubmit(e) {
         e.preventDefault();
         // Needs to be completed 
+        this.props.history.push("/portfolio");
     }
 
-    createAccountForm() {
+    accountForm() {
         return (
             <div className="account-form">
                 <h1>
@@ -96,6 +97,7 @@ export default class Account extends Component {
                 </form> 
             </div>)
     }
-}
+} 
+export default withRouter(Account);
 
 
