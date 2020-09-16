@@ -28,13 +28,18 @@ export default function Portfolio() {
         <h1 className="name">
           User's Name
         </h1>
-        <form>
-          <label className="contact-info">
-            Contact Information
+        <h3>
+          Contact Information
+        </h3>
+        <form className="portfolio-form">
+          <label>
+            Email:
           </label>
-          <textarea classname="text-box">
-            
-          </textarea>
+          <textarea className="small-text-box p-text-box" />
+          <label>
+            Telephone:
+          </label>
+          <textarea className="small-text-box p-text-box" />
           <button className="save-btn">
             Save
           </button>
