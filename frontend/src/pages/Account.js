@@ -81,10 +81,6 @@ class Account extends Component {
                         type="submit" 
                         value="Login" />
 
-                    <NavLink className="nav-link" to="login">
-
-        
-
                     <GoogleLogin
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Create Account with Google"
@@ -92,6 +88,7 @@ class Account extends Component {
                         onFailure={responseFailGoogle}
                         cookiePolicy={'single_host_origin'}
                      />
+                    <NavLink className="nav-link" to="login">
                         Already have an account?
                     </NavLink>
                 </form> 
