@@ -74,6 +74,27 @@ var googleLogin = function(req, res) {
     console.log()
 }
 
+// Login
+
+var login = function (req, res, next) {
+
+    Account.findOne({ email: req.body.email }, function (err, user)) {
+
+        if (!user) {
+            console.error("Email not found");
+            res.json("False");
+            return false;
+        }
+        else {
+            if (req.body.password == user.password) {
+                console.log("User logged in");
+                res.send(user._id);
+                return true;
+            }
+        }
+    }
+
+}
 
 
 // Read Account
@@ -129,6 +150,10 @@ var deleteAccount = function(req, res, next) {
 
 // Export controllers
 module.exports = {
-  googleLogin
-
+    createAccount,
+    googleLogin,
+    login,
+    deleteAccount,
+    updateName,
+    readAccount
 }
