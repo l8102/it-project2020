@@ -5,7 +5,6 @@ import { responseGoogle, responseFailGoogle } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
 
-
 class Account extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +19,7 @@ class Account extends Component {
         this.accountForm = this.accountForm.bind(this);
     }
 
+    // Renders page for account creation
     render() {
         return (
             <div className="account-container">
@@ -30,16 +30,43 @@ class Account extends Component {
         )
     }
 
+    // Function handles change in input on the account creation form
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value }); 
     }
 
-    handleSubmit(e) {
+    // Function handles submission of the account creation form to the database
+    async handleSubmit(e) {
         e.preventDefault();
-        // Needs to be completed 
-        this.props.history.push("/portfolio");
+
+        // Structure for handleSubmit method in account creation, needs to be completed
+        /* 
+        var res;
+
+        // Form input is sent to the database
+        res = await createAccount ({
+            this.state.email,
+            this.state.password,
+            this.state.firstName,
+            this.state.lastName
+        })
+        
+        console.log(res.data);
+
+        if(res != null) {
+            // If the new account has been recorded in the database
+            if(res.data == "True") {
+                sessionStorage.setItem("accountID", res.data);
+                // Redirects to portfolio page
+                this.props.history.push("/portfolio");
+            } else {
+                alert("Account creation unsuccessful");
+            }
+        } 
+        */
     }
 
+    // Function represents form for inputting account creation information
     accountForm() {
         return (
             <div className="account-form">
@@ -80,7 +107,6 @@ class Account extends Component {
                     <input 
                         type="submit" 
                         value="Login" />
-
                     <GoogleLogin
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
                         buttonText="Create Account with Google"
