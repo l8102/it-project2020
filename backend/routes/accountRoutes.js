@@ -35,6 +35,11 @@ accountRoutes.put('/updateName', function(req, res) {
 });
 
 
+accountRoutes.put('/updateProfileImage', function (req, res) {
+	accountController.updateProfileImage
+});
+
+
 // DELETE
 
 accountRoutes.delete('/delete', function(req, res) {

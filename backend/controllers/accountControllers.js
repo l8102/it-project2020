@@ -78,7 +78,7 @@ var googleLogin = function(req, res) {
 
 var login = function (req, res, next) {
 
-    Account.findOne({ email: req.body.email }, function (err, user)) {
+    Account.findOne({ email: req.body.email }, function (err, user) {
 
         if (!user) {
             console.error("Email not found");
@@ -92,7 +92,7 @@ var login = function (req, res, next) {
                 return true;
             }
         }
-    }
+    });
 
 }
 
@@ -133,6 +133,24 @@ var updateName = function(req, res, next) {
     });
 };
 
+// Update Profile Image
+var updateProfileImage = function (req, res, next) {
+    var id = req.body.id;
+
+    //finds account by an id and updates name
+    Account.findById(id, function (err, doc) {
+        if (err || doc == undefined) {
+            console.error('error, no account found');
+        } else {
+            doc.profileImage = req.body.profileImage;
+            console.log('profile Image updated');
+
+            doc.save();
+            res.redirect('/');
+        }
+    });
+};
+
 
 
 
@@ -155,5 +173,6 @@ module.exports = {
     login,
     deleteAccount,
     updateName,
+    updateProfileImage,
     readAccount
 }
