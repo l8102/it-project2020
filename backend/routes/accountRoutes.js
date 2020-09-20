@@ -14,6 +14,13 @@ accountRoutes.post('/create', function(req, res) {
 accountRoutes.post('/googlelogin', accountController.googleLogin);
 
 
+// LOGIN
+
+accountRoutes.get('/login', function (req, res) {
+	accountController.login
+});
+
+
 // READ
 
 accountRoutes.get('/read', function(req, res) {
@@ -28,6 +35,11 @@ accountRoutes.put('/updateName', function(req, res) {
 });
 
 
+accountRoutes.put('/updateProfileImage', function (req, res) {
+	accountController.updateProfileImage
+});
+
+
 // DELETE
 
 accountRoutes.delete('/delete', function(req, res) {
@@ -38,24 +50,3 @@ accountRoutes.delete('/delete', function(req, res) {
 
 // Export Routes
 module.exports = accountRoutes;
-
-// Michael's previous code
-
-// // If it is a GET request
-// router.route('/').get((req, res) => {
-//   User.find()
-//     .then(users => res.json(users))
-//     .catch(err => res.status(400).json('Error: ' + err));
-// });
-//
-//
-// // If it is a POST request
-// router.route('/add').post((req, res) => {
-//   const username = req.body.username;
-//
-//   const newUser = new User({username});
-//
-//   newUser.save()
-//     .then(() => res.json('User added!'))
-//     .catch(err => res.status(400).json('Error: ' + err));
-// });
