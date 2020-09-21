@@ -24,8 +24,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    
+    
     - run: npm ci
-    - run: cd frontend
-    - run: npm install react
-    - run: cd..
+    
+    - name: Install dependencies
+    - run: npm install
+  
+    - name: Run tests
     - run: npm run dev-test
