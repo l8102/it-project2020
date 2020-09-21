@@ -29,7 +29,7 @@ var googleLogin = function(req, res) {
     const {tokenId} = req.body;
 
      client.verifyIdToken({idToken: tokenId, audience: "897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"}).then(response => {
-        const {email_verified, email, given_name, family_name, picture} = response.payload;
+        const {email_verified, email, at_hash, given_name, family_name, picture} = response.payload;
 
         if(email_verified) {
             Account.findOne({ email: email }, function(err, user) {
@@ -48,8 +48,7 @@ var googleLogin = function(req, res) {
 
 					   }  else {
 
-                            var password = email;
-
+                           var password = at_hash;
 
                             var newAccount = {
                                 email: email,
