@@ -25,4 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: cd .\frontend\ 
+    - run: npm install react
+    - run: cd..
     - run: npm run dev-test
