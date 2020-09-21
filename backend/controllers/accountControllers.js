@@ -100,7 +100,7 @@ var login = function (req, res, next) {
 var readAccount = function(req, res) {
     var accountId = req.body.accountId;
 
-    Account.findById(id, function(err, doc) {
+    Account.findById(accountId, function(err, doc) {
      if (err || doc == undefined) {
       console.error('account not found');
 	 } else {
@@ -131,6 +131,7 @@ var updateName = function(req, res, next) {
         }
     });
 };
+
 
 // Update Profile Image
 var updateProfileImage = function (req, res, next) {
