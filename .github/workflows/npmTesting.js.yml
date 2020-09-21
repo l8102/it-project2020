@@ -27,9 +27,6 @@ jobs:
     
     
     - run: npm ci
-    
-    - name: Install dependencies
     - run: npm install
-  
-    - name: Run tests
+    - run: cd frontend && npm install react
     - run: npm run dev-test
