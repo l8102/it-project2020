@@ -66,3 +66,8 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 */
+
+// todo API for getIsPrivate
+
+// todo API for setIsPrivate
+
