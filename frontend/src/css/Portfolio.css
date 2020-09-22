@@ -53,11 +53,8 @@
   border: 1px dashed black;
 }
 
-textarea {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-  height: 100px;
+.p-text-box {
+  margin-left: 15%;
   margin-top: 5px;
   padding: 5px;
   box-sizing: border-box;
@@ -71,7 +68,7 @@ textarea {
 .save-btn {
   float: right;
   margin-top: 5px;
-  margin-right: 10%;
+  margin-right: 15%;
   padding: 5px;
   border-radius: 5px;
 }
@@ -124,7 +121,7 @@ textarea {
 
 .small-text-box, select {
   display: block;
-  width: 300px;
+  width: 70%;
   height: 35px;
   margin-bottom: 10px;
   outline: none;

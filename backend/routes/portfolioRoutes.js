@@ -1,14 +1,15 @@
 const express = require('express');
 const portfolioRoutes = express.Router();
 const portfolioController = require('../controllers/portfolioControllers');
+const authenticate = require("../middleware/auth");
 
 // CREATE
 
 // todo should be called when an account is created
 // create
+portfolioRoutes.post('/contactInfo', authenticate, portfolioController.contactInfo);
 
-
-portfolioRoutes.post('/contactInfo', portfolioController.contactInfo);
+portfolioRoutes.post('/tokenIsValid', portfolioController.tokenIsValid);
 
 // READ
 

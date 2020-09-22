@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\eaglesolutions",
-    "\\eaglesolutions\\backend",
-    "\\eaglesolutions\\backend\\models",
-    "\\eaglesolutions\\backend\\routes"
+    "\\backend",
+    "\\eaglesolutions"
   ],
-  "SelectedNode": "\\eaglesolutions\\backend\\server.js",
+  "SelectedNode": "\\backend\\routes",
   "PreviewInSolutionExplorer": false
 }

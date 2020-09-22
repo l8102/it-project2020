@@ -2,6 +2,7 @@
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: center;
+    justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap-reverse;
