@@ -32,3 +32,4 @@ https://www.youtube.com/watch?v=qXIG8iKO7Fo&ab_channel=HannahPatellis
 For toggle
 https://material-ui.com/components/switches/
 https://reactjs.org/docs/handling-events.html
+https://davidwalsh.name/css-variables-javascript
