@@ -31,4 +31,9 @@ db.once("open", async () => {
 // import all the models
 require('./accountModels.js');
 require('./portfolioModels.js');
+require('./aboutModels.js');
+require('./galleryModels.js');
+require('./fileModels.js');
+require('./linkModels.js');
+
 
