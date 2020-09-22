@@ -1,0 +1,35 @@
+.landing-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+}
+
+.landing-container button {
+    background-color: #c9dbd5;
+    transition-duration: 0.2s;
+    width: 310px;
+    height: 400px;
+    font-size: large;
+    border: none;
+    color: #176966;
+    box-shadow: 0px 2px 10px #032533;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.landing-container button:hover {
+    color: #239d99;
+}
+
+.landing-container a {
+    text-decoration: none;
+    margin: 50px;
+}
+
+.landing-container a:visited {
+    text-decoration: none;
+}

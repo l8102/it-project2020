@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio-container {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  overflow: auto;
+}
+
+.tab-list {  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 1rem 0;
+  width: 24.9%;
+  text-align: center;
+  background-color: white;
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.user-info {
+  float: right;
+  width: 60%;
+  text-align: center;
+ }
+
+.name {
+  padding-bottom: 1em;
+}
+
+.img-container {
+  width: 25%;
+  padding-left: 10%;
+  text-align: center;
+  position: relative;
+  float: left;
+}
+
+.img {
+  width: 25vh;
+  height: 25vh;
+  border: 1px dashed black;
+}
+
+.p-text-box {
+  margin-left: 15%;
+  margin-top: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.save-btn {
+  float: right;
+  margin-top: 5px;
+  margin-right: 15%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+
+.save-btn-tab {
+  bottom: 0;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+}
+
+.about-me-page {
+  margin: 2%;
+}
+
+.about-me-page label, .description label {
+  display: block;
+  margin: 10px;
+  font-size: x-large;
+}
+
+.about-me-page textarea {
+  margin-left: 10px;
+}
+
+.educational-history {
+  margin-bottom: 50px;
+  width: 30%;
+  height: 230px;
+}
+
+.educational-history label {
+  font-size: large;
+}
+
+.description {
+  height: 320px;
+  width: 90%;
+}
+
+.text-box, select {
+  display: block;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.small-text-box, select {
+  display: block;
+  width: 70%;
+  height: 35px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+
+.pcontainer {
+  background-color: white;
+}
+
+

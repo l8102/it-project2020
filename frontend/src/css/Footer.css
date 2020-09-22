@@ -1,0 +1,20 @@
+/* Import the default colour scheme for the website */
+@import "ColourScheme.css";
+
+footer {
+    width: 100%;
+    bottom: 0;
+    position: relative;
+    text-align: center;
+    color: var(--white-text);
+    background-color: var(--blue-border);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 0 10px var(--blue-shadow);
+}
+
+footer p {
+    font-size: 18px;
+    padding: 5px;
+    margin: 0;
+}
