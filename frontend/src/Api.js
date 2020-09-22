@@ -2,8 +2,8 @@ import axios from "axios";
 import GoogleLogin from "react-google-login";
 
 // todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
+//const BASE_URL = "https://eaglesolutions.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
 
 export function responseGoogle(response) {
 
@@ -74,11 +74,26 @@ export function createAccount(response) {
         return null;
     }
 
-    axios({
-        method: "post",
-        url: BASE_URL + "/api/account/create",
-        data: response
-    })
+    /*return new Promise (function (resolve) {
+            axios({
+            method: "post",
+            url: BASE_URL + "/api/account/create",
+            data: response
+        }).then(json => {
+            console.log("Worked!!!")
+            resolve(json);
+        });
+    });
+    */
+
+   return fetch(BASE_URL + "/api/account/create", {
+    method: "POST",
+    body: response,
+  }).then((res) => {
+    window.location.reload();
+    alert("account succesfully created! You can now log in!");
+  });
+
 }
 
 // todo API for getIsPrivate

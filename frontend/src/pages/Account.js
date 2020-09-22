@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
-import { responseGoogle, responseFailGoogle } from "../Api.js"
+import { responseGoogle, responseFailGoogle, createAccount } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
 
@@ -39,6 +39,11 @@ class Account extends Component {
     async handleSubmit(e) {
         e.preventDefault();
 
+        var res;
+
+        res = await createAccount(this.state);
+
+        console.log(res);
         // Structure for handleSubmit method in account creation, needs to be completed
         /* 
         var res;
