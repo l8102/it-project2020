@@ -1,8 +1,11 @@
 // import libraries
 const mongoose = require('mongoose');
-const Portfolio = mongoose.model('portfolios');
 const Account = mongoose.model('accounts');
-const jwt = require("jsonwebtoken");
+const Portfolio = mongoose.model('portfolios');
+
+// todo fix this
+// const jwt = require("jsonwebtoken");
+
 const { UserRefreshClient } = require('google-auth-library');
 
 const contactInfo = async (req, res) => {
