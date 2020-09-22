@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import "../css/Footer.css"
 
-// todo remove this
-import PrivacyToggle from "./PrivacyToggle";
-
 // Footer explains Pear team member and copyright of website
 class Footer extends Component {
   render() {

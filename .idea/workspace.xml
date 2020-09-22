@@ -21,7 +21,18 @@
   <component name="ChangeListManager">
     <list default="true" id="a9c7342f-2a9f-4dae-8f39-f05f8ed10465" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/portfolioControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/portfolioControllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/accountModels.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/accountModels.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/portfolioRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/portfolioRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PrivacyToggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PrivateToggle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/ColourScheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/ColourScheme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Nav.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Portfolio.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Portfolio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useful-links.txt" beforeDir="false" afterPath="$PROJECT_DIR$/useful-links.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

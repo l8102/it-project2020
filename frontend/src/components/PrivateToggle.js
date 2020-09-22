@@ -4,15 +4,32 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/ColourScheme.css"
 
-// todo maybe add custom colours to switch
+// import the colours from the css
+const blueBorder = getComputedStyle(document.documentElement)
+  .getPropertyValue('--blue-border');
 
-class PrivacyToggle extends Component {
+// create custom coloured switch
+const CustomSwitch = withStyles({
+  switchBase: {
+    color: blueBorder,
+    '&$checked': {
+      color: blueBorder,
+    },
+    '&$checked + $track': {
+      backgroundColor: blueBorder,
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
+
+class PrivateToggle extends Component {
   constructor(props) {
     super(props);
-    // todo retrieve toggled status from database
+    // todo readPrivateMode
     this.state = {
-      isToggleOn: true
-    }
+      isToggleOn: false
+    };
 
     // This binding is necessary to make 'this' work in the callback
     // todo learn about bindings
@@ -23,6 +40,8 @@ class PrivacyToggle extends Component {
     this.setState(state => ({
       isToggleOn: !state.isToggleOn
     }));
+
+    // todo updatePrivateMode
   }
 
   render() {
@@ -30,20 +49,20 @@ class PrivacyToggle extends Component {
       <div>
         <FormControlLabel
           control={
-            <Switch
+            <CustomSwitch
               checked={this.state.isToggleOn}
               onChange={this.handleChange}
               color="primary"
-              name="checkedB"
+              name="privateMode"
               inputProps={{ 'aria-label': 'primary checkbox' }}
             />
           }
           label="Private Mode"
-          labelPlacement="end"
+          labelPlacement="start"
         />
       </div>
     )
   }
 }
 
-export default PrivacyToggle;
+export default PrivateToggle;

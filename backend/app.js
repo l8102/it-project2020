@@ -19,9 +19,11 @@ app.use(cors());
 
 // importing each of the routes
 const accountRoutes = require('./routes/accountRoutes');
+const portfolioRoutes = require('./routes/portfolioRoutes');
 
 // specifying the path for each of the routes
 app.use("/api/account", accountRoutes);
+app.use("/api/portfolio", portfolioRoutes);
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {

@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "../css/Portfolio.css";
-import PrivacyToggle from "../components/PrivacyToggle";
+import PrivateToggle from "../components/PrivateToggle";
 
+// todo getIsPrivate
+// todo if isPrivate, display the private access component
+// todo otherwise, display as per usual
 
 export default function Portfolio() {
     
@@ -44,7 +47,7 @@ export default function Portfolio() {
             Save
           </button>
         </form>
-        <PrivacyToggle/>
+        <PrivateToggle/>
       </div>
       
       <div className="img-container">

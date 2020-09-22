@@ -80,3 +80,9 @@ export function createAccount(response) {
         data: response
     })
 }
+
+// todo API for getIsPrivate
+
+// todo API for setIsPrivate
+
+
