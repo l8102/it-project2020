@@ -2,6 +2,8 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
+const jwt = require("jsonwebtoken");
+
 
 // Create new account
 var createAccount = function(req, res, next) {
