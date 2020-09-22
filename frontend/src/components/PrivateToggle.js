@@ -8,18 +8,15 @@ import "../css/ColourScheme.css"
 const blueBorder = getComputedStyle(document.documentElement)
   .getPropertyValue('--blue-border');
 
-const blueHighlight = getComputedStyle(document.documentElement)
-  .getPropertyValue('--blue-highlight');
-
 // create custom coloured switch
 const CustomSwitch = withStyles({
   switchBase: {
     color: blueBorder,
     '&$checked': {
-      color: blueHighlight,
+      color: blueBorder,
     },
     '&$checked + $track': {
-      backgroundColor: blueHighlight,
+      backgroundColor: blueBorder,
     },
   },
   checked: {},

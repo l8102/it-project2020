@@ -5,6 +5,9 @@ const portfolioController = require('../controllers/portfolioControllers');
 // CREATE
 
 // todo should be called when an account is created
+// create
+
+
 portfolioRoutes.post('/contactInfo', portfolioController.contactInfo);
 
 // READ
