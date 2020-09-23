@@ -10,7 +10,13 @@ const portfolioSchema = new Schema({
   isPrivate: {
     type: Boolean,
     default: false,
-    // required: true
+    required: true
+  },
+  email: {
+    type: String,
+  },
+  telephone: {
+    type: String,
   }
 }, {
   collection: 'Portfolio',
