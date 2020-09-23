@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\eaglesolutions"
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\pages",
+    "\\frontend\\src\\tests"
   ],
-  "SelectedNode": "\\backend\\routes",
+  "SelectedNode": "\\frontend\\src\\tests\\login.test.js",
   "PreviewInSolutionExplorer": false
 }

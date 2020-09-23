@@ -3,10 +3,7 @@ const accountRoutes = express.Router();
 const accountControllers = require("../controllers/accountControllers");
 
 // CREATE
-
-accountRoutes.post('/create', function(req, res) {
-	accountControllers.createAccount
-});
+accountRoutes.post('/create', accountControllers.createAccount);
 
 
 
@@ -15,10 +12,7 @@ accountRoutes.post('/googlelogin', accountControllers.googleLogin);
 
 
 // LOGIN
-
-accountRoutes.get('/login', function (req, res) {
-	accountControllers.login
-});
+accountRoutes.post('/login', accountControllers.login);
 
 
 // READ
@@ -45,7 +39,6 @@ accountRoutes.put('/updateProfileImage', function (req, res) {
 accountRoutes.delete('/delete', function(req, res) {
 	accountControllers.deleteAccount
 });
-
 
 
 // Export Routes
