@@ -73,10 +73,9 @@
   border-radius: 5px;
 }
 
-
 .save-btn-tab {
   bottom: 0;
-  margin-top: 5px;
+  margin: 50px;
   padding: 5px;
   border-radius: 5px;
   display: block;
@@ -84,47 +83,94 @@
 
 .about-me-page {
   margin: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
 
-.about-me-page label, .description label {
+.about-me-page h2 {
+  margin: 10px;
+}
+
+.about-me-page section {
+  background-color: royalblue;
+}
+
+.about-me-page label {
   display: block;
   margin: 10px;
-  font-size: x-large;
+  font-size: large;
 }
 
 .about-me-page textarea {
   margin-left: 10px;
 }
 
-.educational-history {
-  margin-bottom: 50px;
-  width: 30%;
-  height: 230px;
+.education-interests-experiences section {
+  margin: 20px;
+  height: 400px;
+  width: 350px;
 }
 
-.educational-history label {
+.education-interests-experiences {
+  display: flex;
+  flex-direction: row;
+}
+
+.educational-background {
+  margin-bottom: 50px;
+  width: 350px;
+  height: 260px;
+}
+
+.educational-background label {
   font-size: large;
 }
 
+.experience-list {
+  height: 400px;
+  width: 350px;
+}
+
+.experience-list input[type=date] {
+  margin-left: 15px;
+  margin-bottom: 10px;
+
+}
+
 .description {
-  height: 320px;
-  width: 90%;
+  height: 400px;
+  width: 650px;
+  margin: 20px;
+}
+
+.interests-list button, .experience-list button {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  width: 150px;
 }
 
 .text-box, select {
   display: block;
-  width: 100%;
+  width: 600px;
   height: 300px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   outline: none;
+  resize: none;
 }
 
 .small-text-box, select {
   display: block;
-  width: 70%;
-  height: 35px;
+  width: 300px;
+  height: 20px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   outline: none;
+  resize: none;
+  padding: 5px;
 }
 
 

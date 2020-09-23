@@ -111,10 +111,13 @@ class Account extends Component {
                         onChange={ this.handleChange } />
                     <input 
                         type="submit" 
-                        value="Login" />
-                    <GoogleLogin
+                        value="Create Account" />
+                    <h3>
+                        Or
+                    </h3>
+                    <GoogleLogin className="google-button"
                         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
-                        buttonText="Create Account with Google"
+                        buttonText="Continue with Google"
                         onSuccess={responseGoogle}
                         onFailure={responseFailGoogle}
                         cookiePolicy={'single_host_origin'}
