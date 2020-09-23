@@ -78,7 +78,6 @@ var googleLogin = function(req, res) {
 }
 
 // Login
-
 var login = function (req, res, next) {
 
     Account.findOne({ email: req.body.email }, function (err, user) {
@@ -95,8 +94,9 @@ var login = function (req, res, next) {
                 return true;
             }
         }
+        user.save();
     });
-
+    return false;
 }
 
 
