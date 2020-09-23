@@ -58,7 +58,7 @@ export function login(response) {
     }
 
     axios({
-        method: "get",
+        method: "post",
         url: BASE_URL + "/api/account/login",
         data: response
     })
