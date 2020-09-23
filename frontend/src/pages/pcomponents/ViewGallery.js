@@ -6,6 +6,9 @@ export default function Gallery() {
     
     return (
         <div className="pcontainer">
+            <h1>
+                Gallery
+            </h1>
             <Carousel>
                 <div>
                     <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" />
