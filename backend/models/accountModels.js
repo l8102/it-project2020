@@ -43,5 +43,3 @@ const accountSchema = new Schema({
 });
 
 mongoose.model('accounts', accountSchema);
-
-// todo check if module exports is needed

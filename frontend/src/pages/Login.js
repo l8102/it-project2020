@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
 import { responseGoogle, responseFailGoogle } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
-export default class Login extends Component {
+ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.createLoginForm = this.createLoginForm.bind(this);
+        this.loginForm = this.loginForm.bind(this);
     }
 
+    // Renders page for logging in
     render() {
         return (
             <div className="account-container">
-
                 <NavLink to="/">
                     Landing
                 </NavLink>
@@ -27,22 +27,48 @@ export default class Login extends Component {
                     Portfolio
                 </NavLink>
                 <div className="form-container">
-                    <this.createLoginForm />
+                    <this.loginForm history={this.props.history} />
                 </div>
             </div>
         )
     }
 
+    // Function handles change in input on the login form
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    // Function handles submission of login form to the database
     async handleSubmit(e) {
         e.preventDefault();
-        // Needs to be completed   
+
+        // Structure for handleSubmit method in login, needs to be completed
+        /*
+        var res;
+        
+        // Form input is sent to the database
+        res = await accountLogin({      // Login API function represented by accountLogin
+            this.state.email,
+            this.state.password
+        });
+
+        console.log(res.data);
+
+        if(res != null) {
+            // If the login email & password match what is contained in the database
+            if(res.data == "True") {
+                sessionStorage.setItem("accountID", res.data);
+                // Redirects to portfolio page
+                this.props.history.push("/portfolio");
+            } else {
+                alert("Invalid Login Credentials");
+            }
+        } 
+        */
     }
 
-    createLoginForm() {
+    // Function represents form for entering an email & password for logging into the website
+    loginForm() {
         return (
             <div className="account-form">
                 <h1>
@@ -83,4 +109,5 @@ export default class Login extends Component {
                 </form> 
             </div> )
     }
-}
+} 
+export default withRouter(Login);

@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently -n 'frontend,backend' -c 'red,green' \"npm run start-frontend\" \"npm run start-backend\"",
+    "start": "npm run start-backend",
+    "dev": "concurrently -n 'frontend,backend' -c 'red,green' \"npm run start-frontend\" \"npm run start-backend\"",
     "start-frontend": "cd frontend && npm start",
-    "start-backend": "",
-    "heroku-postbuild": "npm run install-frontend && npm run install-backend",
+    "start-backend": "cd backend && npm start",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-backend && npm run install-frontend",
     "install-frontend": "cd frontend && npm install && npm run build",
     "install-backend": "cd backend && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-test": "cd frontend && npm test"
   },
   "author": "",
   "license": "ISC",
