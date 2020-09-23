@@ -16,10 +16,9 @@ import Browse from "./pages/Browse";
 // Import page components
 import About from "./pages/pcomponents/About";
 import Files from "./pages/pcomponents/Files";
-import Gallery from "./pages/pcomponents/Gallery";
+import Gallery from "./pages/pcomponents/EditGallery";
 
 import Tabs from "./pages/pcomponents/Tabs";
-import Tab from "./pages/pcomponents/Tab";
 
 // Import components
 import VisitorNavBar from "./components/VisitorNavBar";

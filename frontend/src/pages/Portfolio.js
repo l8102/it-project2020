@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "../css/Portfolio.css";
 import PrivacyToggle from "../components/PrivacyToggle";
 
@@ -53,7 +52,7 @@ export default function Portfolio() {
         
         <button className="img" onClick={() => imageUploader.current.click()}>
           
-          <img ref={uploadedImage} style={{width: "100%", height: "100%"}}/>
+          <img ref={uploadedImage} style={{width: "100%", height: "100%"}} alt="profile"/>
         </button>
 
       
