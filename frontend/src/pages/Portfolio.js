@@ -55,7 +55,7 @@ export default function Portfolio() {
         
         <button className="img" onClick={() => imageUploader.current.click()}>
           
-          <img ref={uploadedImage} style={{width: "100%", height: "100%"}}/>
+          <img ref={uploadedImage} style={{width: "100%", height: "100%"}} alt="profile"/>
         </button>
 
       
