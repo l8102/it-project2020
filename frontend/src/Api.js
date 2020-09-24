@@ -2,8 +2,8 @@ import axios from "axios";
 import GoogleLogin from "react-google-login";
 
 // todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
+//const BASE_URL = "https://eaglesolutions.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
 
 export function responseGoogle(response) {
 
@@ -49,36 +49,71 @@ export function deleteAccount(account) {
 
 }
 
-export function login(response) {
-    const { email, password } = response;
+export function login(loginDetails) {
 
+    // read in login details
+    const { email, password } = loginDetails;
+
+    // validation
     if (!email || !password) {
         console.log("Must include all fields");
         return null;
     }
 
-    axios({
+
+    // send axios request, await completion, return response
+    return (
+        axios({
         method: "post",
         url: BASE_URL + "/api/account/login",
-        data: response
-    })
-
+        data: loginDetails
+      })
+    )
 }
 
 
-export function createAccount(response) {
-    const { firstName, lastName, email, password } = response;
+export function createAccount(account) {
 
+    // read in account details for validation
+    // todo this could be done differently
+    const { firstName, lastName, email, password } = account;
+
+    // validation to check details exist
     if (!firstName || !lastName || !email || !password) {
         console.log("Must include all fields");
         return null;
     }
 
-    axios({
+    // todo not sure res is working properly
+    // send request to backend, return response
+    return (
+      axios({
         method: "post",
         url: BASE_URL + "/api/account/create",
-        data: response
-    })
+        data: account
+    }));
+
+    // todo remove async / token stuff
+    // return new Promise (function (resolve) {
+    //         axios({
+    //         method: "post",
+    //         url: BASE_URL + "/api/account/create",
+    //         data: response
+    //     }).then(json => {
+    //         console.log("Worked!!!")
+    //         resolve(json);
+    //     });
+    // });
+
+
+  //  return fetch(BASE_URL + "/api/account/create", {
+  //   method: "POST",
+  //   body: response,
+  // }).then((res) => {
+  //   window.location.reload();
+  //   alert("account succesfully created! You can now log in!");
+  // });
+
 }
 
 // todo API for getIsPrivate
