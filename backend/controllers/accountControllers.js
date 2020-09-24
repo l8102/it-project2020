@@ -11,10 +11,10 @@ const {OAuth2Client} = require('google-auth-library');
 var createAccount = function(req, res, next) {
   console.log(req.body)
   const accountInfo = {
-    email: req.body.email,
-    password: req.body.password,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
     profileImage: req.body.profileImage,
   };
 
@@ -55,10 +55,10 @@ var googleLogin = function(req, res) {
                            var password = at_hash;
 
                             var newAccount = {
-                                email: email,
-                                password: password,
                                 firstName: given_name,
                                 lastName: family_name,
+                                email: email,
+                                password: password,
                                 profileImage: picture
 							};
                             const data = new Account(newAccount);

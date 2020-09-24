@@ -4,15 +4,17 @@ import "../css/Account.css";
 import { responseGoogle, responseFailGoogle, createAccount } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
+// todo rename this to CreateAccount
+// todo update the url path as well
 
 class Account extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
             firstName: '',
             lastName: '',
+            email: '',
+            password: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,39 +38,29 @@ class Account extends Component {
     }
 
     // Function handles submission of the account creation form to the database
-    async handleSubmit(e) {
+    // todo removed async, could be added in later if necessary
+    handleSubmit(e) {
         e.preventDefault();
 
-        var res;
+        const account = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+        }
 
-        res = await createAccount(this.state);
+        const res = createAccount(account);
 
-        console.log(res);
-        // Structure for handleSubmit method in account creation, needs to be completed
-        /* 
-        var res;
+        // todo still not sure if res is working as intended
+        // If there is a valid response, redirect to login page
+        if (res != null) {
+            alert("Account created successfully");
+            this.props.history.push("/login");
+        } else {
+            alert("ERROR: Failed to create account.");
+        }
 
-        // Form input is sent to the database
-        res = await createAccount ({
-            this.state.email,
-            this.state.password,
-            this.state.firstName,
-            this.state.lastName
-        })
-        
-        console.log(res.data);
-
-        if(res != null) {
-            // If the new account has been recorded in the database
-            if(res.data == "True") {
-                sessionStorage.setItem("accountID", res.data);
-                // Redirects to portfolio page
-                this.props.history.push("/portfolio");
-            } else {
-                alert("Account creation unsuccessful");
-            }
-        } 
-        */
+        // console.log(res);
     }
 
     // Function represents form for inputting account creation information
