@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
-import { responseGoogle, responseFailGoogle } from "../Api.js"
+import { responseGoogle, responseFailGoogle, login } from "../Api.js"
 import GoogleLogin from "react-google-login";
 
  class Login extends Component {
@@ -39,32 +39,35 @@ import GoogleLogin from "react-google-login";
     }
 
     // Function handles submission of login form to the database
+    // todo removed async, maybe add back in
     async handleSubmit(e) {
         e.preventDefault();
 
-        // Structure for handleSubmit method in login, needs to be completed
-        /*
-        var res;
-        
-        // Form input is sent to the database
-        res = await accountLogin({      // Login API function represented by accountLogin
-            this.state.email,
-            this.state.password
-        });
+        const loginDetails = {
+            email: this.state.email,
+            password: this.state.password
+        }
 
-        console.log(res.data);
+        let res;
 
-        if(res != null) {
-            // If the login email & password match what is contained in the database
-            if(res.data == "True") {
-                sessionStorage.setItem("accountID", res.data);
-                // Redirects to portfolio page
-                this.props.history.push("/portfolio");
-            } else {
-                alert("Invalid Login Credentials");
-            }
-        } 
-        */
+        // todo handle async errors / validation?
+        try {
+          res = await login(loginDetails);
+        } catch (error) {
+          console.error(error)
+        }
+        // alert("ERROR: Invalid login.");
+
+        console.log(res);
+
+
+        // if there is a valid response, redirect to the edit portfolio page
+        // also store the account id
+        if (res != null) {
+          this.props.history.push("/portfolio")
+          // todo add in web tokens / sessionstorage using res
+        }
+
     }
 
     // Function represents form for entering an email & password for logging into the website
