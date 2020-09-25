@@ -92,6 +92,8 @@ var login = function (req, res, next) {
                 console.log("User logged in");
                 res.send(user._id);
                 return true;
+            } else {
+                res.send("False");
             }
         }
         user.save();

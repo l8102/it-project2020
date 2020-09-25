@@ -50,21 +50,20 @@ import GoogleLogin from "react-google-login";
 
         let res;
 
-        // todo handle async errors / validation?
         try {
-          res = await login(loginDetails);
+            res = await login(loginDetails);
         } catch (error) {
-          console.error(error)
+            console.error(error)
         }
-        // alert("ERROR: Invalid login.");
-
-        console.log(res);
-
 
         // if there is a valid response, redirect to the edit portfolio page
         // also store the account id
         if (res != null) {
-          this.props.history.push("/portfolio")
+            if(res.data !== "False") {
+                this.props.history.push("/portfolio");
+            } else {
+                alert("Invalid login credentials")
+            }
           // todo add in web tokens / sessionstorage using res
         }
 
