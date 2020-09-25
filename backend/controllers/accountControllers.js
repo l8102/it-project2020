@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
+const bcrypt = require('bcrypt');
 
 // todo this isn't working
 // const jwt = require('jsonwebtoken');
@@ -10,16 +11,26 @@ const {OAuth2Client} = require('google-auth-library');
 // Create new account
 var createAccount = function(req, res, next) {
   console.log(req.body)
-  const accountInfo = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    profileImage: req.body.profileImage,
-  };
+  
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
+        const accountInfo = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: hash,
+            profileImage: req.body.profileImage,
+        };
 
-  const data = new Account(accountInfo);
-  data.save();
+        const data = new Account(accountInfo);
+        
+        data.save((function(err, doc) {
+            if (err || doc == undefined) {
+                res.json(err);
+            } else {
+                res.json(doc);
+            }
+        }));
+    })
 
   res.redirect('/account');
   return true;
@@ -84,15 +95,16 @@ var login = function (req, res, next) {
 
         if (!user) {
             console.error("Email not found");
-            res.json("False");
             return false;
         }
         else {
-            if (req.body.password == user.password) {
-                console.log("User logged in");
-                res.send(user._id);
-                return true;
-            }
+            bcrypt.compare(req.body.password, user.password, function(err, result) {
+                if(result == true) {
+                    console.log("User logged in");
+                    res.send(user._id);
+                    return true;
+                }
+            });
         }
         user.save();
     });
