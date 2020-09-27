@@ -43,20 +43,67 @@ const tokenIsValid = async (req, res) => {
 
 // todo get portfolios with specific account id
 
-const readByAccountId = function(req, res, next) {
+const readByAccountId = function (req, res, next) {
+
+    Portfolio.findOne({ accountID: req.accountID }, function (err, portfolio) {
+
+        if (!portfolio) {
+            console.error("Portfolio not found");
+            res.json("false");
+            return false;
+        } else {
+            res.send(portfolio._id);
+            return true;
+        }
+
+    });
 
 };
 
-const readOne = function(req, res, next) {
+const readOne = function (req, res, next) {
+
+    var id = req._id;
+
+    Portfolio.findById(id, function (err, doc) {
+        if (err || doc == undefined) {
+            console.error('Portfolio not found');
+        } else {
+            res.send(doc);
+        }
+    });
 
 }
 
-const updateByAccountId = function(req, res, next) {
+const updateByAccountId = function (req, res, next) {
+
+    Portfolio.findOne({ accountID: req.accountID }, function (err, doc) {
+
+        if (!doc) {
+            console.error("Portfolio not found");
+            res.json("false");
+            return false;
+        } else {
+            doc.isPrivate = req.isPrivate;
+            doc.telephone = req.telephone;
+            doc.email = req.email;
+            console.log("Portfolio updated");
+
+            doc.save();
+            res.redirect('/');
+        }
+    });
 
 };
 
 const deleteByAccountId = function(req, res, next) {
+    var id = req._id
 
+    //find account by id and deletes
+    Portfolio.findByIdAndRemove(id).exec();
+    console.log("Portfolio removed");
+
+    res.redirect('/');
+};
 };
 
 // useful link
