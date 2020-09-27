@@ -1,3 +1,5 @@
+@import "ColourScheme.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -85,92 +87,115 @@
   margin: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  justify-content: center;
 }
 
 .about-me-page h2 {
-  margin: 10px;
+  text-align: center;
+  margin-bottom: 30px;;
+  padding: 20px;
+  background-color: var(--green-border);
 }
 
 .about-me-page section {
-  background-color: royalblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--green-background);
+  overflow-y: auto;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 80%;
+  border-radius: 5px;
+  padding-bottom: 20px;
 }
 
 .about-me-page label {
   display: block;
+  margin-bottom: 10px;
+  font-size: large;
+}
+
+.about-me-page button {
   margin: 10px;
-  font-size: large;
+  margin-bottom: 20px;
 }
 
-.about-me-page textarea {
-  margin-left: 10px;
-}
-
-.education-interests-experiences section {
-  margin: 20px;
-  height: 400px;
-  width: 350px;
-}
-
-.education-interests-experiences {
-  display: flex;
-  flex-direction: row;
-}
-
-.educational-background {
-  margin-bottom: 50px;
-  width: 350px;
-  height: 260px;
-}
-
-.educational-background label {
-  font-size: large;
+.education, select {
+  display: block;
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .experience-list {
-  height: 400px;
-  width: 350px;
+  display: table;
 }
 
-.experience-list input[type=date] {
-  margin-left: 15px;
-  margin-bottom: 10px;
-
+.experiences {
+  display: table-row;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.description {
-  height: 400px;
-  width: 650px;
-  margin: 20px;
+.experience, .interest {
+  width: 400px;
+  padding: 5px;
 }
 
-.interests-list button, .experience-list button {
-  margin-bottom: 10px;
-  margin-left: 10px;
-  width: 150px;
+.experience, .date-from, .date-to, .interest {
+  display: table-cell;
+  margin-right: 50px ;
 }
 
-.text-box, select {
-  display: block;
-  width: 600px;
+.interests {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.add-remove-buttons {
+  display: table-row;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.add-remove-buttons button {
+  display: table-cell;
+}
+
+.about-me-page .text-box, select {
+  width: 80%;
   height: 300px;
+  margin: 0 auto;
   margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding: 5px;
   outline: none;
   resize: none;
+  overflow-y: auto;
+}
+
+.about-me-page .small-text-box, select {
+ width: 300px;
+ margin: 0 auto;
+ margin-bottom: 10px;
+ resize: none;
+ padding: 5px;
 }
 
 .small-text-box, select {
   display: block;
-  width: 300px;
-  height: 20px;
+  width: 70%;
+  height: 35px;
   margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  outline: none;
-  resize: none;
-  padding: 5px;
+}
+
+.text-box, select {
+  display: block;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 10px;
 }
 
 
