@@ -146,18 +146,20 @@ export default class About extends Component {
                                         value={x.experience}
                                         onChange={e => this.handleExperienceChange(e, i)}
                                     />
-                                    <input className="date-from"
-                                        name="dateFrom"
-                                        type="date"
-                                        value={x.dateFrom}
-                                        onChange={e => this.handleExperienceChange(e, i)}
-                                    />
-                                    <input className="date-to"
-                                        name="dateTo"
-                                        type="date"
-                                        value={x.dateTo}
-                                        onChange={e => this.handleExperienceChange(e, i)}
-                                    />
+                                    <div className="dates">
+                                        <input className="date-from"
+                                            name="dateFrom"
+                                            type="date"
+                                            value={x.dateFrom}
+                                            onChange={e => this.handleExperienceChange(e, i)}
+                                        />
+                                        <input className="date-to"
+                                            name="dateTo"
+                                            type="date"
+                                            value={x.dateTo}
+                                            onChange={e => this.handleExperienceChange(e, i)}
+                                        />
+                                    </div>
                                     <div className="add-remove-buttons">
                                         {this.state.experienceList.length !== 1 &&
                                             <button onClick={e => this.handleRemoveExperience(e, i)} >
