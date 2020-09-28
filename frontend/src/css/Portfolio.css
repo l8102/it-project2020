@@ -122,12 +122,6 @@
   margin-bottom: 20px;
 }
 
-.education, select {
-  display: block;
-  width: 300px;
-  padding: 5px;
-  margin-bottom: 10px;
-}
 
 .experience-list {
   display: table;
@@ -139,14 +133,24 @@
   margin-right: auto;
 }
 
-.experience, .interest {
+.experience, .interest, .education {
   width: 400px;
   padding: 5px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+}
+
+
+.education {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 .experience, .date-from, .date-to, .interest {
   display: table-cell;
   margin-right: 50px ;
+  border: 2px solid #ccc;
 }
 
 .interests {
@@ -174,15 +178,10 @@
   outline: none;
   resize: none;
   overflow-y: auto;
+  border: 2px solid #ccc;
 }
 
-.about-me-page .small-text-box, select {
- width: 300px;
- margin: 0 auto;
- margin-bottom: 10px;
- resize: none;
- padding: 5px;
-}
+
 
 .small-text-box, select {
   display: block;

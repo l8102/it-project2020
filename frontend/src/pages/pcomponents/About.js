@@ -105,7 +105,7 @@ export default class About extends Component {
                     About
                 </h1>
                 <form>
-                    <section className="small-text-boxal-background">
+                    <section className="educational-background">
                         <h2>
                             Educational Background
                             </h2>
@@ -136,8 +136,8 @@ export default class About extends Component {
                     </section>
                     <section className="experience-list">
                         <h2>
-                            Experience/Internships
-                            </h2>
+                            Work Experience/Internships
+                        </h2>
                         {this.state.experienceList.map((x, i) => {
                             return (
                                 <div className="experiences">
@@ -147,13 +147,13 @@ export default class About extends Component {
                                         onChange={e => this.handleExperienceChange(e, i)}
                                     />
                                     <input className="date-from"
-                                        name="date-from"
+                                        name="dateFrom"
                                         type="date"
                                         value={x.dateFrom}
                                         onChange={e => this.handleExperienceChange(e, i)}
                                     />
                                     <input className="date-to"
-                                        name="date-to"
+                                        name="dateTo"
                                         type="date"
                                         value={x.dateTo}
                                         onChange={e => this.handleExperienceChange(e, i)}
