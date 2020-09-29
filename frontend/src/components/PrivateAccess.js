@@ -40,7 +40,7 @@ class PrivateAccess extends Component {
       </div>
     )
   }
-
 }
+
 // export class
 export default PrivateAccess;
