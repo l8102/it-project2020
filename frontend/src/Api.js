@@ -121,3 +121,10 @@ export function createAccount(account) {
 // todo API for setIsPrivate
 
 
+export function uploadAPI(base64EncodedImage) {
+    return fetch(BASE_URL + "/api/gallery/upload", {
+        method: 'POST',
+        body: JSON.stringify({ data: base64EncodedImage }),
+        headers: { 'Content-Type': 'application/json' },
+    })
+}
