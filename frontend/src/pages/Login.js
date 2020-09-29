@@ -60,11 +60,11 @@ import GoogleLogin from "react-google-login";
         // also store the account id
         if (res != null) {
             if(res.data !== "False") {
+                sessionStorage.setItem("accountId", res.data);
                 this.props.history.push("/portfolio");
             } else {
                 alert("Invalid login credentials")
             }
-          // todo add in web tokens / sessionstorage using res
         }
 
     }
