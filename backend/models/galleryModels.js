@@ -7,6 +7,10 @@ const gallerySchema  = new Schema({
     type: Object,
     required: true
   },
+  imageRef: {
+    type: String,
+    required: true
+  }
 }, {
   collection: 'Gallery',
   timestamps: true,

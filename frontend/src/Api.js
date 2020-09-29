@@ -120,7 +120,7 @@ export function createAccount(account) {
 
 // todo API for setIsPrivate
 
-
+/** sends the encoded image to the backend function upload */
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
         method: 'POST',
