@@ -120,4 +120,15 @@ export function createAccount(account) {
 
 // todo API for setIsPrivate
 
+// ----- getPortfolioByAccountId -----
 
+export function getPortfolioByAccountId(accountId) {
+  return (
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/portfolio/readByAccountId",
+      data: account
+    }));
+
+
+}
