@@ -8,17 +8,26 @@ const Portfolio = mongoose.model('portfolios');
 
 const { UserRefreshClient } = require('google-auth-library');
 
+// CREATE
+
+// todo implement this
+const create = function (req, res, next) {
+
+    // todo in future will need to call each of the portfolio components and create them
+}
+
+
 const contactInfo = async (req, res) => {
-  //should be able to see the logged in user based on the token 
+  //should be able to see the logged in user based on the token
   console.log(req.user)
   const name = user.firstName + user.lastName;
-  
+
 };
 
 const tokenIsValid = async (req, res) => {
   try {
 
-    //check token exists 
+    //check token exists
     const token = req.header("x-auth-token");
     if (!token)
       return res.json(false);
@@ -41,7 +50,10 @@ const tokenIsValid = async (req, res) => {
   }
 };
 
-// todo get portfolios with specific account id
+
+// READ
+
+// todo review this
 
 const readByAccountId = function (req, res, next) {
 
@@ -60,6 +72,7 @@ const readByAccountId = function (req, res, next) {
 
 };
 
+// todo might not be necessary
 const readOne = function (req, res, next) {
 
     var id = req._id;
@@ -74,6 +87,7 @@ const readOne = function (req, res, next) {
 
 }
 
+// todo review this
 const updateByAccountId = function (req, res, next) {
 
     Portfolio.findOne({ accountID: req.accountID }, function (err, doc) {
@@ -95,6 +109,7 @@ const updateByAccountId = function (req, res, next) {
 
 };
 
+// todo review this
 const deleteByAccountId = function(req, res, next) {
     var id = req._id
 
@@ -102,14 +117,16 @@ const deleteByAccountId = function(req, res, next) {
     Portfolio.findByIdAndRemove(id).exec();
     console.log("Portfolio removed");
 
+    // todo in future will need to call each of the portfolio components and delete them
+
     res.redirect('/');
-};
 };
 
 // useful link
 // https://stackoverflow.com/questions/8737082/mongoose-schema-within-schema
 
 module.exports = {
+    create,
     contactInfo,
     readByAccountId,
     readOne,

@@ -29,6 +29,8 @@ var createAccount = function(req, res, next) {
 // Google Login 
 const client = new OAuth2Client("897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com");
 
+// todo maybe add helper method
+// todo on successful creation call portfolio login
 var googleLogin = function(req, res) {
     const {tokenId} = req.body;
 
@@ -37,43 +39,35 @@ var googleLogin = function(req, res) {
 
         if(email_verified) {
             Account.findOne({ email: email }, function(err, user) {
-                 if(err) {
+                if(err) {
                     return res.status(400).json({
-                        error: "Went wrong"           
-					})        
-				 } else {
-                       if(user) {
+                        error: "Went wrong"
+					          })
+                } else {
+                    if(user) {
                         console.log("User exists");
                         res.send(user._id);
                         return true;
- 
-                        
+					          } else {
+                        var password = at_hash;
 
-
-					   }  else {
-
-                           var password = at_hash;
-
-                            var newAccount = {
-                                firstName: given_name,
-                                lastName: family_name,
-                                email: email,
-                                password: password,
-                                profileImage: picture
-							};
-                            const data = new Account(newAccount);
-                            data.save();
-                            console.log("account created");
-
-
-					   }   
-				 res.redirect('/account');
-                 }
-			})
-		}
-
+                        var newAccount = {
+                            firstName: given_name,
+                            lastName: family_name,
+                            email: email,
+                            password: password,
+                            profileImage: picture
+							          };
+                          const data = new Account(newAccount);
+                          data.save();
+                          console.log("account created");
+                    }
+                res.redirect('/account');
+                }
+            })
+        }
         console.log(response.payload);
-	})
+	  })
     console.log()
 }
 
@@ -167,6 +161,8 @@ var deleteAccount = function(req, res, next) {
     //find account by id and deletes
     Account.findByIdAndRemove(id).exec();
     console.log("account removed");
+
+    // todo add in portfolio delete as well (by account id)
 
     res.redirect('/');
 };
