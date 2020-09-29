@@ -2,10 +2,10 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
+const portfolioControllers = require('../controllers/portfolioControllers');
 
 // todo this isn't working
 // const jwt = require('jsonwebtoken');
-
 
 // Create new account
 var createAccount = function(req, res, next) {
@@ -21,7 +21,12 @@ var createAccount = function(req, res, next) {
   const data = new Account(accountInfo);
   data.save();
 
-  res.redirect('/account');
+  console.log("account created");
+
+  // create a matching portfolio using the account id
+  let accountId = data._id
+  portfolioControllers.create(accountId);
+
   return true;
 };
 
@@ -29,52 +34,59 @@ var createAccount = function(req, res, next) {
 // Google Login 
 const client = new OAuth2Client("897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com");
 
+// todo maybe add helper method
 var googleLogin = function(req, res) {
     const {tokenId} = req.body;
 
-     client.verifyIdToken({idToken: tokenId, audience: "897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"}).then(response => {
+    // Confirms with the google developer console that the google user login is logging into the correct domain
+    client.verifyIdToken({idToken: tokenId, audience: "897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"}).then(response => {
         const {email_verified, email, at_hash, given_name, family_name, picture} = response.payload;
 
+        // If the email is verified try to retrieve the account email
         if(email_verified) {
             Account.findOne({ email: email }, function(err, user) {
-                 if(err) {
+
+                // Handle any errors
+                if(err) {
                     return res.status(400).json({
-                        error: "Went wrong"           
-					})        
-				 } else {
-                       if(user) {
-                        console.log("User exists");
+                        error: "Went wrong"
+					          })
+
+                } else {
+                    // If the user already exists, send the user as the response
+                    if(user) {
+                        console.log("google user exists");
                         res.send(user._id);
                         return true;
- 
-                        
 
+                    // If the user doesn't exist, create one
+					          } else {
+                        const password = at_hash;
 
-					   }  else {
+                        const newAccount = {
+                            firstName: given_name,
+                            lastName: family_name,
+                            email: email,
+                            password: password,
+                            profileImage: picture
+							          };
+                        const data = new Account(newAccount);
+                        data.save();
+                        console.log("google account created");
 
-                           var password = at_hash;
+                        // send the new user as the response
+                        res.send(data._id);
 
-                            var newAccount = {
-                                firstName: given_name,
-                                lastName: family_name,
-                                email: email,
-                                password: password,
-                                profileImage: picture
-							};
-                            const data = new Account(newAccount);
-                            data.save();
-                            console.log("account created");
+                        // create a matching portfolio using the account id
+                        let accountId = data._id
+                        portfolioControllers.create(accountId);
 
-
-					   }   
-				 res.redirect('/account');
-                 }
-			})
-		}
-
-        console.log(response.payload);
-	})
-    console.log()
+                        return true;
+                    }
+                }
+            })
+        }
+	  })
 }
 
 // Login
@@ -168,7 +180,8 @@ var deleteAccount = function(req, res, next) {
     Account.findByIdAndRemove(id).exec();
     console.log("account removed");
 
-    res.redirect('/');
+    // todo add in portfolio delete as well (by account id)
+
 };
 
 

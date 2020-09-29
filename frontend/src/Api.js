@@ -5,20 +5,19 @@ import GoogleLogin from "react-google-login";
 //const BASE_URL = "https://eaglesolutions.herokuapp.com";
 const BASE_URL = "http://localhost:5000";
 
-export function responseGoogle(response) {
+export function googleLoginSuccess(req) {
 
-     console.log(response);
-     // Send to backend
-     axios({
-      method: "POST",
-      url: BASE_URL + "/api/account/googleLogin",
-      data: {tokenId: response.tokenId}
-	 }).then(response => {
-        console.log(response);
-	 })
-	}
+    // Send to backend
+    return(
+        axios({
+            method: "POST",
+            url: BASE_URL + "/api/account/googleLogin",
+            data: {tokenId: req.tokenId}
+	      })
+    )
+}
 
-export function responseFailGoogle(response) {
+export function googleLoginFailure(req) {
 
     console.log("Google Login failed")
 
@@ -127,7 +126,7 @@ export function getPortfolioByAccountId(accountId) {
     axios({
       method: "get",
       url: BASE_URL + "/api/portfolio/readByAccountId",
-      data: account
+      data: accountId
     }));
 
 

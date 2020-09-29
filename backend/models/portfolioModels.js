@@ -5,12 +5,12 @@ const Schema = mongoose.Schema;
 const portfolioSchema = new Schema({
   accountId: {
     type: Object,
-    required: true
+    required: true,
+    unique: true
   },
   isPrivate: {
     type: Boolean,
     default: false,
-    required: true
   },
   email: {
     type: String,

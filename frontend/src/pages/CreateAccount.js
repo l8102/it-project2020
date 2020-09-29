@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
-import { responseGoogle, responseFailGoogle, createAccount } from "../Api.js"
-import GoogleLogin from "react-google-login";
+import { createAccount } from "../Api.js"
+import GoogleLoginBtn from "../components/GoogleLoginBtn";
 
-// todo rename this to CreateAccount
-// todo update the url path as well
-
-class Account extends Component {
+class CreateAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +23,7 @@ class Account extends Component {
         return (
             <div className="account-container">
                 <div className="form-container">
-                    <this.accountForm />
+                    <this.accountForm/>
                 </div>
             </div>
         )
@@ -64,7 +61,7 @@ class Account extends Component {
     }
 
     // Function represents form for inputting account creation information
-    accountForm() {
+    accountForm(response = response) {
         return (
             <div className="account-form">
                 <h1>
@@ -107,13 +104,7 @@ class Account extends Component {
                     <h3>
                         Or
                     </h3>
-                    <GoogleLogin className="google-button"
-                        clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
-                        buttonText="Continue with Google"
-                        onSuccess={responseGoogle}
-                        onFailure={responseFailGoogle}
-                        cookiePolicy={'single_host_origin'}
-                     />
+                    <GoogleLoginBtn className="google-button"/>
                     <NavLink className="nav-link" to="login">
                         Already have an account?
                     </NavLink>
@@ -121,6 +112,6 @@ class Account extends Component {
             </div>)
     }
 } 
-export default withRouter(Account);
+export default withRouter(CreateAccount);
 
 
