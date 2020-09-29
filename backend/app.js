@@ -10,9 +10,9 @@ const path = require('path');
 require('./models/database.js');
 
 // for json
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb'}));
 // body parsing of urlencoded bodies (for the forms)
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true}));
 
 // handle connection with mongoDB (password stuff ???)
 app.use(cors());

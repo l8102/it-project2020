@@ -16,15 +16,16 @@ import Browse from "./pages/Browse";
 // Import page components
 import About from "./pages/pcomponents/About";
 import Files from "./pages/pcomponents/Files";
-import Gallery from "./pages/pcomponents/Gallery";
+import EditGallery from "./pages/pcomponents/EditGallery";
+import ViewGallery from './pages/pcomponents/ViewGallery';
 
 import Tabs from "./pages/pcomponents/Tabs";
-import Tab from "./pages/pcomponents/Tab";
 
 // Import components
 import VisitorNavBar from "./components/VisitorNavBar";
 import UserNavBar from "./components/UserNavBar";
 import Footer from "./components/Footer";
+
 
 // todo rewrite this in class notation
 function App() {
@@ -44,7 +45,8 @@ function App() {
                 <About />
               </div> 
               <div label="Gallery"> 
-                <Gallery />
+                <EditGallery />
+                <ViewGallery />
               </div> 
               <div label="Files"> 
                 <Files />
@@ -76,7 +78,8 @@ function App() {
           </Route>
           <Route path="/gallery">
             <UserNavBar />
-            <Gallery />
+            <EditGallery />
+            <ViewGallery />
           </Route>
         </Switch>
         <Footer />
