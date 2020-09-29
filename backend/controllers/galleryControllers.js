@@ -4,22 +4,23 @@ const Portfolio = mongoose.model('portfolios');
 const Gallery = mongoose.model('galleries');
 const {cloudinary} = require('../utils/cloudinary');
 
-
 // CREATE
+/** uploads the image to cloudinary and a reference of the image is stored in the database */
 var uploadImage = async function (req, res) {
     try {
         const fileStr = req.body.data;
-        const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+        const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
             upload_preset: 'Gallery',
         });
-        console.log(uploadResponse);
-        res.json({ msg: 'Image uploaded' });
+       // console.log("response");
+        //console.log(uploadResponse);
+        //res.json({ msg: 'Image uploaded' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ err: 'Something went wrong' });
     }
 }
-
+/*
 var images = async function (req, res) {
     
     const { resources } = await cloudinary.search
@@ -31,6 +32,7 @@ var images = async function (req, res) {
     const publicIds = resources.map((file) => file.public_id);
     res.send(publicIds);
 }
+*/
 
 // READ
 
@@ -42,5 +44,5 @@ var images = async function (req, res) {
 // export controllers
 module.exports = {
     uploadImage, 
-    images
+    //images, 
 }

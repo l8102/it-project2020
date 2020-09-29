@@ -7,7 +7,7 @@ const galleryControllers = require('../controllers/galleryControllers');
 galleryRoutes.post('/upload', galleryControllers.uploadImage);
 
 // READ
-galleryRoutes.get('/images', galleryControllers.images);
+//galleryRoutes.get('/images', galleryControllers.images);
 
 // UPDATE
 
