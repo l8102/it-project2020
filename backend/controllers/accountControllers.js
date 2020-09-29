@@ -24,7 +24,8 @@ var createAccount = function(req, res, next) {
   console.log("account created");
 
   // create a matching portfolio using the account id
-  let accountId = data._id
+    // use string to make it work ???
+  let accountId = data._id.toString()
   portfolioControllers.create(accountId);
 
   return true;
@@ -56,7 +57,7 @@ var googleLogin = function(req, res) {
                     // If the user already exists, send the user as the response
                     if(user) {
                         console.log("google user exists");
-                        res.send(user._id);
+                        res.send(user._id.toString());
                         return true;
 
                     // If the user doesn't exist, create one
@@ -75,10 +76,10 @@ var googleLogin = function(req, res) {
                         console.log("google account created");
 
                         // send the new user as the response
-                        res.send(data._id);
+                        res.json(data._id.toString());
 
                         // create a matching portfolio using the account id
-                        let accountId = data._id
+                        let accountId = data._id.toString();
                         portfolioControllers.create(accountId);
 
                         return true;
@@ -102,7 +103,7 @@ var login = function (req, res, next) {
         else {
             if (req.body.password == user.password) {
                 console.log("User logged in");
-                res.send(user._id);
+                res.json(user._id);
                 return true;
             } else {
                 res.send("False");

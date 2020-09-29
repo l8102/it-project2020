@@ -1,20 +1,35 @@
 import axios from "axios";
-import GoogleLogin from "react-google-login";
 
 // todo change this depending on environment
 //const BASE_URL = "https://eaglesolutions.herokuapp.com";
 const BASE_URL = "http://localhost:5000";
 
+
 export function googleLoginSuccess(req) {
 
-    // Send to backend
-    return(
-        axios({
-            method: "POST",
-            url: BASE_URL + "/api/account/googleLogin",
-            data: {tokenId: req.tokenId}
-	      })
-    )
+  // Send to backend
+  // todo understand this better
+  return new Promise( function (resolve) {
+    axios({
+      method: "POST",
+      url: BASE_URL + "/api/account/googleLogin",
+      data: {
+        tokenId: req.tokenId
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      });
+  });
+
+
+    // .then( function (response) {
+    //   console.log(response);
+    //   return(response);
+    // })
+    // .catch( function (error) {
+    //   console.error(error);
+    // })
 }
 
 export function googleLoginFailure(req) {
@@ -115,19 +130,45 @@ export function createAccount(account) {
 
 }
 
-// todo API for getIsPrivate
 
-// todo API for setIsPrivate
+// todo implement this
+export async function getPortfolioIsPrivate() {
 
-// ----- getPortfolioByAccountId -----
+  // make request for portfolio
 
-export function getPortfolioByAccountId(accountId) {
-  return (
+  return new Promise( function (resolve) {
     axios({
       method: "get",
       url: BASE_URL + "/api/portfolio/readByAccountId",
-      data: accountId
-    }));
+      params: {
+        accountId: sessionStorage.getItem("accountId"),
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      });
+  });
+}
 
+// todo implement this
 
+export function setPortfolioIsPrivate(isPrivate) {
+
+  // make request for portfolio
+
+  console.log(isPrivate);
+
+  return new Promise( function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/portfolio/updateByAccountId",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        isPrivate: isPrivate
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      })
+  });
 }

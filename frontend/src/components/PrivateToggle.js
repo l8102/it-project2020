@@ -3,6 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/ColourScheme.css"
+import { getPortfolioIsPrivate, setPortfolioIsPrivate } from "../Api.js"
 
 // import the colours from the css
 const blueBorder = getComputedStyle(document.documentElement)
@@ -23,12 +24,23 @@ const CustomSwitch = withStyles({
   track: {},
 })(Switch);
 
+// todo read in private mode
+// todo clean this up
+// todo is being called twice, how to prevent this? (preventDefault???)
+
+var isPriv;
+getPortfolioIsPrivate()
+  .then(function (response) {
+    console.log(response.data.isPrivate);
+    isPriv = response.data.isPrivate;
+  });
+
 class PrivateToggle extends Component {
   constructor(props) {
     super(props);
-    // todo readPrivateMode
+
     this.state = {
-      isToggleOn: false
+      isToggleOn: isPriv
     };
 
     // This binding is necessary to make 'this' work in the callback
@@ -36,12 +48,18 @@ class PrivateToggle extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+
   handleChange() {
+
+    // update the isPrivate field in the database
+    setPortfolioIsPrivate(!this.state.isToggleOn);
+
     this.setState(state => ({
+      // update the state of the component
       isToggleOn: !state.isToggleOn
     }));
 
-    // todo updatePrivateMode
+
   }
 
   render() {

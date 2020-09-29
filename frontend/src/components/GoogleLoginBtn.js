@@ -14,20 +14,18 @@ class GoogleLoginBtn extends Component {
   }
 
   async handleGoogleSuccess(req) {
-    let res;
 
     // wait for the successful google login to be retrieved from the database
-    try {
-      res = await googleLoginSuccess(req);
-    } catch (error) {
-      console.error(error)
-    }
+    let res;
+
+    res = await googleLoginSuccess(req);
 
     // store the account id in session storage, which is returned as a response from the api call
     sessionStorage.setItem("accountId", res.data);
 
     // navigate to the portfolio page
     this.props.history.push("/portfolio");
+
   }
 
   handleGoogleFailure(req) {
