@@ -11,7 +11,6 @@ const portfolioSchema = new Schema({
   isPrivate: {
     type: Boolean,
     default: false,
-    required: true
   },
   email: {
     type: String,

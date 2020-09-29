@@ -1,5 +1,6 @@
 // import libraries
 const mongoose = require('mongoose');
+
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
 
@@ -10,11 +11,21 @@ const { UserRefreshClient } = require('google-auth-library');
 
 // CREATE
 
-// todo implement this
-const create = function (req, res, next) {
+const create = function (accountId) {
+
+    let portfolio = {
+        accountId: accountId,
+    };
+
+    // creates a new portfolio using the account id
+    const data = new Portfolio(portfolio);
+
+    // saves entry to the database
+    data.save();
+    console.log("portfolio created")
 
     // todo in future will need to call each of the portfolio components and create them
-}
+};
 
 
 const contactInfo = async (req, res) => {
@@ -53,73 +64,51 @@ const tokenIsValid = async (req, res) => {
 
 // READ
 
-// todo review this
-
 const readByAccountId = function (req, res, next) {
 
-    Portfolio.findOne({ accountID: req.accountID }, function (err, portfolio) {
+    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
 
-        if (!portfolio) {
+        if (err || portfolio === undefined) {
             console.error("Portfolio not found");
             res.json("false");
             return false;
         } else {
-            res.send(portfolio._id);
+            console.error("Portfolio found");
+            res.json(portfolio);
             return true;
         }
-
     });
-
 };
 
-// todo might not be necessary
-const readOne = function (req, res, next) {
-
-    var id = req._id;
-
-    Portfolio.findById(id, function (err, doc) {
-        if (err || doc == undefined) {
-            console.error('Portfolio not found');
-        } else {
-            res.send(doc);
-        }
-    });
-
-}
-
-// todo review this
 const updateByAccountId = function (req, res, next) {
 
-    Portfolio.findOne({ accountID: req.accountID }, function (err, doc) {
+    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
 
-        if (!doc) {
+        if (err || portfolio === undefined) {
             console.error("Portfolio not found");
             res.json("false");
             return false;
         } else {
-            doc.isPrivate = req.isPrivate;
-            doc.telephone = req.telephone;
-            doc.email = req.email;
-            console.log("Portfolio updated");
+            portfolio.isPrivate = req.body.isPrivate;
+            portfolio.telephone = req.body.telephone;
+            portfolio.email = req.body.email;
+            portfolio.save();
 
-            doc.save();
-            res.redirect('/');
+            console.log("Portfolio updated");
+            res.json(portfolio);
+            return true;
         }
     });
-
 };
 
-// todo review this
+// todo implement this | Not working properly
 const deleteByAccountId = function(req, res, next) {
-    var id = req._id
 
     //find account by id and deletes
-    Portfolio.findByIdAndRemove(id).exec();
+    Portfolio.remove({ "accountId": req.body.accountId });
     console.log("Portfolio removed");
 
     // todo in future will need to call each of the portfolio components and delete them
-
-    res.redirect('/');
 };
 
 // useful link
@@ -129,7 +118,6 @@ module.exports = {
     create,
     contactInfo,
     readByAccountId,
-    readOne,
     updateByAccountId,
     deleteByAccountId,
     tokenIsValid
