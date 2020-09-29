@@ -11,6 +11,11 @@ export default function Portfolio() {
     
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
+
+    // todo use this to load
+    const accountId = sessionStorage.getItem("accountId")
+
+    const portfolioId = readPortfolioId
   
     const handleImageUpload = e => {
       const [file] = e.target.files;
