@@ -44,7 +44,7 @@ export default function Upload() {
     //stores the image in the database 
     const uploadImage = async (base64EncodedImage) => {
         try {
-            await uploadAPI(base64EncodedImage);
+            const upload = await uploadAPI(base64EncodedImage);
             setFileState('');
             setPreview('');
             setSuccessMsg('Image uploaded successfully');

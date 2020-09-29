@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const gallerySchema  = new Schema({
   portfolioId: {
-    type: Object,
+    type: String,
     required: true
   },
-  imageRef: {
+  imageUrl: {
     type: String,
     required: true
   }

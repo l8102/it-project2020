@@ -12,7 +12,7 @@ export default function ViewGallery() {
             </h1>
             <Carousel>
                 <div>
-                    <img src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" />
+                    <img src="http://res.cloudinary.com/dbk5wcucj/image/upload/v1601357162/Gallery/uwnokjme9cvufqamui6g.jpg" />
                     <p className="legend">Legend 1</p>
                 </div>
                 <div>
