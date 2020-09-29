@@ -128,3 +128,14 @@ export function uploadAPI(base64EncodedImage) {
         headers: { 'Content-Type': 'application/json' },
     })
 }
+
+export function getImages(searchId) {
+    const data = { portfolioId: searchId }
+    return axios({
+        method: "post",
+        url: BASE_URL + "/api/gallery/getImages",
+        data: data
+    }).then(res => {
+        return res.data;
+    })
+}

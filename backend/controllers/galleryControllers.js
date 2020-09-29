@@ -34,6 +34,15 @@ var images = async function (req, res) {
 }
 */
 
+var getImages = function(req, res) {
+    Gallery.find({portfolioId: req.body.portfolioId}, function(err, doc) {
+        if(err || doc == undefined) {
+            console.error("Images not found")
+        } else {
+            res.send(doc);
+        }
+    })
+}
 // READ
 
 // UPDATE
@@ -45,4 +54,5 @@ var images = async function (req, res) {
 module.exports = {
     uploadImage, 
     //images, 
+    getImages
 }

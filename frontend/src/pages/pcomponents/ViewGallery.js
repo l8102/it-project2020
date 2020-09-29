@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { getImages } from '../../Api.js'
 
 
 export default function ViewGallery() {
@@ -24,6 +25,26 @@ export default function ViewGallery() {
                     <p className="legend">Legend 3</p>
                 </div>
             </Carousel>
+            <button
+                onClick = {
+                    async function carouselImages() {
+                        const res = await getImages("1");
+                        console.log(res);
+
+                        const images = []
+
+                        res.forEach((image, index) => {
+                            images[index] = image.imageUrl;
+                        });
+
+                        console.log(images);
+
+                        return images;
+                    }
+                }
+            >
+                test
+            </button>
         </div>
     );
 }
