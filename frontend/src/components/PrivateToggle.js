@@ -46,24 +46,24 @@ class PrivateToggle extends Component {
 
 
   // todo still not working
-  componentDidMount() {
+  async componentDidMount() {
 
     console.log("running");
+    let res;
 
-    getPortfolioIsPrivate()
-      .then(function (response) {
-        console.log("in");
-        console.log(response.data.isPrivate);
-        this.setState({
-          isToggleOn: response.data.isPrivate,
-          isLoaded: true
-        })
-        console.log("out");
-        console.log(this.state.isToggleOn);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    try {
+      res = await getPortfolioIsPrivate();
+    } catch (error) {
+      console.error(error);
+    }
+
+    // todo VERY IMPORTANT ! ! !
+    // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
+    // instead of the class
+    this.setState({
+      isToggleOn: res.data.isPrivate,
+      isLoaded: true
+    })
   }
 
   handleChange() {
@@ -81,7 +81,7 @@ class PrivateToggle extends Component {
 
   render() {
     if (!this.state.isLoaded) {
-      return (
+      return(
         <div>
           Loading...
         </div>
