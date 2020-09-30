@@ -5,20 +5,19 @@ import GoogleLogin from "react-google-login";
 //const BASE_URL = "https://eaglesolutions.herokuapp.com";
 const BASE_URL = "http://localhost:5000";
 
-export function responseGoogle(response) {
+export function googleLoginSuccess(req) {
 
-     console.log(response);
-     // Send to backend
-     axios({
-      method: "POST",
-      url: BASE_URL + "/api/account/googleLogin",
-      data: {tokenId: response.tokenId}
-	 }).then(response => {
-        console.log(response);
-	 })
-	}
+    // Send to backend
+    return(
+        axios({
+            method: "POST",
+            url: BASE_URL + "/api/account/googleLogin",
+            data: {tokenId: req.tokenId}
+	      })
+    )
+}
 
-export function responseFailGoogle(response) {
+export function googleLoginFailure(req) {
 
     console.log("Google Login failed")
 
@@ -120,6 +119,7 @@ export function createAccount(account) {
 
 // todo API for setIsPrivate
 
+
 /** sends the encoded image to the backend function upload */
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
@@ -129,6 +129,7 @@ export function uploadAPI(base64EncodedImage) {
     })
 }
 
+// retrieves all recorded images associated with a specified portfolio id
 export function getImages(searchId) {
     const data = { portfolioId: searchId }
     return axios({
@@ -138,4 +139,15 @@ export function getImages(searchId) {
     }).then(res => {
         return res.data;
     })
+}
+
+// ----- getPortfolioByAccountId -----
+
+export function getPortfolioByAccountId(accountId) {
+  return (
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/portfolio/readByAccountId",
+      data: accountId
+    }));
 }

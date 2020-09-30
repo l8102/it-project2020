@@ -10,6 +10,10 @@ export default function Portfolio() {
     
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
+
+    // todo this is for account id
+    const accountId = sessionStorage.getItem("accountId")
+
   
     const handleImageUpload = e => {
       const [file] = e.target.files;

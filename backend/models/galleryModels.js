@@ -10,6 +10,10 @@ const gallerySchema  = new Schema({
   imageRef: {
     type: String,
     required: true
+  },
+    multimedia: {
+        type: String,
+        unique: false
   }
 }, {
   collection: 'Gallery',
