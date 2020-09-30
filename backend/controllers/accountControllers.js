@@ -2,7 +2,13 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
+
+// import controllers to create the portfolio and its components
 const portfolioControllers = require('../controllers/portfolioControllers');
+const aboutControllers = require('../controllers/aboutControllers');
+const galleryControllers = require('../controllers/galleryControllers');
+const fileControllers = require('../controllers/fileControllers');
+const linkControllers = require('../controllers/linkControllers');
 
 // todo this isn't working
 // const jwt = require('jsonwebtoken');
@@ -23,14 +29,20 @@ var createAccount = function(req, res, next) {
 
   console.log("account created");
 
-  // create a matching portfolio using the account id
-    // use string to make it work ???
-  let accountId = data._id.toString()
-  portfolioControllers.create(accountId);
+  // create a portfolio and its components
+  createPortfolio(data._id.toString());
 
   return true;
 };
 
+// Helper function that creates a portfolio and its components for an account
+const createPortfolio = function(accountId) {
+    portfolioControllers.create(accountId);
+    aboutControllers.create(accountId);
+    galleryControllers.create(accountId);
+    fileControllers.create(accountId);
+    linkControllers.create(accountId);
+}
 
 // Google Login 
 const client = new OAuth2Client("897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com");
@@ -76,11 +88,10 @@ var googleLogin = function(req, res) {
                         console.log("google account created");
 
                         // send the new user as the response
-                        res.json(data._id.toString());
+                        res.send(data._id.toString());
 
-                        // create a matching portfolio using the account id
-                        let accountId = data._id.toString();
-                        portfolioControllers.create(accountId);
+                        // create a portfolio and its components
+                        createPortfolio(data._id.toString());
 
                         return true;
                     }
@@ -103,7 +114,7 @@ var login = function (req, res, next) {
         else {
             if (req.body.password == user.password) {
                 console.log("User logged in");
-                res.json(user._id);
+                res.send(user._id.toString());
                 return true;
             } else {
                 res.send("False");

@@ -1,6 +1,5 @@
 // import libraries
 const mongoose = require('mongoose');
-
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
 
@@ -13,18 +12,16 @@ const { UserRefreshClient } = require('google-auth-library');
 
 const create = function (accountId) {
 
-    let portfolio = {
-        accountId: accountId,
-    };
+  let portfolio = {
+      accountId: accountId,
+  };
 
-    // creates a new portfolio using the account id
-    const data = new Portfolio(portfolio);
+  // creates a new portfolio using the account id
+  const data = new Portfolio(portfolio);
 
-    // saves entry to the database
-    data.save();
-    console.log("portfolio created")
-
-    // todo in future will need to call each of the portfolio components and create them
+  // saves entry to the database
+  data.save();
+  console.log("portfolio created")
 };
 
 
