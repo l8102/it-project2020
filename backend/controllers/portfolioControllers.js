@@ -82,11 +82,6 @@ const readByAccountId = function (req, res, next) {
 
 const updateByAccountId = function (req, res, next) {
 
-    // todo idk how to do this
-    console.log(req.body);
-    console.log(req.body.accountId);
-    console.log(req.body.isPrivate);
-
     Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {

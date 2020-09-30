@@ -25,7 +25,6 @@ class GoogleLoginBtn extends Component {
 
     // navigate to the portfolio page
     this.props.history.push("/portfolio");
-
   }
 
   handleGoogleFailure(req) {

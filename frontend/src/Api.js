@@ -146,7 +146,9 @@ export async function getPortfolioIsPrivate() {
     })
       .then(function (response) {
         resolve(response);
-      });
+      }).catch(function (error) {
+      console.error(error);
+    });
   });
 }
 
@@ -155,8 +157,6 @@ export async function getPortfolioIsPrivate() {
 export function setPortfolioIsPrivate(isPrivate) {
 
   // make request for portfolio
-
-  console.log(isPrivate);
 
   return new Promise( function (resolve) {
     axios({
@@ -169,6 +169,8 @@ export function setPortfolioIsPrivate(isPrivate) {
     })
       .then(function (response) {
         resolve(response);
-      })
+      }).catch(function (error) {
+        console.error(error);
+      });
   });
 }

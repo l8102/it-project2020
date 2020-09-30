@@ -28,19 +28,15 @@ const CustomSwitch = withStyles({
 // todo clean this up
 // todo is being called twice, how to prevent this? (preventDefault???)
 
-var isPriv;
-getPortfolioIsPrivate()
-  .then(function (response) {
-    console.log(response.data.isPrivate);
-    isPriv = response.data.isPrivate;
-  });
+// todo check sessionStorage is not empty
 
 class PrivateToggle extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isToggleOn: isPriv
+      isToggleOn: false,
+      isLoaded: false
     };
 
     // This binding is necessary to make 'this' work in the callback
@@ -48,6 +44,27 @@ class PrivateToggle extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+
+  // todo still not working
+  componentDidMount() {
+
+    console.log("running");
+
+    getPortfolioIsPrivate()
+      .then(function (response) {
+        console.log("in");
+        console.log(response.data.isPrivate);
+        this.setState({
+          isToggleOn: response.data.isPrivate,
+          isLoaded: true
+        })
+        console.log("out");
+        console.log(this.state.isToggleOn);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
 
   handleChange() {
 
@@ -63,23 +80,31 @@ class PrivateToggle extends Component {
   }
 
   render() {
-    return(
-      <div>
-        <FormControlLabel
-          control={
-            <CustomSwitch
-              checked={this.state.isToggleOn}
-              onChange={this.handleChange}
-              color="primary"
-              name="privateMode"
-              inputProps={{ 'aria-label': 'primary checkbox' }}
-            />
-          }
-          label="Private Mode"
-          labelPlacement="start"
-        />
-      </div>
-    )
+    if (!this.state.isLoaded) {
+      return (
+        <div>
+          Loading...
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          <FormControlLabel
+            control={
+              <CustomSwitch
+                checked={this.state.isToggleOn}
+                onChange={this.handleChange}
+                color="primary"
+                name="privateMode"
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+            }
+            label="Private Mode"
+            labelPlacement="start"
+          />
+        </div>
+      )
+    }
   }
 }
 
