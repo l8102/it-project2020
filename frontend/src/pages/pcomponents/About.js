@@ -15,9 +15,7 @@ export default class About extends Component {
                 dateFrom: "",
                 dateTo: ""
             }],
-            interestList: [{
-                interest: ""
-            }],
+            interestList: [""],
             description: ""
         }
 
@@ -37,8 +35,6 @@ export default class About extends Component {
     /* The method for having dynamic additional/removable input fields was taken and adapted from
     https://www.cluemediator.com/add-or-remove-input-fields-dynamically-with-reactjs 
     */
-
-    // TODO: Look up keys for lists & check citing
 
     handleChange(e) {
         e.preventDefault();
@@ -80,10 +76,9 @@ export default class About extends Component {
     ------------------------------------------------------------------------*/
 
     handleInterestChange(e, i) {
-        const { name, value } = e.target;
         const list = [...this.state.interestList];
-        list[i][name] = value;
-        this.setState({ interestList: list });
+        list[i] = e.target.value;
+        this.setState({ interestList: list});
     }
 
     handleRemoveInterest(e, i) {
@@ -95,7 +90,7 @@ export default class About extends Component {
 
     handleAddInterest(e) {
         e.preventDefault();
-        this.setState({ interestList: [...this.state.interestList, { interest: "" }] });
+        this.setState({ interestList: [...this.state.interestList, ""] });
     }
 
     render() {
