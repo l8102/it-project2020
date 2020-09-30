@@ -66,14 +66,14 @@ const tokenIsValid = async (req, res) => {
 
 const readByAccountId = function (req, res, next) {
 
-    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
+    Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {
             console.error("Portfolio not found");
-            res.json("false");
+            res.send("false");
             return false;
         } else {
-            console.error("Portfolio found");
+            console.log("Portfolio found");
             res.json(portfolio);
             return true;
         }
@@ -86,7 +86,7 @@ const updateByAccountId = function (req, res, next) {
 
         if (err || portfolio === undefined) {
             console.error("Portfolio not found");
-            res.json("false");
+            res.send("false");
             return false;
         } else {
             portfolio.isPrivate = req.body.isPrivate;

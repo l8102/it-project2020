@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const portfolioSchema = new Schema({
   accountId: {
-    type: Object,
+    type: String,
     required: true,
     unique: true
   },

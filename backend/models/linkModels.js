@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const linkSchema = new Schema({
   portfolioId: {
-    type: Object,
+    type: String,
     required: true
   },
 }, {
