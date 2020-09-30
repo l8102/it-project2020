@@ -1,10 +1,22 @@
 // import libraries
 const mongoose = require('mongoose');
-const Portfolio = mongoose.model('portfolios');
 const About = mongoose.model('abouts');
 
 
 // CREATE
+const create = function (accountId) {
+
+  let about = {
+    accountId: accountId,
+  };
+
+  // creates a new portfolio using the account id
+  const data = new About(about);
+
+  // saves entry to the database
+  data.save();
+  console.log("about created")
+};
 
 // READ
 
@@ -15,5 +27,5 @@ const About = mongoose.model('abouts');
 
 // export controllers
 module.exports = {
-
+  create
 }
