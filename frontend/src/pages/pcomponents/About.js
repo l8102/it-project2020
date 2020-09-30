@@ -135,7 +135,7 @@ export default class About extends Component {
                         </h2>
                         {this.state.experienceList.map((x, i) => {
                             return (
-                                <div className="experiences">
+                                <div className="experiences" key={i}>
                                     <input className="experience"
                                         name="experience"
                                         value={x.experience}
@@ -177,7 +177,7 @@ export default class About extends Component {
                             </h2>
                         {this.state.interestList.map((x, i) => {
                             return (
-                                <div className="interests">
+                                <div className="interests" key={i}>
                                     <input className="interest"
                                         name="interest"
                                         value={x.interest}
