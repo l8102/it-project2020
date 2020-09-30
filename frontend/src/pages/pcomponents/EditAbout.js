@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../css/Portfolio.css";
+import "../../Api.js"
 
 export default class EditAbout extends Component {
     constructor(props) {
@@ -97,7 +98,7 @@ export default class EditAbout extends Component {
         return (
             <div className="about-me-page">
                 <h1>
-                    About
+                    Edit About
                 </h1>
                 <form>
                     <section className="educational-background">

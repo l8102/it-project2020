@@ -115,7 +115,8 @@
 .about-me-page label {
   display: block;
   margin-bottom: 10px;
-  font-size: large;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .about-me-page button {

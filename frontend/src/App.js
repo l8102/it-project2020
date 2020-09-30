@@ -15,6 +15,7 @@ import Browse from "./pages/Browse";
 
 // Import page components
 import EditAbout from "./pages/pcomponents/EditAbout";
+import ViewAbout from "./pages/pcomponents/ViewAbout";
 import Files from "./pages/pcomponents/Files";
 import EditGallery from "./pages/pcomponents/EditGallery";
 import ViewGallery from './pages/pcomponents/ViewGallery';
@@ -43,6 +44,7 @@ function App() {
             <Tabs> 
               <div label="About Me"> 
                 <EditAbout />
+                <ViewAbout />
               </div> 
               <div label="Gallery"> 
                 <EditGallery />
