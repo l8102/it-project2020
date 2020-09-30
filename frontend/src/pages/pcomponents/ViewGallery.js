@@ -1,50 +1,61 @@
-import React from "react";
+import React, { Component } from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getImages } from '../../Api.js'
 
+export default class ViewGallery extends Component {
+    constructor(props) {
+        super(props);
 
-export default function ViewGallery() {
+        this.state = {
+            //An array of image urls
+            images: [""]
+        }
+
+    }
+
+    async componentDidMount() {
+        const res = await getImages("1");
+        console.log(res);
     
-    return (
-        <div className="pcontainer">
-            <h1>
-                View Gallery
-            </h1>
-            <Carousel>
-                <div>
-                    <img src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" />
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" />
-                    <p className="legend">Legend 2</p>
-                </div>
-                <div>
-                    <img src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" />
-                    <p className="legend">Legend 3</p>
-                </div>
-            </Carousel>
-            <button
-                onClick = {
-                    async function carouselImages() {
-                        const res = await getImages("1");
-                        console.log(res);
+        const imageUrls = [];
 
-                        const images = []
+        res.forEach((image, index) => {
+            imageUrls[index] = image.imageUrl;
+        });     
 
-                        res.forEach((image, index) => {
-                            images[index] = image.imageUrl;
-                        });
+        this.setState({images : imageUrls});
+        console.log(this.state.images);
 
-                        console.log(images);
+    }
 
-                        return images;
+    render() {
+        const { images } = this.state;
+        return (
+            <div className="pcontainer">
+                <h1>
+                    View Gallery
+                </h1>
+                <Carousel>
+                    {
+                        images.map((x, i) => {
+                            console.log(x);
+                            return(
+                                <div>
+                                    <img src={ x }/>
+                                    <p className="legend"> Legend {i + 1} </p>
+                                </div>
+                            )
+                        })
                     }
-                }
-            >
-                test
-            </button>
-        </div>
-    );
+                   
+                </Carousel>
+            </div>
+        );
+    }
 }
+
+;
+
+
+
