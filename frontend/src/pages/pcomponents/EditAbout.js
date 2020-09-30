@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../css/Portfolio.css";
 
-export default class About extends Component {
+export default class EditAbout extends Component {
     constructor(props) {
         super(props);
 
@@ -43,7 +43,7 @@ export default class About extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
+        console.log(this.state);
         // Save information to database
     }
 
@@ -126,7 +126,7 @@ export default class About extends Component {
                         <input className="education"
                             name="major"
                             value={this.state.major}
-                            onChange={this.handleChange}
+                            onChange={ this.handleChange }
                         />
                     </section>
                     <section className="experience-list">
@@ -139,30 +139,30 @@ export default class About extends Component {
                                     <input className="experience"
                                         name="experience"
                                         value={x.experience}
-                                        onChange={e => this.handleExperienceChange(e, i)}
+                                        onChange={ e => this.handleExperienceChange(e, i) }
                                     />
                                     <div className="dates">
                                         <input className="date-from"
                                             name="dateFrom"
                                             type="date"
                                             value={x.dateFrom}
-                                            onChange={e => this.handleExperienceChange(e, i)}
+                                            onChange={ e => this.handleExperienceChange(e, i) }
                                         />
                                         <input className="date-to"
                                             name="dateTo"
                                             type="date"
                                             value={x.dateTo}
-                                            onChange={e => this.handleExperienceChange(e, i)}
+                                            onChange={ e => this.handleExperienceChange(e, i) }
                                         />
                                     </div>
                                     <div className="add-remove-buttons">
                                         {this.state.experienceList.length !== 1 &&
-                                            <button onClick={e => this.handleRemoveExperience(e, i)} >
+                                            <button onClick={ e => this.handleRemoveExperience(e, i) } >
                                                 Remove Experience
                                                     </button>
                                         }
                                         {this.state.experienceList.length - 1 === i &&
-                                            <button onClick={this.handleAddExperience}>
+                                            <button onClick={ this.handleAddExperience }>
                                                 Add Experience
                                                     </button>
                                         }
@@ -180,17 +180,17 @@ export default class About extends Component {
                                 <div className="interests" key={i}>
                                     <input className="interest"
                                         name="interest"
-                                        value={x.interest}
-                                        onChange={e => this.handleInterestChange(e, i)}
+                                        value={ x.interest }
+                                        onChange={ e => this.handleInterestChange(e, i) }
                                     />
                                     <div className="add-remove-buttons">
-                                        {this.state.interestList.length !== 1 &&
-                                            <button onClick={e => this.handleRemoveInterest(e, i)} >
+                                        { this.state.interestList.length !== 1 &&
+                                            <button onClick={ e => this.handleRemoveInterest(e, i) } >
                                                 Remove interest
                                                 </button>
                                         }
-                                        {this.state.interestList.length - 1 === i &&
-                                            <button onClick={this.handleAddInterest}>
+                                        { this.state.interestList.length - 1 === i &&
+                                            <button onClick={ this.handleAddInterest }>
                                                 Add interest
                                             </button>
                                         }
@@ -206,11 +206,11 @@ export default class About extends Component {
                         <textarea className="text-box"
                             name="description"
                             placeholder="Describe yourself here..."
-                            value={this.state.description}
-                            onChange={this.handleChange}
+                            value={ this.state.description }
+                            onChange={ this.handleChange }
                         />
                     </section>
-                    <button className="save-btn-tab">
+                    <button className="save-btn-tab" onClick={ this.handleSubmit }>
                         Save
                     </button>
                 </form>
