@@ -14,7 +14,7 @@ import Account from "./pages/CreateAccount";
 import Browse from "./pages/Browse";
 
 // Import page components
-import About from "./pages/pcomponents/About";
+import EditAbout from "./pages/pcomponents/EditAbout";
 import Files from "./pages/pcomponents/Files";
 import EditGallery from "./pages/pcomponents/EditGallery";
 import ViewGallery from './pages/pcomponents/ViewGallery';
@@ -42,7 +42,7 @@ function App() {
             <Portfolio />
             <Tabs> 
               <div label="About Me"> 
-                <About />
+                <EditAbout />
               </div> 
               <div label="Gallery"> 
                 <EditGallery />
@@ -70,7 +70,7 @@ function App() {
           </Route>
           <Route path="/about">
             <UserNavBar />
-            <About />
+            <EditAbout />
           </Route>
           <Route path="/files">
             <UserNavBar />
