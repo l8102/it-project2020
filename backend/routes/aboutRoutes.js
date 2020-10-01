@@ -6,7 +6,7 @@ const aboutControllers = require('../controllers/aboutControllers');
 // handled by create account
 
 // READ
-//aboutRoutes.get('/readAbout', aboutControllers.readAbout);
+aboutRoutes.get('/readAbout', aboutControllers.readAbout);
 
 // UPDATE
 aboutRoutes.put('/updateAboutMe', aboutControllers.updateByAccountId);

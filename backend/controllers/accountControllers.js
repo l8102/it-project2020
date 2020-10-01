@@ -143,14 +143,25 @@ var login = function (req, res, next) {
 
 // Read Account
 var readAccount = function(req, res) {
-    var accountId = req.body.accountId;
+    var accountId = req.query.accountId;
 
-    Account.findById(accountId, function(err, doc) {
-     if (err || doc == undefined) {
-      console.error('account not found');
-	 } else {
-      res.send(doc);
-	 }
+    Account.findById(accountId, function(err, account) {
+        if (err || account == undefined) {
+            console.error('account not found');
+
+        } else {
+            console.log("account found");
+
+            const data = {
+                firstName: account.firstName,
+                lastname: account.lastName,
+                email: account.email,
+                profileImage: account.profileImage
+            }
+
+            res.json(data);
+            return true;
+	    }
 	});
 } 
 

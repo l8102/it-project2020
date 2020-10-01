@@ -77,6 +77,8 @@ const readByAccountId = function (req, res, next) {
     });
 };
 
+
+// UPDATE 
 const updateByAccountId = function (req, res, next) {
 
     Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {

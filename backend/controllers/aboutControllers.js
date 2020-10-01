@@ -19,6 +19,21 @@ const create = function (accountId) {
 };
 
 // READ
+const readAbout = function (req, res) {
+
+    About.findOne({ "accountId": req.query.accountId }, function (err, about) {
+
+        if (err || about === undefined) {
+            console.error("AboutMe not found");
+            res.send("false");
+            return false;
+        } else {
+            console.log("AboutMe found");
+            res.json(about);
+            return true;
+        }
+    });
+}
 
 
 
@@ -56,5 +71,6 @@ const updateByAccountId = function (req, res, next) {
 // export controllers
 module.exports = {
     create,
-    updateByAccountId
+    updateByAccountId,
+    readAbout
 }
