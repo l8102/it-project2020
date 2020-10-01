@@ -194,3 +194,24 @@ export function setPortfolioIsPrivate(isPrivate) {
       });
   });
 }
+
+
+// Update about Me
+export function updateAboutMe(state) {
+
+    return new Promise(function (resolve) {
+        axios({
+            method: "put",
+            url: BASE_URL + "/api/about/updateAboutMe",
+            data: {
+                accountId: sessionStorage.getItem("accountId"),
+                state: state
+            }
+        })
+            .then(function (response) {
+                resolve(response);
+            }).catch(function (error) {
+                console.error(error);
+            });
+    });
+}

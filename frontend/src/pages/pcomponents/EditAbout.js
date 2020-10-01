@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../css/Portfolio.css";
-import "../../Api.js"
+import { updateAboutMe } from "../../Api.js"
 
 export default class EditAbout extends Component {
     constructor(props) {
@@ -45,7 +45,9 @@ export default class EditAbout extends Component {
     handleSubmit(e) {
         e.preventDefault();
         console.log(this.state);
+
         // Save information to database
+        updateAboutMe(this.state);
     }
 
 
