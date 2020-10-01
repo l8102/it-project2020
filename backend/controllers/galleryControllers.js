@@ -35,7 +35,7 @@ var images = async function (req, res) {
 */
 
 var getImages = function(req, res) {
-    Gallery.find({portfolioId: req.body.portfolioId}, function(err, doc) {
+    Gallery.find({accountId: req.body.accountId}, function(err, doc) {
         if(err || doc == undefined) {
             console.error("Images not found")
         } else {

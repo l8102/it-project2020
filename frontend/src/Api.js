@@ -131,7 +131,7 @@ export function uploadAPI(base64EncodedImage) {
 
 // retrieves all recorded images associated with a specified portfolio id
 export function getImages(searchId) {
-    const data = { portfolioId: searchId }
+    const data = { accountId: searchId }
     return axios({
         method: "post",
         url: BASE_URL + "/api/gallery/getImages",

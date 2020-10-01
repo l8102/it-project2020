@@ -25,15 +25,16 @@ export default class ViewAbout extends Component {
         this.retrieveAbout = this.retrieveAbout.bind(this);
     }
 
-    // Get about components from api and assign data from the return
+    /*
+    // Get about components from api and assign data 
     // to be recorded in 'this.state'
-    async retrieveAbout() {
+    async componentDidMount() {
 
     }
+    */
 
     // Might need to be async, need to test out api first
     render() {
-        this.retrieveAbout();
         return (
             <div className="about-me-page">
                 <h1>
