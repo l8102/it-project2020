@@ -130,11 +130,6 @@ export function createAccount(account) {
 
 }
 
-
-// todo implement this
-export async function getPortfolioIsPrivate() {
-
-
 /** sends the encoded image to the backend function upload */
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
@@ -156,9 +151,11 @@ export function getImages(searchId) {
     })
 }
 
+
 // ----- getPortfolioByAccountId -----
+export async function getPortfolioIsPrivate() {
 
-
+  // make request for portfolio
   return new Promise( function (resolve) {
     axios({
       method: "get",

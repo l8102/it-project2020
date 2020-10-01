@@ -21,8 +21,6 @@ export default class ViewAbout extends Component {
             interestList: [""],
             description: ""
         }
-
-        this.retrieveAbout = this.retrieveAbout.bind(this);
     }
 
     /*
