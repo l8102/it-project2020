@@ -2,6 +2,7 @@ const express = require('express');
 const galleryRoutes = express.Router();
 const galleryControllers = require('../controllers/galleryControllers');
 
+
 // CREATE
 galleryRoutes.post('/upload', galleryControllers.uploadImage);
 
@@ -10,11 +11,17 @@ galleryRoutes.post('/upload', galleryControllers.uploadImage);
 galleryRoutes.post('/getImages', galleryControllers.getImages);
 
 
+// // CREATE
+// // handled by create account
+//
+// // READ
+// galleryRoutes.get('/readGallery', galleryControllers.readGallery);
+//
 // // UPDATE
 // galleryRoutes.put('/updateGallery', galleryControllers.updateGallery);
 //
 // // DELETE
-// galleryRoutes.delete('/deleteGallery', galleryControllers.deleteGallery);
+// // handled by delete account
 
 
 module.exports = galleryRoutes;

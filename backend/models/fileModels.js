@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const fileSchema = new Schema({
-  portfolioId: {
-    type: Object,
+  accountId: {
+    type: String,
     required: true
   },
 }, {

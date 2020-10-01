@@ -1,6 +1,5 @@
 // import libraries
 const mongoose = require('mongoose');
-
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
 
@@ -13,18 +12,16 @@ const { UserRefreshClient } = require('google-auth-library');
 
 const create = function (accountId) {
 
-    let portfolio = {
-        accountId: accountId,
-    };
+  let portfolio = {
+      accountId: accountId,
+  };
 
-    // creates a new portfolio using the account id
-    const data = new Portfolio(portfolio);
+  // creates a new portfolio using the account id
+  const data = new Portfolio(portfolio);
 
-    // saves entry to the database
-    data.save();
-    console.log("portfolio created")
-
-    // todo in future will need to call each of the portfolio components and create them
+  // saves entry to the database
+  data.save();
+  console.log("portfolio created")
 };
 
 
@@ -66,14 +63,14 @@ const tokenIsValid = async (req, res) => {
 
 const readByAccountId = function (req, res, next) {
 
-    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
+    Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {
             console.error("Portfolio not found");
-            res.json("false");
+            res.send("false");
             return false;
         } else {
-            console.error("Portfolio found");
+            console.log("Portfolio found");
             res.json(portfolio);
             return true;
         }
@@ -86,7 +83,7 @@ const updateByAccountId = function (req, res, next) {
 
         if (err || portfolio === undefined) {
             console.error("Portfolio not found");
-            res.json("false");
+            res.send("false");
             return false;
         } else {
             portfolio.isPrivate = req.body.isPrivate;

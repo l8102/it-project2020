@@ -3,7 +3,7 @@ const aboutRoutes = express.Router();
 const aboutControllers = require('../controllers/aboutControllers');
 
 // // CREATE
-// aboutRoutes.post('/addAbout', aboutControllers.createAbout);
+// // handled by create account
 //
 // // READ
 // aboutRoutes.get('/readAbout', aboutControllers.readAbout);
@@ -12,6 +12,6 @@ const aboutControllers = require('../controllers/aboutControllers');
 // aboutRoutes.put('/updateAbout', aboutControllers.updateAbout);
 //
 // // DELETE
-// aboutRoutes.delete('/deleteAbout', aboutRoutes.deleteAbout);
+// // handled by delete account
 
 module.exports = aboutRoutes;

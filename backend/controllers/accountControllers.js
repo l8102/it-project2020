@@ -3,7 +3,13 @@ const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
 const bcrypt = require('bcrypt');
+
+// import controllers to create the portfolio and its components
 const portfolioControllers = require('../controllers/portfolioControllers');
+const aboutControllers = require('../controllers/aboutControllers');
+const galleryControllers = require('../controllers/galleryControllers');
+const fileControllers = require('../controllers/fileControllers');
+const linkControllers = require('../controllers/linkControllers');
 
 
 // todo this isn't working
@@ -35,13 +41,20 @@ var createAccount = function(req, res, next) {
 
   console.log("account created");
 
-  // create a matching portfolio using the account id
-  let accountId = data._id
-  portfolioControllers.create(accountId);
+  // create a portfolio and its components
+  createPortfolio(data._id.toString());
 
   return true;
 };
 
+// Helper function that creates a portfolio and its components for an account
+const createPortfolio = function(accountId) {
+    portfolioControllers.create(accountId);
+    aboutControllers.create(accountId);
+    galleryControllers.create(accountId);
+    fileControllers.create(accountId);
+    linkControllers.create(accountId);
+}
 
 // Google Login 
 const client = new OAuth2Client("897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com");
@@ -68,7 +81,7 @@ var googleLogin = function(req, res) {
                     // If the user already exists, send the user as the response
                     if(user) {
                         console.log("google user exists");
-                        res.send(user._id);
+                        res.send(user._id.toString());
                         return true;
 
                     // If the user doesn't exist, create one
@@ -87,11 +100,10 @@ var googleLogin = function(req, res) {
                         console.log("google account created");
 
                         // send the new user as the response
-                        res.send(data._id);
+                        res.send(data._id.toString());
 
-                        // create a matching portfolio using the account id
-                        let accountId = data._id
-                        portfolioControllers.create(accountId);
+                        // create a portfolio and its components
+                        createPortfolio(data._id.toString());
 
                         return true;
                     }
@@ -111,6 +123,7 @@ var login = function (req, res, next) {
             return false;
         }
         else {
+
             bcrypt.compare(req.body.password, user.password, function(err, result) {
                 if (result == true) {
                     console.log("User logged in");
