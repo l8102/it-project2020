@@ -239,6 +239,7 @@ export async function getAboutMe() {
         })
             .then(function (response) {
                 resolve(response);
+                console.log(response.data);
             }).catch(function (error) {
                 console.error(error);
             });

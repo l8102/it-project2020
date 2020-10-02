@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../css/Portfolio.css"
-import "../../Api.js"
+import { getAboutMe } from "../../Api.js"
 
 
 export default class ViewAbout extends Component {
@@ -23,13 +23,36 @@ export default class ViewAbout extends Component {
         }
     }
 
-    /*
+    
     // Get about components from api and assign data 
     // to be recorded in 'this.state'
     async componentDidMount() {
 
+        let aboutMe;
+
+        try {
+            aboutMe = await getAboutMe();
+        } catch (error) {
+            console.error(error);
+        }
+
+        this.state = {
+            institution: aboutMe.data.institution,
+            degree: aboutMe.data.degree,
+            major: aboutMe.data.major,
+
+            // Not quite right
+            experienceList: aboutMe.data.experienceList,
+
+            // Not quite right
+            interestList: aboutMe.data.interestList,
+
+            description: aboutMe.data.description
+        }
+        console.log(this.state);
+
     }
-    */
+
 
     // Might need to be async, need to test out api first
     render() {
