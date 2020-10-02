@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
+import PortfolioImage from "../components/PortfolioImage";
 import { getAccount } from "../Api.js"
 
 // todo getIsPrivate
@@ -75,18 +76,7 @@ export default function Portfolio() {
         </form>
         <PrivateToggle/>
       </div>
-      
-      <div className="img-container">
-        
-        <input type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploader} style={{display: "none"}}/>
-        
-        <button className="img" onClick={() => imageUploader.current.click()}>
-          
-          <img ref={uploadedImage} style={{width: "100%", height: "100%"}}/>
-        </button>
-
-      
-      </div>
+      <PortfolioImage/>
     </div>
   );   
 }
