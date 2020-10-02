@@ -76,40 +76,30 @@
 }
 
 .save-btn-tab {
+  display: block;
   bottom: 0;
   margin: 50px;
   padding: 5px;
   border-radius: 5px;
-  display: block;
 }
 
 .about-me-page {
-  margin: 2%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+}
+
+.about-me-page h1 {
+  margin: 30px
 }
 
 .about-me-page h2 {
   text-align: center;
-  margin-bottom: 30px;;
+  margin-bottom: 30px;
   padding: 20px;
   background-color: var(--green-border);
-}
-
-
-.about-me-page section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  background-color: var(--green-background);
-  overflow-y: auto;
-  margin: auto;
-  margin-bottom: 40px;
-  width: 80%;
-  border-radius: 5px;
-  padding-bottom: 20px;
+  color: var(--white-text);
 }
 
 .about-me-page label {
@@ -119,69 +109,81 @@
   font-weight: bold;
 }
 
+.about-me-page section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--green-background);
+  overflow-y: auto;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 80%;
+  border-radius: 5px;
+  padding-bottom: 20px;
+}
+
 .about-me-page button {
-  margin: 10px;
-  margin-bottom: 20px;
-}
-
-.experience-list {
-  display: table;
-}
-
-.experiences {
-  display: table-row;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
 }
 
 .experience, .interest, .education {
   padding: 5px;
+  width: 30%;
   border: 2px solid #ccc;
   margin-bottom: 10px;
-}
-
-.experience {
-  width: 50%;
-}
-
-.interest {
-  width: 200px;
-}
-
-.education {
-  width: 30%;
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
   border-radius: 2px;
 }
 
-.experience, .date-from, .date-to, .interest {
-  border: 2px solid #ccc;
-  border-radius: 2px;
+.list-table {
+  display: flex;
+  justify-content: center;
 }
 
-.date-from {
-  margin-right: 10px;
+.list-table table, .list-table th, .list-table td {
+  text-align: center;
+  padding: 5px;
 }
 
-.dates {
+.list-table th, .list-table td {
+  width: 100%;
+}
+
+.experience-col {
+  max-width: 100%;
   display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
-.interests {
-  margin-left: auto;
-  margin-right: auto;
+.list-table table {
+  width: 80%;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
+.description {
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 40px;
+}
+
+.date {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+}
 
 .add-remove-buttons {
   display: block;
-  
-}
-
-.add-remove-buttons button {
-  display: table-cell;
 }
 
 .about-me-page .text-box, select {
@@ -210,4 +212,3 @@
   height: 300px;
   margin-bottom: 10px;
 }
-
