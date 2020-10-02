@@ -16,7 +16,7 @@ export default class ViewGallery extends Component {
 
     async componentDidMount() {
         // Todo: "1" needs to be changed to the accountId, so need to retrieve accountId before
-        // calling getImages();
+        // calling getImages(). For now, getImages calls on portfolioId "1" from previous schema for Gallery
         const res = await getImages("1");
         console.log(res);
     
@@ -49,8 +49,7 @@ export default class ViewGallery extends Component {
                                 </div>
                             )
                         })
-                    }
-                   
+                    }   
                 </Carousel>
             </div>
         );

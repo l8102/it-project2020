@@ -139,7 +139,7 @@ export function uploadAPI(base64EncodedImage) {
     })
 }
 
-// retrieves all recorded images associated with a specified portfolio id
+// retrieves all recorded images associated with a specified account id
 export function getImages(searchId) {
     const data = { accountId: searchId }
     return axios({

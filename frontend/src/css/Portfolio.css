@@ -91,7 +91,11 @@
 }
 
 .about-me-page h1 {
-  margin: 30px
+  margin: 40px;
+}
+
+.about-me-page form {
+  margin-top: 0;
 }
 
 .about-me-page h2 {
