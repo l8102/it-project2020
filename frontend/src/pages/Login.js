@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
-import { responseGoogle, responseFailGoogle, login } from "../Api.js"
+import { login } from "../Api.js"
 import GoogleLogin from "react-google-login";
+import GoogleLoginBtn from "../components/GoogleLoginBtn";
 
  class Login extends Component {
     constructor(props) {
@@ -20,14 +21,8 @@ import GoogleLogin from "react-google-login";
     render() {
         return (
             <div className="account-container">
-                <NavLink to="/">
-                    Landing
-                </NavLink>
-                <NavLink to="/portfolio">
-                    Portfolio
-                </NavLink>
                 <div className="form-container">
-                    <this.loginForm history={this.props.history} />
+                    <this.loginForm/>
                 </div>
             </div>
         )
@@ -50,22 +45,21 @@ import GoogleLogin from "react-google-login";
 
         let res;
 
-        // todo handle async errors / validation?
         try {
-          res = await login(loginDetails);
+            res = await login(loginDetails);
         } catch (error) {
-          console.error(error)
+            console.error(error)
         }
-        // alert("ERROR: Invalid login.");
-
-        console.log(res);
-
 
         // if there is a valid response, redirect to the edit portfolio page
         // also store the account id
         if (res != null) {
-          this.props.history.push("/portfolio")
-          // todo add in web tokens / sessionstorage using res
+            if(res.data !== "False") {
+                sessionStorage.setItem("accountId", res.data);
+                this.props.history.push("/portfolio");
+            } else {
+                alert("Invalid login credentials")
+            }
         }
 
     }
@@ -99,14 +93,8 @@ import GoogleLogin from "react-google-login";
                     <h3> 
                            Or
                     </h3>
-                    <GoogleLogin className="google-button"
-                        clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
-                        buttonText="Sign in with Google"
-                        onSuccess={responseGoogle}
-                        onFailure={responseFailGoogle}
-                        cookiePolicy={'single_host_origin'}
-                     />
-                    <NavLink className="nav-link" to="/account">
+                    <GoogleLoginBtn className="google-button"/>
+                    <NavLink className="nav-link" to="/create-account">
                         Create an account
                     </NavLink>
                 </form> 

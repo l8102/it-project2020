@@ -10,7 +10,7 @@ import "./css/Portfolio.css";
 import Landing from "./pages/Landing";
 import Portfolio from "./pages/Portfolio";
 import Login from "./pages/Login";
-import Account from "./pages/Account";
+import Account from "./pages/CreateAccount";
 import Browse from "./pages/Browse";
 
 // Import page components
@@ -56,7 +56,7 @@ function App() {
               </div> 
             </Tabs> 
           </Route>
-          <Route path="/account">
+          <Route path="/create-account">
             <UserNavBar />
             <Account />
           </Route>

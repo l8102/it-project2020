@@ -1,24 +1,38 @@
 import axios from "axios";
-import GoogleLogin from "react-google-login";
 
 // todo change this depending on environment
 //const BASE_URL = "https://eaglesolutions.herokuapp.com";
 const BASE_URL = "http://localhost:5000";
 
-export function responseGoogle(response) {
 
-     console.log(response);
-     // Send to backend
-     axios({
+export function googleLoginSuccess(req) {
+
+  // Send to backend
+  // todo understand this better
+  return new Promise( function (resolve) {
+    axios({
       method: "POST",
       url: BASE_URL + "/api/account/googleLogin",
-      data: {tokenId: response.tokenId}
-	 }).then(response => {
-        console.log(response);
-	 })
-	}
+      data: {
+        tokenId: req.tokenId
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      });
+  });
 
-export function responseFailGoogle(response) {
+
+    // .then( function (response) {
+    //   console.log(response);
+    //   return(response);
+    // })
+    // .catch( function (error) {
+    //   console.error(error);
+    // })
+}
+
+export function googleLoginFailure(req) {
 
     console.log("Google Login failed")
 
@@ -116,15 +130,55 @@ export function createAccount(account) {
 
 }
 
-// todo API for getIsPrivate
 
-// todo API for setIsPrivate
+// todo implement this
+export async function getPortfolioIsPrivate() {
+
+  // make request for portfolio
+
+  return new Promise( function (resolve) {
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/portfolio/readByAccountId",
+      params: {
+        accountId: sessionStorage.getItem("accountId"),
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+}
 
 /** sends the encoded image to the backend function upload */
 export function uploadAPI(base64EncodedImage) {
-    return fetch(BASE_URL + "/api/gallery/upload", {
-        method: 'POST',
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { 'Content-Type': 'application/json' },
+  return fetch(BASE_URL + "/api/gallery/upload", {
+      method: 'POST',
+      body: JSON.stringify({ data: base64EncodedImage }),
+      headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+// todo implement this
+
+export function setPortfolioIsPrivate(isPrivate) {
+  // make request for portfolio
+
+  return new Promise( function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/portfolio/updateByAccountId",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        isPrivate: isPrivate
+      }
     })
+      .then(function (response) {
+        resolve(response);
+      }).catch(function (error) {
+        console.error(error);
+      });
+  });
 }

@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const gallerySchema  = new Schema({
-  portfolioId: {
+  accountId: {
     type: String,
     required: true
-  },
-  imageUrl: {
-    type: String,
-    required: true
-  }
+    },
+    multimedia: {
+        type: String,
+        unique: false
+    }
 }, {
   collection: 'Gallery',
   timestamps: true,

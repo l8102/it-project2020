@@ -6,10 +6,16 @@ const galleryControllers = require('../controllers/galleryControllers');
 // CREATE
 galleryRoutes.post('/upload', galleryControllers.uploadImage);
 
-// READ
-
-// UPDATE
-
-// DELETE
+// // CREATE
+// // handled by create account
+//
+// // READ
+// galleryRoutes.get('/readGallery', galleryControllers.readGallery);
+//
+// // UPDATE
+// galleryRoutes.put('/updateGallery', galleryControllers.updateGallery);
+//
+// // DELETE
+// // handled by delete account
 
 module.exports = galleryRoutes;

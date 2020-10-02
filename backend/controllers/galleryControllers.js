@@ -1,6 +1,5 @@
 // import libraries
 const mongoose = require('mongoose');
-const Portfolio = mongoose.model('portfolios');
 const Gallery = mongoose.model('galleries');
 const {cloudinary} = require('../utils/cloudinary');
 
@@ -36,6 +35,19 @@ var uploadImage = async function (req, res) {
         res.status(500).json({ err: 'Something went wrong' });
     }
 }
+const create = function (accountId) {
+
+  let gallery = {
+    accountId: accountId,
+  };
+
+  // creates a new portfolio using the account id
+  const data = new Gallery(gallery);
+
+  // saves entry to the database
+  data.save();
+  console.log("gallery created")
+};
 
 // READ
 
@@ -47,4 +59,5 @@ var uploadImage = async function (req, res) {
 // export controllers
 module.exports = {
     uploadImage, 
+    create
 }
