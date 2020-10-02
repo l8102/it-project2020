@@ -16,7 +16,7 @@ var uploadImage = async function (req, res) {
         const id = 1;
 
         const galleryInfo = {
-            portfolioId: id,
+            accountId: id,
             imageUrl: uploadResponse.url, 
         }     
         
@@ -35,6 +35,17 @@ var uploadImage = async function (req, res) {
         res.status(500).json({ err: 'Something went wrong' });
     }
 }
+
+var getImages = function(req, res) {
+    // TODO: Change to accountId instead of portfolioId
+    Gallery.find({portfolioId: req.body.accountId}, function(err, doc) {
+        if(err || doc == undefined) {
+            console.error("Images not found")
+        } else {
+            res.send(doc);
+        }
+    })
+}
 const create = function (accountId) {
 
   let gallery = {
@@ -48,7 +59,6 @@ const create = function (accountId) {
   data.save();
   console.log("gallery created")
 };
-
 // READ
 
 // UPDATE
@@ -59,5 +69,7 @@ const create = function (accountId) {
 // export controllers
 module.exports = {
     uploadImage, 
+    //images, 
+    getImages,
     create
 }

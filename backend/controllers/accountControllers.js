@@ -11,6 +11,7 @@ const galleryControllers = require('../controllers/galleryControllers');
 const fileControllers = require('../controllers/fileControllers');
 const linkControllers = require('../controllers/linkControllers');
 
+
 // todo this isn't working
 // const jwt = require('jsonwebtoken');
 
@@ -123,7 +124,7 @@ var login = function (req, res, next) {
         }
         else {
             bcrypt.compare(req.body.password, user.password, function(err, result) {
-                if(result == true) {
+                if (result == true) {
                     console.log("User logged in");
                     res.send(user._id.toString());
                     return true;

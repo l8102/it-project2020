@@ -130,12 +130,32 @@ export function createAccount(account) {
 
 }
 
+/** sends the encoded image to the backend function upload */
+export function uploadAPI(base64EncodedImage) {
+    return fetch(BASE_URL + "/api/gallery/upload", {
+        method: 'POST',
+        body: JSON.stringify({ data: base64EncodedImage }),
+        headers: { 'Content-Type': 'application/json' },
+    })
+}
 
-// todo implement this
+// retrieves all recorded images associated with a specified account id
+export function getImages(searchId) {
+    const data = { accountId: searchId }
+    return axios({
+        method: "post",
+        url: BASE_URL + "/api/gallery/getImages",
+        data: data
+    }).then(res => {
+        return res.data;
+    })
+}
+
+
+// ----- getPortfolioByAccountId -----
 export async function getPortfolioIsPrivate() {
 
   // make request for portfolio
-
   return new Promise( function (resolve) {
     axios({
       method: "get",
@@ -150,15 +170,6 @@ export async function getPortfolioIsPrivate() {
       console.error(error);
     });
   });
-}
-
-/** sends the encoded image to the backend function upload */
-export function uploadAPI(base64EncodedImage) {
-  return fetch(BASE_URL + "/api/gallery/upload", {
-      method: 'POST',
-      body: JSON.stringify({ data: base64EncodedImage }),
-      headers: { 'Content-Type': 'application/json' },
-  })
 }
 
 // todo implement this

@@ -6,6 +6,11 @@ const galleryControllers = require('../controllers/galleryControllers');
 // CREATE
 galleryRoutes.post('/upload', galleryControllers.uploadImage);
 
+// READ
+//galleryRoutes.get('/images', galleryControllers.images);
+galleryRoutes.post('/getImages', galleryControllers.getImages);
+
+
 // // CREATE
 // // handled by create account
 //
