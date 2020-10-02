@@ -24,11 +24,8 @@ const CustomSwitch = withStyles({
   track: {},
 })(Switch);
 
-// todo read in private mode
 // todo clean this up
-// todo is being called twice, how to prevent this? (preventDefault???)
-
-// todo check sessionStorage is not empty
+// todo is being called twice, how to prevent this? (preventDefault???) - maybe not an issue
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -44,8 +41,6 @@ class PrivateToggle extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
-  // todo still not working
   async componentDidMount() {
 
     console.log("running");

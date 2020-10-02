@@ -1,14 +1,10 @@
 import React from "react"
 import "../css/Portfolio.css";
-import { getPortfolioIsPrivate, setPortfolioIsPrivate } from "../Api.js"
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import PrivateToggle from "./PrivateToggle";
 
 export default function PortfolioImage() {
 
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-
 
   // todo figure out how to get around Promise sending
 
@@ -24,7 +20,6 @@ export default function PortfolioImage() {
       reader.readAsDataURL(file);
     }
   };
-
 
   return (
     <div className="img-container">

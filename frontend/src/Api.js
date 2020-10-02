@@ -117,6 +117,8 @@ export function createAccount(account) {
 }
 
 
+// todo this needs to be redone, we are not getting account info, we should be getting portfolio contact info
+// todo pretty sure we should delete this (unless it has another use)
 export async function getAccount() {
 
     return await new Promise(function (resolve) {
@@ -133,6 +135,16 @@ export async function getAccount() {
                 console.error(error);
             });
     });
+}
+
+// todo implement this
+export function getPortfolioContactInfo() {
+
+}
+
+// todo implement this
+export function setPortfolioContactInfo(newEmail, newTelephone) {
+
 }
 
 
@@ -161,7 +173,7 @@ export function getImages(searchId) {
 
 
 // ----- getPortfolioByAccountId -----
-export async function getPortfolioIsPrivate() {
+export function getPortfolioIsPrivate() {
 
   // make request for portfolio
   return new Promise( function (resolve) {
@@ -179,8 +191,6 @@ export async function getPortfolioIsPrivate() {
     });
   });
 }
-
-// todo implement this
 
 export function setPortfolioIsPrivate(isPrivate) {
 
