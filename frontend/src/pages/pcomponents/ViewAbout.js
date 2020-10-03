@@ -37,16 +37,18 @@ export default class ViewAbout extends Component {
             console.error(error);
         }
 
+        console.log(aboutMe.data);
+
         this.setState({
             institution: aboutMe.data.institution,
             degree: aboutMe.data.degree,
             major: aboutMe.data.major,
 
             // Not quite right
-            //experienceList: aboutMe.data.experienceList,
+            experienceList: aboutMe.data.workExperience,
 
             // Not quite right
-            //interestList: aboutMe.data.interestList,
+            interestList: aboutMe.data.interests,
 
             description: aboutMe.data.description,
 
