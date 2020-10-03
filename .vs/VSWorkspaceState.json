@@ -2,11 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\backend",
+    "\\backend\\controllers",
+    "\\backend\\models",
+    "\\backend\\routes",
     "\\frontend",
     "\\frontend\\src",
+    "\\frontend\\src\\components",
     "\\frontend\\src\\pages",
-    "\\frontend\\src\\tests"
+    "\\frontend\\src\\pages\\pcomponents"
   ],
-  "SelectedNode": "\\frontend\\src\\tests\\login.test.js",
+  "SelectedNode": "\\backend\\controllers\\portfolioControllers.js",
   "PreviewInSolutionExplorer": false
 }

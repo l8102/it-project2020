@@ -17,28 +17,21 @@ accountRoutes.post('/login', accountControllers.login);
 
 // READ
 
-accountRoutes.get('/read', function(req, res) {
-	accountControllers.readAccount
-});
+accountRoutes.get('/read', accountControllers.readAccount);
+
 
 
 // UPDATE
 
-accountRoutes.put('/updateName', function(req, res) {
-	accountControllers.updateName
-});
+accountRoutes.put('/updateName', accountControllers.updateName);
 
 
-accountRoutes.put('/updateProfileImage', function (req, res) {
-	accountControllers.updateProfileImage
-});
+accountRoutes.put('/updateProfileImage', accountControllers.updateProfileImage);
 
 
 // DELETE
 
-accountRoutes.delete('/delete', function(req, res) {
-	accountControllers.deleteAccount
-});
+accountRoutes.delete('/delete', accountControllers.deleteAccount);
 
 
 // Export Routes

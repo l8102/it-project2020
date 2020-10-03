@@ -49,8 +49,8 @@ var createAccount = function(req, res, next) {
 };
 
 // Helper function that creates a portfolio and its components for an account
-const createPortfolio = function(accountId) {
-    portfolioControllers.create(accountId);
+const createPortfolio = function(accountId, email) {
+    portfolioControllers.create(accountId, email);
     aboutControllers.create(accountId);
     galleryControllers.create(accountId);
     fileControllers.create(accountId);
@@ -104,7 +104,7 @@ var googleLogin = function(req, res) {
                         res.send(data._id.toString());
 
                         // create a portfolio and its components
-                        createPortfolio(data._id.toString());
+                        createPortfolio(data._id.toString(), newAccount.email);
 
                         return true;
                     }
@@ -142,14 +142,25 @@ var login = function (req, res, next) {
 
 // Read Account
 var readAccount = function(req, res) {
-    var accountId = req.body.accountId;
+    var accountId = req.query.accountId;
 
-    Account.findById(accountId, function(err, doc) {
-     if (err || doc == undefined) {
-      console.error('account not found');
-	 } else {
-      res.send(doc);
-	 }
+    Account.findById(accountId, function(err, account) {
+        if (err || account == undefined) {
+            console.error('account not found');
+
+        } else {
+            console.log("account found");
+
+            const data = {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+                profileImage: account.profileImage
+            }
+
+            res.json(data);
+            return true;
+	    }
 	});
 } 
 
