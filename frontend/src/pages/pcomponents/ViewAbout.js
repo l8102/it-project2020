@@ -68,33 +68,35 @@ export default class ViewAbout extends Component {
                     {
                         <div className="list-table">
                             <table>
-                                <tr>
-                                    <th>
-                                        Experience:
-                                </th>
-                                    <th>
-                                        Date Started:
-                                </th>
-                                    <th>
-                                        Date Finished:
-                                </th>
-                                </tr>
-                                {this.state.experienceList.map((x, i) => {
-                                    return (
-                                        <tr>
-                                            <td className="experience-col">
-                                                {x.experience}
-                                            </td>
-                                            <td>
-                                                {x.dateFrom}
-                                            </td>
-                                            <td>
-                                                {x.dateTo}
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                                }
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            Experience:
+                                        </th>
+                                        <th>
+                                            Date Started:
+                                        </th>
+                                        <th>
+                                            Date Finished:
+                                        </th>
+                                    </tr>
+                                    {this.state.experienceList.map((x, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td className="experience-col">
+                                                    {x.experience}
+                                                </td>
+                                                <td>
+                                                    {x.dateFrom}
+                                                </td>
+                                                <td>
+                                                    {x.dateTo}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                    }
+                                </tbody>
                             </table>
                         </div>
                     }
@@ -106,15 +108,17 @@ export default class ViewAbout extends Component {
                     {
                         <div className="list-table">
                             <table>
-                                {this.state.interestList.map((x) => {
-                                    return (
-                                        <tr>
-                                            <td>
-                                                {x}
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
+                                <tbody>
+                                    {this.state.interestList.map((x, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td>
+                                                    {x}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
                             </table>
                         </div>
                     }
