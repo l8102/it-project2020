@@ -10,10 +10,11 @@ const { UserRefreshClient } = require('google-auth-library');
 
 // CREATE
 
-const create = function (accountId) {
+const create = function (accountId, email) {
 
   let portfolio = {
       accountId: accountId,
+      email: email
   };
 
   // creates a new portfolio using the account id
