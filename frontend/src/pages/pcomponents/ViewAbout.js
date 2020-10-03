@@ -88,7 +88,7 @@ export default class ViewAbout extends Component {
                           Degree:
                       </label>
                       <p>
-                          {this.state.major}
+                          {this.state.degree}
                       </p>
                       <label>
                           Major:
