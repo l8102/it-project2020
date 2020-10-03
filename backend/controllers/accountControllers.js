@@ -37,12 +37,13 @@ var createAccount = function(req, res, next) {
                 res.json(doc);
             }
         }));
+
+        // create a portfolio and its components
+        createPortfolio(data._id.toString());
+
     })
 
   console.log("account created");
-
-  // create a portfolio and its components
-  createPortfolio(data._id.toString());
 
   return true;
 };
@@ -123,17 +124,15 @@ var login = function (req, res, next) {
             return false;
         }
         else {
-
             bcrypt.compare(req.body.password, user.password, function(err, result) {
                 if (result == true) {
                     console.log("User logged in");
-                    res.send(user._id);
+                    res.send(user._id.toString());
                     return true;
                 } else {
                     res.send("False");
                 }
             });
-
         }
         user.save();
     });

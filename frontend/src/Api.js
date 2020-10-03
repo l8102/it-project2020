@@ -188,10 +188,14 @@ export function uploadAPI(base64EncodedImage) {
         method: 'POST',
         body: JSON.stringify({ data: base64EncodedImage }),
         headers: { 'Content-Type': 'application/json' },
-    })
+    }).then(res => {
+      return res.data;
+    }).catch(function (error) {
+      console.error(error);
+    });
 }
 
-// retrieves all recorded images associated with a specified portfolio id
+// TODO: This function retrieves based on portfolioId from older schema, need to test and replace with function below 
 export function getImages(searchId) {
     const data = { accountId: searchId }
     return axios({
@@ -202,6 +206,24 @@ export function getImages(searchId) {
         return res.data;
     })
 }
+
+
+// // Retrieves all recorded images associated with a specified account id
+// export function getImages() {
+//   // Retrieves accountId from session storage
+//   const data = { accountId: sessionStorage.getItem("accountId") }
+//   //console.log(data.accountId);
+
+//   return axios({
+//     method: "post",
+//     url: BASE_URL + "/api/gallery/getImages",
+//     data: data
+//   }).then(res => {
+//     return res.data;
+//   }).catch(err => {
+//     console.error("Error, something went wrong")
+//   }) 
+// }
 
 
 // ----- getPortfolioByAccountId -----
@@ -225,7 +247,6 @@ export function getPortfolioIsPrivate() {
 }
 
 export function setPortfolioIsPrivate(isPrivate) {
-
   // make request for portfolio
 
   return new Promise( function (resolve) {

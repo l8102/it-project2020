@@ -1,6 +1,4 @@
 :root {
-    --text-color: #333;
-    --accent-color: rgb(37, 126, 96);
     --btn-text-color: #f9f9f9;
     --alert-success-bg-color: #d4edda;
     --alert-success-text-color: #155724;
@@ -44,25 +42,6 @@
 .form-input {
     display: block;
     margin-bottom: 10px;
-}
-
-.alert {
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    position: fixed;
-    top: 2rem;
-    right: 0rem;
-    min-width: 200px;
-}
-
-.alert-success {
-    background-color: var(--alert-success-bg-color);
-    color: var(--alert-success-text-color);
-}
-
-.alert-danger {
-    background-color: var(--alert-danger-bg-color);
-    color: var(--alert-danger-text-color);
 }
 
 .gallery-form {

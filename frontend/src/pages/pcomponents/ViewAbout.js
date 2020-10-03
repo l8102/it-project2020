@@ -60,7 +60,7 @@ export default class ViewAbout extends Component {
 
 
 
-    // Might need to be async, need to test out api first
+
     render() {
         if (!this.state.isLoaded) {
             return (
@@ -101,66 +101,74 @@ export default class ViewAbout extends Component {
                         <h2>
                             Work Experience/Internships
                     </h2>
-                        {
+
+                    {
+                        <div className="list-table">
                             <table>
-                                <tr>
-                                    <th>
-                                        Experience:
-                                </th>
-                                    <th>
-                                        Date Started:
-                                </th>
-                                    <th>
-                                        Date Finished:
-                                </th>
-                                </tr>
-                                {this.state.experienceList.map((x, i) => {
-                                    return (
-                                        <tr>
-                                            <td>
-                                                {x.experience}
-                                            </td>
-                                            <td>
-                                                {x.dateFrom}
-                                            </td>
-                                            <td>
-                                                {x.dateTo}
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                                }
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            Experience:
+                                        </th>
+                                        <th>
+                                            Date Started:
+                                        </th>
+                                        <th>
+                                            Date Finished:
+                                        </th>
+                                    </tr>
+                                    {this.state.experienceList.map((x, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td className="experience-col">
+                                                    {x.experience}
+                                                </td>
+                                                <td>
+                                                    {x.dateFrom}
+                                                </td>
+                                                <td>
+                                                    {x.dateTo}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                    }
+                                </tbody>
                             </table>
-                        }
-                    </section>
-                    <section>
-                        <h2>
-                            Interests
+                        </div>
+                    }
+                </section>
+                <section>
+                    <h2>
+                        Interests
                     </h2>
-                        {
+                    {
+                        <div className="list-table">
                             <table>
-                                {this.state.interestList.map((x) => {
-                                    return (
-                                        <tr>
-                                            <td>
-                                                {x}
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
+                                <tbody>
+                                    {this.state.interestList.map((x, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td>
+                                                    {x}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
                             </table>
-                        }
-                    </section>
-                    <section>
-                        <h2>
-                            About 'Name'
+                        </div>
+                    }
+                </section>
+                <section>
+                    <h2>
+                        About 'Name'
                     </h2>
-                        <p>
-                            {this.state.description}
-                        </p>
-                    </section>
-                </div>
-            )
-        }
+                    <p className="description">
+                        {this.state.description}
+                    </p>
+                </section>
+            </div>
+        )
     }
 }

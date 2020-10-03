@@ -7,13 +7,9 @@ const gallerySchema  = new Schema({
     type: String,
     required: true
   },
-  imageRef: {
+  imageUrl: {
     type: String,
-    required: true
-  },
-    multimedia: {
-        type: String,
-        unique: false
+    required: false
   }
 }, {
   collection: 'Gallery',

@@ -4,7 +4,7 @@ const Gallery = mongoose.model('galleries');
 const {cloudinary} = require('../utils/cloudinary');
 
 // CREATE
-/** uploads the image to cloudinary and a reference of the image is stored in the database */
+/** uploads the image to cloudinary and the url of the image is stored in the database */
 var uploadImage = async function (req, res) {
     try {
         const fileStr = req.body.data;
@@ -12,28 +12,33 @@ var uploadImage = async function (req, res) {
             upload_preset: 'Gallery',
         });
        // console.log("response");
-        //console.log(uploadResponse);
+        console.log(uploadResponse);
+        const id = 1;
+        console.log(uploadResponse.url);
+
+        const galleryInfo = {
+            accountId: id,
+            imageUrl: uploadResponse.url, 
+        }     
+        
+        const data = new Gallery(galleryInfo);
+        
+        data.save((function(err, doc) {
+            if (err || doc == undefined) {
+                res.json(err);
+            } else {
+                res.json(doc);
+            }
+        }));
         //res.json({ msg: 'Image uploaded' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ err: 'Something went wrong' });
     }
 }
-/*
-var images = async function (req, res) {
-    
-    const { resources } = await cloudinary.search
-    .expression('folder:dev_setups')
-    .sort_by('public_id', 'desc')
-    .max_results(30)
-    .execute();
-
-    const publicIds = resources.map((file) => file.public_id);
-    res.send(publicIds);
-}
-*/
 
 var getImages = function(req, res) {
+    // TODO: Change to accountId instead of portfolioId
     Gallery.find({accountId: req.body.accountId}, function(err, doc) {
         if(err || doc == undefined) {
             console.error("Images not found")

@@ -39,7 +39,7 @@ export default class EditAbout extends Component {
 
     handleChange(e) {
         e.preventDefault();
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     handleSubmit(e) {
@@ -103,7 +103,7 @@ export default class EditAbout extends Component {
                     Edit About
                 </h1>
                 <form>
-                    <section className="educational-background">
+                    <section>
                         <h2>
                             Educational Background
                             </h2>
@@ -132,61 +132,59 @@ export default class EditAbout extends Component {
                             onChange={ this.handleChange }
                         />
                     </section>
-                    <section className="experience-list">
+                    <section>
                         <h2>
                             Work Experience/Internships
                         </h2>
                         {this.state.experienceList.map((x, i) => {
                             return (
-                                <div className="experiences" key={i}>
+                                <div key={i}>
                                     <input className="experience"
                                         name="experience"
                                         value={x.experience}
-                                        onChange={ e => this.handleExperienceChange(e, i) }
+                                        onChange={e => this.handleExperienceChange(e, i)}
                                     />
-                                    <div className="dates">
-                                        <input className="date-from"
-                                            name="dateFrom"
-                                            type="date"
-                                            value={x.dateFrom}
-                                            onChange={ e => this.handleExperienceChange(e, i) }
-                                        />
-                                        <input className="date-to"
-                                            name="dateTo"
-                                            type="date"
-                                            value={x.dateTo}
-                                            onChange={ e => this.handleExperienceChange(e, i) }
-                                        />
-                                    </div>
-                                    <div className="add-remove-buttons">
+                                    <input className="date"
+                                        name="dateFrom"
+                                        type="date"
+                                        value={x.dateFrom}
+                                        onChange={e => this.handleExperienceChange(e, i)}
+                                    />
+                                    <input className="date"
+                                        name="dateTo"
+                                        type="date"
+                                        value={x.dateTo}
+                                        onChange={e => this.handleExperienceChange(e, i)}
+                                    />
+                                    <div>
                                         {this.state.experienceList.length !== 1 &&
-                                            <button onClick={ e => this.handleRemoveExperience(e, i) } >
+                                            <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i) } >
                                                 Remove Experience
-                                                    </button>
+                                            </button>
                                         }
                                         {this.state.experienceList.length - 1 === i &&
-                                            <button onClick={ this.handleAddExperience }>
+                                            <button className="add-remove-button" onClick={ this.handleAddExperience }>
                                                 Add Experience
-                                                    </button>
+                                            </button>
                                         }
                                     </div>
                                 </div>
                             )
                         })}
                     </section>
-                    <section className="interests-list">
+                    <section >
                         <h2>
                             Interests
                             </h2>
                         {this.state.interestList.map((x, i) => {
                             return (
-                                <div className="interests" key={i}>
+                                <div key={i}>
                                     <input className="interest"
                                         name="interest"
                                         value={ x.interest }
                                         onChange={ e => this.handleInterestChange(e, i) }
                                     />
-                                    <div className="add-remove-buttons">
+                                    <div >
                                         { this.state.interestList.length !== 1 &&
                                             <button onClick={ e => this.handleRemoveInterest(e, i) } >
                                                 Remove interest
@@ -202,7 +200,7 @@ export default class EditAbout extends Component {
                             )
                         })}
                     </section>
-                    <section className="description">
+                    <section>
                         <h2>
                             About 'Name'
                         </h2>
