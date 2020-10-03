@@ -33,3 +33,11 @@ For toggle
 https://material-ui.com/components/switches/
 https://reactjs.org/docs/handling-events.html
 https://davidwalsh.name/css-variables-javascript
+
+Super Useful
+https://github.com/axios/axios
+https://www.codegrepper.com/code-examples/sql/insert+fetch+data+to+state+variable+react
+
+For Login (Repos)
+https://github.com/beaucarnes/mern-exercise-tracker-mongodb
+https://github.com/AbhishaShah/Registration-and-Login-using-MERN-stack

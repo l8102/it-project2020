@@ -1,3 +1,5 @@
+@import "ColourScheme.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -73,42 +75,139 @@
   border-radius: 5px;
 }
 
-
 .save-btn-tab {
+  display: block;
   bottom: 0;
-  margin-top: 5px;
+  margin: 50px;
   padding: 5px;
   border-radius: 5px;
-  display: block;
 }
 
 .about-me-page {
-  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
-.about-me-page label, .description label {
+.about-me-page h1 {
+  margin: 40px;
+}
+
+.about-me-page form {
+  margin-top: 0;
+}
+
+.about-me-page h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--green-border);
+  color: var(--white-text);
+}
+
+.about-me-page label {
   display: block;
-  margin: 10px;
-  font-size: x-large;
+  margin-bottom: 10px;
+  font-size: medium;
+  font-weight: bold;
 }
 
-.about-me-page textarea {
-  margin-left: 10px;
+.about-me-page section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--green-background);
+  overflow-y: auto;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 80%;
+  border-radius: 5px;
+  padding-bottom: 20px;
 }
 
-.educational-history {
-  margin-bottom: 50px;
+.about-me-page button {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.experience, .interest, .education {
+  padding: 5px;
   width: 30%;
-  height: 230px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 2px;
 }
 
-.educational-history label {
-  font-size: large;
+.list-table {
+  display: flex;
+  justify-content: center;
+}
+
+.list-table table, .list-table th, .list-table td {
+  text-align: center;
+  padding: 5px;
+}
+
+.list-table th, .list-table td {
+  width: 100%;
+}
+
+.experience-col {
+  max-width: 100%;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.list-table table {
+  width: 80%;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
 .description {
-  height: 320px;
-  width: 90%;
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 40px;
+}
+
+.date {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+}
+
+.add-remove-buttons {
+  display: block;
+}
+
+.about-me-page .text-box, select {
+  width: 80%;
+  height: 300px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 5px;
+  resize: vertical;
+  overflow-y: auto;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+}
+
+
+.small-text-box, select {
+  display: block;
+  width: 70%;
+  height: 35px;
+  margin-bottom: 10px;
 }
 
 .text-box, select {
@@ -116,20 +215,4 @@
   width: 100%;
   height: 300px;
   margin-bottom: 10px;
-  outline: none;
 }
-
-.small-text-box, select {
-  display: block;
-  width: 70%;
-  height: 35px;
-  margin-bottom: 10px;
-  outline: none;
-}
-
-
-.pcontainer {
-  background-color: white;
-}
-
-

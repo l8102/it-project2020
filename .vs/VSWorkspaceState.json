@@ -2,8 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\eaglesolutions"
+    "\\backend\\controllers",
+    "\\backend\\models",
+    "\\backend\\routes",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\components",
+    "\\frontend\\src\\pages",
+    "\\frontend\\src\\pages\\pcomponents"
   ],
-  "SelectedNode": "\\backend\\routes",
+  "SelectedNode": "\\backend\\controllers\\portfolioControllers.js",
   "PreviewInSolutionExplorer": false
 }

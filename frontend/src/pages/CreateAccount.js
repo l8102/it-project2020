@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
-import { responseGoogle, responseFailGoogle } from "../Api.js"
-import GoogleLogin from "react-google-login";
+import { createAccount } from "../Api.js"
+import GoogleLoginBtn from "../components/GoogleLoginBtn";
 
-
-class Account extends Component {
+class CreateAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
             firstName: '',
             lastName: '',
+            email: '',
+            password: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +23,7 @@ class Account extends Component {
         return (
             <div className="account-container">
                 <div className="form-container">
-                    <this.accountForm />
+                    <this.accountForm/>
                 </div>
             </div>
         )
@@ -36,38 +35,33 @@ class Account extends Component {
     }
 
     // Function handles submission of the account creation form to the database
-    async handleSubmit(e) {
+    // todo removed async, could be added in later if necessary
+    handleSubmit(e) {
         e.preventDefault();
 
-        // Structure for handleSubmit method in account creation, needs to be completed
-        /* 
-        var res;
+        const account = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+        }
 
-        // Form input is sent to the database
-        res = await createAccount ({
-            this.state.email,
-            this.state.password,
-            this.state.firstName,
-            this.state.lastName
-        })
-        
-        console.log(res.data);
+        const res = createAccount(account);
 
-        if(res != null) {
-            // If the new account has been recorded in the database
-            if(res.data == "True") {
-                sessionStorage.setItem("accountID", res.data);
-                // Redirects to portfolio page
-                this.props.history.push("/portfolio");
-            } else {
-                alert("Account creation unsuccessful");
-            }
-        } 
-        */
+        // todo still not sure if res is working as intended
+        // If there is a valid response, redirect to login page
+        if (res != null) {
+            alert("Account created successfully");
+            this.props.history.push("/login");
+        } else {
+            alert("ERROR: Failed to create account.");
+        }
+
+        // console.log(res);
     }
 
     // Function represents form for inputting account creation information
-    accountForm() {
+    accountForm(response = response) {
         return (
             <div className="account-form">
                 <h1>
@@ -106,14 +100,11 @@ class Account extends Component {
                         onChange={ this.handleChange } />
                     <input 
                         type="submit" 
-                        value="Login" />
-                    <GoogleLogin
-                        clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
-                        buttonText="Create Account with Google"
-                        onSuccess={responseGoogle}
-                        onFailure={responseFailGoogle}
-                        cookiePolicy={'single_host_origin'}
-                     />
+                        value="Create Account" />
+                    <h3>
+                        Or
+                    </h3>
+                    <GoogleLoginBtn className="google-button"/>
                     <NavLink className="nav-link" to="login">
                         Already have an account?
                     </NavLink>
@@ -121,6 +112,6 @@ class Account extends Component {
             </div>)
     }
 } 
-export default withRouter(Account);
+export default withRouter(CreateAccount);
 
 

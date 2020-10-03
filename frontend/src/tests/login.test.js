@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 it('Google Login renders', () => {
 
-    //const login = render(<Login />);
+    //var login = render(<Login />);
 
     //console.log('LOGIN' + login);
 
