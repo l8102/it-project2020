@@ -10,10 +10,11 @@ const { UserRefreshClient } = require('google-auth-library');
 
 // CREATE
 
-const create = function (accountId) {
+const create = function (accountId, email) {
 
   let portfolio = {
       accountId: accountId,
+      email: email
   };
 
   // creates a new portfolio using the account id
@@ -77,6 +78,8 @@ const readByAccountId = function (req, res, next) {
     });
 };
 
+
+// UPDATE 
 const updateByAccountId = function (req, res, next) {
 
     Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {

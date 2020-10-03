@@ -6,11 +6,11 @@ const gallerySchema  = new Schema({
   accountId: {
     type: String,
     required: true
-    },
-    multimedia: {
-        type: String,
-        unique: false
-    }
+  },
+  imageUrl: {
+    type: String,
+    required: false
+  }
 }, {
   collection: 'Gallery',
   timestamps: true,

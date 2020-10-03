@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
+const bcrypt = require('bcrypt');
 
 // import controllers to create the portfolio and its components
 const portfolioControllers = require('../controllers/portfolioControllers');
@@ -10,34 +11,46 @@ const galleryControllers = require('../controllers/galleryControllers');
 const fileControllers = require('../controllers/fileControllers');
 const linkControllers = require('../controllers/linkControllers');
 
+
 // todo this isn't working
 // const jwt = require('jsonwebtoken');
 
 // Create new account
 var createAccount = function(req, res, next) {
   console.log(req.body)
-  const accountInfo = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    profileImage: req.body.profileImage,
-  };
+  
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
+        const accountInfo = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: hash,
+            profileImage: req.body.profileImage,
+        };
 
-  const data = new Account(accountInfo);
-  data.save();
+        const data = new Account(accountInfo);
+        
+        data.save((function(err, doc) {
+            if (err || doc == undefined) {
+                res.json(err);
+            } else {
+                res.json(doc);
+            }
+        }));
+
+        // create a portfolio and its components
+        createPortfolio(data._id.toString());
+
+    })
 
   console.log("account created");
-
-  // create a portfolio and its components
-  createPortfolio(data._id.toString());
 
   return true;
 };
 
 // Helper function that creates a portfolio and its components for an account
-const createPortfolio = function(accountId) {
-    portfolioControllers.create(accountId);
+const createPortfolio = function(accountId, email) {
+    portfolioControllers.create(accountId, email);
     aboutControllers.create(accountId);
     galleryControllers.create(accountId);
     fileControllers.create(accountId);
@@ -91,7 +104,7 @@ var googleLogin = function(req, res) {
                         res.send(data._id.toString());
 
                         // create a portfolio and its components
-                        createPortfolio(data._id.toString());
+                        createPortfolio(data._id.toString(), newAccount.email);
 
                         return true;
                     }
@@ -108,17 +121,18 @@ var login = function (req, res, next) {
 
         if (!user) {
             console.error("Email not found");
-            res.json("False");
             return false;
         }
         else {
-            if (req.body.password == user.password) {
-                console.log("User logged in");
-                res.send(user._id.toString());
-                return true;
-            } else {
-                res.send("False");
-            }
+            bcrypt.compare(req.body.password, user.password, function(err, result) {
+                if (result == true) {
+                    console.log("User logged in");
+                    res.send(user._id.toString());
+                    return true;
+                } else {
+                    res.send("False");
+                }
+            });
         }
         user.save();
     });
@@ -128,14 +142,25 @@ var login = function (req, res, next) {
 
 // Read Account
 var readAccount = function(req, res) {
-    var accountId = req.body.accountId;
+    var accountId = req.query.accountId;
 
-    Account.findById(accountId, function(err, doc) {
-     if (err || doc == undefined) {
-      console.error('account not found');
-	 } else {
-      res.send(doc);
-	 }
+    Account.findById(accountId, function(err, account) {
+        if (err || account == undefined) {
+            console.error('account not found');
+
+        } else {
+            console.log("account found");
+
+            const data = {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+                profileImage: account.profileImage
+            }
+
+            res.json(data);
+            return true;
+	    }
 	});
 } 
 
