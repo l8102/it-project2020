@@ -14,6 +14,7 @@ var uploadImage = async function (req, res) {
        // console.log("response");
         console.log(uploadResponse);
         const id = 1;
+        console.log(uploadResponse.url);
 
         const galleryInfo = {
             accountId: id,
@@ -38,7 +39,7 @@ var uploadImage = async function (req, res) {
 
 var getImages = function(req, res) {
     // TODO: Change to accountId instead of portfolioId
-    Gallery.find({portfolioId: req.body.accountId}, function(err, doc) {
+    Gallery.find({accountId: req.body.accountId}, function(err, doc) {
         if(err || doc == undefined) {
             console.error("Images not found")
         } else {

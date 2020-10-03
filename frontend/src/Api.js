@@ -136,7 +136,11 @@ export function uploadAPI(base64EncodedImage) {
         method: 'POST',
         body: JSON.stringify({ data: base64EncodedImage }),
         headers: { 'Content-Type': 'application/json' },
-    })
+    }).then(res => {
+      return res.data;
+    }).catch(function (error) {
+      console.error(error);
+    });
 }
 
 // retrieves all recorded images associated with a specified account id

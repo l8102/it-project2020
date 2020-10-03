@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getImages } from '../../Api.js'
@@ -54,9 +54,7 @@ export default class ViewGallery extends Component {
             </div>
         );
     }
-}
-
-;
+};
 
 
 

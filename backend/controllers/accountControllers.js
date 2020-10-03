@@ -37,12 +37,13 @@ var createAccount = function(req, res, next) {
                 res.json(doc);
             }
         }));
+
+        // create a portfolio and its components
+        createPortfolio(data._id.toString());
+
     })
 
   console.log("account created");
-
-  // create a portfolio and its components
-  createPortfolio(data._id.toString());
 
   return true;
 };
