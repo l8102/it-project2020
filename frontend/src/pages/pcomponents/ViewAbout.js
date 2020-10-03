@@ -19,7 +19,8 @@ export default class ViewAbout extends Component {
             }],
 
             interestList: [""],
-            description: ""
+            description: "",
+            isLoaded: false
         }
     }
 
@@ -36,117 +37,130 @@ export default class ViewAbout extends Component {
             console.error(error);
         }
 
-        this.state = {
+        this.setState({
             institution: aboutMe.data.institution,
             degree: aboutMe.data.degree,
             major: aboutMe.data.major,
 
             // Not quite right
-            experienceList: aboutMe.data.experienceList,
+            //experienceList: aboutMe.data.experienceList,
 
             // Not quite right
-            interestList: aboutMe.data.interestList,
+            //interestList: aboutMe.data.interestList,
 
-            description: aboutMe.data.description
-        }
+            description: aboutMe.data.description,
+
+            isLoaded: true
+        })
         console.log(this.state);
+
 
     }
 
 
+
+
     // Might need to be async, need to test out api first
     render() {
-        return (
-            <div className="about-me-page">
-                <h1>
-                    View About
+        if (!this.state.isLoaded) {
+            return (
+                <div>
+                    Loading...
+                </div>
+            )
+        } else {
+            return (
+                <div className="about-me-page">
+                    <h1>
+                        View About
                 </h1>
-                <section>
-                    <h2>
-                        Educational Background
+                    <section>
+                        <h2>
+                            Educational Background
                     </h2>
-                    <label>
-                        Institution:
+                        <label>
+                            Institution:
                     </label>
-                    <p> 
-                        {this.state.institution} 
-                    </p>
-                    <label>
-                        Degree:
+                        <p>
+                            {this.state.institution}
+                        </p>
+                        <label>
+                            Degree:
                     </label>
-                    <p>
-                        {this.state.major}
-                    </p>
-                    <label>
-                        Major:
+                        <p>
+                            {this.state.major}
+                        </p>
+                        <label>
+                            Major:
                     </label>
-                    <p>
-                        {this.state.major}
-                    </p>
-                </section>
-                <section>
-                    <h2>
-                        Work Experience/Internships
+                        <p>
+                            {this.state.major}
+                        </p>
+                    </section>
+                    <section>
+                        <h2>
+                            Work Experience/Internships
                     </h2>
-                    {
-                        <table>
-                            <tr>
-                                <th>
-                                    Experience:
+                        {
+                            <table>
+                                <tr>
+                                    <th>
+                                        Experience:
                                 </th>
-                                <th>
-                                    Date Started:
+                                    <th>
+                                        Date Started:
                                 </th>
-                                <th>
-                                    Date Finished:
+                                    <th>
+                                        Date Finished:
                                 </th>
-                            </tr>
-                            {this.state.experienceList.map((x, i) => {
-                                return (
-                                    <tr>
-                                        <td>
-                                            {x.experience}
-                                        </td>
-                                        <td>
-                                            {x.dateFrom}
-                                        </td>
-                                        <td>
-                                            {x.dateTo}
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                            }
-                        </table>
-                    }
-                </section>
-                <section>
-                    <h2>
-                        Interests
+                                </tr>
+                                {this.state.experienceList.map((x, i) => {
+                                    return (
+                                        <tr>
+                                            <td>
+                                                {x.experience}
+                                            </td>
+                                            <td>
+                                                {x.dateFrom}
+                                            </td>
+                                            <td>
+                                                {x.dateTo}
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                                }
+                            </table>
+                        }
+                    </section>
+                    <section>
+                        <h2>
+                            Interests
                     </h2>
-                    {
-                        <table>
-                            {this.state.interestList.map((x) => {
-                                return(
-                                    <tr>
-                                        <td>
-                                            {x}
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </table>
-                    }
-                </section>
-                <section>
-                    <h2>
-                        About 'Name'
+                        {
+                            <table>
+                                {this.state.interestList.map((x) => {
+                                    return (
+                                        <tr>
+                                            <td>
+                                                {x}
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </table>
+                        }
+                    </section>
+                    <section>
+                        <h2>
+                            About 'Name'
                     </h2>
-                    <p>
-                        {this.state.description}
-                    </p>
-                </section>
-            </div>
-        )
+                        <p>
+                            {this.state.description}
+                        </p>
+                    </section>
+                </div>
+            )
+        }
     }
 }

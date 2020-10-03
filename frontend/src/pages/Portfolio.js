@@ -4,7 +4,7 @@ import PrivateToggle from "../components/PrivateToggle";
 import PortfolioImage from "../components/PortfolioImage";
 
 // todo implement the APIs for setting and getting
-import { getPortfolioContactInfo, setPortfolioContactInfo } from "../Api.js"
+import { getPortfolioContactInfo, setPortfolioContactInfo, getAccount } from "../Api.js"
 import {login} from "../Api";
 
 
@@ -13,12 +13,15 @@ class Portfolio extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      email: '',
-      telephone: '',
-      emailInput: '',
-      telephoneInput: '',
-      isLoaded: false
+      this.state = {
+          firstName: '',
+          lastName: '',
+          profileImage: '',
+          email: '',
+          telephone: '',
+        emailInput: '',
+        telephoneInput: '',
+        isLoaded: false
     };
 
     // This binding is necessary to make 'this' work in the callback
@@ -32,10 +35,12 @@ class Portfolio extends Component {
   async componentDidMount() {
 
     console.log("running");
-    let res;
+      let res;
+      let account;
 
     try {
-      // res = await getPortfolioContactInfo();
+        res = await getPortfolioContactInfo();
+        account = await getAccount();
     } catch (error) {
       console.error(error);
     }
@@ -43,10 +48,13 @@ class Portfolio extends Component {
     // todo VERY IMPORTANT ! ! !
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
-    this.setState({
-      // email: res.data.email,
-      // telephone: res.data.telephone,
-      isLoaded: true
+      this.setState({
+          firstName: account.data.firstName,
+          lastName: account.data.lastName,
+          profileImage: account.data.profileImage,
+        email: res.data.email,
+        telephone: res.data.telephone,
+        isLoaded: true
     })
   }
 
@@ -58,7 +66,7 @@ class Portfolio extends Component {
   async handleSubmit(e) {
 
     e.preventDefault();
-
+    
     // todo implement input logic from form
     let newEmail = this.state.emailInput;
     let newTelephone = this.state.telephoneInput;
@@ -117,15 +125,16 @@ class Portfolio extends Component {
     return (
       <div className="portfolio-container">
         <div className="user-info">
-          <h1 className="name">
-            User's Name
+                <h1 className="name">
+                    {this.state.firstName}
+                    
           </h1>
           <h3>
             Contact Information
           </h3>
           <this.contactInfoForm/>
           <PrivateToggle/>
-        </div>
+            </div>
         <PortfolioImage/>
       </div>
     );

@@ -140,10 +140,42 @@ export async function getAccount() {
 // todo implement this
 export function getPortfolioContactInfo() {
 
+    // make request for portfolio
+    return new Promise(function (resolve) {
+        axios({
+            method: "get",
+            url: BASE_URL + "/api/portfolio/readByAccountId",
+            params: {
+                accountId: sessionStorage.getItem("accountId"),
+            }
+        })
+            .then(function (response) {
+                resolve(response);
+            }).catch(function (error) {
+                console.error(error);
+            });
+    });
 }
 
 // todo implement this
 export function setPortfolioContactInfo(newEmail, newTelephone) {
+
+    return new Promise(function (resolve) {
+        axios({
+            method: "put",
+            url: BASE_URL + "/api/portfolio/updateByAccountId",
+            data: {
+                accountId: sessionStorage.getItem("accountId"),
+                email: newEmail,
+                telephone: newTelephone
+            }
+        })
+            .then(function (response) {
+                resolve(response);
+            }).catch(function (error) {
+                console.error(error);
+            });
+    });
 
 }
 
@@ -249,7 +281,6 @@ export async function getAboutMe() {
         })
             .then(function (response) {
                 resolve(response);
-                console.log(response.data);
             }).catch(function (error) {
                 console.error(error);
             });
