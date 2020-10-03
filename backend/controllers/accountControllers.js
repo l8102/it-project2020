@@ -154,7 +154,7 @@ var readAccount = function(req, res) {
 
             const data = {
                 firstName: account.firstName,
-                lastname: account.lastName,
+                lastName: account.lastName,
                 email: account.email,
                 profileImage: account.profileImage
             }

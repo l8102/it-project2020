@@ -3,11 +3,9 @@ import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
 import PortfolioImage from "../components/PortfolioImage";
 
-// todo implement the APIs for setting and getting
 import { getPortfolioContactInfo, setPortfolioContactInfo, getAccount } from "../Api.js"
-import {login} from "../Api";
 
-
+// todo use this as a template for other classes, done well
 class Portfolio extends Component {
 
   constructor(props) {
@@ -27,7 +25,7 @@ class Portfolio extends Component {
     // This binding is necessary to make 'this' work in the callback
     // todo learn about bindings
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
   }
 
@@ -66,10 +64,22 @@ class Portfolio extends Component {
   async handleSubmit(e) {
 
     e.preventDefault();
-    
-    // todo implement input logic from form
-    let newEmail = this.state.emailInput;
-    let newTelephone = this.state.telephoneInput;
+
+    let newEmail, newTelephone;
+
+    // If there is no input, the new email is the same as the old one
+    if (this.state.emailInput === "") {
+      newEmail = this.state.email;
+    } else {
+      newEmail = this.state.emailInput;
+    }
+
+    // If there is no input, the new telephone is the same as the old one
+    if (this.state.telephoneInput === "") {
+      newTelephone = this.state.telephone;
+    } else {
+      newTelephone = this.state.telephoneInput;
+    }
 
     // todo could use res, not sure if necessary
     let res;
@@ -80,6 +90,8 @@ class Portfolio extends Component {
     } catch (error) {
       console.error(error)
     }
+
+    // todo could implement validation
 
     // update the state
     this.setState(state => ({
@@ -126,8 +138,7 @@ class Portfolio extends Component {
       <div className="portfolio-container">
         <div className="user-info">
                 <h1 className="name">
-                    {this.state.firstName}
-                    
+                    {this.state.firstName + " " + this.state.lastName}
           </h1>
           <h3>
             Contact Information
