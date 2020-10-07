@@ -39,17 +39,24 @@ export default class ViewAbout extends Component {
 
         console.log(aboutMe.data);
 
+        // ensure that there is data
+        if (aboutMe.data.workExperience !== undefined) {
+            this.setState({
+                experienceList: aboutMe.data.workExperience
+            })
+        }
+
+        // ensure that there is data
+        if (aboutMe.data.interests !== undefined) {
+            this.setState({
+                interestList: aboutMe.data.interests
+            })
+        }
+
         this.setState({
             institution: aboutMe.data.institution,
             degree: aboutMe.data.degree,
             major: aboutMe.data.major,
-
-            // Not quite right
-            experienceList: aboutMe.data.workExperience,
-
-            // Not quite right
-            interestList: aboutMe.data.interests,
-
             description: aboutMe.data.description,
 
             isLoaded: true
