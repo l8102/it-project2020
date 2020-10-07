@@ -41,7 +41,7 @@ const updateByAccountId = function(req, res, next) {
       res.send("false");
       return false;
     } else {
-      link.additionals = req.body.state;
+      link.additionals = req.body.state.additionals;
       link.save();
       console.log("Additional updated");
       res.json(link);
