@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "https://eaglesolutions.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
 
 
 export function googleLoginSuccess(req) {
