@@ -7,6 +7,10 @@ const linkSchema = new Schema({
     type: String,
     required: true
   },
+  additionals: {
+    type: { title: String, description: String, link: String},
+    value: [{ title: String, description: String, link: String}],
+  }
 }, {
   collection: 'Link',
   timestamps: true,

@@ -19,6 +19,7 @@ import ViewAbout from "./pages/pcomponents/ViewAbout";
 import Files from "./pages/pcomponents/Files";
 import EditGallery from "./pages/pcomponents/EditGallery";
 import ViewGallery from './pages/pcomponents/ViewGallery';
+import EditLinks from './pages/pcomponents/EditLinks';
 
 import Tabs from "./pages/pcomponents/Tabs";
 
@@ -26,7 +27,6 @@ import Tabs from "./pages/pcomponents/Tabs";
 import VisitorNavBar from "./components/VisitorNavBar";
 import UserNavBar from "./components/UserNavBar";
 import Footer from "./components/Footer";
-
 
 // todo rewrite this in class notation
 function App() {
@@ -54,7 +54,7 @@ function App() {
                 <Files />
               </div> 
               <div label="Additional"> 
-                
+                <EditLinks />
               </div> 
             </Tabs> 
           </Route>

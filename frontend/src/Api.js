@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
+//const BASE_URL = "https://eaglesolutions.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
 
 
 export function googleLoginSuccess(req) {
@@ -306,5 +306,24 @@ export async function getAboutMe() {
                 console.error(error);
             });
     });
+}
+
+export function updateLinks(state) {
+
+  return new Promise(function (resolve) {
+    axios({
+      method: 'put',
+      url: BASE_URL + '/api/link/updateLinks',
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        state: state
+      }
+    })
+    .then(function (response) {
+      resolve(response);
+    }).catch(function (error) {
+      console.error(error);
+    })
+  })
 }
 
