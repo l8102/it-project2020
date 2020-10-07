@@ -39,7 +39,7 @@ var createAccount = function(req, res, next) {
         }));
 
         // create a portfolio and its components
-        createPortfolio(data._id.toString());
+        createPortfolio(data._id.toString(), accountInfo.email);
 
     })
 
