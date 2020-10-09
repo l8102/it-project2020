@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "https://eaglesolutions.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
 
 
 export function googleLoginSuccess(req) {
@@ -131,6 +131,24 @@ export async function getAccount() {
         })
             .then(function (response) {
                 resolve(response);
+            }).catch(function (error) {
+                console.error(error);
+            });
+    });
+}
+
+
+// Get all accounts
+export async function getAllAccounts() {
+
+    return await new Promise(function (resolve) {
+        axios({
+            method: "get",
+            url: BASE_URL + "/api/account/getAll",
+        })
+            .then(function (response) {
+                resolve(response);
+                console.log(response);
             }).catch(function (error) {
                 console.error(error);
             });
