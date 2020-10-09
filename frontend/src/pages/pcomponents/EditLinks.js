@@ -6,7 +6,7 @@ export default class EditLinks extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            additionals: [{
+            linksList: [{
                 title: "",
                 description: "",
                 link: ""
@@ -24,21 +24,21 @@ export default class EditLinks extends Component {
 
    handleChange(e, i) {
     const { name, value } = e.target;
-    const list = [...this.state.additionals];
+    const list = [...this.state.linksList];
     list[i][name] = value;
-    this.setState({ additionals: list });
+    this.setState({ linksList: list });
 }
 
     handleAdd(e) {
         e.preventDefault();
-        this.setState({ additionals: [...this.state.additionals, { title: '', description: '', link: '' }] })
+        this.setState({ linksList: [...this.state.linksList, { title: '', description: '', link: '' }] })
     }
 
     handleRemove(e, i) {
         e.preventDefault();
-        const list = [...this.state.additionals];
+        const list = [...this.state.linksList];
         list.splice(i, 1);
-        this.setState({ additionals: list })
+        this.setState({ linksList: list })
     }
 
     handleSubmit(e) {
@@ -52,10 +52,10 @@ export default class EditLinks extends Component {
         return (
             <div>
                 <h1>
-                    Edit Additional
+                    Edit Links
                 </h1>
                 <form>
-                    { this.state.additionals.map((x, i) => {
+                    { this.state.linksList.map((x, i) => {
                         return (
                             <div key={ i }>
                                 <label>
@@ -83,12 +83,12 @@ export default class EditLinks extends Component {
                                     onChange = { e => this.handleChange(e, i) }
                                 />
                                 <div>
-                                    { this.state.additionals.length !== 1 &&
+                                    { this.state.linksList.length !== 1 &&
                                         <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
                                             Remove
                                         </button>
                                     }
-                                    { this.state.additionals.length - 1 === i &&
+                                    { this.state.linksList.length - 1 === i &&
                                         <button className="add-remove-button" onClick={ this.handleAdd }>
                                             Add 
                                         </button>

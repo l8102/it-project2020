@@ -22,11 +22,11 @@ const create = function (accountId) {
 const readLink = function(req, res) {
   Link.findOne({ "accountId": req.query.accountId }, function(err, link) {
     if(err || links === undefined) {
-      console.error("Additional not found");
+      console.error("Links not found");
       res.send("false");
       return false;
     } else {
-      console.log("Additional found");
+      console.log("Links found");
       res.json(link);
       return true;
     }
@@ -37,13 +37,13 @@ const readLink = function(req, res) {
 const updateByAccountId = function(req, res, next) {
   Link.findOne({ "accountId": req.body.accountId }, function(err, link) {
     if(err || link === undefined) {
-      console.error("Additional not found");
+      console.error("Links not found");
       res.send("false");
       return false;
     } else {
-      link.additionals = req.body.state.additionals;
+      link.links = req.body.state.linksList;
       link.save();
-      console.log("Additional updated");
+      console.log("Links updated");
       res.json(link);
       return true;
     }

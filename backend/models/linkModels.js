@@ -7,7 +7,7 @@ const linkSchema = new Schema({
     type: String,
     required: true
   },
-  additionals: {
+  links: {
     type: { title: String, description: String, link: String},
     value: [{ title: String, description: String, link: String}],
   }

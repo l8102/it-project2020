@@ -53,7 +53,7 @@ function App() {
               <div label="Files"> 
                 <Files />
               </div> 
-              <div label="Additional"> 
+              <div label="Links"> 
                 <EditLinks />
               </div> 
             </Tabs> 
