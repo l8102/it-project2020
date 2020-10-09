@@ -165,6 +165,24 @@ var readAccount = function(req, res) {
 } 
 
 
+// Get all account id's
+var getAccounts = function (req, res) {
+
+    Account.find({}, function (err, accounts) {
+
+        if (err || accounts == undefined) {
+            console.error("No accounts found");
+        } else {
+            console.log("Getting all accounts");
+
+            console.log(accounts);
+
+            res.json(accounts);
+
+        }
+    });
+
+}
 
 
 
@@ -230,5 +248,6 @@ module.exports = {
     deleteAccount,
     updateName,
     updateProfileImage,
-    readAccount
+    readAccount,
+    getAccounts
 }

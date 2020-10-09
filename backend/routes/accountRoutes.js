@@ -19,12 +19,13 @@ accountRoutes.post('/login', accountControllers.login);
 
 accountRoutes.get('/read', accountControllers.readAccount);
 
+accountRoutes.get('/getAll', accountControllers.getAccounts);
+
 
 
 // UPDATE
 
 accountRoutes.put('/updateName', accountControllers.updateName);
-
 
 accountRoutes.put('/updateProfileImage', accountControllers.updateProfileImage);
 
