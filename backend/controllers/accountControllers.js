@@ -168,6 +168,7 @@ var readAccount = function(req, res) {
 // Get all account id's
 var getAccounts = function (req, res) {
 
+
     Account.find({}, { password: 0, createdAt: 0, updatedAt: 0 }, function(err, accounts) {
 
         if (err || accounts == undefined) {
@@ -175,9 +176,7 @@ var getAccounts = function (req, res) {
         } else {
             console.log("Getting all accounts");
 
-            console.log(accounts);
-
-            res.json(accounts);
+            res.send(accounts);
 
         }
     });
