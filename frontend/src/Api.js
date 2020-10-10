@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
+//const BASE_URL = "https://eaglesolutions.herokuapp.com";
+ const BASE_URL = "http://localhost:5000";
 
 
 export function googleLoginSuccess(req) {
@@ -186,7 +186,10 @@ export function setPortfolioContactInfo(newEmail, newTelephone) {
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
         method: 'POST',
-        body: JSON.stringify({ data: base64EncodedImage }),
+        body: JSON.stringify({ 
+          data: base64EncodedImage,
+          accountId: sessionStorage.getItem("accountId")
+        }),
         headers: { 'Content-Type': 'application/json' },
     }).then(res => {
       return res.data;
@@ -194,14 +197,35 @@ export function uploadAPI(base64EncodedImage) {
       console.error(error);
     });
 }
+/*
+export function uploadAPI(base64EncodedImage) {
+  return new Promise(function (resolve) {
+    axios({
+        method: "put",
+        url: BASE_URL + "/api/gallery/upload",
+        data: {
+            accountId: sessionStorage.getItem("accountId"),
+            imageUrl: base64EncodedImage
+        }
+    })
+        .then(function (response) {
+            resolve(response);
+        }).catch(function (error) {
+            console.error(error);
+        });
+  });
+}
+*/
 
 // TODO: This function retrieves based on portfolioId from older schema, need to test and replace with function below 
-export function getImages(searchId) {
-    const data = { accountId: searchId }
+export function getImages() {
+    //const data = { accountId: searchId }
     return axios({
         method: "post",
         url: BASE_URL + "/api/gallery/getImages",
-        data: data
+        data: {
+          accountId: sessionStorage.getItem("accountId")
+        }
     }).then(res => {
         return res.data;
     })
@@ -308,3 +332,15 @@ export async function getAboutMe() {
     });
 }
 
+/** sends the encoded image to the backend function upload */
+export function fileUploadAPI(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/gallery/upload", {
+      method: 'POST',
+      body: JSON.stringify({ data: base64EncodedImage }),
+      headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
