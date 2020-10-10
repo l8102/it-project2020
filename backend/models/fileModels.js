@@ -7,6 +7,10 @@ const fileSchema = new Schema({
     type: String,
     required: true
   },
+  fileUrl: {
+    type: String, 
+    required: false
+  }
 }, {
   collection: 'File',
   timestamps: true,

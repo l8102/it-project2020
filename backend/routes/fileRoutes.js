@@ -4,6 +4,7 @@ const fileControllers = require('../controllers/fileControllers');
 
 // CREATE
 // // handled by create account
+fileRoutes.post('/uploadFile', fileControllers.uploadFile);
 
 // READ
 
