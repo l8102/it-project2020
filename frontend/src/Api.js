@@ -312,11 +312,28 @@ export function updateLinks(state) {
 
   return new Promise(function (resolve) {
     axios({
-      method: 'put',
-      url: BASE_URL + '/api/link/updateLinks',
+      method: "put",
+      url: BASE_URL + "/api/link/updateLinks",
       data: {
         accountId: sessionStorage.getItem("accountId"),
         state: state
+      }
+    })
+    .then(function (response) {
+      resolve(response);
+    }).catch(function (error) {
+      console.error(error);
+    })
+  })
+}
+
+export function getLinks() {
+  return new Promise(function (resolve) {
+    axios({
+      method:"get",
+      url: BASE_URL + "/api/link/readLinks",
+      params: {
+        accountId: sessionStorage.getItem("accountId"),
       }
     })
     .then(function (response) {

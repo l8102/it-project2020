@@ -20,6 +20,7 @@ import Files from "./pages/pcomponents/Files";
 import EditGallery from "./pages/pcomponents/EditGallery";
 import ViewGallery from './pages/pcomponents/ViewGallery';
 import EditLinks from './pages/pcomponents/EditLinks';
+import ViewLinks from './pages/pcomponents/ViewLinks';
 
 import Tabs from "./pages/pcomponents/Tabs";
 
@@ -55,6 +56,7 @@ function App() {
               </div> 
               <div label="Links"> 
                 <EditLinks />
+                <ViewLinks />
               </div> 
             </Tabs> 
           </Route>

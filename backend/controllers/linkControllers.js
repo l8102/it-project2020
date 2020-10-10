@@ -20,14 +20,14 @@ const create = function (accountId) {
 
 // READ
 const readLink = function(req, res) {
-  Link.findOne({ "accountId": req.query.accountId }, function(err, link) {
+  Link.findOne({ "accountId": req.query.accountId }, function(err, links) {
     if(err || links === undefined) {
       console.error("Links not found");
       res.send("false");
       return false;
     } else {
       console.log("Links found");
-      res.json(link);
+      res.json(links);
       return true;
     }
   })  
