@@ -36,6 +36,7 @@ class Browse extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // This runs when first initialised
   componentDidMount() {
     console.log("running");
     let res;
@@ -58,12 +59,14 @@ class Browse extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  // This runs when a new search is submitted
   handleSubmit(e) {
     e.preventDefault();
 
     // todo could use res, not sure if necessary
     let res;
 
+    // todo validate the input a bit more (for security reasons)
     // if there is no search input return all accounts
     if (this.state.searchInput === "") {
       // res = await getAccounts();
