@@ -23,6 +23,7 @@ var createAccount = function(req, res, next) {
         const accountInfo = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            fullName: req.body.firstName + " " + req.body.lastName,
             email: req.body.email,
             password: hash,
             profileImage: req.body.profileImage,
@@ -92,6 +93,7 @@ var googleLogin = function(req, res) {
                         const newAccount = {
                             firstName: given_name,
                             lastName: family_name,
+                            fullName: given_name + " " + family_name,
                             email: email,
                             password: password,
                             profileImage: picture
@@ -184,7 +186,7 @@ var getAccounts = function (req, res) {
 }
 
 
-
+// todo is this function ever used???
 // Update Name
 var updateName = function(req, res, next) {
     var id = req.body.id;
@@ -196,6 +198,7 @@ var updateName = function(req, res, next) {
         } else {
             doc.firstName = req.body.firstName;
             doc.lastName = req.body.lastName;
+            doc.fullName = req.body.firstName + " " + req.body.lastName;
             console.log('name updated');
 
             doc.save();
