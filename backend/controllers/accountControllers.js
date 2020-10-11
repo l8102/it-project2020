@@ -235,6 +235,7 @@ var deleteAccount = function(req, res, next) {
     console.log("account removed");
 
     // todo add in portfolio delete as well (by account id)
+    // todo add in delete portfolio components
 
 };
 
