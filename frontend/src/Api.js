@@ -137,6 +137,45 @@ export async function getAccount() {
     });
 }
 
+// *** Browse Page START ***
+
+// Get all accounts
+export function getAllAccounts() {
+
+    return new Promise(function (resolve) {
+        axios({
+            method: "get",
+            url: BASE_URL + "/api/account/readAll",
+        })
+            .then(function (response) {
+                resolve(response);
+                console.log(response);
+            }).catch(function (error) {
+                console.error(error);
+            });
+    });
+}
+
+export function getAllAccountsByFullName(fullName) {
+  return new Promise(function (resolve) {
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/account/readAllByFullName",
+      params: {
+        fullName: fullName,
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+        console.log(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+}
+
+// *** Browse Page END ***
+
 // todo implement this
 export function getPortfolioContactInfo() {
 
