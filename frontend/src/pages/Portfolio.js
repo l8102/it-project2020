@@ -95,7 +95,6 @@ class Portfolio extends Component {
 
     // update the state
     this.setState(state => ({
-      // todo update the state of the component
       email: newEmail,
       telephone: newTelephone,
     }));
