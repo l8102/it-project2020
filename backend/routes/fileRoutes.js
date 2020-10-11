@@ -8,6 +8,8 @@ fileRoutes.post('/uploadFile', fileControllers.uploadFile);
 
 // READ
 
+fileRoutes.post('/getFiles', fileControllers.getFiles);
+
 // UPDATE
 
 // DELETE

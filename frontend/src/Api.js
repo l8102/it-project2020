@@ -197,25 +197,6 @@ export function uploadAPI(base64EncodedImage) {
       console.error(error);
     });
 }
-/*
-export function uploadAPI(base64EncodedImage) {
-  return new Promise(function (resolve) {
-    axios({
-        method: "put",
-        url: BASE_URL + "/api/gallery/upload",
-        data: {
-            accountId: sessionStorage.getItem("accountId"),
-            imageUrl: base64EncodedImage
-        }
-    })
-        .then(function (response) {
-            resolve(response);
-        }).catch(function (error) {
-            console.error(error);
-        });
-  });
-}
-*/
 
 // TODO: This function retrieves based on portfolioId from older schema, need to test and replace with function below 
 export function getImages() {
@@ -334,13 +315,29 @@ export async function getAboutMe() {
 
 /** sends the encoded image to the backend function upload */
 export function fileUploadAPI(base64EncodedImage) {
-  return fetch(BASE_URL + "/api/gallery/upload", {
+  return fetch(BASE_URL + "/api/file/uploadFile", {
       method: 'POST',
-      body: JSON.stringify({ data: base64EncodedImage }),
+      body: JSON.stringify({ 
+        data: base64EncodedImage,
+        accountId: sessionStorage.getItem("accountId")
+      }),
       headers: { 'Content-Type': 'application/json' },
   }).then(res => {
+    console.log(res.data);
     return res.data;
   }).catch(function (error) {
     console.error(error);
   });
+}
+
+export function getFiles() {
+  return axios({
+      method: "post",
+      url: BASE_URL + "/api/file/getFiles",
+      data: {
+        accountId: sessionStorage.getItem("accountId")
+      }
+  }).then(res => {
+      return res.data;
+  })
 }

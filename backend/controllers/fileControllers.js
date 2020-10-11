@@ -18,7 +18,7 @@ const create = function (accountId) {
   console.log("file created")
 };
 
-var uploadFile = async function (accountId,req,res) {
+var uploadFile = async function (req,res) {
   try {
     const fileStr = req.body.data;
     const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
@@ -26,12 +26,15 @@ var uploadFile = async function (accountId,req,res) {
     });
 
     console.log(uploadResponse);
-    const id = accountId;
-    console.log(uploadResponse.url);
+    const id = req.body.accountId;
+    url = uploadResponse.url;
+    url = url.substring(0, url.length - 3);
+    url = url.concat("png");
+    console.log(url);
 
     const fileInfo = {
         accountId: id,
-        fileUrl: uploadResponse.url, 
+        fileUrl: url, 
     }     
     
     const data = new File(fileInfo);
@@ -51,6 +54,18 @@ var uploadFile = async function (accountId,req,res) {
 }
 
 // READ
+var getFiles = function(req, res) {
+  // TODO: Change to accountId instead of portfolioId
+  File.find({accountId: req.body.accountId}, function(err, doc) {
+      if(err || doc == undefined) {
+          console.error("Images not found")
+      } else {
+        res.send(doc);
+      }
+  })
+}
+
+
 
 // UPDATE
 
@@ -60,5 +75,6 @@ var uploadFile = async function (accountId,req,res) {
 // export controllers
 module.exports = {
   create, 
-  uploadFile
+  uploadFile, 
+  getFiles
 }
