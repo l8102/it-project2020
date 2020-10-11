@@ -13,6 +13,7 @@
 
     --white-text: white;
     --black-text: black;
+    --black-shadow: black;
 
     /* This ensure the page fills the whole screen*/
     margin: 0;
