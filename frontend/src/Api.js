@@ -1,9 +1,13 @@
 import axios from "axios";
 
-// todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
-
+// Dynamically changes the base URL
+let hostname = window.location.hostname.toString();
+let BASE_URL;
+if (hostname === "localhost") {
+  BASE_URL = "http://localhost:5000";
+} else {
+  BASE_URL = "https://eaglesolutions.herokuapp.com";
+}
 
 export function googleLoginSuccess(req) {
 
