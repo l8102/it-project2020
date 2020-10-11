@@ -19,7 +19,9 @@ accountRoutes.post('/login', accountControllers.login);
 
 accountRoutes.get('/read', accountControllers.readAccount);
 
-accountRoutes.get('/getAll', accountControllers.getAccounts);
+accountRoutes.get('/readAllByFullName', accountControllers.readAllByFullName)
+
+accountRoutes.get('/readAll', accountControllers.readAll);
 
 
 

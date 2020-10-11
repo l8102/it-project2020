@@ -137,14 +137,15 @@ export async function getAccount() {
     });
 }
 
+// *** Browse Page START ***
 
 // Get all accounts
-export async function getAllAccounts() {
+export function getAllAccounts() {
 
-    return await new Promise(function (resolve) {
+    return new Promise(function (resolve) {
         axios({
             method: "get",
-            url: BASE_URL + "/api/account/getAll",
+            url: BASE_URL + "/api/account/readAll",
         })
             .then(function (response) {
                 resolve(response);
@@ -154,6 +155,26 @@ export async function getAllAccounts() {
             });
     });
 }
+
+export function getAllAccountsByFullName(fullName) {
+  return new Promise(function (resolve) {
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/account/readAllByFullName",
+      params: {
+        fullName: fullName,
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+        console.log(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+}
+
+// *** Browse Page END ***
 
 // todo implement this
 export function getPortfolioContactInfo() {
