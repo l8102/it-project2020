@@ -41,28 +41,32 @@ export default class ViewLinks extends Component {
             )
         } else {
             return (
-                <div className="links-page">
+                <div className="links-page-view">
+                    <h1>
+                        View Links
+                    </h1>
                     {this.state.linksList.map((x, i) => {
                         return (
                             <section key={i}>
-                                <label>
-                                    Title:
-                                </label>
-                                <h3>
+                                <h2>
                                     { x.title }
-                                </h3>
-                                <label>
-                                    Description:
-                                </label>
-                                <p>
-                                    { x.description }
-                                </p>
-                                <label>
-                                    Link:
-                                </label>
-                                <a href={ x.link }> 
-                                    { x.link} 
-                                </a>
+                                </h2>
+                                <div className="description">
+                                    <h3>
+                                        Description:
+                                    </h3>
+                                    <p>
+                                        { x.description }
+                                    </p>
+                                </div>
+                                <div className="link">
+                                    <h3>
+                                        Link:
+                                    </h3>
+                                    <a href={ x.link }> 
+                                        { x.link} 
+                                    </a>
+                                </div>
                             </section>
                         )
                     })
