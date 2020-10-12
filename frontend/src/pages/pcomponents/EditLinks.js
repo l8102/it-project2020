@@ -50,7 +50,7 @@ export default class EditLinks extends Component {
    
     render() {
         return (
-            <div>
+            <div className="links-page">
                 <h1>
                     Edit Links
                 </h1>
@@ -58,31 +58,34 @@ export default class EditLinks extends Component {
                     { this.state.linksList.map((x, i) => {
                         return (
                             <div key={ i }>
-                                <label>
-                                    Title
-                                </label>
-                                <input
-                                    name="title"
-                                    value={ x.title }
-                                    onChange = { e => this.handleChange(e, i) }
-                                />
-                                <label>
-                                    Description
-                                </label>
-                                <textarea
-                                    name="description"
-                                    value={ x.description }
-                                    onChange = { e => this.handleChange(e, i) }
-                                />
-                                <label>
-                                    Link
-                                </label>
-                                <input
-                                    name="link"
-                                    value={ x.link }
-                                    onChange = { e => this.handleChange(e, i) }
-                                />
-                                <div>
+                                <section className="links-page">
+                                    <label>
+                                        Title:
+                                    </label>
+                                    <input 
+                                        name="title"
+                                        value={ x.title }
+                                        onChange = { e => this.handleChange(e, i) }
+                                    />
+                                    <label>
+                                        Description:
+                                    </label>
+                                    <textarea 
+                                        className="text-box"
+                                        name="description"
+                                        value={ x.description }
+                                        onChange = { e => this.handleChange(e, i) }
+                                    />
+                                    <label>
+                                        Link:
+                                    </label>
+                                    <input
+                                        name="link"
+                                        value={ x.link }
+                                        onChange = { e => this.handleChange(e, i) }
+                                    />
+                                </section>
+                                <div className="add-remove-buttons">
                                     { this.state.linksList.length !== 1 &&
                                         <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
                                             Remove
@@ -97,7 +100,7 @@ export default class EditLinks extends Component {
                             </div>
                         );
                     })}
-                    <button onClick={ this.handleSubmit }>
+                    <button className="save-btn-tab" onClick={ this.handleSubmit }>
                         Save
                     </button>
                 </form>

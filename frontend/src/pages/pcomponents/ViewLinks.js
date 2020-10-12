@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getLinks } from "../../Api.js";
+import "../../css/Portfolio.css"
 
 export default class ViewLinks extends Component {
 
@@ -40,7 +41,7 @@ export default class ViewLinks extends Component {
             )
         } else {
             return (
-                <div>
+                <div className="links-page">
                     {this.state.linksList.map((x, i) => {
                         return (
                             <section key={i}>
