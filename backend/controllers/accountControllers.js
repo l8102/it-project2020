@@ -23,6 +23,7 @@ var createAccount = function(req, res, next) {
         const accountInfo = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            fullName: (req.body.firstName + " " + req.body.lastName).toLowerCase(),
             email: req.body.email,
             password: hash,
             profileImage: req.body.profileImage,
@@ -92,6 +93,7 @@ var googleLogin = function(req, res) {
                         const newAccount = {
                             firstName: given_name,
                             lastName: family_name,
+                            fullName: (given_name + " " + family_name).toLowerCase(),
                             email: email,
                             password: password,
                             profileImage: picture
@@ -164,10 +166,45 @@ var readAccount = function(req, res) {
 	});
 } 
 
+const readAllByFullName = function (req, res) {
+
+    // Search for the full name, transforming it to lower case
+    Account.find(
+        { "fullName": {$regex : ".*" + req.query.fullName.toLowerCase() + "*."}},
+        { password: 0, createdAt: 0, updatedAt: 0 },
+        function (err, accounts) {
+
+            if (err) {
+              console.error(err);
+              res.send("false");
+              return false;
+            } else {
+              console.log("Getting accounts with matching full name");
+              res.send(accounts);
+              return true;
+            }
+    });
+}
+
+// Get all account id's
+const readAll = function (req, res) {
+
+    Account.find({}, { password: 0, createdAt: 0, updatedAt: 0 }, function(err, accounts) {
+
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Getting all accounts");
+
+            res.send(accounts);
+
+        }
+    });
+
+}
 
 
-
-
+// todo is this function ever used???
 // Update Name
 var updateName = function(req, res, next) {
     var id = req.body.id;
@@ -179,6 +216,7 @@ var updateName = function(req, res, next) {
         } else {
             doc.firstName = req.body.firstName;
             doc.lastName = req.body.lastName;
+            doc.fullName = req.body.firstName + " " + req.body.lastName;
             console.log('name updated');
 
             doc.save();
@@ -218,6 +256,7 @@ var deleteAccount = function(req, res, next) {
     console.log("account removed");
 
     // todo add in portfolio delete as well (by account id)
+    // todo add in delete portfolio components
 
 };
 
@@ -230,5 +269,7 @@ module.exports = {
     deleteAccount,
     updateName,
     updateProfileImage,
-    readAccount
+    readAccount,
+    readAllByFullName,
+    readAll
 }

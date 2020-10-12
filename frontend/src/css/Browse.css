@@ -1,0 +1,60 @@
+@import "ColourScheme.css";
+
+.browse-container {
+    text-align: center;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+    align-items: center;
+    overflow-x: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.search-result {
+    width: 300px;
+    height: 300px;
+    border-radius: 4px;
+    margin: 10px;
+    background-color: white;
+    text-align: center;
+    border: none;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.15));
+}
+
+.search-result:hover {
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+}
+
+.search-result-button {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    z-index: 2;
+    background: none;
+    border: none;
+}
+
+.search-result-button:active {
+    outline: none;
+}
+
+.search-result-label {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    padding: 10px;
+    align-self: center;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    border: none;
+}
+
+.search-result-image {
+
+}

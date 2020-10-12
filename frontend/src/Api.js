@@ -1,9 +1,14 @@
 import axios from "axios";
 
-// todo change this depending on environment
-//const BASE_URL = "https://eaglesolutions.herokuapp.com";
-const BASE_URL = "http://localhost:5000";
 
+// Dynamically changes the base URL
+let hostname = window.location.hostname.toString();
+let BASE_URL;
+if (hostname === "localhost") {
+  BASE_URL = "http://localhost:5000";
+} else {
+  BASE_URL = "https://eaglesolutions.herokuapp.com";
+}
 
 export function googleLoginSuccess(req) {
 
@@ -136,6 +141,45 @@ export async function getAccount() {
             });
     });
 }
+
+// *** Browse Page START ***
+
+// Get all accounts
+export function getAllAccounts() {
+
+    return new Promise(function (resolve) {
+        axios({
+            method: "get",
+            url: BASE_URL + "/api/account/readAll",
+        })
+            .then(function (response) {
+                resolve(response);
+                console.log(response);
+            }).catch(function (error) {
+                console.error(error);
+            });
+    });
+}
+
+export function getAllAccountsByFullName(fullName) {
+  return new Promise(function (resolve) {
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/account/readAllByFullName",
+      params: {
+        fullName: fullName,
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+        console.log(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+}
+
+// *** Browse Page END ***
 
 // todo implement this
 export function getPortfolioContactInfo() {
