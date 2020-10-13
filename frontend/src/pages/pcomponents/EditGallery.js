@@ -4,8 +4,47 @@ import { uploadAPI } from "../../Api.js";
 import "../../css/Gallery.css";
 import { getImages } from '../../Api.js'
 import ViewGallery from './ViewGallery.js';
+import PageToggle from "../../components/PageToggle"
 
-export default class EditGallery extends Component {
+export default class Gallery extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          isToggleOn: false
+        }
+
+        this.handleButtonChange = this.handleButtonChange.bind(this);
+    }
+
+    handleButtonChange() {
+        console.log(this.state);
+        if(this.isToggleOn) {
+            console.log("hello");
+            this.setState({
+                isToggleOn: !this.state.isToggleOn
+    
+            });
+            return (<ViewGallery /> );
+        }
+        else {
+            this.setState({
+                isToggleOn: !this.state.isToggleOn
+    
+            });
+            return (<EditGallery />)
+
+        }
+    }
+    
+    render() {
+        return (
+            <PageToggle onChange={this.handleButtonChange} isToggleOn={this.state.isToggleOn}/>
+        )
+    }
+};
+
+class EditGallery extends Component {
 
     constructor(props) {
         super(props);
@@ -51,6 +90,12 @@ export default class EditGallery extends Component {
             console.error(err);
         }
     };
+
+    handleButtonChange() {
+        if (this.isToggleOn) {
+
+        }
+    }
 
     render() {
         return (
