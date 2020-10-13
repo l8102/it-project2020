@@ -27,14 +27,20 @@ var uploadFile = async function (req,res) {
 
     console.log(uploadResponse);
     const id = req.body.accountId;
-    url = uploadResponse.url;
+    const version = uploadResponse.version;
+    const publicId = uploadResponse.public_id;
+    const pages = uploadResponse.pages;
+    /*url = uploadResponse.url;
     url = url.substring(0, url.length - 3);
     url = url.concat("png");
     console.log(url);
+    */
 
     const fileInfo = {
         accountId: id,
-        fileUrl: url, 
+        fileVersion: version,
+        filePublicId: publicId, 
+        filePages: pages
     }     
     
     const data = new File(fileInfo);
@@ -55,7 +61,6 @@ var uploadFile = async function (req,res) {
 
 // READ
 var getFiles = function(req, res) {
-  // TODO: Change to accountId instead of portfolioId
   File.find({accountId: req.body.accountId}, function(err, doc) {
       if(err || doc == undefined) {
           console.error("Images not found")

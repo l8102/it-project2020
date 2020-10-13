@@ -7,8 +7,16 @@ const fileSchema = new Schema({
     type: String,
     required: true
   },
-  fileUrl: {
+  fileVersion: {
     type: String, 
+    required: false
+  }, 
+  filePublicId: {
+    type: String, 
+    required: false
+  }, 
+  filePages: {
+    type: Number, 
     required: false
   }
 }, {
