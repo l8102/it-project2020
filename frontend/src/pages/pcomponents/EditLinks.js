@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { updateLinks } from "../../Api.js"
+import { updateLinks, getLinks } from "../../Api.js"
 import "../../css/Portfolio.css";
 
 export default class EditLinks extends Component {
@@ -10,7 +10,8 @@ export default class EditLinks extends Component {
                 title: "",
                 description: "",
                 link: ""
-            }]
+            }],
+            isLoaded: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
@@ -47,64 +48,89 @@ export default class EditLinks extends Component {
 
         updateLinks(this.state);
     }
+
+    async componentDidMount() {
+        let links 
+        
+        try {
+            links = await getLinks();
+        } catch(error) {
+            console.error(error);
+        }
+
+        if(links != null) {
+            this.setState({ isLoaded: true })
+            if(links.data.links != undefined) {
+                this.setState({ linksList: links.data.links })
+            }
+        }
+    } 
    
     render() {
-        return (
-            <div className="links-page">
-                <h1>
-                    Edit Links
-                </h1>
-                <form>
-                    { this.state.linksList.map((x, i) => {
-                        return (
-                            <div key={ i }>
-                                <section className="links-page">
-                                    <label>
-                                        Title:
-                                    </label>
-                                    <input 
-                                        name="title"
-                                        value={ x.title }
-                                        onChange = { e => this.handleChange(e, i) }
-                                    />
-                                    <label>
-                                        Description:
-                                    </label>
-                                    <textarea 
-                                        className="text-box"
-                                        name="description"
-                                        value={ x.description }
-                                        onChange = { e => this.handleChange(e, i) }
-                                    />
-                                    <label>
-                                        Link:
-                                    </label>
-                                    <input
-                                        name="link"
-                                        value={ x.link }
-                                        onChange = { e => this.handleChange(e, i) }
-                                    />
-                                </section>
-                                <div className="add-remove-buttons">
-                                    { this.state.linksList.length !== 1 &&
-                                        <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
-                                            Remove
-                                        </button>
-                                    }
-                                    { this.state.linksList.length - 1 === i &&
-                                        <button className="add-remove-button" onClick={ this.handleAdd }>
-                                            Add 
-                                        </button>
-                                    }
+        if(!this.state.isLoaded) {
+            return (
+                <div>
+                    Loading...
+                </div>
+            )   
+        } else {
+            return (
+                <div className="links-page">
+                    <h1>
+                        Edit Links
+                    </h1>
+                    <form>
+                        { this.state.linksList.map((x, i) => {
+                            return (
+                                <div key={ i }>
+                                    <section className="links-page">
+                                        <label>
+                                            Title:
+                                        </label>
+                                        <input 
+                                            name="title"
+                                            value={ x.title }
+                                            onChange = { e => this.handleChange(e, i) }
+                                        />
+                                        <label>
+                                            Description:
+                                        </label>
+                                        <textarea 
+                                            className="text-box"
+                                            name="description"
+                                            value={ x.description }
+                                            onChange = { e => this.handleChange(e, i) }
+                                        />
+                                        <label>
+                                            Link:
+                                        </label>
+                                        <input
+                                            name="link"
+                                            value={ x.link }
+                                            onChange = { e => this.handleChange(e, i) }
+                                        />
+                                    </section>
+                                    <div className="add-remove-buttons">
+                                        { this.state.linksList.length !== 1 &&
+                                            <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
+                                                Remove
+                                            </button>
+                                        }
+                                        { this.state.linksList.length - 1 === i &&
+                                            <button className="add-remove-button" onClick={ this.handleAdd }>
+                                                Add 
+                                            </button>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-                    <button className="save-btn-tab" onClick={ this.handleSubmit }>
-                        Save
-                    </button>
-                </form>
-            </div>
-        )
+                            );
+                        })}
+                        <button className="save-btn-tab" onClick={ this.handleSubmit }>
+                            Save
+                        </button>
+                    </form>
+                </div>
+            )
+        }
     }
 }
