@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
+const {cloudinary} = require('../utils/cloudinary');
 
 // todo fix this
 // const jwt = require("jsonwebtoken");
@@ -110,6 +111,29 @@ const deleteByAccountId = function(req, res, next) {
 
     // todo in future will need to call each of the portfolio components and delete them
 };
+
+const uploadProfilePicture = function (req, res) {
+  try {
+    const fileStr = req.body.data;
+    const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
+        upload_preset: 'FileUpload',
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+}
+
+const getProfilePicture = function(req, res) {
+  Portfolio.find({accountId: req.body.accountId}, function(err, doc) {
+    if(err || doc == undefined) {
+      console.error("Image not found")
+    } else {
+      res.send(doc);
+    }
+  })
+}
 
 // useful link
 // https://stackoverflow.com/questions/8737082/mongoose-schema-within-schema
