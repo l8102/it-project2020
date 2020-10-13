@@ -13,7 +13,7 @@ var uploadImage = async function (req, res) {
         });
        // console.log("response");
         console.log(uploadResponse);
-        const id = req.body.accountId;
+        const id = 1;
         console.log(uploadResponse.url);
 
         const galleryInfo = {
@@ -65,9 +65,6 @@ const create = function (accountId) {
 // UPDATE
 
 // DELETE
-const deleteAllImages = function (req,res) {
-    Gallery.drop();
-}
 
 
 // export controllers
@@ -75,6 +72,5 @@ module.exports = {
     uploadImage, 
     //images, 
     getImages,
-    create, 
-    deleteAllImages
+    create
 }

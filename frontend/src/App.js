@@ -16,8 +16,7 @@ import Browse from "./pages/Browse";
 // Import page components
 import EditAbout from "./pages/pcomponents/EditAbout";
 import ViewAbout from "./pages/pcomponents/ViewAbout";
-import EditFiles from "./pages/pcomponents/EditFiles";
-import ViewFiles from './pages/pcomponents/ViewFiles';
+import Files from "./pages/pcomponents/Files";
 import EditGallery from "./pages/pcomponents/EditGallery";
 import ViewGallery from './pages/pcomponents/ViewGallery';
 import EditLinks from './pages/pcomponents/EditLinks';
@@ -53,8 +52,7 @@ function App() {
                 <ViewGallery />
               </div> 
               <div label="Files"> 
-                <EditFiles />
-                <ViewFiles />
+                <Files />
               </div> 
               <div label="Links"> 
                 <EditLinks />
@@ -80,8 +78,7 @@ function App() {
           </Route>
           <Route path="/files">
             <UserNavBar />
-            <EditFiles />
-            <ViewFiles />
+            <Files />
           </Route>
           <Route path="/gallery">
             <UserNavBar />

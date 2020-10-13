@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 // Dynamically changes the base URL
 let hostname = window.location.hostname.toString();
 let BASE_URL;
@@ -229,10 +230,7 @@ export function setPortfolioContactInfo(newEmail, newTelephone) {
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
         method: 'POST',
-        body: JSON.stringify({ 
-          data: base64EncodedImage,
-          accountId: sessionStorage.getItem("accountId")
-        }),
+        body: JSON.stringify({ data: base64EncodedImage }),
         headers: { 'Content-Type': 'application/json' },
     }).then(res => {
       return res.data;
@@ -242,14 +240,12 @@ export function uploadAPI(base64EncodedImage) {
 }
 
 // TODO: This function retrieves based on portfolioId from older schema, need to test and replace with function below 
-export function getImages() {
-    //const data = { accountId: searchId }
+export function getImages(searchId) {
+    const data = { accountId: searchId }
     return axios({
         method: "post",
         url: BASE_URL + "/api/gallery/getImages",
-        data: {
-          accountId: sessionStorage.getItem("accountId")
-        }
+        data: data
     }).then(res => {
         return res.data;
     })
@@ -392,31 +388,3 @@ export function getLinks() {
   })
 }
 
-/** sends the encoded image to the backend function upload */
-export function fileUploadAPI(base64EncodedImage) {
-  return fetch(BASE_URL + "/api/file/uploadFile", {
-      method: 'POST',
-      body: JSON.stringify({ 
-        data: base64EncodedImage,
-        accountId: sessionStorage.getItem("accountId")
-      }),
-      headers: { 'Content-Type': 'application/json' },
-  }).then(res => {
-    console.log(res.data);
-    return res.data;
-  }).catch(function (error) {
-    console.error(error);
-  });
-}
-
-export function getFiles() {
-  return axios({
-      method: "post",
-      url: BASE_URL + "/api/file/getFiles",
-      data: {
-        accountId: sessionStorage.getItem("accountId")
-      }
-  }).then(res => {
-      return res.data;
-  })
-}

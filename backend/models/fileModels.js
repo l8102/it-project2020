@@ -7,18 +7,6 @@ const fileSchema = new Schema({
     type: String,
     required: true
   },
-  fileVersion: {
-    type: String, 
-    required: false
-  }, 
-  filePublicId: {
-    type: String, 
-    required: false
-  }, 
-  filePages: {
-    type: Number, 
-    required: false
-  }
 }, {
   collection: 'File',
   timestamps: true,
