@@ -6,8 +6,10 @@ const linkControllers = require('../controllers/linkControllers');
 // // handled by create account
 
 // READ
+linkRoutes.get('/readLinks', linkControllers.readLink);
 
 // UPDATE
+linkRoutes.put('/updateLinks', linkControllers.updateByAccountId);
 
 // DELETE
 // // handled by delete account

@@ -83,22 +83,22 @@
   border-radius: 5px;
 }
 
-.about-me-page {
+.about-me-page, .links-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
 
-.about-me-page h1 {
+.about-me-page h1, .links-page h1, .links-page-view h1 {
   margin: 40px;
 }
 
-.about-me-page form {
+.about-me-page form, .links-page form {
   margin-top: 0;
 }
 
-.about-me-page h2 {
+.about-me-page h2, .links-page-view h2 {
   text-align: center;
   margin-bottom: 30px;
   padding: 20px;
@@ -106,27 +106,38 @@
   color: var(--white-text);
 }
 
-.about-me-page label {
+.about-me-page label, .links-page label {
   display: block;
   margin-bottom: 10px;
   font-size: medium;
   font-weight: bold;
 }
 
-.about-me-page section {
+.links-page label {
+  margin-top: 10px;
+}
+
+.about-me-page section, .links-page section, .links-page-view section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: var(--green-background);
   overflow-y: auto;
   margin: 0 auto;
-  margin-bottom: 40px;
   width: 80%;
   border-radius: 5px;
   padding-bottom: 20px;
 }
 
-.about-me-page button {
+.about-me-page section, .links-page-view section {
+  margin-bottom: 40px;
+}
+
+.links-page section {
+  margin-bottom: 10px;
+}
+
+.about-me-page button, .links-page button {
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 10px;
@@ -170,7 +181,7 @@
   border-collapse: collapse;
 }
 
-.description {
+.description, .link {
   display: inline-block;
   text-align: left;
   max-width: 100%;
@@ -186,20 +197,37 @@
   border: 2px solid #ccc;
 }
 
+
 .add-remove-buttons {
-  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.add-remove-button {
+  display: inline-block;
 }
 
 .about-me-page .text-box, select {
-  width: 80%;
+  width: 90%;
   height: 300px;
   margin: 0 auto;
   margin-bottom: 10px;
   padding: 5px;
-  resize: vertical;
-  overflow-y: auto;
+}
+
+
+
+
+.links-page input, .links-page .text-box, select {
   border: 2px solid #ccc;
-  border-radius: 2px;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.links-page-view {
+  text-align: center;
 }
 
 
@@ -212,7 +240,11 @@
 
 .text-box, select {
   display: block;
-  width: 100%;
   height: 300px;
   margin-bottom: 10px;
+  resize: vertical;
+  overflow-y: auto;
+  border: 2px solid #ccc;
+  border-radius: 2px;
 }
+

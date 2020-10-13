@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../css/Portfolio.css";
-import { updateAboutMe } from "../../Api.js"
+import { updateAboutMe, getAboutMe } from "../../Api.js"
 
 export default class EditAbout extends Component {
     constructor(props) {
@@ -17,7 +17,8 @@ export default class EditAbout extends Component {
                 dateTo: ""
             }],
             interestList: [""],
-            description: ""
+            description: "",
+            isLoaded: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -48,6 +49,43 @@ export default class EditAbout extends Component {
 
         // Save information to database
         updateAboutMe(this.state);
+    }
+
+    async componentDidMount() {
+
+        let aboutMe;
+
+        try {
+            aboutMe = await getAboutMe();
+        } catch (error) {
+            console.error(error);
+        }
+
+        console.log(aboutMe.data);
+
+        // ensure that there is data
+        if (aboutMe.data.workExperience !== undefined) {
+            this.setState({
+                experienceList: aboutMe.data.workExperience
+            })
+        }
+
+        // ensure that there is data
+        if (aboutMe.data.interests !== undefined) {
+            this.setState({
+                interestList: aboutMe.data.interests
+            })
+        }
+
+        this.setState({
+            institution: aboutMe.data.institution,
+            degree: aboutMe.data.degree,
+            major: aboutMe.data.major,
+            description: aboutMe.data.description,
+
+            isLoaded: true
+        })
+        console.log(this.state);
     }
 
 
@@ -97,125 +135,133 @@ export default class EditAbout extends Component {
     }
 
     render() {
-        return (
-            <div className="about-me-page">
-                <h1>
-                    Edit About
-                </h1>
-                <form>
-                    <section>
-                        <h2>
-                            Educational Background
+        if(!this.state.isLoaded) {
+            return (
+                <div>
+                    Loading...
+                </div>
+            )
+        } else {
+            return (
+                <div className="about-me-page">
+                    <h1>
+                        Edit About
+                    </h1>
+                    <form>
+                        <section>
+                            <h2>
+                                Educational Background
+                                </h2>
+                            <label>
+                                Institution:
+                                </label>
+                            <input className="education"
+                                name="institution"
+                                value={this.state.institution}
+                                onChange={ this.handleChange }
+                            />
+                            <label>
+                                Degree:
+                                </label>
+                            <input className="education"
+                                name="degree"
+                                value={this.state.degree}
+                                onChange={ this.handleChange }
+                            />
+                            <label>
+                                Major:
+                                </label>
+                            <input className="education"
+                                name="major"
+                                value={this.state.major}
+                                onChange={ this.handleChange }
+                            />
+                        </section>
+                        <section>
+                            <h2>
+                                Work Experience/Internships
                             </h2>
-                        <label>
-                            Institution:
-                            </label>
-                        <input className="education"
-                            name="institution"
-                            value={this.state.institution}
-                            onChange={ this.handleChange }
-                        />
-                        <label>
-                            Degree:
-                            </label>
-                        <input className="education"
-                            name="degree"
-                            value={this.state.degree}
-                            onChange={ this.handleChange }
-                        />
-                        <label>
-                            Major:
-                            </label>
-                        <input className="education"
-                            name="major"
-                            value={this.state.major}
-                            onChange={ this.handleChange }
-                        />
-                    </section>
-                    <section>
-                        <h2>
-                            Work Experience/Internships
-                        </h2>
-                        {this.state.experienceList.map((x, i) => {
-                            return (
-                                <div key={i}>
-                                    <input className="experience"
-                                        name="experience"
-                                        value={x.experience}
-                                        onChange={e => this.handleExperienceChange(e, i)}
-                                    />
-                                    <input className="date"
-                                        name="dateFrom"
-                                        type="date"
-                                        value={x.dateFrom}
-                                        onChange={e => this.handleExperienceChange(e, i)}
-                                    />
-                                    <input className="date"
-                                        name="dateTo"
-                                        type="date"
-                                        value={x.dateTo}
-                                        onChange={e => this.handleExperienceChange(e, i)}
-                                    />
-                                    <div>
-                                        {this.state.experienceList.length !== 1 &&
-                                            <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i) } >
-                                                Remove Experience
-                                            </button>
-                                        }
-                                        {this.state.experienceList.length - 1 === i &&
-                                            <button className="add-remove-button" onClick={ this.handleAddExperience }>
-                                                Add Experience
-                                            </button>
-                                        }
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </section>
-                    <section >
-                        <h2>
-                            Interests
-                            </h2>
-                        {this.state.interestList.map((x, i) => {
-                            return (
-                                <div key={i}>
-                                    <input className="interest"
-                                        name="interest"
-                                        value={ x.interest }
-                                        onChange={ e => this.handleInterestChange(e, i) }
-                                    />
-                                    <div >
-                                        { this.state.interestList.length !== 1 &&
-                                            <button onClick={ e => this.handleRemoveInterest(e, i) } >
-                                                Remove interest
+                            {this.state.experienceList.map((x, i) => {
+                                return (
+                                    <div key={i}>
+                                        <input className="experience"
+                                            name="experience"
+                                            value={x.experience}
+                                            onChange={e => this.handleExperienceChange(e, i)}
+                                        />
+                                        <input className="date"
+                                            name="dateFrom"
+                                            type="date"
+                                            value={x.dateFrom}
+                                            onChange={e => this.handleExperienceChange(e, i)}
+                                        />
+                                        <input className="date"
+                                            name="dateTo"
+                                            type="date"
+                                            value={x.dateTo}
+                                            onChange={e => this.handleExperienceChange(e, i)}
+                                        />
+                                        <div>
+                                            {this.state.experienceList.length !== 1 &&
+                                                <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i) } >
+                                                    Remove Experience
                                                 </button>
-                                        }
-                                        { this.state.interestList.length - 1 === i &&
-                                            <button onClick={ this.handleAddInterest }>
-                                                Add interest
-                                            </button>
-                                        }
+                                            }
+                                            {this.state.experienceList.length - 1 === i &&
+                                                <button className="add-remove-button" onClick={ this.handleAddExperience }>
+                                                    Add Experience
+                                                </button>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })}
-                    </section>
-                    <section>
-                        <h2>
-                            About 'Name'
-                        </h2>
-                        <textarea className="text-box"
-                            name="description"
-                            placeholder="Describe yourself here..."
-                            value={ this.state.description }
-                            onChange={ this.handleChange }
-                        />
-                    </section>
-                    <button className="save-btn-tab" onClick={ this.handleSubmit }>
-                        Save
-                    </button>
-                </form>
-            </div>
-        )
+                                )
+                            })}
+                        </section>
+                        <section >
+                            <h2>
+                                Interests
+                                </h2>
+                            {this.state.interestList.map((x, i) => {
+                                return (
+                                    <div key={i}>
+                                        <input className="interest"
+                                            name="interest"
+                                            value={ x }
+                                            onChange={ e => this.handleInterestChange(e, i) }
+                                        />
+                                        <div >
+                                            { this.state.interestList.length !== 1 &&
+                                                <button onClick={ e => this.handleRemoveInterest(e, i) } >
+                                                    Remove interest
+                                                    </button>
+                                            }
+                                            { this.state.interestList.length - 1 === i &&
+                                                <button onClick={ this.handleAddInterest }>
+                                                    Add interest
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </section>
+                        <section>
+                            <h2>
+                                About 'Name'
+                            </h2>
+                            <textarea className="text-box"
+                                name="description"
+                                placeholder="Describe yourself here..."
+                                value={ this.state.description }
+                                onChange={ this.handleChange }
+                            />
+                        </section>
+                        <button className="save-btn-tab" onClick={ this.handleSubmit }>
+                            Save
+                        </button>
+                    </form>
+                </div>
+            )
+        }
     }
 }

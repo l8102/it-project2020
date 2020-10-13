@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 // Dynamically changes the base URL
 let hostname = window.location.hostname.toString();
 let BASE_URL;
@@ -349,5 +350,41 @@ export async function getAboutMe() {
                 console.error(error);
             });
     });
+}
+
+export function updateLinks(state) {
+
+  return new Promise(function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/link/updateLinks",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        state: state
+      }
+    })
+    .then(function (response) {
+      resolve(response);
+    }).catch(function (error) {
+      console.error(error);
+    })
+  })
+}
+
+export function getLinks() {
+  return new Promise(function (resolve) {
+    axios({
+      method:"get",
+      url: BASE_URL + "/api/link/readLinks",
+      params: {
+        accountId: sessionStorage.getItem("accountId"),
+      }
+    })
+    .then(function (response) {
+      resolve(response);
+    }).catch(function (error) {
+      console.error(error);
+    })
+  })
 }
 
