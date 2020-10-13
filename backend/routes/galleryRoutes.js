@@ -22,5 +22,6 @@ galleryRoutes.post('/getImages', galleryControllers.getImages);
 //
 // // DELETE
 // // handled by delete account
+galleryRoutes.delete('deleteAll', galleryControllers.deleteAllImages);
 
 module.exports = galleryRoutes;
