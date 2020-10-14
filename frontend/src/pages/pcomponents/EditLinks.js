@@ -47,6 +47,8 @@ export default class EditLinks extends Component {
         console.log(this.state);
 
         updateLinks(this.state);
+        sessionStorage.setItem("activeTab", this.props.name);
+        window.location.reload();
     }
 
     async componentDidMount() {

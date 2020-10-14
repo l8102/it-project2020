@@ -45,10 +45,11 @@ export default class EditAbout extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
 
         // Save information to database
         updateAboutMe(this.state);
+        sessionStorage.setItem("activeTab", this.props.name);
+        window.location.reload();
     }
 
     async componentDidMount() {
@@ -60,8 +61,6 @@ export default class EditAbout extends Component {
         } catch (error) {
             console.error(error);
         }
-
-        console.log(aboutMe.data);
 
         // ensure that there is data
         if (aboutMe.data.workExperience !== undefined) {
