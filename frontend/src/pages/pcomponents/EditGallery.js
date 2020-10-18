@@ -1,4 +1,3 @@
-//import React, { useState } from 'react';
 import React, { Component } from 'react';
 import { uploadAPI } from "../../Api.js";
 import "../../css/Gallery.css";

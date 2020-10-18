@@ -112,12 +112,30 @@ const deleteByAccountId = function(req, res, next) {
     // todo in future will need to call each of the portfolio components and delete them
 };
 
-const uploadProfilePicture = function (req, res) {
+const updateProfilePicture = async function (req, res) {
   try {
     const fileStr = req.body.data;
     const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
-        upload_preset: 'FileUpload',
+      upload_preset: 'ProfilePicture',
     });
+
+    console.log(uploadResponse);
+
+    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
+
+      if (err || portfolio === undefined) {
+          console.error("Portfolio not found");
+          res.send("false");
+          return false;
+      } else {
+          portfolio.profilePicture = uploadResponse;
+          portfolio.save();
+
+          console.log("Portfolio updated");
+          res.json(portfolio);
+          return true;
+      }
+  });
 
   } catch (err) {
     console.error(err);
@@ -144,5 +162,7 @@ module.exports = {
     readByAccountId,
     updateByAccountId,
     deleteByAccountId,
-    tokenIsValid
+    tokenIsValid, 
+    updateProfilePicture, 
+    getProfilePicture
 }
