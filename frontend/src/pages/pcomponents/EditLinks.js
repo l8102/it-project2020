@@ -14,7 +14,7 @@ export default class EditLinks extends Component {
             isLoaded: false
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleAddSave = this.handleAddSave.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -30,10 +30,6 @@ export default class EditLinks extends Component {
     this.setState({ linksList: list });
 }
 
-    handleAddSave(e) {
-        e.preventDefault();
-        this.handleSubmit(e);
-    }
 
     async handleRemove(e, i) {
         e.preventDefault();
@@ -77,8 +73,8 @@ export default class EditLinks extends Component {
 
         if(res != null) {
             this.setState({ isLoaded: true })
-            if(res.data.links !== undefined) {
-
+            if(res.data.links !== undefined && res.data.links.length !== 0) {
+                console.log(res.data.links);
                 let links = [];
                 (res.data.links).forEach((element, i) => {
                     links[i] = {title: element.title, description: element.description, link: element.link};
@@ -145,12 +141,12 @@ export default class EditLinks extends Component {
                                             </button>
                                         }
                                         { i !== this.state.linksList.length - 1 &&
-                                            <button className="add-remove-button" onClick={ this.handleAddSave }>
+                                            <button className="add-remove-button" onClick={ this.handleSubmit }>
                                                 Save
                                             </button>
                                         }
                                         { this.state.linksList.length - 1 === i &&
-                                            <button className="add-remove-button" onClick={ this.handleAddSave }>
+                                            <button className="add-remove-button" onClick={ this.handleSubmit }>
                                                 Add 
                                             </button>
                                         }
