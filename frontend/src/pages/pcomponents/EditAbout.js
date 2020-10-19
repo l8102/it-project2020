@@ -99,6 +99,8 @@ export default class EditAbout extends Component {
         }
         // Save information to database
         await this.setState(newState);
+        sessionStorage.setItem("activeTab", this.props.name);
+        window.location.reload();
         await updateAboutMe(this.state);
     }
 

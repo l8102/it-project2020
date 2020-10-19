@@ -58,7 +58,9 @@ export default class EditLinks extends Component {
         await this.setState({linksList: list});
         console.log(this.state);
         await updateLinks(this.state);
-        this.setState({linksList: [...list, {title: "", description: "", link: "" }]})
+        sessionStorage.setItem("activeTab", this.props.name);
+        window.location.reload();
+        //this.setState({linksList: [...list, {title: "", description: "", link: "" }]})
     }
 
     async componentDidMount() {
