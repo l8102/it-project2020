@@ -14,7 +14,7 @@ export default class EditLinks extends Component {
             isLoaded: false
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleAdd = this.handleAdd.bind(this);
+        this.handleAddSave = this.handleAddSave.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -30,40 +30,66 @@ export default class EditLinks extends Component {
     this.setState({ linksList: list });
 }
 
-    handleAdd(e) {
+    handleAddSave(e) {
         e.preventDefault();
-        this.setState({ linksList: [...this.state.linksList, { title: '', description: '', link: '' }] })
+        this.handleSubmit(e);
     }
 
-    handleRemove(e, i) {
+    async handleRemove(e, i) {
         e.preventDefault();
         const list = [...this.state.linksList];
         list.splice(i, 1);
-        this.setState({ linksList: list })
+        await this.setState({ linksList: list });
+        this.handleSubmit(e);
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
+        
+        let list = []
+        
+        for(var i = 0; i < this.state.linksList.length; i++) {
+            console.log(this.state.linksList[i]);
+            if(this.state.linksList[i].title !== "" && this.state.linksList[i].description !== "" && this.state.linksList[i].link !== "") {
+                list.push(this.state.linksList[i]);
+            }
+        };
 
+        if(list.length == 0) {
+            list = [{title: "", description: "", link: "" }]
+        }
+
+        await this.setState({linksList: list});
+        console.log(this.state);
         updateLinks(this.state);
         sessionStorage.setItem("activeTab", this.props.name);
         window.location.reload();
     }
 
     async componentDidMount() {
-        let links 
+        let res 
         
         try {
-            links = await getLinks();
+            res = await getLinks();
         } catch(error) {
             console.error(error);
         }
 
-        if(links != null) {
+        if(res != null) {
             this.setState({ isLoaded: true })
-            if(links.data.links != undefined) {
-                this.setState({ linksList: links.data.links })
+            if(res.data.links !== undefined) {
+
+                let links = [];
+                (res.data.links).forEach((element, i) => {
+                    links[i] = {title: element.title, description: element.description, link: element.link};
+                });
+
+                
+                if(links[0].title !== "" && links[0].description !== "" && links[0].link !== "") {
+                    this.setState({ linksList: [...links, { title: '', description: '', link: '' }] }) 
+                } else {
+                    this.setState({linksList: links});
+                }
             }
         }
     } 
@@ -113,13 +139,18 @@ export default class EditLinks extends Component {
                                         />
                                     </section>
                                     <div className="add-remove-buttons">
-                                        { this.state.linksList.length !== 1 &&
+                                        { i !== this.state.linksList.length - 1 &&
                                             <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
                                                 Remove
                                             </button>
                                         }
+                                        { i !== this.state.linksList.length - 1 &&
+                                            <button className="add-remove-button" onClick={ this.handleAddSave }>
+                                                Save
+                                            </button>
+                                        }
                                         { this.state.linksList.length - 1 === i &&
-                                            <button className="add-remove-button" onClick={ this.handleAdd }>
+                                            <button className="add-remove-button" onClick={ this.handleAddSave }>
                                                 Add 
                                             </button>
                                         }
@@ -127,9 +158,6 @@ export default class EditLinks extends Component {
                                 </div>
                             );
                         })}
-                        <button className="save-btn-tab" onClick={ this.handleSubmit }>
-                            Save
-                        </button>
                     </form>
                 </div>
             )
