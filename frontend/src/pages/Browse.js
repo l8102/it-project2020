@@ -74,8 +74,9 @@ class Browse extends Component {
   render() {
     return (
       <div className="browse-container">
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ this.handleSubmit } className="search-bar">
           <input
+            className="search-bar"
             type="text"
             name="searchInput"
             value={this.state.searchInput}
