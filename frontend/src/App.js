@@ -8,7 +8,7 @@ import "./css/Portfolio.css";
 
 // Import pages
 import Landing from "./pages/Landing";
-import Portfolio from "./pages/Portfolio";
+import EditPortfolio from "./pages/EditPortfolio";
 import Login from "./pages/Login";
 import Account from "./pages/CreateAccount";
 import Browse from "./pages/Browse";
@@ -38,10 +38,10 @@ function App() {
           <Route exact path="/">
             <VisitorNavBar />
             <Landing />
-          </Route> 
-          <Route path="/portfolio">
+          </Route>
+          <Route path="/editPortfolio">
             <UserNavBar />
-            <Portfolio />
+            <EditPortfolio />
             <Tabs> 
               <div label="About Me"> 
                 <EditAbout />
@@ -60,7 +60,7 @@ function App() {
               </div> 
             </Tabs> 
           </Route>
-          <Route path="/create-account">
+          <Route path="/createAccount">
             <UserNavBar />
             <Account />
           </Route>

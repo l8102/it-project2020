@@ -56,7 +56,7 @@ import GoogleLoginBtn from "../components/GoogleLoginBtn";
         if (res != null) {
             if(res.data !== "False") {
                 sessionStorage.setItem("accountId", res.data);
-                this.props.history.push("/portfolio");
+                this.props.history.push("/editPortfolio");
             } else {
                 alert("Invalid login credentials")
             }
@@ -94,7 +94,7 @@ import GoogleLoginBtn from "../components/GoogleLoginBtn";
                            Or
                     </h3>
                     <GoogleLoginBtn className="google-button"/>
-                    <NavLink className="nav-link" to="/create-account">
+                    <NavLink className="nav-link" to="/createAccount">
                         Create an account
                     </NavLink>
                 </form> 

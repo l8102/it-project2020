@@ -12,7 +12,7 @@ export default class Landing extends Component {
                         Browse Portfolios
                     </button>
                 </NavLink>
-                <NavLink to="create-account">
+                <NavLink to="createAccount">
                     <button>
                         Create a New Account
                     </button>

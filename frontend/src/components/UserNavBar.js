@@ -15,7 +15,7 @@ class UserNavBar extends Component {
           <h1> Eagle ePortfolio </h1>
           <div className="nav-bar">
             <ul>
-              <li><a href="/portfolio">My Portfolio</a></li>
+              <li><a href="/editPortfolio">My Portfolio</a></li>
               <li><a href="/">Log Out</a></li>
             </ul>
           </div>

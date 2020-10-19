@@ -67,11 +67,11 @@ const readByAccountId = function (req, res, next) {
     Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {
-            console.error("Portfolio not found");
+            console.error("EditPortfolio not found");
             res.send("false");
             return false;
         } else {
-            console.log("Portfolio found");
+            console.log("EditPortfolio found");
             res.json(portfolio);
             return true;
         }
@@ -85,7 +85,7 @@ const updateByAccountId = function (req, res, next) {
     Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {
-            console.error("Portfolio not found");
+            console.error("EditPortfolio not found");
             res.send("false");
             return false;
         } else {
@@ -94,7 +94,7 @@ const updateByAccountId = function (req, res, next) {
             portfolio.email = req.body.email;
             portfolio.save();
 
-            console.log("Portfolio updated");
+            console.log("EditPortfolio updated");
             res.json(portfolio);
             return true;
         }
@@ -106,7 +106,7 @@ const deleteByAccountId = function(req, res, next) {
 
     //find account by id and deletes
     Portfolio.remove({ "accountId": req.body.accountId });
-    console.log("Portfolio removed");
+    console.log("EditPortfolio removed");
 
     // todo in future will need to call each of the portfolio components and delete them
 };

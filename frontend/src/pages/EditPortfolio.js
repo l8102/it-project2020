@@ -6,7 +6,7 @@ import PortfolioImage from "../components/PortfolioImage";
 import { getPortfolioContactInfo, setPortfolioContactInfo, getAccount } from "../Api.js"
 
 // todo use this as a template for other classes, done well
-class Portfolio extends Component {
+class EditPortfolio extends Component {
 
   constructor(props) {
     super(props);
@@ -151,4 +151,4 @@ class Portfolio extends Component {
   }
 }
 
-export default Portfolio;
+export default EditPortfolio;

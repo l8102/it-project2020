@@ -20,7 +20,7 @@ class SearchResult extends Component {
     sessionStorage.setItem("accountId", this.props.accountId);
 
     // Navigate to the portfolio
-    this.props.history.push("/portfolio");
+    this.props.history.push("/editPortfolio");
   }
 
   render() {
@@ -31,10 +31,11 @@ class SearchResult extends Component {
           onClick={this.handleClick}
         >
         </button>
-        <label className="search-result-label">
+        <div className="search-result-label-background"/>
+        <label className="search-result-label-text">
           {this.props.firstName + " " + this.props.lastName}
         </label>
-        {/*<img src={this.props.profileImage}/>*/}
+        <img className="search-result-image" src={this.props.profileImage} alt="" />
       </div>
 
     )
