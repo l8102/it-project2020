@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import Avatar from 'react-avatar-edit'
 import "../css/Portfolio.css";
+import { uploadPP } from '../Api.js'
+import { getPP } from '../Api.js'
 
 export default class PortfolioImage extends Component {
   constructor(props) {
@@ -9,11 +10,11 @@ export default class PortfolioImage extends Component {
     const src = ''
     this.state = {
       preview: null,
+      currentImage: null,
       src
     }
     this.onCrop = this.onCrop.bind(this)
     this.onClose = this.onClose.bind(this)
-    this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
     this.handleSave = this.handleSave.bind(this);
   }
   
@@ -26,55 +27,60 @@ export default class PortfolioImage extends Component {
     console.log(this.state.preview);
   }
 
-  onBeforeFileLoad(elem) {
-    if(elem.target.files[0].size > 71680){
-      alert("File is too big!");
-      elem.target.value = "";
-    };
-  }
-
-  handleSave() {
-    const reader = new FileReader();
-    console.log(this.state.preview);
-      reader.readAsDataURL(this.state.preview);
-      reader.onloadend = () => {
-        this.uploadPP(reader.result);
-        console.log(reader.result);
-      };
-      reader.onerror = () => {
-          console.error('error on submit');
-      };
-  }
-
-  uploadPP(base64EncodedImage) {
+  async handleSave() {
     try {
-      //const upload = await uploadAPI(base64EncodedImage);
+      await uploadPP(this.state.preview);
+      await this.setState({ currentImage: this.state.preview});
     } catch (err) {
-        console.error(err);
+      console.error(err);
     }
+  }
+
+  async componentDidMount() {
+
+    const res = await getPP();
+    console.log(res.data);
+
+    if (res) {
+      await this.setState({currentImage : res.data});
+      console.log(this.state.currentImage);
+    }   
+
   }
   
   render () {
     return (
-      <div>
-        <h3>
-          Click to choose a profile picture
-        </h3>
-        <Avatar
-          width={390}
-          height={295}
-          onCrop={this.onCrop}
-          onClose={this.onClose}
-          onBeforeFileLoad={this.onBeforeFileLoad}
-          src={this.state.src}
-        />
-        <img src={this.state.preview} alt="Preview" />
-        <input
-          className="save-btn"
-          type="submit"
-          value="Save"
-          onClick={this.handleSave}
-        />
+      <div className="pp-container">
+        <div className="img-container">
+          <div className="upload-img">
+            <h3 className="pp-title">
+              Click to choose a new profile picture
+            </h3>
+            <div className="avatar">
+              <Avatar
+                width={390}
+                height={295}
+                onCrop={this.onCrop}
+                onClose={this.onClose}
+                src={this.state.src}
+              />
+            </div>
+            
+            <input
+              className="save-btn pp-btn"
+              type="submit"
+              value="Save"
+              onClick={this.handleSave}
+            />
+          </div>
+          <div className="profile-img">
+            <div classname="preview-img">
+              <img src={this.state.currentImage} />
+            </div>
+          </div>
+        </div>
+        
+        
       </div>
     )
   }

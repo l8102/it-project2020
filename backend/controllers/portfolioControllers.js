@@ -15,7 +15,8 @@ const create = function (accountId, email) {
 
   let portfolio = {
       accountId: accountId,
-      email: email
+      email: email, 
+
   };
 
   // creates a new portfolio using the account id
@@ -120,6 +121,7 @@ const updateProfilePicture = async function (req, res) {
     });
 
     console.log(uploadResponse);
+    console.log(uploadResponse.url);
 
     Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
 
@@ -128,14 +130,14 @@ const updateProfilePicture = async function (req, res) {
           res.send("false");
           return false;
       } else {
-          portfolio.profilePicture = uploadResponse;
+          portfolio.profilePicture = uploadResponse.url;
           portfolio.save();
 
           console.log("Portfolio updated");
           res.json(portfolio);
           return true;
       }
-  });
+    });
 
   } catch (err) {
     console.error(err);
@@ -143,14 +145,59 @@ const updateProfilePicture = async function (req, res) {
   }
 }
 
-const getProfilePicture = function(req, res) {
-  Portfolio.find({accountId: req.body.accountId}, function(err, doc) {
-    if(err || doc == undefined) {
-      console.error("Image not found")
+/*const getProfilePicture = function(req, res) {
+  Portfolio.findOne({ "accountId": req.query.accountId }, function(err, doc) {
+    console.log(doc);
+    if(err || doc == undefined || doc == null) {
+      console.error("Profile not found")
     } else {
-      res.send(doc);
+      console.log(doc);
+      if(doc.profilePicture != null) {
+        res.send(doc.profilePicture);
+      } else {
+        res.json(doc);
+        console.error("Profile Image not found")
+      }
     }
   })
+}
+*/
+/*var getProfilePicture = function(req, res) {
+
+  Portfolio.find({accountId: req.data.accountId}, function(err, doc) {
+      if(err || doc == undefined || doc == null) {
+          console.error("Profile not found")
+      } else {
+        if(doc.profilePicture != null || doc.profilePicture != undefined) {
+          res.send(doc.profilePicture);
+        } else {
+          //res.json(doc);
+          console.error("Profile Image not found")
+        }
+      }
+  })
+}
+*/
+
+const getProfilePicture = function (req, res) {
+
+  Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
+
+      if (err || portfolio === undefined) {
+          console.error("Portfolio not found");
+          res.send("false");
+          return false;
+      } else {
+          console.log("Portfolio found");
+          if(portfolio.profilePicture != null || portfolio.profilePicture != undefined) {
+            res.send(portfolio.profilePicture);
+          } else {
+            //res.json(doc);
+            console.error("Profile Image not found")
+          }
+          return true;
+      }
+  });
 }
 
 // useful link
