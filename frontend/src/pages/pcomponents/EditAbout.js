@@ -13,12 +13,26 @@ export default class EditAbout extends Component {
             
             experienceList: [{
                 experience: "",
+                dateFrom: undefined,
+                dateTo: undefined
+            }],
+            interestList: [""],
+            description: "",
+            isLoaded: false
+        }
+
+        this.originalState = {
+            institution: "",
+            degree: "",
+            major: "",
+            
+            experienceList: [{
+                experience: "",
                 dateFrom: "",
                 dateTo: ""
             }],
             interestList: [""],
             description: "",
-            isLoaded: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,11 +40,9 @@ export default class EditAbout extends Component {
 
         this.handleExperienceChange = this.handleExperienceChange.bind(this);
         this.handleRemoveExperience = this.handleRemoveExperience.bind(this);
-        this.handleAddExperience = this.handleAddExperience.bind(this);
 
         this.handleInterestChange = this.handleInterestChange.bind(this);
         this.handleRemoveInterest = this.handleRemoveInterest.bind(this);
-        this.handleAddInterest = this.handleAddInterest.bind(this);
 
     }
 
@@ -43,13 +55,51 @@ export default class EditAbout extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e, changedInput) {
         e.preventDefault();
+        console.log(e.target);
 
+        let newState = this.originalState;
+       
+
+        if(changedInput === "educationalBackground") {
+            newState.institution = this.state.institution;
+            newState.degree = this.state.degree;
+            newState.major = this.state.major;
+        } else if(changedInput === "description") {
+            newState.description = this.state.description;
+        } else {
+            let list = []
+            var i;
+            if(changedInput === "interestList") {
+                for (i = 0; i < this.state.interestList.length; i++) {
+                    if (this.state.interestList[i] !== "") {
+                        list.push(this.state.interestList[i]);
+                    }
+                };
+                
+                if (list.length === 0) {
+                    list = [""]
+                }
+
+                newState.interestList = list;
+            } else {
+                for (i = 0; i < this.state.experienceList.length; i++) {
+                    if (this.state.experienceList[i].experience !== "" && this.state.experienceList[i].dateFrom !== "" && this.state.experienceList[i].dateTo !== "") {
+                        list.push(this.state.experienceList[i]);
+                    }
+                };
+
+                if (list.length === 0) {
+                    list = [{experience: "", dateFrom: "", dateTo: ""}];
+                }
+                newState.experienceList = list;
+            }
+            
+        }
         // Save information to database
-        updateAboutMe(this.state);
-        sessionStorage.setItem("activeTab", this.props.name);
-        window.location.reload();
+        await this.setState(newState);
+        await updateAboutMe(this.state);
     }
 
     async componentDidMount() {
@@ -63,20 +113,39 @@ export default class EditAbout extends Component {
         }
 
         // ensure that there is data
-        if (aboutMe.data.workExperience !== undefined) {
-            this.setState({
-                experienceList: aboutMe.data.workExperience
-            })
+        if (aboutMe.data.workExperience !== undefined && aboutMe.data.workExperience.length !== 0) {
+            let experiences = [];
+
+            (aboutMe.data.workExperience).forEach((element, i) => {
+                console.log(element);
+                experiences[i] = { experience: element.experience, dateFrom: element.dateFrom, dateTo: element.dateTo };
+            });
+
+
+            if (experiences[0].experience !== "") {
+                this.setState({ experienceList: [...experiences, { experience: "", dateFrom: "", dateTo: "" }] })
+                this.originalState.experienceList = experiences;
+            } else {
+                this.setState({ experienceList: [{ experience: "", dateFrom: "", dateTo: "" }] });
+            }
         }
 
         // ensure that there is data
-        if (aboutMe.data.interests !== undefined) {
-            this.setState({
-                interestList: aboutMe.data.interests
-            })
+        if (aboutMe.data.interests !== undefined && aboutMe.data.interests.length !== 0) {
+            let interests = [];
+            (aboutMe.data.interests).forEach((element, i) => {
+                interests[i] = element;
+            });
+
+            if (interests[0] !== "") {
+                this.setState({ interestList: [...interests, ""] })
+                this.originalState = interests;
+            } else {
+                this.setState({ interestList: [""] });
+            }
         }
 
-        this.setState({
+        await this.setState({
             institution: aboutMe.data.institution,
             degree: aboutMe.data.degree,
             major: aboutMe.data.major,
@@ -84,6 +153,12 @@ export default class EditAbout extends Component {
 
             isLoaded: true
         })
+
+        this.originalState.institution = aboutMe.data.institution;
+        this.originalState.degree = aboutMe.data.degree;
+        this.originalState.major = aboutMe.data.major;
+        this.originalState.description = aboutMe.data.description;
+
         console.log(this.state);
     }
 
@@ -99,17 +174,15 @@ export default class EditAbout extends Component {
         this.setState({ experienceList: list });
     }
 
-    handleRemoveExperience(e, i) {
+    async handleRemoveExperience(e, i, changedInput) {
         e.preventDefault();
+        e.persist();
         const list = [...this.state.experienceList];
         list.splice(i, 1);
-        this.setState({ experienceList: list });
+        await this.setState({ experienceList: list });
+        this.handleSubmit(e, changedInput);
     }
 
-    handleAddExperience(e) {
-        e.preventDefault();
-        this.setState({ experienceList: [...this.state.experienceList, { experience: "", dateFrom: "", dateTo: "" }] });
-    }
 
     /*-----------------------------------------------------------------------
         interestList - Following functions handle the list of interests
@@ -121,17 +194,15 @@ export default class EditAbout extends Component {
         this.setState({ interestList: list});
     }
 
-    handleRemoveInterest(e, i) {
+    async handleRemoveInterest(e, i, changedInput) {
         e.preventDefault();
+        e.persist();
         const list = [...this.state.interestList];
         list.splice(i, 1);
-        this.setState({ interestList: list });
+        await this.setState({ interestList: list });
+        this.handleSubmit(e, changedInput);
     }
 
-    handleAddInterest(e) {
-        e.preventDefault();
-        this.setState({ interestList: [...this.state.interestList, ""] });
-    }
 
     render() {
         if(!this.state.isLoaded) {
@@ -175,6 +246,9 @@ export default class EditAbout extends Component {
                                 value={this.state.major}
                                 onChange={ this.handleChange }
                             />
+                            <button className="save-btn-tab" onClick={ e => this.handleSubmit(e, "educationalBackground") }>
+                                Save
+                            </button>
                         </section>
                         <section>
                             <h2>
@@ -200,14 +274,15 @@ export default class EditAbout extends Component {
                                             value={x.dateTo}
                                             onChange={e => this.handleExperienceChange(e, i)}
                                         />
+        
                                         <div>
                                             {this.state.experienceList.length !== 1 &&
-                                                <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i) } >
+                                                <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i, "experienceList") } >
                                                     Remove Experience
                                                 </button>
                                             }
                                             {this.state.experienceList.length - 1 === i &&
-                                                <button className="add-remove-button" onClick={ this.handleAddExperience }>
+                                                <button className="add-remove-button" onClick={e =>  this.handleSubmit(e, "experienceList") }>
                                                     Add Experience
                                                 </button>
                                             }
@@ -230,12 +305,12 @@ export default class EditAbout extends Component {
                                         />
                                         <div >
                                             { this.state.interestList.length !== 1 &&
-                                                <button onClick={ e => this.handleRemoveInterest(e, i) } >
+                                                <button onClick={ e => this.handleRemoveInterest(e, i, "interestList") } >
                                                     Remove interest
                                                     </button>
                                             }
                                             { this.state.interestList.length - 1 === i &&
-                                                <button onClick={ this.handleAddInterest }>
+                                                <button name="interestList" onClick={ e => this.handleSubmit(e, "interestList") }>
                                                     Add interest
                                                 </button>
                                             }
@@ -254,10 +329,10 @@ export default class EditAbout extends Component {
                                 value={ this.state.description }
                                 onChange={ this.handleChange }
                             />
-                        </section>
-                        <button className="save-btn-tab" onClick={ this.handleSubmit }>
+                            <button className="save-btn-tab" onClick={ e => this.handleSubmit(e, "description") }>
                             Save
-                        </button>
+                            </button>
+                        </section>
                     </form>
                 </div>
             )

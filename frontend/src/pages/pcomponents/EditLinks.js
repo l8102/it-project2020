@@ -81,9 +81,9 @@ export default class EditLinks extends Component {
 
                 
                 if(links[0].title !== "" && links[0].description !== "" && links[0].link !== "") {
-                    this.setState({ linksList: [...links, { title: '', description: '', link: '' }] }) 
+                    this.setState({ linksList: [...links, { title: "", description: "", link: "" }] }) 
                 } else {
-                    this.setState({linksList: links});
+                    this.setState([{ title: "", description: "", link: "" }]);
                 }
             }
         }
