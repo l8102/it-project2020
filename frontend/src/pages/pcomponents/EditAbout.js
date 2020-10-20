@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../css/Portfolio.css";
 import { updateAboutMe, getAboutMe } from "../../Api.js"
+import { Timestamp } from "mongodb";
 
 export default class EditAbout extends Component {
     constructor(props) {
@@ -39,9 +40,11 @@ export default class EditAbout extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.handleExperienceChange = this.handleExperienceChange.bind(this);
+        this.handleAddExperience = this.handleAddExperience.bind(this);
         this.handleRemoveExperience = this.handleRemoveExperience.bind(this);
 
         this.handleInterestChange = this.handleInterestChange.bind(this);
+        this.handleAddInterest = this.handleAddInterest.bind(this);
         this.handleRemoveInterest = this.handleRemoveInterest.bind(this);
 
     }
@@ -55,58 +58,65 @@ export default class EditAbout extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    async handleSubmit(e, changedInput) {
+    async handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target);
 
+        let changedInput = e.target.name;
         let newState = this.originalState;
-       
+        let i = 0;
 
-        if(changedInput === "educationalBackground") {
+        if(changedInput === "educationalBackground" || changedInput === "saveAll") {
             newState.institution = this.state.institution;
             newState.degree = this.state.degree;
             newState.major = this.state.major;
-        } else if(changedInput === "description") {
+        } 
+        
+        if(changedInput === "description" || changedInput === "saveAll") {
             newState.description = this.state.description;
-        } else {
-            let list = []
-            var i;
-            if(changedInput === "interestList") {
-                for (i = 0; i < this.state.interestList.length; i++) {
-                    if (this.state.interestList[i] !== "") {
-                        list.push(this.state.interestList[i]);
-                    }
-                };
-                
-                if (list.length === 0) {
-                    list = [""]
-                }
-
-                newState.interestList = list;
-            } else {
-                for (i = 0; i < this.state.experienceList.length; i++) {
-                    if (this.state.experienceList[i].experience !== "" && this.state.experienceList[i].dateFrom !== "" && this.state.experienceList[i].dateTo !== "") {
-                        list.push(this.state.experienceList[i]);
-                    }
-                };
-
-                if (list.length === 0) {
-                    list = [{experience: "", dateFrom: "", dateTo: ""}];
-                }
-                newState.experienceList = list;
-            }
+        } 
             
+        if (changedInput === "interestList" || changedInput === "saveAll") {
+            let interests = []
+            for (i = 0; i < this.state.interestList.length; i++) {
+                if (this.state.interestList[i] !== "") {
+                    interests.push(this.state.interestList[i]);
+                }
+            };
+
+            if (interests.length === 0) {
+                interests = [""]
+            }
+
+            newState.interestList = interests;
+        } 
+
+        if (changedInput === "experienceList" || changedInput === "saveAll") {
+            let experiences = []
+            for (i = 0; i < this.state.experienceList.length; i++) {
+                if (this.state.experienceList[i].experience !== "") {
+                    experiences.push(this.state.experienceList[i]);
+                }
+            };
+
+            if (experiences.length === 0) {
+                experiences = [{ experience: "", dateFrom: "", dateTo: "" }];
+            }
+            newState.experienceList = experiences;
         }
+
         // Save information to database
+        console.log("saved" + newState.experienceList);
         await this.setState(newState);
         sessionStorage.setItem("activeTab", this.props.name);
         window.location.reload();
-        await updateAboutMe(this.state);
+        updateAboutMe(this.state);
     }
 
     async componentDidMount() {
 
         let aboutMe;
+        let dateTo;
+        let dateFrom;
 
         try {
             aboutMe = await getAboutMe();
@@ -120,7 +130,15 @@ export default class EditAbout extends Component {
 
             (aboutMe.data.workExperience).forEach((element, i) => {
                 console.log(element);
-                experiences[i] = { experience: element.experience, dateFrom: element.dateFrom, dateTo: element.dateTo };
+                dateFrom = element.dateFrom;
+                dateTo = element.dateTo;
+                if(dateFrom === null) {
+                    dateFrom = "";
+                }
+                if(dateTo === null) {
+                    dateTo = "";
+                }
+                experiences[i] = { experience: element.experience, dateFrom: dateFrom, dateTo: dateTo };
             });
 
 
@@ -141,7 +159,7 @@ export default class EditAbout extends Component {
 
             if (interests[0] !== "") {
                 this.setState({ interestList: [...interests, ""] })
-                this.originalState = interests;
+                this.originalState.interestList = interests;
             } else {
                 this.setState({ interestList: [""] });
             }
@@ -160,8 +178,6 @@ export default class EditAbout extends Component {
         this.originalState.degree = aboutMe.data.degree;
         this.originalState.major = aboutMe.data.major;
         this.originalState.description = aboutMe.data.description;
-
-        console.log(this.state);
     }
 
 
@@ -176,13 +192,17 @@ export default class EditAbout extends Component {
         this.setState({ experienceList: list });
     }
 
-    async handleRemoveExperience(e, i, changedInput) {
+    handleAddExperience(e) {
+        e.preventDefault()
+        const list = [...this.state.experienceList, {experience: "", dateFrom: "", dateTo: ""}]
+        this.setState({ experienceList: list })
+    }
+
+    handleRemoveExperience(e, i) {
         e.preventDefault();
-        e.persist();
         const list = [...this.state.experienceList];
         list.splice(i, 1);
-        await this.setState({ experienceList: list });
-        this.handleSubmit(e, changedInput);
+        this.setState({ experienceList: list });
     }
 
 
@@ -196,13 +216,18 @@ export default class EditAbout extends Component {
         this.setState({ interestList: list});
     }
 
-    async handleRemoveInterest(e, i, changedInput) {
+    handleAddInterest(e) {
+        e.preventDefault()
+        const list = [...this.state.interestList, ""];
+        this.setState({ interestList: list });
+    }
+
+    handleRemoveInterest(e, i) {
         e.preventDefault();
         e.persist();
         const list = [...this.state.interestList];
         list.splice(i, 1);
-        await this.setState({ interestList: list });
-        this.handleSubmit(e, changedInput);
+        this.setState({ interestList: list });
     }
 
 
@@ -248,7 +273,7 @@ export default class EditAbout extends Component {
                                 value={this.state.major}
                                 onChange={ this.handleChange }
                             />
-                            <button className="save-btn-tab" onClick={ e => this.handleSubmit(e, "educationalBackground") }>
+                            <button className="save-btn-tab" name="educationalBackground" onClick={ this.handleSubmit }>
                                 Save
                             </button>
                         </section>
@@ -278,13 +303,13 @@ export default class EditAbout extends Component {
                                         />
         
                                         <div>
-                                            {this.state.experienceList.length !== 1 &&
-                                                <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i, "experienceList") } >
+                                            {i !== this.state.experienceList.length - 1 &&
+                                                <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i) } >
                                                     Remove Experience
                                                 </button>
                                             }
                                             {this.state.experienceList.length - 1 === i &&
-                                                <button className="add-remove-button" onClick={e =>  this.handleSubmit(e, "experienceList") }>
+                                                <button className="add-remove-button" onClick={ this.handleAddExperience }>
                                                     Add Experience
                                                 </button>
                                             }
@@ -292,6 +317,9 @@ export default class EditAbout extends Component {
                                     </div>
                                 )
                             })}
+                            <button className="save-btn-tab" name="experienceList" onClick={ this.handleSubmit }>
+                                Save
+                            </button>
                         </section>
                         <section >
                             <h2>
@@ -307,12 +335,12 @@ export default class EditAbout extends Component {
                                         />
                                         <div >
                                             { this.state.interestList.length !== 1 &&
-                                                <button onClick={ e => this.handleRemoveInterest(e, i, "interestList") } >
+                                                <button onClick={ e => this.handleRemoveInterest(e, i) } >
                                                     Remove interest
                                                     </button>
                                             }
                                             { this.state.interestList.length - 1 === i &&
-                                                <button name="interestList" onClick={ e => this.handleSubmit(e, "interestList") }>
+                                                <button name="interestList" onClick={ this.handleAddInterest }>
                                                     Add interest
                                                 </button>
                                             }
@@ -320,6 +348,9 @@ export default class EditAbout extends Component {
                                     </div>
                                 )
                             })}
+                            <button className="save-btn-tab" name="interestList" onClick={ this.handleSubmit }>
+                                Save
+                            </button>
                         </section>
                         <section>
                             <h2>
@@ -331,10 +362,13 @@ export default class EditAbout extends Component {
                                 value={ this.state.description }
                                 onChange={ this.handleChange }
                             />
-                            <button className="save-btn-tab" onClick={ e => this.handleSubmit(e, "description") }>
-                            Save
+                            <button className="save-btn-tab" name="description" onClick={ this.handleSubmit }>
+                                Save
                             </button>
                         </section>
+                        <button className="save-btn-tab" name="saveAll" onClick={ this.handleSubmit }>
+                            Save All
+                        </button>
                     </form>
                 </div>
             )
