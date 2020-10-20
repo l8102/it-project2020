@@ -368,7 +368,7 @@ export function updateLinks(state) {
       }
     })
     .then(function (response) {
-      resolve(response);
+      resolve(response.data);
     }).catch(function (error) {
       console.error(error);
     })
@@ -418,5 +418,38 @@ export function getFiles() {
       }
   }).then(res => {
       return res.data;
+  })
+}
+
+export function uploadPP(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/portfolio/updateProfilePicture", {
+    method: 'PUT',
+    body: JSON.stringify({ 
+      data: base64EncodedImage,
+      accountId: sessionStorage.getItem("accountId")
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    console.log(res.data);
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+});
+}
+
+export function getPP() {
+  return new Promise(function (resolve) {
+    axios({
+      method:"get",
+      url: BASE_URL + "/api/portfolio/getProfilePicture",
+      params: {
+        accountId: sessionStorage.getItem("accountId"),
+      }
+    })
+    .then(function (response) {
+      resolve(response);
+    }).catch(function (error) {
+      console.error(error);
+    })
   })
 }
