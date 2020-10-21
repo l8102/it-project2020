@@ -229,7 +229,6 @@ export default class EditAbout extends Component {
 
     handleRemoveInterest(e, i) {
         e.preventDefault();
-        e.persist();
         const list = [...this.state.interestList];
         list.splice(i, 1);
         this.setState({ interestList: list });
