@@ -48,3 +48,14 @@
     width: 20%;
     margin: 5%;
 }
+
+.gedit-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.gedit-img {
+    width: 25em;
+    border-radius: 7%;
+}

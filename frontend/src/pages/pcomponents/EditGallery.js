@@ -1,11 +1,10 @@
-//import React, { useState } from 'react';
 import React, { Component } from 'react';
 import { uploadAPI } from "../../Api.js";
 import "../../css/Gallery.css";
 import { getImages } from '../../Api.js'
 import ViewGallery from './ViewGallery.js';
 import PageToggle from "../../components/PageToggle"
-
+/*
 export default class Gallery extends Component {
     constructor(props) {
         super(props);
@@ -43,8 +42,9 @@ export default class Gallery extends Component {
         )
     }
 };
+*/
 
-class EditGallery extends Component {
+export default class EditGallery extends Component {
 
     constructor(props) {
         super(props);
@@ -112,9 +112,57 @@ class EditGallery extends Component {
                         Upload
                     </button>
                 </form>
+                <RenderImages />
             </div>
         );
     }
+};
+
+
+class RenderImages extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      images: [""]
+    }
+
+  }
+
+  async componentDidMount() {
+
+    const res = await getImages();
+
+    const imageUrls = [];
+
+    res.forEach((image, index) => {
+      if (image.imageUrl) {
+        imageUrls[index] = image.imageUrl;
+      } 
+    });     
+
+    this.setState({images : imageUrls});
+    console.log(this.state.images);
+
+  }
+
+  render() {
+    const { images } = this.state;
+    return (
+      <div className="gedit-container">
+        {
+          images.map((x) => {
+            console.log(x);
+            return(
+              <div className="gedit-tile">
+                <img src={ x } className="gedit-img"/>
+              </div>
+            )
+          })
+        }   
+      </div>
+    );
+  }
 };
 
 
