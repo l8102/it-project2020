@@ -248,3 +248,36 @@
   border-radius: 2px;
 }
 
+.pp-container {
+  width: 40%;
+}
+
+.img-container {
+  padding-left: 10%;
+  width: 100%;
+}
+
+.upload-img {
+  float: left;
+}
+
+.pp-btn {
+  float: right;
+  margin-right: 0;
+}
+
+.avatar {
+  padding-top: 2%;
+  
+}
+
+.pp-title {
+  text-align: center;
+}
+
+.profile-img {
+  float: right;
+  margin-top: 10%;
+}
+
+

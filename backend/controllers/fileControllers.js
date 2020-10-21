@@ -26,21 +26,12 @@ var uploadFile = async function (req,res) {
     });
 
     console.log(uploadResponse);
-    const id = req.body.accountId;
-    const version = uploadResponse.version;
-    const publicId = uploadResponse.public_id;
-    const pages = uploadResponse.pages;
-    /*url = uploadResponse.url;
-    url = url.substring(0, url.length - 3);
-    url = url.concat("png");
-    console.log(url);
-    */
 
     const fileInfo = {
-        accountId: id,
-        fileVersion: version,
-        filePublicId: publicId, 
-        filePages: pages
+        accountId: req.body.accountId,
+        fileVersion: uploadResponse.version,
+        filePublicId: uploadResponse.public_id, 
+        filePages: uploadResponse.pages
     }     
     
     const data = new File(fileInfo);

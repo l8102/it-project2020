@@ -14,22 +14,20 @@ export default class ViewGallery extends Component {
 
     }
 
-    async componentDidMount() {
-        // Todo: For now, getImages calls on portfolioId "1" from previous schema for Gallery, needs to be
-        // for account id
-        const res = await getImages();
-        //console.log(res);
-    
-        const imageUrls = [];
+  async componentDidMount() {
 
-        res.forEach((image, index) => {
-            imageUrls[index] = image.imageUrl;
-        });     
+    const res = await getImages();
 
-        this.setState({images : imageUrls});
-        console.log(this.state.images);
+    const imageUrls = [];
 
-    }
+    res.forEach((image, index) => {
+      imageUrls[index] = image.imageUrl;
+    });     
+
+    this.setState({images : imageUrls});
+    console.log(this.state.images);
+
+  }
 
     render() {
         const { images } = this.state;
