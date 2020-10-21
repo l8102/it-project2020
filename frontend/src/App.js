@@ -45,11 +45,11 @@ function App() {
             <Portfolio />
             <Tabs> 
               <div label="About Me"> 
-                <EditAbout />
+                <EditAbout name="About Me"/>
                 <ViewAbout />
               </div> 
               <div label="Gallery"> 
-                <EditGallery />
+                <EditGallery name = "Gallery"/>
                 <ViewGallery />
               </div> 
               <div label="Files"> 
@@ -57,7 +57,7 @@ function App() {
                 <ViewFiles />
               </div> 
               <div label="Links"> 
-                <EditLinks />
+                <EditLinks name="Links"/>
                 <ViewLinks />
               </div> 
             </Tabs> 
