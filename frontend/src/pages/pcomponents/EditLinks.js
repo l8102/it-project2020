@@ -51,22 +51,17 @@ export default class EditLinks extends Component {
         let list = []
         
         for(var i = 0; i < this.state.linksList.length; i++) {
-            console.log(this.state.linksList[i]);
+            // If all fields are empty, the entry is not saved to the database
             if(this.state.linksList[i].title !== "" && this.state.linksList[i].description !== "" && this.state.linksList[i].link !== "") {
                 list.push(this.state.linksList[i]);
             }
         };
-
-        if(list.length === 0) {
-            list = [{title: "", description: "", link: "" }]
-        }
+        
 
         await this.setState({linksList: list});
-        console.log(this.state);
-        await updateLinks(this.state);
+        updateLinks(this.state);
         sessionStorage.setItem("activeTab", this.props.name);
         window.location.reload();
-        //this.setState({linksList: [...list, {title: "", description: "", link: "" }]})
     }
 
     async componentDidMount() {
@@ -87,12 +82,9 @@ export default class EditLinks extends Component {
                     links[i] = {title: element.title, description: element.description, link: element.link};
                 });
 
-                
                 if(links[0].title !== "" && links[0].description !== "" && links[0].link !== "") {
                     this.setState({ linksList: [...links, { title: "", description: "", link: "" }] }) 
-                } else {
-                    this.setState([{ title: "", description: "", link: "" }]);
-                }
+                } 
             }
         }
     } 

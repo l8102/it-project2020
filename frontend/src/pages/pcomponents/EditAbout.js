@@ -14,8 +14,8 @@ export default class EditAbout extends Component {
             
             experienceList: [{
                 experience: "",
-                dateFrom: undefined,
-                dateTo: undefined
+                dateFrom: "",
+                dateTo: ""
             }],
             interestList: [""],
             description: "",
@@ -61,9 +61,15 @@ export default class EditAbout extends Component {
     async handleSubmit(e) {
         e.preventDefault();
 
+        // changedInput refers to the component that is being saved onto the database
         let changedInput = e.target.name;
+
+        // newState being saved onto the database is initialised to it's current state on the database
         let newState = this.originalState;
         let i = 0;
+
+        // this.state represents any changed input, and new state is assigned a changed input depending on
+        // the component(s) being saved by the user
 
         if(changedInput === "educationalBackground" || changedInput === "saveAll") {
             newState.institution = this.state.institution;
@@ -78,6 +84,7 @@ export default class EditAbout extends Component {
         if (changedInput === "interestList" || changedInput === "saveAll") {
             let interests = []
             for (i = 0; i < this.state.interestList.length; i++) {
+                // If input is empty, it is not saved onto the database
                 if (this.state.interestList[i] !== "") {
                     interests.push(this.state.interestList[i]);
                 }
@@ -93,6 +100,7 @@ export default class EditAbout extends Component {
         if (changedInput === "experienceList" || changedInput === "saveAll") {
             let experiences = []
             for (i = 0; i < this.state.experienceList.length; i++) {
+                // If experience is empty, it is not saved onto the database
                 if (this.state.experienceList[i].experience !== "") {
                     experiences.push(this.state.experienceList[i]);
                 }
@@ -107,9 +115,10 @@ export default class EditAbout extends Component {
         // Save information to database
         console.log("saved" + newState.experienceList);
         await this.setState(newState);
+        updateAboutMe(this.state);
+        // Stores tab, so default tab is set to about on refresh
         sessionStorage.setItem("activeTab", this.props.name);
         window.location.reload();
-        updateAboutMe(this.state);
     }
 
     async componentDidMount() {
@@ -117,7 +126,7 @@ export default class EditAbout extends Component {
         let aboutMe;
         let dateTo;
         let dateFrom;
-
+        
         try {
             aboutMe = await getAboutMe();
         } catch (error) {
@@ -127,45 +136,41 @@ export default class EditAbout extends Component {
         // ensure that there is data
         if (aboutMe.data.workExperience !== undefined && aboutMe.data.workExperience.length !== 0) {
             let experiences = [];
-
             (aboutMe.data.workExperience).forEach((element, i) => {
                 console.log(element);
                 dateFrom = element.dateFrom;
                 dateTo = element.dateTo;
+
+                // When date is retrieved from the database, if empty it is retrieved as null
+                // in EditAbout it is stored as an empty string
                 if(dateFrom === null) {
                     dateFrom = "";
                 }
                 if(dateTo === null) {
                     dateTo = "";
                 }
+
                 experiences[i] = { experience: element.experience, dateFrom: dateFrom, dateTo: dateTo };
             });
 
-
+            
             if (experiences[0].experience !== "") {
                 this.setState({ experienceList: [...experiences, { experience: "", dateFrom: "", dateTo: "" }] })
                 this.originalState.experienceList = experiences;
-            } else {
-                this.setState({ experienceList: [{ experience: "", dateFrom: "", dateTo: "" }] });
-            }
+            } 
         }
 
         // ensure that there is data
         if (aboutMe.data.interests !== undefined && aboutMe.data.interests.length !== 0) {
-            let interests = [];
-            (aboutMe.data.interests).forEach((element, i) => {
-                interests[i] = element;
-            });
+            let interests = aboutMe.data.interests;
 
             if (interests[0] !== "") {
                 this.setState({ interestList: [...interests, ""] })
                 this.originalState.interestList = interests;
-            } else {
-                this.setState({ interestList: [""] });
-            }
+            } 
         }
 
-        await this.setState({
+        this.setState({
             institution: aboutMe.data.institution,
             degree: aboutMe.data.degree,
             major: aboutMe.data.major,
