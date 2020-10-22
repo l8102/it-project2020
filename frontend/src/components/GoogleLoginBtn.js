@@ -3,6 +3,7 @@ import { googleLoginSuccess, googleLoginFailure} from "../Api.js"
 import { withRouter } from 'react-router-dom';
 import GoogleLogin from "react-google-login";
 
+// todo handle permission to edit (security)
 class GoogleLoginBtn extends Component {
   constructor(props) {
     super(props);

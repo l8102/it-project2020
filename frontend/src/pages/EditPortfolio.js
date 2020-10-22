@@ -16,7 +16,7 @@ import ViewFiles from "./pcomponents/ViewFiles";
 import EditLinks from "./pcomponents/EditLinks";
 import ViewLinks from "./pcomponents/ViewLinks";
 
-// todo use this as a template for other classes, done well
+// todo handle permission to edit (security)
 class EditPortfolio extends Component {
 
   constructor(props) {
@@ -34,13 +34,11 @@ class EditPortfolio extends Component {
     };
 
     // This binding is necessary to make 'this' work in the callback
-    // todo learn about bindings
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
   }
 
-  // todo use this as a template
   async componentDidMount() {
 
     console.log("running");
@@ -54,7 +52,6 @@ class EditPortfolio extends Component {
       console.error(error);
     }
 
-    // todo VERY IMPORTANT ! ! !
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
       this.setState({
@@ -71,7 +68,6 @@ class EditPortfolio extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  // todo this can only be implemented when you have created the api
   async handleSubmit(e) {
 
     e.preventDefault();
@@ -91,9 +87,6 @@ class EditPortfolio extends Component {
     } else {
       newTelephone = this.state.telephoneInput;
     }
-
-    // todo could use res, not sure if necessary
-    let res;
 
     // update the portfolio contact info fields in the database
     try {
