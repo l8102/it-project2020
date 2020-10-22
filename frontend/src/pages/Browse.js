@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import "../css/Browse.css";
-import { } from "../Api.js"
 import SearchResult from "../components/SearchResult";
 import {getAllAccountsByFullName, getAllAccounts} from "../Api";
 
@@ -12,7 +11,7 @@ class Browse extends Component {
       accountId: "",
       results: [],
       searchInput: "",
-      profileImage: undefined
+      profilePicture: undefined
     }
 
     // binding ensures that 'this' works properly
@@ -36,8 +35,6 @@ class Browse extends Component {
     this.setState({
       results: res.data
     })
-
-    console.log(this.state.results[0]._id.toString());
   }
 
   handleChange(e) {
@@ -74,8 +71,9 @@ class Browse extends Component {
   render() {
     return (
       <div className="browse-container">
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ this.handleSubmit } className="search-bar">
           <input
+            className="search-bar"
             type="text"
             name="searchInput"
             value={this.state.searchInput}
@@ -89,7 +87,7 @@ class Browse extends Component {
               accountId = {result._id.toString()}
               firstName = {result.firstName}
               lastName = {result.lastName}
-              profileImage = {result.profileImage}
+              profilePicture = {result.profilePicture}
             />
           ))}
         </div>

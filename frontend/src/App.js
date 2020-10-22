@@ -8,22 +8,12 @@ import "./css/Portfolio.css";
 
 // Import pages
 import Landing from "./pages/Landing";
-import Portfolio from "./pages/Portfolio";
+import EditPortfolio from "./pages/EditPortfolio";
 import Login from "./pages/Login";
 import Account from "./pages/CreateAccount";
 import Browse from "./pages/Browse";
-
-// Import page components
-import EditAbout from "./pages/pcomponents/EditAbout";
-import ViewAbout from "./pages/pcomponents/ViewAbout";
-import EditFiles from "./pages/pcomponents/EditFiles";
-import ViewFiles from './pages/pcomponents/ViewFiles';
-import EditGallery from "./pages/pcomponents/EditGallery";
-import ViewGallery from './pages/pcomponents/ViewGallery';
-import EditLinks from './pages/pcomponents/EditLinks';
-import ViewLinks from './pages/pcomponents/ViewLinks';
-
-import Tabs from "./pages/pcomponents/Tabs";
+import ViewPortfolio from "./pages/ViewPortfolio";
+import EnterAccessCode from "./pages/EnterAccessCode";
 
 // Import components
 import VisitorNavBar from "./components/VisitorNavBar";
@@ -39,30 +29,12 @@ function App() {
           <Route exact path="/">
             <VisitorNavBar />
             <Landing />
-          </Route> 
-          <Route path="/portfolio">
-            <UserNavBar />
-            <Portfolio />
-            <Tabs> 
-              <div label="About Me"> 
-                <EditAbout name="About Me"/>
-                <ViewAbout />
-              </div> 
-              <div label="Gallery"> 
-                <EditGallery name = "Gallery"/>
-                <ViewGallery />
-              </div> 
-              <div label="Files"> 
-                <EditFiles />
-                <ViewFiles />
-              </div> 
-              <div label="Links"> 
-                <EditLinks name="Links"/>
-                <ViewLinks />
-              </div> 
-            </Tabs> 
           </Route>
-          <Route path="/create-account">
+          <Route path="/editPortfolio">
+            <UserNavBar />
+            <EditPortfolio />
+          </Route>
+          <Route path="/createAccount">
             <UserNavBar />
             <Account />
           </Route>
@@ -74,19 +46,13 @@ function App() {
             <VisitorNavBar />
             <Browse />
           </Route>
-          <Route path="/about">
-            <UserNavBar />
-            <EditAbout />
+          <Route path="/viewPortfolio">
+            <VisitorNavBar />
+            <ViewPortfolio />
           </Route>
-          <Route path="/files">
-            <UserNavBar />
-            <EditFiles />
-            <ViewFiles />
-          </Route>
-          <Route path="/gallery">
-            <UserNavBar />
-            <EditGallery />
-            <ViewGallery />
+          <Route path="/enterAccessCode">
+            <VisitorNavBar />
+            <EnterAccessCode />
           </Route>
         </Switch>
         <Footer />

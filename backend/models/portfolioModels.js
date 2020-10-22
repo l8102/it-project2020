@@ -17,10 +17,7 @@ const portfolioSchema = new Schema({
   },
   telephone: {
     type: String,
-  }, 
-  profilePicture: {
-    type: String
-  }
+  },
 }, {
   collection: 'Portfolio',
   timestamps: true,

@@ -29,7 +29,7 @@ accountRoutes.get('/readAll', accountControllers.readAll);
 
 accountRoutes.put('/updateName', accountControllers.updateName);
 
-accountRoutes.put('/updateProfileImage', accountControllers.updateProfileImage);
+accountRoutes.put('/updateProfilePicture', accountControllers.updateProfilePicture);
 
 
 // DELETE

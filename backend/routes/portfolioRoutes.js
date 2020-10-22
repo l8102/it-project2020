@@ -13,12 +13,10 @@ portfolioRoutes.post('/tokenIsValid', portfolioControllers.tokenIsValid);
 // READ
 
 portfolioRoutes.get('/readByAccountId', portfolioControllers.readByAccountId);
-portfolioRoutes.get('/getProfilePicture', portfolioControllers.getProfilePicture);
 
 // UPDATE
 
 portfolioRoutes.put('/updateByAccountId', portfolioControllers.updateByAccountId);
-portfolioRoutes.put('/updateProfilePicture', portfolioControllers.updateProfilePicture);
 
 // DELETE
 // handled by delete account

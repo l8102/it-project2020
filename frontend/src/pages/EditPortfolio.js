@@ -1,12 +1,23 @@
 import React, {Component} from 'react';
 import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
-import PortfolioImage from "../components/PortfolioImage";
+import ProfilePicture from "../components/ProfilePicture";
 
 import { getPortfolioContactInfo, setPortfolioContactInfo, getAccount } from "../Api.js"
 
+// Import page components
+import Tabs from "./pcomponents/Tabs";
+import EditAbout from "./pcomponents/EditAbout";
+import ViewAbout from "./pcomponents/ViewAbout";
+import EditGallery from "./pcomponents/EditGallery";
+import ViewGallery from "./pcomponents/ViewGallery";
+import EditFiles from "./pcomponents/EditFiles";
+import ViewFiles from "./pcomponents/ViewFiles";
+import EditLinks from "./pcomponents/EditLinks";
+import ViewLinks from "./pcomponents/ViewLinks";
+
 // todo use this as a template for other classes, done well
-class Portfolio extends Component {
+class EditPortfolio extends Component {
 
   constructor(props) {
     super(props);
@@ -14,7 +25,7 @@ class Portfolio extends Component {
       this.state = {
           firstName: '',
           lastName: '',
-          profileImage: '',
+          profilePicture: '',
           email: '',
           telephone: '',
         emailInput: '',
@@ -33,12 +44,12 @@ class Portfolio extends Component {
   async componentDidMount() {
 
     console.log("running");
-      let res;
+      let contactInfo;
       let account;
 
     try {
-        res = await getPortfolioContactInfo();
-        account = await getAccount();
+        contactInfo = await getPortfolioContactInfo();
+        account = await getAccount(sessionStorage.getItem("accountId"));
     } catch (error) {
       console.error(error);
     }
@@ -49,9 +60,9 @@ class Portfolio extends Component {
       this.setState({
           firstName: account.data.firstName,
           lastName: account.data.lastName,
-          profileImage: account.data.profileImage,
-        email: res.data.email,
-        telephone: res.data.telephone,
+        profilePicture: account.data.profilePicture,
+        email: contactInfo.data.email,
+        telephone: contactInfo.data.telephone,
         isLoaded: true
     })
   }
@@ -134,21 +145,41 @@ class Portfolio extends Component {
 
   render() {
     return (
-      <div className="portfolio-container">
-        <div className="user-info">
-                <h1 className="name">
-                    {this.state.firstName + " " + this.state.lastName}
-          </h1>
-          <h3>
-            Contact Information
-          </h3>
-          <this.contactInfoForm/>
-          <PrivateToggle/>
-            </div>
-        <PortfolioImage/>
+      <div>
+        <div className="portfolio-container">
+          <div className="user-info">
+            <h1 className="name">
+              {this.state.firstName + " " + this.state.lastName}
+            </h1>
+            <h3>
+              Contact Information
+            </h3>
+            <this.contactInfoForm/>
+            <PrivateToggle/>
+          </div>
+          <ProfilePicture/>
+        </div>
+        <Tabs>
+          <div label="About Me">
+            <EditAbout />
+            <ViewAbout />
+          </div>
+          <div label="Gallery">
+            <EditGallery />
+            <ViewGallery />
+          </div>
+          <div label="Files">
+            <EditFiles />
+            <ViewFiles />
+          </div>
+          <div label="Links">
+            <EditLinks />
+            <ViewLinks />
+          </div>
+        </Tabs>
       </div>
     );
   }
 }
 
-export default Portfolio;
+export default EditPortfolio;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Avatar from 'react-avatar-edit'
 import "../css/Portfolio.css";
-import { uploadPP } from '../Api.js'
-import { getPP } from '../Api.js'
+import { uploadProfilePicture } from '../Api.js'
+import { getAccount } from '../Api.js'
 
-export default class PortfolioImage extends Component {
+export default class ProfilePicture extends Component {
   constructor(props) {
     super(props)
     const src = ''
@@ -29,7 +29,7 @@ export default class PortfolioImage extends Component {
 
   async handleSave() {
     try {
-      await uploadPP(this.state.preview);
+      await uploadProfilePicture(this.state.preview);
       await this.setState({ currentImage: this.state.preview});
     } catch (err) {
       console.error(err);
@@ -38,11 +38,11 @@ export default class PortfolioImage extends Component {
 
   async componentDidMount() {
 
-    const res = await getPP();
+    const res = await getAccount(sessionStorage.getItem("accountId"));
     console.log(res.data);
 
     if (res) {
-      await this.setState({currentImage : res.data});
+      await this.setState({currentImage : res.data.profilePicture});
       console.log(this.state.currentImage);
     }   
 

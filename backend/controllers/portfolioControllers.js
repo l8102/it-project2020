@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
-const {cloudinary} = require('../utils/cloudinary');
 
 // todo fix this
 // const jwt = require("jsonwebtoken");
@@ -69,11 +68,11 @@ const readByAccountId = function (req, res, next) {
     Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {
-            console.error("Portfolio not found");
+            console.error("EditPortfolio not found");
             res.send("false");
             return false;
         } else {
-            console.log("Portfolio found");
+            console.log("EditPortfolio found");
             res.json(portfolio);
             return true;
         }
@@ -87,7 +86,7 @@ const updateByAccountId = function (req, res, next) {
     Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
 
         if (err || portfolio === undefined) {
-            console.error("Portfolio not found");
+            console.error("EditPortfolio not found");
             res.send("false");
             return false;
         } else {
@@ -96,7 +95,7 @@ const updateByAccountId = function (req, res, next) {
             portfolio.email = req.body.email;
             portfolio.save();
 
-            console.log("Portfolio updated");
+            console.log("EditPortfolio updated");
             res.json(portfolio);
             return true;
         }
@@ -108,42 +107,10 @@ const deleteByAccountId = function(req, res, next) {
 
     //find account by id and deletes
     Portfolio.remove({ "accountId": req.body.accountId });
-    console.log("Portfolio removed");
+    console.log("EditPortfolio removed");
 
     // todo in future will need to call each of the portfolio components and delete them
 };
-
-const updateProfilePicture = async function (req, res) {
-  try {
-    const fileStr = req.body.data;
-    const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
-      upload_preset: 'ProfilePicture',
-    });
-
-    console.log(uploadResponse);
-    console.log(uploadResponse.url);
-
-    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
-
-      if (err || portfolio === undefined) {
-          console.error("Portfolio not found");
-          res.send("false");
-          return false;
-      } else {
-          portfolio.profilePicture = uploadResponse.url;
-          portfolio.save();
-
-          console.log("Portfolio updated");
-          res.json(portfolio);
-          return true;
-      }
-    });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ err: 'Something went wrong' });
-  }
-}
 
 /*const getProfilePicture = function(req, res) {
   Portfolio.findOne({ "accountId": req.query.accountId }, function(err, doc) {
@@ -179,26 +146,28 @@ const updateProfilePicture = async function (req, res) {
 }
 */
 
-const getProfilePicture = function (req, res) {
 
-  Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
-
-      if (err || portfolio === undefined) {
-          console.error("Portfolio not found");
-          res.send("false");
-          return false;
-      } else {
-          console.log("Portfolio found");
-          if(portfolio.profilePicture != null || portfolio.profilePicture != undefined) {
-            res.send(portfolio.profilePicture);
-          } else {
-            //res.json(doc);
-            console.error("Profile Image not found")
-          }
-          return true;
-      }
-  });
-}
+// todo this can probably be removed, is redundant
+// const getProfilePicture = function (req, res) {
+//
+//   Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
+//
+//       if (err || portfolio === undefined) {
+//           console.error("Portfolio not found");
+//           res.send("false");
+//           return false;
+//       } else {
+//           console.log("Portfolio found");
+//           if(portfolio.profilePicture != null || portfolio.profilePicture !== undefined) {
+//             res.send(portfolio.profilePicture);
+//           } else {
+//             //res.json(doc);
+//             console.error("Profile Image not found")
+//           }
+//           return true;
+//       }
+//   });
+// }
 
 // useful link
 // https://stackoverflow.com/questions/8737082/mongoose-schema-within-schema
@@ -209,7 +178,5 @@ module.exports = {
     readByAccountId,
     updateByAccountId,
     deleteByAccountId,
-    tokenIsValid, 
-    updateProfilePicture, 
-    getProfilePicture
+    tokenIsValid,
 }

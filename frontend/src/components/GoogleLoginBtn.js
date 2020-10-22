@@ -24,7 +24,7 @@ class GoogleLoginBtn extends Component {
     sessionStorage.setItem("accountId", res.data);
 
     // navigate to the portfolio page
-    this.props.history.push("/portfolio");
+    this.props.history.push("/editPortfolio");
   }
 
   handleGoogleFailure(req) {

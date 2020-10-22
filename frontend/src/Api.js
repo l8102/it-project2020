@@ -123,14 +123,14 @@ export function createAccount(account) {
 
 // todo this needs to be redone, we are not getting account info, we should be getting portfolio contact info
 // todo pretty sure we should delete this (unless it has another use)
-export async function getAccount() {
+export async function getAccount(accountId) {
 
     return await new Promise(function (resolve) {
         axios({
             method: "get",
             url: BASE_URL + "/api/account/read",
             params: {
-                accountId: sessionStorage.getItem("accountId"),
+                accountId: accountId,
             }
         })
             .then(function (response) {
@@ -275,7 +275,7 @@ export function getImages() {
 
 
 // ----- getPortfolioByAccountId -----
-export function getPortfolioIsPrivate() {
+export function getPortfolioIsPrivate(accountId) {
 
   // make request for portfolio
   return new Promise( function (resolve) {
@@ -283,7 +283,7 @@ export function getPortfolioIsPrivate() {
       method: "get",
       url: BASE_URL + "/api/portfolio/readByAccountId",
       params: {
-        accountId: sessionStorage.getItem("accountId"),
+        accountId: accountId,
       }
     })
       .then(function (response) {
@@ -424,8 +424,8 @@ export function getFiles() {
   })
 }
 
-export function uploadPP(base64EncodedImage) {
-  return fetch(BASE_URL + "/api/portfolio/updateProfilePicture", {
+export function uploadProfilePicture(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/account/updateProfilePicture", {
     method: 'PUT',
     body: JSON.stringify({ 
       data: base64EncodedImage,
@@ -440,19 +440,20 @@ export function uploadPP(base64EncodedImage) {
 });
 }
 
-export function getPP() {
-  return new Promise(function (resolve) {
-    axios({
-      method:"get",
-      url: BASE_URL + "/api/portfolio/getProfilePicture",
-      params: {
-        accountId: sessionStorage.getItem("accountId"),
-      }
-    })
-    .then(function (response) {
-      resolve(response);
-    }).catch(function (error) {
-      console.error(error);
-    })
-  })
-}
+// todo can probably remove this
+// export function getProfilePicture(accountId) {
+//   return new Promise(function (resolve) {
+//     axios({
+//       method:"get",
+//       url: BASE_URL + "/api/portfolio/getProfilePicture",
+//       params: {
+//         accountId: accountId,
+//       }
+//     })
+//     .then(function (response) {
+//       resolve(response);
+//     }).catch(function (error) {
+//       console.error(error);
+//     })
+//   })
+// }
