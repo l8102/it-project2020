@@ -357,6 +357,8 @@ export async function getAboutMe() {
 }
 
 export function updateLinks(state) {
+  console.log(state);
+  
 
   return new Promise(function (resolve) {
     axios({
@@ -376,6 +378,7 @@ export function updateLinks(state) {
 }
 
 export function getLinks() {
+  
   return new Promise(function (resolve) {
     axios({
       method:"get",

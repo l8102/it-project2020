@@ -39,9 +39,8 @@ export default class ViewGallery extends Component {
                 <Carousel>
                     {
                         images.map((x, i) => {
-                            console.log(x);
                             return(
-                                <div>
+                                <div key={ i }>
                                     <img src={ x }/>
                                     <p className="legend"> Legend {i + 1} </p>
                                 </div>

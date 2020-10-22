@@ -25,8 +25,8 @@ export default class ViewLinks extends Component {
             console.error(error);
         }
 
-        if(links != null) {
-            if(links.data.links != undefined) {
+        if(links !== null) {
+            if(links.data.links !== undefined) {
                 this.setState({ linksList: links.data.links, isLoaded: true })
             }
         }

@@ -14,8 +14,9 @@ export default class EditLinks extends Component {
             isLoaded: false
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleAdd = this.handleAdd.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
@@ -30,38 +31,60 @@ export default class EditLinks extends Component {
     this.setState({ linksList: list });
 }
 
-    handleAdd(e) {
-        e.preventDefault();
-        this.setState({ linksList: [...this.state.linksList, { title: '', description: '', link: '' }] })
-    }
 
     handleRemove(e, i) {
         e.preventDefault();
         const list = [...this.state.linksList];
         list.splice(i, 1);
-        this.setState({ linksList: list })
+        this.setState({ linksList: list });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        console.log(this.state);
+    handleAdd(e) {
+        e.preventDefault()
+        const list = [...this.state.linksList, {title: "", description: "", link: ""}]
+        this.setState({ linksList: list});
+    }
 
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        let list = []
+        
+        for(var i = 0; i < this.state.linksList.length; i++) {
+            // If all fields are empty, the entry is not saved to the database
+            if(this.state.linksList[i].title !== "" && this.state.linksList[i].description !== "" && this.state.linksList[i].link !== "") {
+                list.push(this.state.linksList[i]);
+            }
+        };
+        
+
+        await this.setState({linksList: list});
         updateLinks(this.state);
+        sessionStorage.setItem("activeTab", this.props.name);
+        window.location.reload();
     }
 
     async componentDidMount() {
-        let links 
+        let res 
         
         try {
-            links = await getLinks();
+            res = await getLinks();
         } catch(error) {
             console.error(error);
         }
 
-        if(links != null) {
+        if(res != null) {
             this.setState({ isLoaded: true })
-            if(links.data.links != undefined) {
-                this.setState({ linksList: links.data.links })
+            if(res.data.links !== undefined && res.data.links.length !== 0) {
+                console.log(res.data.links);
+                let links = [];
+                (res.data.links).forEach((element, i) => {
+                    links[i] = {title: element.title, description: element.description, link: element.link};
+                });
+
+                if(links[0].title !== "" && links[0].description !== "" && links[0].link !== "") {
+                    this.setState({ linksList: [...links, { title: "", description: "", link: "" }] }) 
+                } 
             }
         }
     } 
@@ -111,14 +134,14 @@ export default class EditLinks extends Component {
                                         />
                                     </section>
                                     <div className="add-remove-buttons">
-                                        { this.state.linksList.length !== 1 &&
+                                        { i !== this.state.linksList.length - 1 &&
                                             <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
                                                 Remove
                                             </button>
                                         }
                                         { this.state.linksList.length - 1 === i &&
                                             <button className="add-remove-button" onClick={ this.handleAdd }>
-                                                Add 
+                                                Add Link
                                             </button>
                                         }
                                     </div>
