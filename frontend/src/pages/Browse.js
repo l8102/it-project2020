@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import "../css/Browse.css";
-import { } from "../Api.js"
 import SearchResult from "../components/SearchResult";
 import {getAllAccountsByFullName, getAllAccounts} from "../Api";
 

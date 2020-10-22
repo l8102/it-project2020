@@ -275,7 +275,7 @@ export function getImages() {
 
 
 // ----- getPortfolioByAccountId -----
-export function getPortfolioIsPrivate() {
+export function getPortfolioIsPrivate(accountId) {
 
   // make request for portfolio
   return new Promise( function (resolve) {
@@ -283,7 +283,7 @@ export function getPortfolioIsPrivate() {
       method: "get",
       url: BASE_URL + "/api/portfolio/readByAccountId",
       params: {
-        accountId: sessionStorage.getItem("accountId"),
+        accountId: accountId,
       }
     })
       .then(function (response) {

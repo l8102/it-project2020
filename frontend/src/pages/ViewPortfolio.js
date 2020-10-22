@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "../css/Portfolio.css";
 
 import { getPortfolioContactInfo, getAccount, getPortfolioIsPrivate } from "../Api.js"
+import ProfilePicture from "../components/ProfilePicture";
 
 // todo use this as a template for other classes, done well
 class ViewPortfolio extends Component {
@@ -31,7 +32,7 @@ class ViewPortfolio extends Component {
     try {
       contactInfo = await getPortfolioContactInfo();
       account = await getAccount(sessionStorage.getItem("accountId"));
-      privacy = await getPortfolioIsPrivate();
+      privacy = await getPortfolioIsPrivate(sessionStorage.getItem("accountId"));
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +41,7 @@ class ViewPortfolio extends Component {
     this.setState({
       firstName: account.data.firstName,
       lastName: account.data.lastName,
-      profileImage: account.data.profileImage,
+      profilePicture: account.data.profilePicture,
       email: contactInfo.data.email,
       telephone: contactInfo.data.telephone,
       isPrivate: privacy.data.isPrivate,
@@ -65,19 +66,14 @@ class ViewPortfolio extends Component {
             <textarea
               className="small-text-box p-text-box"
               name="emailInput"
-              value={this.state.emailInput}
               placeholder={ this.state.email }
-              onChange={ this.handleChange }
             />
             <label>
               Telephone:
             </label>
             <textarea
               className="small-text-box p-text-box"
-              name="telephoneInput"
-              value={this.state.telephoneInput}
               placeholder={ this.state.telephone }
-              onChange={ this.handleChange }
             />
             <input
               className="save-btn"
@@ -85,7 +81,7 @@ class ViewPortfolio extends Component {
               value="Save"
             />
         </div>
-        <PortfolioImage/>
+        <ProfilePicture/>
       </div>
     );
   }

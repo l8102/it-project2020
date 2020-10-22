@@ -25,7 +25,7 @@ class EditPortfolio extends Component {
       this.state = {
           firstName: '',
           lastName: '',
-          profileImage: '',
+          profilePicture: '',
           email: '',
           telephone: '',
         emailInput: '',
@@ -60,7 +60,7 @@ class EditPortfolio extends Component {
       this.setState({
           firstName: account.data.firstName,
           lastName: account.data.lastName,
-          profileImage: account.data.profileImage,
+        profilePicture: account.data.profilePicture,
         email: contactInfo.data.email,
         telephone: contactInfo.data.telephone,
         isLoaded: true

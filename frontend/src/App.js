@@ -12,6 +12,8 @@ import EditPortfolio from "./pages/EditPortfolio";
 import Login from "./pages/Login";
 import Account from "./pages/CreateAccount";
 import Browse from "./pages/Browse";
+import ViewPortfolio from "./pages/ViewPortfolio";
+import EnterAccessCode from "./pages/EnterAccessCode";
 
 // Import components
 import VisitorNavBar from "./components/VisitorNavBar";
@@ -43,6 +45,14 @@ function App() {
           <Route path="/browse">
             <VisitorNavBar />
             <Browse />
+          </Route>
+          <Route path="/viewPortfolio">
+            <VisitorNavBar />
+            <ViewPortfolio />
+          </Route>
+          <Route path="/enterAccessCode">
+            <VisitorNavBar />
+            <EnterAccessCode />
           </Route>
         </Switch>
         <Footer />

@@ -47,7 +47,7 @@ class PrivateToggle extends Component {
     let res;
 
     try {
-      res = await getPortfolioIsPrivate();
+      res = await getPortfolioIsPrivate(sessionStorage.getItem("accountId"));
     } catch (error) {
       console.error(error);
     }
