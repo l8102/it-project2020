@@ -74,13 +74,9 @@ export default class ProfilePicture extends Component {
             />
           </div>
           <div className="profile-img">
-            <div classname="preview-img">
-              <img src={this.state.currentImage} />
-            </div>
+            <img src={this.state.currentImage} alt="" />
           </div>
         </div>
-        
-        
       </div>
     )
   }

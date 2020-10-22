@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import "../css/Account.css";
 import { login } from "../Api.js"
-import GoogleLogin from "react-google-login";
 import GoogleLoginBtn from "../components/GoogleLoginBtn";
 
- class Login extends Component {
+  // todo handle permission to edit (security)
+  class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {

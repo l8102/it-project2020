@@ -1,283 +1,284 @@
 @import "ColourScheme.css";
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .portfolio-container {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  overflow: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    overflow: auto;
 }
 
 .tab-list {  border-bottom: 1px solid #ccc;
-  padding-left: 0;
+    padding-left: 0;
 }
 
 .tab-list-item {
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  padding: 1rem 0;
-  width: 24.9%;
-  text-align: center;
-  background-color: white;
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 1rem 0;
+    width: 24.9%;
+    text-align: center;
+    background-color: white;
 }
 
 .tab-list-active {
-  background-color: white;
-  border: solid #ccc;
-  border-width: 1px 1px 0 1px;
+    background-color: white;
+    border: solid #ccc;
+    border-width: 1px 1px 0 1px;
 }
 
 .user-info {
-  float: right;
-  width: 60%;
-  text-align: center;
+    float: right;
+    width: 60%;
+    text-align: center;
  }
 
 .name {
-  padding-bottom: 1em;
+    padding-bottom: 1em;
 }
 
 .img-container {
-  width: 25%;
-  padding-left: 10%;
-  text-align: center;
-  position: relative;
-  float: left;
+    width: 25%;
+    padding-left: 10%;
+    text-align: center;
+    position: relative;
+    float: left;
 }
 
 .img {
-  width: 25vh;
-  height: 25vh;
-  border: 1px dashed black;
+    width: 25vh;
+    height: 25vh;
+    border: 1px dashed black;
 }
 
 .p-text-box {
-  margin-left: 15%;
-  margin-top: 5px;
-  padding: 5px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  resize: none;
+    margin-left: 15%;
+    margin-top: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
 }
 
 .save-btn {
-  float: right;
-  margin-top: 5px;
-  margin-right: 15%;
-  padding: 5px;
-  border-radius: 5px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 15%;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .save-btn-tab {
-  display: block;
-  bottom: 0;
-  margin: 50px;
-  padding: 5px;
-  border-radius: 5px;
+    display: block;
+    bottom: 0;
+    margin: 50px;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .about-me-page, .links-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .about-me-page h1, .links-page h1, .links-page-view h1 {
-  margin: 40px;
+    margin: 40px;
 }
 
 .about-me-page form, .links-page form {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .about-me-page h2, .links-page-view h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: var(--green-border);
-  color: var(--white-text);
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--green-border);
+    color: var(--white-text);
 }
 
 .about-me-page label, .links-page label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: medium;
-  font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    font-size: medium;
+    font-weight: bold;
 }
 
 .links-page label {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .about-me-page section, .links-page section, .links-page-view section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--green-background);
-  overflow-y: auto;
-  margin: 0 auto;
-  width: 80%;
-  border-radius: 5px;
-  padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--green-background);
+    overflow-y: auto;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 5px;
+    padding-bottom: 20px;
 }
 
 .about-me-page section, .links-page-view section {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .links-page section {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .about-me-page button, .links-page button {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
 }
 
 .experience, .interest, .education {
-  padding: 5px;
-  width: 30%;
-  border: 2px solid #ccc;
-  margin-bottom: 10px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  border-radius: 2px;
+    padding: 5px;
+    width: 30%;
+    border: 2px solid #ccc;
+    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-radius: 2px;
 }
 
 .list-table {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .list-table table, .list-table th, .list-table td {
-  text-align: center;
-  padding: 5px;
+    text-align: center;
+    padding: 5px;
 }
 
 .list-table th, .list-table td {
-  width: 100%;
+    width: 100%;
 }
 
 .experience-col {
-  max-width: 100%;
-  display: inline-block;
-  word-wrap: break-word;
-  overflow: hidden;
+    max-width: 100%;
+    display: inline-block;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .list-table table {
-  width: 80%;
-  table-layout: fixed;
-  border-collapse: collapse;
+    width: 80%;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .description, .link {
-  display: inline-block;
-  text-align: left;
-  max-width: 100%;
-  word-wrap: break-word;
-  overflow: hidden;
-  padding: 40px;
+    display: inline-block;
+    text-align: left;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 40px;
 }
 
 .date {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
-  border: 2px solid #ccc;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
 }
 
 
 .add-remove-buttons {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .add-remove-button {
-  display: inline-block;
+    display: inline-block;
 }
 
 .about-me-page .text-box, select {
-  width: 90%;
-  height: 300px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  padding: 5px;
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
 
 
 
 .links-page input, .links-page .text-box, select {
-  border: 2px solid #ccc;
-  width: 80%;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  padding: 5px;
+    border: 2px solid #ccc;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
 .links-page-view {
-  text-align: center;
+    text-align: center;
 }
 
 
 .small-text-box, select {
-  display: block;
-  width: 70%;
-  height: 35px;
-  margin-bottom: 10px;
+    display: block;
+    width: 70%;
+    height: 35px;
+    margin-bottom: 10px;
 }
 
 .text-box, select {
-  display: block;
-  height: 300px;
-  margin-bottom: 10px;
-  resize: vertical;
-  overflow-y: auto;
-  border: 2px solid #ccc;
-  border-radius: 2px;
+    display: block;
+    height: 300px;
+    margin-bottom: 10px;
+    resize: vertical;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    border-radius: 2px;
 }
 
 .pp-container {
-  width: 40%;
+    width: 40%;
 }
 
 .img-container {
-  padding-left: 10%;
-  width: 100%;
+    padding-left: 10%;
+    width: 100%;
 }
 
 .upload-img {
-  float: left;
+    float: left;
 }
 
 .pp-btn {
-  float: right;
-  margin-right: 0;
+    float: right;
+    margin-right: 0;
 }
 
 .avatar {
-  padding-top: 2%;
-  
+    padding-top: 2%;
 }
 
 .pp-title {
-  text-align: center;
+    text-align: center;
 }
 
 .profile-img {
-  float: right;
-  margin-top: 10%;
+    float: right;
+    margin-top: 10%;
 }
 
-
+.contact-item {
+    display: block;
+}
