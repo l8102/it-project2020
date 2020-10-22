@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
-import PortfolioImage from "../components/PortfolioImage";
+import ProfilePicture from "../components/ProfilePicture";
 
 import { getPortfolioContactInfo, setPortfolioContactInfo, getAccount } from "../Api.js"
 
@@ -49,7 +49,7 @@ class EditPortfolio extends Component {
 
     try {
         contactInfo = await getPortfolioContactInfo();
-        account = await getAccount();
+        account = await getAccount(sessionStorage.getItem("accountId"));
     } catch (error) {
       console.error(error);
     }
@@ -157,7 +157,7 @@ class EditPortfolio extends Component {
             <this.contactInfoForm/>
             <PrivateToggle/>
           </div>
-          <PortfolioImage/>
+          <ProfilePicture/>
         </div>
         <Tabs>
           <div label="About Me">

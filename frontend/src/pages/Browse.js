@@ -12,7 +12,7 @@ class Browse extends Component {
       accountId: "",
       results: [],
       searchInput: "",
-      profileImage: undefined
+      profilePicture: undefined
     }
 
     // binding ensures that 'this' works properly
@@ -36,8 +36,6 @@ class Browse extends Component {
     this.setState({
       results: res.data
     })
-
-    console.log(this.state.results[0]._id.toString());
   }
 
   handleChange(e) {
@@ -90,7 +88,7 @@ class Browse extends Component {
               accountId = {result._id.toString()}
               firstName = {result.firstName}
               lastName = {result.lastName}
-              profileImage = {result.profileImage}
+              profilePicture = {result.profilePicture}
             />
           ))}
         </div>

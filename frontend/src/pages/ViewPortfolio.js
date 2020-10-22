@@ -30,7 +30,7 @@ class ViewPortfolio extends Component {
     // Read in
     try {
       contactInfo = await getPortfolioContactInfo();
-      account = await getAccount();
+      account = await getAccount(sessionStorage.getItem("accountId"));
       privacy = await getPortfolioIsPrivate();
     } catch (error) {
       console.error(error);

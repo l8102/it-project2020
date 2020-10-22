@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
 const bcrypt = require('bcrypt');
+const {cloudinary} = require('../utils/cloudinary');
 
 // import controllers to create the portfolio and its components
 const portfolioControllers = require('../controllers/portfolioControllers');
@@ -26,7 +27,7 @@ var createAccount = function(req, res, next) {
             fullName: (req.body.firstName + " " + req.body.lastName).toLowerCase(),
             email: req.body.email,
             password: hash,
-            profileImage: req.body.profileImage,
+            profilePicture: req.body.profilePicture,
         };
 
         const data = new Account(accountInfo);
@@ -96,7 +97,7 @@ var googleLogin = function(req, res) {
                             fullName: (given_name + " " + family_name).toLowerCase(),
                             email: email,
                             password: password,
-                            profileImage: picture
+                            profilePicture: picture
 							          };
                         const data = new Account(newAccount);
                         data.save();
@@ -157,7 +158,7 @@ var readAccount = function(req, res) {
                 firstName: account.firstName,
                 lastName: account.lastName,
                 email: account.email,
-                profileImage: account.profileImage
+                profilePicture: account.profilePicture
             }
 
             res.json(data);
@@ -226,23 +227,56 @@ var updateName = function(req, res, next) {
 };
 
 
-// Update Profile Image
-var updateProfileImage = function (req, res, next) {
-    var id = req.body.id;
-
-    //finds account by an id and updates name
-    Account.findById(id, function (err, doc) {
-        if (err || doc == undefined) {
-            console.error('error, no account found');
-        } else {
-            doc.profileImage = req.body.profileImage;
-            console.log('profile Image updated');
-
-            doc.save();
-            res.redirect('/');
-        }
+const updateProfilePicture = async function (req, res) {
+  try {
+    const fileStr = req.body.data;
+    const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
+      upload_preset: 'ProfilePicture',
     });
-};
+
+    console.log(uploadResponse);
+    console.log(uploadResponse.url);
+
+    Account.findById(req.body.accountId, function(err, account) {
+
+      if (err || account === undefined) {
+        console.error("Account not found");
+        res.send("false");
+        return false;
+      } else {
+        account.profilePicture = uploadResponse.url;
+        account.save();
+
+        console.log("Account updated");
+        res.json(account);
+        return true;
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+}
+
+// todo remove maybe
+// Update Profile Image
+// var updateProfileImage = function (req, res, next) {
+//     var id = req.body.id;
+//
+//     //finds account by an id and updates name
+//     Account.findById(id, function (err, doc) {
+//         if (err || doc == undefined) {
+//             console.error('error, no account found');
+//         } else {
+//             doc.profileImage = req.body.profileImage;
+//             console.log('profile Image updated');
+//
+//             doc.save();
+//             res.redirect('/');
+//         }
+//     });
+// };
 
 
 
@@ -268,7 +302,7 @@ module.exports = {
     login,
     deleteAccount,
     updateName,
-    updateProfileImage,
+    updateProfilePicture,
     readAccount,
     readAllByFullName,
     readAll

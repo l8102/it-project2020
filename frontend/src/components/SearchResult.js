@@ -35,7 +35,7 @@ class SearchResult extends Component {
         <label className="search-result-label-text">
           {this.props.firstName + " " + this.props.lastName}
         </label>
-        <img className="search-result-image" src={this.props.profileImage} alt="" />
+        <img className="search-result-picture" src={this.props.profilePicture} alt="" />
       </div>
 
     )
