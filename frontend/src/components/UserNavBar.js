@@ -4,6 +4,19 @@ import "../css/Nav.css"
 import Footer from "./Footer";
 
 class UserNavBar extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  // On logout, wipe the stored account Id and permissions
+  handleLogout() {
+    sessionStorage.removeItem("permissionToEdit");
+    sessionStorage.removeItem("accountId");
+  }
+
   render() {
     return (
       <div>
@@ -16,7 +29,7 @@ class UserNavBar extends Component {
           <div className="nav-bar">
             <ul>
               <li><a href="/editPortfolio">My Portfolio</a></li>
-              <li><a href="/">Log Out</a></li>
+              <li><a href="/" onClick={this.handleLogout}>Log Out </a></li>
             </ul>
           </div>
         </div>

@@ -44,19 +44,19 @@ class PrivateToggle extends Component {
   async componentDidMount() {
 
     console.log("running");
-    let res;
+    let privacy;
+    const accountId = sessionStorage.getItem("accountId");
 
     try {
-      res = await getPortfolioIsPrivate(sessionStorage.getItem("accountId"));
+      privacy = await getPortfolioIsPrivate(accountId);
     } catch (error) {
       console.error(error);
     }
 
-    // todo VERY IMPORTANT ! ! !
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      isToggleOn: res.data.isPrivate,
+      isToggleOn: privacy.data.isPrivate,
       isLoaded: true
     })
   }

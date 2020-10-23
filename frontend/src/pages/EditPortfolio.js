@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "../css/Portfolio.css";
+
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
 
@@ -23,13 +24,14 @@ class EditPortfolio extends Component {
     super(props);
 
       this.state = {
-          firstName: '',
-          lastName: '',
-          profilePicture: '',
-          email: '',
-          telephone: '',
+        firstName: '',
+        lastName: '',
+        profilePicture: '',
+        email: '',
+        telephone: '',
         emailInput: '',
         telephoneInput: '',
+        isPrivate: '',
         isLoaded: false
     };
 
@@ -37,17 +39,18 @@ class EditPortfolio extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
+    this.hasPermissionToEdit = this.hasPermissionToEdit.bind(this);
   }
 
   async componentDidMount() {
 
     console.log("running");
-      let contactInfo;
-      let account;
+    let contactInfo, account;
+    const accountId = sessionStorage.getItem("accountId")
 
     try {
-        contactInfo = await getPortfolioContactInfo();
-        account = await getAccount(sessionStorage.getItem("accountId"));
+        contactInfo = await getPortfolioContactInfo(accountId);
+        account = await getAccount();
     } catch (error) {
       console.error(error);
     }
@@ -55,8 +58,8 @@ class EditPortfolio extends Component {
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
       this.setState({
-          firstName: account.data.firstName,
-          lastName: account.data.lastName,
+        firstName: account.data.firstName,
+        lastName: account.data.lastName,
         profilePicture: account.data.profilePicture,
         email: contactInfo.data.email,
         telephone: contactInfo.data.telephone,
@@ -136,42 +139,59 @@ class EditPortfolio extends Component {
     )
   }
 
+  // Returns if the account Id that the user has permission to edit matches
+  // The account Id stored in session storage
+  // Also checks that the account Id is not null
+  hasPermissionToEdit() {
+    const accountId = sessionStorage.getItem("accountId");
+    const permissionToEdit = sessionStorage.getItem("permissionToEdit");
+    return (accountId === permissionToEdit && accountId !== null);
+  }
+
   render() {
-    return (
-      <div>
-        <div className="portfolio-container">
-          <div className="user-info">
-            <h1 className="name">
-              {this.state.firstName + " " + this.state.lastName}
-            </h1>
-            <h3>
-              Contact Information
-            </h3>
-            <this.contactInfoForm/>
-            <PrivateToggle/>
-          </div>
-          <ProfilePicture/>
+    if (!this.hasPermissionToEdit()) {
+      return (
+        <div className="access-denied">
+          Access Denied
         </div>
-        <Tabs>
-          <div label="About Me">
-            <EditAbout />
-            <ViewAbout />
+      )
+    } else {
+      return (
+        <div>
+          <div className="portfolio-container">
+            <div className="user-info">
+              <h1 className="name">
+                {this.state.firstName + " " + this.state.lastName}
+              </h1>
+              <h3>
+                Contact Information
+              </h3>
+              <this.contactInfoForm/>
+              <PrivateToggle/>
+            </div>
+            <ProfilePicture/>
           </div>
-          <div label="Gallery">
-            <EditGallery />
-            <ViewGallery />
-          </div>
-          <div label="Files">
-            <EditFiles />
-            <ViewFiles />
-          </div>
-          <div label="Links">
-            <EditLinks />
-            <ViewLinks />
-          </div>
-        </Tabs>
-      </div>
-    );
+          <Tabs>
+            <div label="About Me">
+              <EditAbout />
+              <ViewAbout />
+            </div>
+            <div label="Gallery">
+              <EditGallery />
+              <ViewGallery />
+            </div>
+            <div label="Files">
+              <EditFiles />
+              <ViewFiles />
+            </div>
+            <div label="Links">
+              <EditLinks />
+              <ViewLinks />
+            </div>
+          </Tabs>
+        </div>
+      );
+    }
   }
 }
 

@@ -22,6 +22,9 @@ class ViewPortfolio extends Component {
       telephone: '',
       isLoaded: false
     };
+
+    // This binding is necessary to make 'this' work in the callback
+    this.hasPermissionToView = this.hasPermissionToView.bind(this);
   }
 
   // todo use this as a template
@@ -49,46 +52,63 @@ class ViewPortfolio extends Component {
     })
   }
 
+  // Returns if the account Id that the user has permission to view matches
+  // The account Id stored in session storage
+  // Also checks that the account Id is not null
+  hasPermissionToView() {
+    const accountId = sessionStorage.getItem("accountId");
+    const permissionToView = sessionStorage.getItem("permissionToView");
+    return (accountId === permissionToView && accountId !== null);
+  }
+
   render() {
-    return (
-      <div>
-        <div className="portfolio-container">
-          <div className="user-info">
-            <h1 className="name">
-              {this.state.firstName + " " + this.state.lastName}
-            </h1>
-            <h3>
-              Contact Information
-            </h3>
-            <label className="contact-item">
-              { this.state.email }
-            </label>
-            <label className="contact-item">
-              { this.state.telephone }
-            </label>
-          </div>
-          <div className="pp-container">
-            <div className="profile-img">
-              <img  src={this.state.profilePicture} alt="" />
+    if (!this.hasPermissionToView()) {
+      return (
+        <div className="access-denied">
+          Access Denied
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <div className="portfolio-container">
+            <div className="user-info">
+              <h1 className="name">
+                {this.state.firstName + " " + this.state.lastName}
+              </h1>
+              <h3>
+                Contact Information
+              </h3>
+              <label className="contact-item">
+                {this.state.email}
+              </label>
+              <label className="contact-item">
+                {this.state.telephone}
+              </label>
+            </div>
+            <div className="pp-container">
+              <div className="profile-img">
+                <img src={this.state.profilePicture} alt=""/>
+              </div>
             </div>
           </div>
+          <Tabs>
+            <div label="About Me">
+              <ViewAbout/>
+            </div>
+            <div label="Gallery">
+              <ViewGallery/>
+            </div>
+            <div label="Files">
+              <ViewFiles/>
+            </div>
+            <div label="Links">
+              <ViewLinks/>
+            </div>
+          </Tabs>
         </div>
-        <Tabs>
-          <div label="About Me">
-            <ViewAbout />
-          </div>
-          <div label="Gallery">
-            <ViewGallery />
-          </div>
-          <div label="Files">
-            <ViewFiles />
-          </div>
-          <div label="Links">
-            <ViewLinks />
-          </div>
-        </Tabs>
-      </div>
-    );
+      );
+    }
   }
 }
 

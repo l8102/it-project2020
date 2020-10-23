@@ -282,3 +282,11 @@
 .contact-item {
     display: block;
 }
+
+.access-denied {
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+    font-size: xx-large;
+    padding: 100px;
+}
