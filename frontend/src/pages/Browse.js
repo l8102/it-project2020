@@ -71,6 +71,7 @@ class Browse extends Component {
   render() {
     return (
       <div className="browse-container">
+        <h2 className="browse-title"> Browse Portfolios </h2>
         <form onSubmit={ this.handleSubmit } className="search-bar">
           <input
             className="search-bar"

@@ -1,25 +1,22 @@
 /* Colour Scheme for Eagle ePortfolio */
 
 :root {
-    --blue-background: #c0d0d7;
-    --blue-border:#347b98;
-    --blue-highlight: #10465b;
-    --blue-shadow: #10465b;
+    --light-blue: #c0d0d7;
+    --mid-blue:#347b98;
+    --dark-blue: #10465b;
 
-    --green-background: #c9dbd5;
-    --green-border: #239d99;
-    --green-highlight: #176966;
-    --green-shadow: #176966;
+    --light-green: #c9dbd5;
+    --mid-green: #239d99;
+    --dark-green: #176966;
 
-    --white-text: white;
-    --black-text: black;
-    --black-shadow: black;
+    --white: white;
+    --black: black;
 
     /* This ensure the page fills the whole screen*/
     margin: 0;
 
     /* Set the default background colour*/
-    background-color: var(--blue-background);
+    background-color: var(--light-blue);
 
     /* Set the standard font */
     font-family: arial, serif;

@@ -5,9 +5,13 @@ import "../css/Footer.css"
 class Footer extends Component {
   render() {
     return (
-      <footer>
-        <p>&copy; Copyright 2020, Eagle Solutions</p>
-        <p>Gemma Seeley, Glenn Phillips, Jasmine Bond, Michael Lowe</p>
+      <footer className="footer" >
+        <p className="footer-text" >
+          &copy; Copyright 2020, Eagle Solutions
+        </p>
+        <p className="footer-text" >
+          Gemma Seeley, Glenn Phillips, Jasmine Bond, Michael Lowe
+        </p>
       </footer>
     )
   }

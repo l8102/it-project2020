@@ -3,7 +3,7 @@
 
 /* This ensures content isn't hidden behind the nav bar */
 .nav-bar-offset {
-    padding-top: 55px;
+    padding-top: 45px;
     position: relative;
     visibility: hidden;
 }
@@ -16,9 +16,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    color: var(--white-text);
-    background-color: var(--blue-border);
-    box-shadow: 0 0 10px var(--blue-shadow);
+    color: var(--white);
+    background-color: var(--mid-blue);
+    box-shadow: 0 0 10px var(--dark-blue);
 }
 
 .nav-bar-container h1 {
@@ -57,5 +57,5 @@
 }
 
 .nav-bar a:hover {
-    background-color: var(--blue-shadow);
+    background-color: var(--dark-blue);
 }

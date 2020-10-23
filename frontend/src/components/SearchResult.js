@@ -51,19 +51,20 @@ class SearchResult extends Component {
 
   render() {
     return(
-      <div className="search-result">
+      // <div className="search-result">
         <button
           className="search-result-button"
           onClick={this.handleClick}
         >
+          <div className="picture-background">
+            <img className="search-result-picture" src={this.props.profilePicture} alt="" />
+          </div>
+          <label className="search-result-label">
+            {this.props.firstName + " " + this.props.lastName}
+          </label>
         </button>
-        <div className="search-result-label-background"/>
-        <label className="search-result-label-text">
-          {this.props.firstName + " " + this.props.lastName}
-        </label>
-        <img className="search-result-picture" src={this.props.profilePicture} alt="" />
-      </div>
 
+      // </div>
     )
   }
 }
