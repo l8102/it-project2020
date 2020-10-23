@@ -1,4 +1,4 @@
-@import "ColourScheme.css";
+@import "DefaultStyles.css";
 
 * {
     margin: 0;
@@ -9,6 +9,18 @@
     padding-top: 5%;
     padding-bottom: 5%;
     overflow: auto;
+}
+
+.private-toggle-container {
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 50% 50%;
+}
+
+.private-toggle-item {
+    text-align: center;
+    padding: 10px 30px;
 }
 
 .tab-list {  border-bottom: 1px solid #ccc;

@@ -1,5 +1,5 @@
 /* Import the default colour scheme for the website */
-@import "ColourScheme.css";
+@import "DefaultStyles.css";
 
 /* This ensures content isn't hidden behind the nav bar */
 .nav-bar-offset {
@@ -15,7 +15,7 @@
     left: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     color: var(--white);
     background-color: var(--mid-blue);
     box-shadow: 0 0 10px var(--dark-blue);
@@ -28,6 +28,7 @@
     margin-top: 10px;
     margin-left: 15px;
     margin-bottom: 0;
+    padding-right: 0;
 }
 
 .nav-bar {

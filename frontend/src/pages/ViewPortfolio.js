@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../css/Portfolio.css";
 
-import { getPortfolioContactInfo, getAccount } from "../Api.js"
+import { getPortfolio, getAccount } from "../Api.js"
 import ViewAbout from "./pcomponents/ViewAbout";
 import ViewGallery from "./pcomponents/ViewGallery";
 import ViewFiles from "./pcomponents/ViewFiles";
@@ -28,13 +28,13 @@ class ViewPortfolio extends Component {
 
   async componentDidMount() {
     console.log("running");
-    let contactInfo;
+    let portfolio;
     let account;
     const accountId = sessionStorage.getItem("accountId");
 
     // Read in
     try {
-      contactInfo = await getPortfolioContactInfo();
+      portfolio = await getPortfolio(accountId);
       account = await getAccount(accountId);
     } catch (error) {
       console.error(error);
@@ -45,8 +45,8 @@ class ViewPortfolio extends Component {
       firstName: account.data.firstName,
       lastName: account.data.lastName,
       profilePicture: account.data.profilePicture,
-      email: contactInfo.data.email,
-      telephone: contactInfo.data.telephone,
+      email: portfolio.data.email,
+      telephone: portfolio.data.telephone,
       isLoaded: true
     })
   }

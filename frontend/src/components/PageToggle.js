@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
-import "../css/ColourScheme.css"
+import "../css/DefaultStyles.css"
 
 // import the colours from the css
 const blueBorder = getComputedStyle(document.documentElement)

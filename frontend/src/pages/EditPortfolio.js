@@ -4,7 +4,7 @@ import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
 
-import { getPortfolioContactInfo, setPortfolioContactInfo, getAccount } from "../Api.js"
+import { setPortfolioContactInfo, getPortfolio, getAccount } from "../Api.js"
 
 // Import page components
 import Tabs from "./pcomponents/Tabs";
@@ -44,11 +44,11 @@ class EditPortfolio extends Component {
   async componentDidMount() {
 
     console.log("running");
-    let contactInfo, account;
-    const accountId = sessionStorage.getItem("accountId")
+    let portfolio, account;
+    const accountId = sessionStorage.getItem("accountId");
 
     try {
-        contactInfo = await getPortfolioContactInfo(accountId);
+        portfolio = await getPortfolio(accountId);
         account = await getAccount(accountId);
     } catch (error) {
       console.error(error);
@@ -60,8 +60,8 @@ class EditPortfolio extends Component {
         firstName: account.data.firstName,
         lastName: account.data.lastName,
         profilePicture: account.data.profilePicture,
-        email: contactInfo.data.email,
-        telephone: contactInfo.data.telephone,
+        email: portfolio.data.email,
+        telephone: portfolio.data.telephone,
         isLoaded: true
     })
   }

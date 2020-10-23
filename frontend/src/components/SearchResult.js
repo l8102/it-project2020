@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../css/Browse.css";
 import { withRouter } from 'react-router-dom';
-import {getPortfolioIsPrivate} from "../Api";
+import {getPortfolio} from "../Api";
 
 class SearchResult extends Component {
 
@@ -16,9 +16,9 @@ class SearchResult extends Component {
   }
 
   async componentDidMount() {
-    const privacy = await getPortfolioIsPrivate(this.props.accountId);
+    const portfolio = await getPortfolio(this.props.accountId);
     this.setState( {
-      isPrivate: privacy.data.isPrivate
+      isPrivate: portfolio.data.isPrivate
     })
   }
 

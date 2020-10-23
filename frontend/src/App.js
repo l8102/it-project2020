@@ -4,7 +4,7 @@ import {
   Switch, 
   Route
 } from "react-router-dom";
-import "./css/Portfolio.css";
+import "./css/DefaultStyles.css";
 
 // Import pages
 import Landing from "./pages/Landing";
@@ -24,37 +24,41 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <NavBar />
-            <Landing />
-          </Route>
-          <Route path="/editPortfolio">
-            <NavBar />
-            <EditPortfolio/>
-          </Route>
-          <Route path="/createAccount">
-            <NavBar />
-            <Account />
-          </Route>
-          <Route path="/login">
-            <NavBar />
-            <Login />
-          </Route>
-          <Route path="/browse">
-            <NavBar />
-            <Browse />
-          </Route>
-          <Route path="/viewPortfolio">
-            <NavBar />
-            <ViewPortfolio/>
-          </Route>
-          <Route path="/enterAccessCode">
-            <NavBar />
-            <EnterAccessCode />
-          </Route>
-        </Switch>
-        <Footer />
+        <div className="page-container" >
+          <div className="body-container">
+            <Switch>
+              <Route exact path="/">
+                <NavBar />
+                <Landing />
+              </Route>
+              <Route path="/editPortfolio">
+                <NavBar />
+                <EditPortfolio/>
+              </Route>
+              <Route path="/createAccount">
+                <NavBar />
+                <Account />
+              </Route>
+              <Route path="/login">
+                <NavBar />
+                <Login />
+              </Route>
+              <Route path="/browse">
+                <NavBar />
+                <Browse />
+              </Route>
+              <Route path="/viewPortfolio">
+                <NavBar />
+                <ViewPortfolio/>
+              </Route>
+              <Route path="/enterAccessCode">
+                <NavBar />
+                <EnterAccessCode />
+              </Route>
+            </Switch>
+          </div>
+          <Footer />
+        </div>
       </div>
     </Router>
   );

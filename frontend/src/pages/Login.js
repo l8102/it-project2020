@@ -33,7 +33,6 @@ class Login extends Component {
   }
 
   // Function handles submission of login form to the database
-  // todo removed async, maybe add back in
   async handleSubmit(e) {
     e.preventDefault();
 

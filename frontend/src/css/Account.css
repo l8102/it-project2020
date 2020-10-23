@@ -1,4 +1,4 @@
-@import "ColourScheme.css";
+@import "DefaultStyles.css";
 
 .form-container {
    display: flex;
@@ -7,7 +7,7 @@
 
 .account-form {
     text-align: center;
-    background-color: #c9dbd5;
+    background-color: var(--light-green);
     color: var(--dark-green);
     margin-top: 10%;
     margin-bottom: 10%;

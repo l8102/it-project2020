@@ -21,3 +21,12 @@
     /* Set the standard font */
     font-family: arial, serif;
 }
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.body-container {
+    padding-bottom: 72px;
+}
