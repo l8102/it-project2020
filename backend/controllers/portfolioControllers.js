@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
+const RandomString = require("randomstring");
 
 // todo fix this
 // const jwt = require("jsonwebtoken");
@@ -13,9 +14,10 @@ const { UserRefreshClient } = require('google-auth-library');
 const create = function (accountId, email) {
 
   let portfolio = {
-      accountId: accountId,
-      email: email, 
-
+    accountId: accountId,
+    email: email,
+    // Generate a random string of length 6
+    accessCode: RandomString.generate(6)
   };
 
   // creates a new portfolio using the account id
@@ -25,7 +27,6 @@ const create = function (accountId, email) {
   data.save();
   console.log("portfolio created")
 };
-
 
 const contactInfo = async (req, res) => {
   //should be able to see the logged in user based on the token

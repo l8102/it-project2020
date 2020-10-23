@@ -3,7 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
-import { getPortfolioIsPrivate, setPortfolioIsPrivate } from "../Api.js"
+import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
 
 // import the colours from the css
 const midBlue = getComputedStyle(document.documentElement)
@@ -30,21 +30,23 @@ class PrivateToggle extends Component {
 
     this.state = {
       isToggleOn: false,
+      accessCode: "",
       isLoaded: false
     };
 
     // This binding is necessary to make 'this' work in the callback
     this.handleChange = this.handleChange.bind(this);
+    this.displayAccessCode = this.displayAccessCode.bind(this);
   }
 
   async componentDidMount() {
 
     console.log("running");
-    let privacy;
+    let portfolio;
     const accountId = sessionStorage.getItem("accountId");
 
     try {
-      privacy = await getPortfolioIsPrivate(accountId);
+      portfolio = await getPortfolio(accountId);
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +54,8 @@ class PrivateToggle extends Component {
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      isToggleOn: privacy.data.isPrivate,
+      isToggleOn: portfolio.data.isPrivate,
+      accessCode: portfolio.data.accessCode,
       isLoaded: true
     })
   }
@@ -68,6 +71,20 @@ class PrivateToggle extends Component {
     }));
 
 
+  }
+
+  displayAccessCode() {
+    if (this.state.isToggleOn) {
+      return (
+        <div>
+          Your Access Code Is {this.state.accessCode}
+        </div>
+      )
+    } else {
+      return (
+        <div/>
+      )
+    }
   }
 
   render() {
@@ -93,6 +110,7 @@ class PrivateToggle extends Component {
             label="Private Mode"
             labelPlacement="start"
           />
+          <this.displayAccessCode/>
         </div>
       )
     }

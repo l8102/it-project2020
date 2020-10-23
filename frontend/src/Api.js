@@ -180,49 +180,6 @@ export function getAllAccountsByFullName(fullName) {
 
 // *** Browse Page END ***
 
-export function getPortfolioContactInfo() {
-
-    // make request for portfolio
-    return new Promise(function (resolve) {
-        axios({
-            method: "get",
-            url: BASE_URL + "/api/portfolio/readByAccountId",
-            params: {
-                accountId: sessionStorage.getItem("accountId"),
-            }
-        })
-            .then(function (response) {
-                resolve(response);
-            }).catch(function (error) {
-                console.error(error);
-            });
-    });
-}
-
-export function setPortfolioContactInfo(newEmail, newTelephone) {
-
-    return new Promise(function (resolve) {
-        axios({
-            method: "put",
-            url: BASE_URL + "/api/portfolio/updateByAccountId",
-            data: {
-                accountId: sessionStorage.getItem("accountId"),
-                email: newEmail,
-                telephone: newTelephone
-            }
-        })
-            .then(function (response) {
-                resolve(response);
-            }).catch(function (error) {
-                console.error(error);
-            });
-    });
-
-}
-
-
-
-
 /** sends the encoded image to the backend function upload */
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
@@ -273,7 +230,7 @@ export function getImages() {
 
 
 // ----- getPortfolioByAccountId -----
-export function getPortfolioIsPrivate(accountId) {
+export function getPortfolio(accountId) {
 
   // make request for portfolio
   return new Promise( function (resolve) {
@@ -312,6 +269,26 @@ export function setPortfolioIsPrivate(isPrivate) {
   });
 }
 
+export function setPortfolioContactInfo(newEmail, newTelephone) {
+
+  return new Promise(function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/portfolio/updateByAccountId",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        email: newEmail,
+        telephone: newTelephone
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+
+}
 
 // Update about Me
 export function updateAboutMe(state) {

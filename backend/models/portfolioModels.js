@@ -12,6 +12,10 @@ const portfolioSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  accessCode: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
   },

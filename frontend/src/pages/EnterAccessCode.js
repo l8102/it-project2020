@@ -1,19 +1,36 @@
 import React, {Component} from 'react';
-// import "../css/EnterAccessCode.css";
+import "../css/AccessCode.css";
 import { withRouter } from 'react-router-dom';
-// import SearchResult from "../components/SearchResult";
-// import {getAllAccountsByFullName, getAllAccounts} from "../Api";
+import {getAccount, getPortfolio} from "../Api";
 
 class EnterAccessCode extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      firstName: '',
       accessCode: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  async componentDidMount() {
+
+    let account;
+
+    // Read in
+    try {
+      account = await getAccount(sessionStorage.getItem("accountIdTemp"));
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.setState({
+      fullName: account.data.firstName + " " + account.data.lastName
+    })
+
   }
 
   // Method to handle change in input
@@ -25,20 +42,24 @@ class EnterAccessCode extends Component {
   async handleSubmit(e) {
     e.preventDefault();
 
-    let res;
-
-    // todo get access code from database
-    //   will be generated at portfolio creation
-
-    const accessCode = "123"
-
+    let portfolio;
     const accountIdTemp = sessionStorage.getItem("accountIdTemp");
 
-    if (this.state.accessCode === accessCode) {
+    // Read in the portfolio
+    try {
+      portfolio = await getPortfolio(accountIdTemp);
+    } catch (error) {
+      console.error(error);
+    }
+
+    // Check if the access code matches
+    if (this.state.accessCode === portfolio.data.accessCode) {
       // Store the account id that the user can view
       sessionStorage.setItem("accountIdForView", accountIdTemp);
       // Navigate to the view portfolio page
       this.props.history.push("/viewPortfolio");
+
+    // Otherwise have the user try again
     } else {
       alert("Incorrect access code");
     }
@@ -46,20 +67,18 @@ class EnterAccessCode extends Component {
 
     render() {
     return (
-      <div>
-        <h1 className="private-access-title" >
-          This portfolio is private. Please enter the access code below.
+      <div className="access-code-container" >
+        <h1 className="access-code-title" >
+          {this.state.fullName} has their portfolio set to private
         </h1>
         <form onSubmit={this.handleSubmit}>
           <input
             type="password"
             name="accessCode"
             value={this.state.accessCode}
+            placeholder="Please enter the access code here"
             onChange={this.handleChange}
           />
-          <button type="submit" className="access-code-btn">
-            Enter
-          </button>
         </form>
       </div>
     );
