@@ -3,6 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
+import "../css/Portfolio.css"
 import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
 
 // import the colours from the css
@@ -76,7 +77,7 @@ class PrivateToggle extends Component {
   displayAccessCode() {
     if (this.state.isToggleOn) {
       return (
-        <div>
+        <div className="private-toggle-item" >
           Your Access Code Is {this.state.accessCode}
         </div>
       )
@@ -96,10 +97,11 @@ class PrivateToggle extends Component {
       )
     } else {
       return(
-        <div>
+        <div className="private-toggle-container">
           <FormControlLabel
             control={
               <CustomSwitch
+                className="private-toggle-item"
                 checked={this.state.isToggleOn}
                 onChange={this.handleChange}
                 color="primary"
