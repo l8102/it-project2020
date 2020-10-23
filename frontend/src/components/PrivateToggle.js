@@ -6,26 +6,23 @@ import "../css/ColourScheme.css"
 import { getPortfolioIsPrivate, setPortfolioIsPrivate } from "../Api.js"
 
 // import the colours from the css
-const blueBorder = getComputedStyle(document.documentElement)
-  .getPropertyValue('--blue-border');
+const midBlue = getComputedStyle(document.documentElement)
+  .getPropertyValue('--mid-blue');
 
 // create custom coloured switch
 const CustomSwitch = withStyles({
   switchBase: {
-    color: blueBorder,
+    color: midBlue,
     '&$checked': {
-      color: blueBorder,
+      color: midBlue,
     },
     '&$checked + $track': {
-      backgroundColor: blueBorder,
+      backgroundColor: midBlue,
     },
   },
   checked: {},
   track: {},
 })(Switch);
-
-// todo clean this up
-// todo is being called twice, how to prevent this? (preventDefault???) - maybe not an issue
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -37,26 +34,25 @@ class PrivateToggle extends Component {
     };
 
     // This binding is necessary to make 'this' work in the callback
-    // todo learn about bindings
     this.handleChange = this.handleChange.bind(this);
   }
 
   async componentDidMount() {
 
     console.log("running");
-    let res;
+    let privacy;
+    const accountId = sessionStorage.getItem("accountId");
 
     try {
-      res = await getPortfolioIsPrivate(sessionStorage.getItem("accountId"));
+      privacy = await getPortfolioIsPrivate(accountId);
     } catch (error) {
       console.error(error);
     }
 
-    // todo VERY IMPORTANT ! ! !
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      isToggleOn: res.data.isPrivate,
+      isToggleOn: privacy.data.isPrivate,
       isLoaded: true
     })
   }

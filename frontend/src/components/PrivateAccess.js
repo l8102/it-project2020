@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PrivateToggle from "./PrivateToggle";
 
 // import css
 

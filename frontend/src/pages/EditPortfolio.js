@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "../css/Portfolio.css";
+
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
 
@@ -16,20 +17,20 @@ import ViewFiles from "./pcomponents/ViewFiles";
 import EditLinks from "./pcomponents/EditLinks";
 import ViewLinks from "./pcomponents/ViewLinks";
 
-// todo handle permission to edit (security)
 class EditPortfolio extends Component {
 
   constructor(props) {
     super(props);
 
       this.state = {
-          firstName: '',
-          lastName: '',
-          profilePicture: '',
-          email: '',
-          telephone: '',
+        firstName: '',
+        lastName: '',
+        profilePicture: '',
+        email: '',
+        telephone: '',
         emailInput: '',
         telephoneInput: '',
+        isPrivate: '',
         isLoaded: false
     };
 
@@ -37,17 +38,18 @@ class EditPortfolio extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
+    this.ableToEdit = this.ableToEdit.bind(this);
   }
 
   async componentDidMount() {
 
     console.log("running");
-      let contactInfo;
-      let account;
+    let contactInfo, account;
+    const accountId = sessionStorage.getItem("accountId")
 
     try {
-        contactInfo = await getPortfolioContactInfo();
-        account = await getAccount(sessionStorage.getItem("accountId"));
+        contactInfo = await getPortfolioContactInfo(accountId);
+        account = await getAccount(accountId);
     } catch (error) {
       console.error(error);
     }
@@ -55,8 +57,8 @@ class EditPortfolio extends Component {
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
       this.setState({
-          firstName: account.data.firstName,
-          lastName: account.data.lastName,
+        firstName: account.data.firstName,
+        lastName: account.data.lastName,
         profilePicture: account.data.profilePicture,
         email: contactInfo.data.email,
         telephone: contactInfo.data.telephone,
@@ -136,42 +138,65 @@ class EditPortfolio extends Component {
     )
   }
 
+  // Returns if there is an account id that the user can edit
+  // Sets the accountId if true
+  ableToEdit() {
+    const accountIdForEdit = sessionStorage.getItem("accountIdForEdit");
+    if (accountIdForEdit !== null) {
+      sessionStorage.setItem("accountId", accountIdForEdit);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
-    return (
-      <div>
-        <div className="portfolio-container">
-          <div className="user-info">
-            <h1 className="name">
-              {this.state.firstName + " " + this.state.lastName}
-            </h1>
-            <h3>
-              Contact Information
-            </h3>
-            <this.contactInfoForm/>
-            <PrivateToggle/>
+    // If the user is able to edit, render the page normally
+    if (this.ableToEdit()) {
+      return (
+        <div>
+          <div className="portfolio-container">
+            <div className="user-info">
+              <h1 className="name">
+                {this.state.firstName + " " + this.state.lastName}
+              </h1>
+              <h3>
+                Contact Information
+              </h3>
+              <this.contactInfoForm/>
+              <PrivateToggle/>
+            </div>
+            <ProfilePicture/>
           </div>
-          <ProfilePicture/>
+          <Tabs>
+            <div label="About Me">
+              <EditAbout />
+              <ViewAbout />
+            </div>
+            <div label="Gallery">
+              <EditGallery />
+              <ViewGallery />
+            </div>
+            <div label="Files">
+              <EditFiles />
+              <ViewFiles />
+            </div>
+            <div label="Links">
+              <EditLinks />
+              <ViewLinks />
+            </div>
+          </Tabs>
         </div>
-        <Tabs>
-          <div label="About Me">
-            <EditAbout />
-            <ViewAbout />
-          </div>
-          <div label="Gallery">
-            <EditGallery />
-            <ViewGallery />
-          </div>
-          <div label="Files">
-            <EditFiles />
-            <ViewFiles />
-          </div>
-          <div label="Links">
-            <EditLinks />
-            <ViewLinks />
-          </div>
-        </Tabs>
-      </div>
-    );
+      );
+
+    // Otherwise, deny access
+    } else {
+      return (
+        <div className="access-denied">
+          Access Denied
+        </div>
+      )
+    }
   }
 }
 

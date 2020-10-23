@@ -28,23 +28,20 @@ class SearchResult extends Component {
     // Prevent it being automatically clicked on load
     e.preventDefault();
 
-    // Store the account Id
-    sessionStorage.setItem("accountId", this.props.accountId);
-
-    // If the portfolio is private, redirect to access code page
+    // If the portfolio is private
     if (this.state.isPrivate) {
 
-      // todo handle permission to view
-
-      // Navigate to the portfolio
+      // The user cannot view the account id yet,
+      // Instead store the account id temporarily
+      sessionStorage.setItem("accountIdTemp",  this.props.accountId);
+      // Redirect to access code page
       this.props.history.push("/enterAccessCode");
 
-    // Otherwise redirect to view portfolio page
+    // Otherwise if the portfolio is not private
     } else {
-
-      // todo handle permission to view
-
-      // Navigate to the portfolio
+      // Store the account id that the user can view
+      sessionStorage.setItem("accountIdForView", this.props.accountId);
+      // Navigate to the view portfolio page
       this.props.history.push("/viewPortfolio");
     }
   }

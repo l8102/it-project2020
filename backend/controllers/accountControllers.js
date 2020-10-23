@@ -259,28 +259,6 @@ const updateProfilePicture = async function (req, res) {
   }
 }
 
-// todo remove maybe
-// Update Profile Image
-// var updateProfileImage = function (req, res, next) {
-//     var id = req.body.id;
-//
-//     //finds account by an id and updates name
-//     Account.findById(id, function (err, doc) {
-//         if (err || doc == undefined) {
-//             console.error('error, no account found');
-//         } else {
-//             doc.profileImage = req.body.profileImage;
-//             console.log('profile Image updated');
-//
-//             doc.save();
-//             res.redirect('/');
-//         }
-//     });
-// };
-
-
-
-
 // Delete account
 var deleteAccount = function(req, res, next) {
     var id = req.body.id;

@@ -2,6 +2,7 @@
     background-image: url("../assets/landingImage.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: auto;
     border-bottom: 0;
@@ -16,6 +17,7 @@
     width: 60vw;
     border-radius: 50px 50px 0 0;
     background-color: var(--light-green);
+    color: var(--dark-green);
     text-align: center;
 }
 
@@ -34,7 +36,7 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap-reverse;
-    padding-bottom: 500px;
+    padding-bottom: 50px;
     padding-top: 0.6vw;
     bottom: 0;
 }

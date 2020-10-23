@@ -16,8 +16,7 @@ import ViewPortfolio from "./pages/ViewPortfolio";
 import EnterAccessCode from "./pages/EnterAccessCode";
 
 // Import components
-import VisitorNavBar from "./components/VisitorNavBar";
-import UserNavBar from "./components/UserNavBar";
+import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 // todo rewrite this in class notation
@@ -27,31 +26,31 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <VisitorNavBar />
+            <NavBar />
             <Landing />
           </Route>
           <Route path="/editPortfolio">
-            <UserNavBar />
-            <EditPortfolio />
+            <NavBar />
+            <EditPortfolio/>
           </Route>
           <Route path="/createAccount">
-            <UserNavBar />
+            <NavBar />
             <Account />
           </Route>
           <Route path="/login">
-            <VisitorNavBar />
+            <NavBar />
             <Login />
           </Route>
           <Route path="/browse">
-            <VisitorNavBar />
+            <NavBar />
             <Browse />
           </Route>
           <Route path="/viewPortfolio">
-            <VisitorNavBar />
-            <ViewPortfolio />
+            <NavBar />
+            <ViewPortfolio/>
           </Route>
           <Route path="/enterAccessCode">
-            <VisitorNavBar />
+            <NavBar />
             <EnterAccessCode />
           </Route>
         </Switch>
