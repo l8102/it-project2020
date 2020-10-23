@@ -55,11 +55,10 @@ class Login extends Component {
     // if there is a valid response
     if (accountId !== "False") {
 
-      // store that the user has permission to edit a specified profile
-      sessionStorage.setItem("permissionToEdit", accountId);
+      // store that the account id that the user can edit
+      sessionStorage.setItem("accountIdForEdit", accountId);
 
-      // store the account id and redirect the user
-      sessionStorage.setItem("accountId", accountId);
+      // redirect the user to their portfolio
       this.props.history.push("/editPortfolio");
 
     } else {

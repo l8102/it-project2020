@@ -28,20 +28,19 @@ class SearchResult extends Component {
     // Prevent it being automatically clicked on load
     e.preventDefault();
 
-    // Store the account Id
-    sessionStorage.setItem("accountId", this.props.accountId);
-
     // If the portfolio is private
     if (this.state.isPrivate) {
 
-      // Permission to view is not granted yet, instead
+      // The user cannot view the account id yet,
+      // Instead store the account id temporarily
+      sessionStorage.setItem("accountIdTemp",  this.props.accountId);
       // redirect to access code page
       this.props.history.push("/enterAccessCode");
 
     // Otherwise if the portfolio is not private
     } else {
-      // store that the user has permission to view a specified profile
-      sessionStorage.setItem("permissionToView",  this.props.accountId);
+      // store that the account id that the user can view
+      sessionStorage.setItem("accountIdForView", this.props.accountId);
       // Navigate to the view portfolio page
       this.props.history.push("/viewPortfolio");
     }

@@ -22,11 +22,8 @@ class GoogleLoginBtn extends Component {
 
     const accountId = res.data;
 
-    // store that the user has permission to edit a specified profile
-    sessionStorage.setItem("permissionToEdit", accountId);
-
-    // store the account id in session storage, which is returned as a response from the api call
-    sessionStorage.setItem("accountId", accountId);
+    // store that the account id that the user can edit
+    sessionStorage.setItem("accountIdForEdit", accountId);
 
     // navigate to the portfolio page
     this.props.history.push("/editPortfolio");
