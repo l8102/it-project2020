@@ -17,7 +17,6 @@ import ViewFiles from "./pcomponents/ViewFiles";
 import EditLinks from "./pcomponents/EditLinks";
 import ViewLinks from "./pcomponents/ViewLinks";
 
-// todo handle permission to edit (security)
 class EditPortfolio extends Component {
 
   constructor(props) {
@@ -39,7 +38,7 @@ class EditPortfolio extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
-    this.hasPermissionToEdit = this.hasPermissionToEdit.bind(this);
+    this.ableToEdit = this.ableToEdit.bind(this);
   }
 
   async componentDidMount() {
@@ -50,7 +49,7 @@ class EditPortfolio extends Component {
 
     try {
         contactInfo = await getPortfolioContactInfo(accountId);
-        account = await getAccount();
+        account = await getAccount(accountId);
     } catch (error) {
       console.error(error);
     }
@@ -139,23 +138,21 @@ class EditPortfolio extends Component {
     )
   }
 
-  // Returns if the account Id that the user has permission to edit matches
-  // The account Id stored in session storage
-  // Also checks that the account Id is not null
-  hasPermissionToEdit() {
-    const accountId = sessionStorage.getItem("accountId");
-    const permissionToEdit = sessionStorage.getItem("permissionToEdit");
-    return (accountId === permissionToEdit && accountId !== null);
+  // Returns if there is an account id that the user can edit
+  // Sets the accountId if true
+  ableToEdit() {
+    const accountIdForEdit = sessionStorage.getItem("accountIdForEdit");
+    if (accountIdForEdit !== null) {
+      sessionStorage.setItem("accountId", accountIdForEdit);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
-    if (!this.hasPermissionToEdit()) {
-      return (
-        <div className="access-denied">
-          Access Denied
-        </div>
-      )
-    } else {
+    // If the user is able to edit, render the page normally
+    if (this.ableToEdit()) {
       return (
         <div>
           <div className="portfolio-container">
@@ -191,6 +188,14 @@ class EditPortfolio extends Component {
           </Tabs>
         </div>
       );
+
+    // Otherwise, deny access
+    } else {
+      return (
+        <div className="access-denied">
+          Access Denied
+        </div>
+      )
     }
   }
 }

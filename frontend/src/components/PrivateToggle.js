@@ -6,26 +6,23 @@ import "../css/ColourScheme.css"
 import { getPortfolioIsPrivate, setPortfolioIsPrivate } from "../Api.js"
 
 // import the colours from the css
-const blueBorder = getComputedStyle(document.documentElement)
-  .getPropertyValue('--blue-border');
+const midBlue = getComputedStyle(document.documentElement)
+  .getPropertyValue('--mid-blue');
 
 // create custom coloured switch
 const CustomSwitch = withStyles({
   switchBase: {
-    color: blueBorder,
+    color: midBlue,
     '&$checked': {
-      color: blueBorder,
+      color: midBlue,
     },
     '&$checked + $track': {
-      backgroundColor: blueBorder,
+      backgroundColor: midBlue,
     },
   },
   checked: {},
   track: {},
 })(Switch);
-
-// todo clean this up
-// todo is being called twice, how to prevent this? (preventDefault???) - maybe not an issue
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -37,7 +34,6 @@ class PrivateToggle extends Component {
     };
 
     // This binding is necessary to make 'this' work in the callback
-    // todo learn about bindings
     this.handleChange = this.handleChange.bind(this);
   }
 

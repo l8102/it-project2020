@@ -8,7 +8,6 @@ import ViewFiles from "./pcomponents/ViewFiles";
 import ViewLinks from "./pcomponents/ViewLinks";
 import Tabs from "./pcomponents/Tabs";
 
-// todo handle permission to view (security)
 class ViewPortfolio extends Component {
 
   constructor(props) {
@@ -24,19 +23,19 @@ class ViewPortfolio extends Component {
     };
 
     // This binding is necessary to make 'this' work in the callback
-    this.hasPermissionToView = this.hasPermissionToView.bind(this);
+    this.ableToView = this.ableToView.bind(this);
   }
 
-  // todo use this as a template
   async componentDidMount() {
     console.log("running");
     let contactInfo;
     let account;
+    const accountId = sessionStorage.getItem("accountId");
 
     // Read in
     try {
       contactInfo = await getPortfolioContactInfo();
-      account = await getAccount(sessionStorage.getItem("accountId"));
+      account = await getAccount(accountId);
     } catch (error) {
       console.error(error);
     }
@@ -52,23 +51,21 @@ class ViewPortfolio extends Component {
     })
   }
 
-  // Returns if the account Id that the user has permission to view matches
-  // The account Id stored in session storage
-  // Also checks that the account Id is not null
-  hasPermissionToView() {
-    const accountId = sessionStorage.getItem("accountId");
-    const permissionToView = sessionStorage.getItem("permissionToView");
-    return (accountId === permissionToView && accountId !== null);
+  // Returns if there is an account id that the user can view
+  // Sets the accountId if true
+  ableToView() {
+    const accountIdForView = sessionStorage.getItem("accountIdForView");
+    if (accountIdForView !== null) {
+      sessionStorage.setItem("accountId", accountIdForView);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
-    if (!this.hasPermissionToView()) {
-      return (
-        <div className="access-denied">
-          Access Denied
-        </div>
-      )
-    } else {
+    // If the user is able to view, render the page normally
+    if (this.ableToView()) {
       return (
         <div>
           <div className="portfolio-container">
@@ -108,6 +105,14 @@ class ViewPortfolio extends Component {
           </Tabs>
         </div>
       );
+
+    // Otherwise, deny access
+    } else {
+      return (
+        <div className="access-denied">
+          Access Denied
+        </div>
+      )
     }
   }
 }

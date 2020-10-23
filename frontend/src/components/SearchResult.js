@@ -34,12 +34,12 @@ class SearchResult extends Component {
       // The user cannot view the account id yet,
       // Instead store the account id temporarily
       sessionStorage.setItem("accountIdTemp",  this.props.accountId);
-      // redirect to access code page
+      // Redirect to access code page
       this.props.history.push("/enterAccessCode");
 
     // Otherwise if the portfolio is not private
     } else {
-      // store that the account id that the user can view
+      // Store the account id that the user can view
       sessionStorage.setItem("accountIdForView", this.props.accountId);
       // Navigate to the view portfolio page
       this.props.history.push("/viewPortfolio");

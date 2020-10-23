@@ -52,13 +52,13 @@ class Login extends Component {
 
     const accountId = res.data;
 
-    // if there is a valid response
+    // If there is a valid response
     if (accountId !== "False") {
 
-      // store that the account id that the user can edit
+      // Store the account id that the user can edit
       sessionStorage.setItem("accountIdForEdit", accountId);
 
-      // redirect the user to their portfolio
+      // Redirect the user to their portfolio
       this.props.history.push("/editPortfolio");
 
     } else {

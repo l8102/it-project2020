@@ -17,7 +17,6 @@ import EnterAccessCode from "./pages/EnterAccessCode";
 
 // Import components
 import NavBar from "./components/NavBar";
-import UserNavBar from "./components/UserNavBar";
 import Footer from "./components/Footer";
 
 // todo rewrite this in class notation

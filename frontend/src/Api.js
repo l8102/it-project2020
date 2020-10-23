@@ -180,7 +180,6 @@ export function getAllAccountsByFullName(fullName) {
 
 // *** Browse Page END ***
 
-// todo implement this
 export function getPortfolioContactInfo() {
 
     // make request for portfolio
@@ -200,7 +199,6 @@ export function getPortfolioContactInfo() {
     });
 }
 
-// todo implement this
 export function setPortfolioContactInfo(newEmail, newTelephone) {
 
     return new Promise(function (resolve) {
@@ -439,21 +437,3 @@ export function uploadProfilePicture(base64EncodedImage) {
     console.error(error);
 });
 }
-
-// todo can probably remove this
-// export function getProfilePicture(accountId) {
-//   return new Promise(function (resolve) {
-//     axios({
-//       method:"get",
-//       url: BASE_URL + "/api/portfolio/getProfilePicture",
-//       params: {
-//         accountId: accountId,
-//       }
-//     })
-//     .then(function (response) {
-//       resolve(response);
-//     }).catch(function (error) {
-//       console.error(error);
-//     })
-//   })
-// }
