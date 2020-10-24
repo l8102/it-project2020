@@ -24,14 +24,20 @@ var uploadFile = async function (req,res) {
     const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
         upload_preset: 'FileUpload',
     });
+    
+    var pages = 1;
 
+    if (uploadResponse.pages) {
+      pages = uploadResponse.pages;
+    }
     console.log(uploadResponse);
+    console.log(pages);
 
     const fileInfo = {
         accountId: req.body.accountId,
         fileVersion: uploadResponse.version,
         filePublicId: uploadResponse.public_id, 
-        filePages: uploadResponse.pages
+        filePages: pages
     }     
     
     const data = new File(fileInfo);
@@ -52,7 +58,7 @@ var uploadFile = async function (req,res) {
 
 // READ
 var getFiles = function(req, res) {
-  File.find({accountId: req.body.accountId}, function(err, doc) {
+  File.find({accountId: req.body.accountId, filePublicId: {$exists: true}}, function(err, doc) {
       if(err || doc == undefined) {
           console.error("Images not found")
       } else {

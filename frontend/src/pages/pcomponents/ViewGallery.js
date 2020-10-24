@@ -22,7 +22,6 @@ export default class ViewGallery extends Component {
     const imageUrls = [];
 
     if (res.length === 0) {
-        console.log("hello");
         imageUrls[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603497755/Gallery/f21bpwnpss3nf59mfr65.png";
     }
     else {
@@ -40,7 +39,7 @@ export default class ViewGallery extends Component {
         const { images } = this.state;
         return (
             <div className="pcontainer">
-                <h1>
+                <h1 className="title">
                     View Gallery
                 </h1>
                 <Carousel>

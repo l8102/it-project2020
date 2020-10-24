@@ -104,7 +104,7 @@ export default class EditGallery extends Component {
         return (
             <div className="pcontainer">
                 <h1 className="title">Upload Gallery Images</h1>
-                <form onSubmit={e => this.handleSubmitFile(e)} className="account-form gallery-form">
+                <form onSubmit={e => this.handleSubmitFile(e)} className="gallery-form">
                     <input
                         type="file"
                         name="image"
