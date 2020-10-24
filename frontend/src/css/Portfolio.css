@@ -11,6 +11,7 @@
     overflow: auto;
 }
 
+
 .private-toggle-container {
     padding: 20px;
     display: grid;
@@ -45,7 +46,8 @@
 
 .user-info {
     float: right;
-    width: 60%;
+    width: 50%;
+    margin-top: 10vh ;
     text-align: center;
  }
 
@@ -58,7 +60,7 @@
     padding-left: 10%;
     text-align: center;
     position: relative;
-    float: left;
+    float: left; 
 }
 
 .img {
@@ -77,6 +79,7 @@
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+    width: 70%
 }
 
 .save-btn {
@@ -95,157 +98,8 @@
     border-radius: 5px;
 }
 
-.about-me-page, .links-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.about-me-page h1, .links-page h1, .links-page-view h1 {
-    margin: 40px;
-}
-
-.about-me-page form, .links-page form {
-    margin-top: 0;
-}
-
-.about-me-page h2, .links-page-view h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: var(--mid-green);
-    color: var(--white);
-}
-
-.about-me-page label, .links-page label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: medium;
-    font-weight: bold;
-}
-
-.links-page label {
-    margin-top: 10px;
-}
-
-.about-me-page section, .links-page section, .links-page-view section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--light-green);
-    overflow-y: auto;
-    margin: 0 auto;
-    width: 80%;
-    border-radius: 5px;
-    padding-bottom: 20px;
-}
-
-.about-me-page section, .links-page-view section {
-    margin-bottom: 40px;
-}
-
-.links-page section {
-    margin-bottom: 10px;
-}
-
-.about-me-page button, .links-page button {
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 10px;
-}
-
-.experience, .interest, .education {
-    padding: 5px;
-    width: 30%;
-    border: 2px solid #ccc;
-    margin-bottom: 10px;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    border-radius: 2px;
-}
-
-.list-table {
-    display: flex;
-    justify-content: center;
-}
-
-.list-table table, .list-table th, .list-table td {
-    text-align: center;
-    padding: 5px;
-}
-
-.list-table th, .list-table td {
-    width: 100%;
-}
-
-.experience-col {
-    max-width: 100%;
-    display: inline-block;
-    word-wrap: break-word;
-    overflow: hidden;
-}
-
-.list-table table {
-    width: 80%;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
-
-.description, .link {
-    display: inline-block;
-    text-align: left;
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow: hidden;
-    padding: 40px;
-}
-
-.date {
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    border: 2px solid #ccc;
-}
-
-
-.add-remove-buttons {
-    width: 100%;
-    text-align: center;
-}
-
-.add-remove-button {
-    display: inline-block;
-}
-
-.about-me-page .text-box, select {
-    width: 90%;
-    height: 300px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-
-
-
-.links-page input, .links-page .text-box, select {
-    border: 2px solid #ccc;
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.links-page-view {
-    text-align: center;
-}
-
-
 .small-text-box, select {
     display: block;
-    width: 70%;
     height: 35px;
     margin-bottom: 10px;
 }
@@ -261,7 +115,8 @@
 }
 
 .pp-container {
-    width: 40%;
+    width: 20%;
+    position: relative;
 }
 
 .img-container {
@@ -270,7 +125,8 @@
 }
 
 .upload-img {
-    float: left;
+    position: absolute;
+    z-index: 10;
 }
 
 .pp-btn {
@@ -287,6 +143,7 @@
 }
 
 .profile-img {
+    position: absolute;
     float: right;
     margin-top: 10%;
 }

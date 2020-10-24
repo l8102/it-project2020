@@ -11,11 +11,14 @@ export default class ProfilePicture extends Component {
     this.state = {
       preview: null,
       currentImage: null,
-      src
+      src,
+      edit: false
     }
     this.onCrop = this.onCrop.bind(this)
     this.onClose = this.onClose.bind(this)
     this.handleSave = this.handleSave.bind(this);
+    this.switchToEdit = this.switchToEdit.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
   
   onClose() {
@@ -30,7 +33,7 @@ export default class ProfilePicture extends Component {
   async handleSave() {
     try {
       await uploadProfilePicture(this.state.preview);
-      await this.setState({ currentImage: this.state.preview});
+      await this.setState({ currentImage: this.state.preview, edit: false});
     } catch (err) {
       console.error(err);
     }
@@ -47,35 +50,60 @@ export default class ProfilePicture extends Component {
     }   
 
   }
+
+  async switchToEdit() {
+    await this.setState({edit: true});
+  }
+
+  async cancelEdit() {
+    await this.setState({edit: false});
+  }
   
+ 
+
   render () {
     return (
       <div className="pp-container">
         <div className="img-container">
-          <div className="upload-img">
-            <h3 className="pp-title">
-              Click to choose a new profile picture
-            </h3>
-            <div className="avatar">
-              <Avatar
-                width={390}
-                height={295}
-                onCrop={this.onCrop}
-                onClose={this.onClose}
-                src={this.state.src}
+          { this.state.edit &&
+            <div className="upload-img">
+              <h3 className="pp-title">
+                Click to choose a new profile picture
+              </h3>
+              <div className="avatar">
+                <Avatar
+                  width={300}
+                  height={300}
+                  onCrop={this.onCrop}
+                  onClose={this.onClose}
+                  src={this.state.src}
+                />
+              </div>
+              <input
+                className="save-btn pp-btn"
+                type="submit"
+                value="Save"
+                onClick={this.handleSave}
+              />
+              <input
+                className="save-btn pp-btn"
+                type="submit"
+                value="Cancel"
+                onClick={ this.cancelEdit }
               />
             </div>
-            
-            <input
-              className="save-btn pp-btn"
-              type="submit"
-              value="Save"
-              onClick={this.handleSave}
-            />
-          </div>
-          <div className="profile-img">
-            <img src={this.state.currentImage} alt="" />
-          </div>
+          }
+          {!this.state.edit &&
+            <div className="profile-img">
+              <img src={this.state.currentImage} alt="" />
+              <input
+                className="save-btn pp-btn"
+                type="submit"
+                value="Edit"
+                onClick={ this.switchToEdit }
+              />
+            </div>
+          }
         </div>
       </div>
     )

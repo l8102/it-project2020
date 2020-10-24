@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getLinks } from "../../Api.js";
-import "../../css/Portfolio.css"
+import "../../css/AboutLinks.css"
 
 export default class ViewLinks extends Component {
 
