@@ -17,12 +17,18 @@ export default class ViewGallery extends Component {
   async componentDidMount() {
 
     const res = await getImages();
+    console.log(res);
 
     const imageUrls = [];
 
-    res.forEach((image, index) => {
-      imageUrls[index] = image.imageUrl;
-    });     
+    if (res.length === 0) {
+        imageUrls[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603497755/Gallery/f21bpwnpss3nf59mfr65.png";
+    }
+    else {
+        res.forEach((image, index) => {
+            imageUrls[index] = image.imageUrl;
+          });    
+    }
 
     this.setState({images : imageUrls});
     console.log(this.state.images);
@@ -33,7 +39,7 @@ export default class ViewGallery extends Component {
         const { images } = this.state;
         return (
             <div className="pcontainer">
-                <h1>
+                <h1 className="title">
                     View Gallery
                 </h1>
                 <Carousel>
@@ -42,7 +48,6 @@ export default class ViewGallery extends Component {
                             return(
                                 <div key={ i }>
                                     <img src={ x }/>
-                                    <p className="legend"> Legend {i + 1} </p>
                                 </div>
                             )
                         })

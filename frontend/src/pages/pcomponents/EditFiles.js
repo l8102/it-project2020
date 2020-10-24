@@ -29,8 +29,8 @@ export default class EditFiles extends Component {
     
     const reader = new FileReader();
     console.log(this.state.selectedFile);
-    const it = await reader.readAsDataURL(this.state.selectedFile);
-    console.log(it);
+    await reader.readAsDataURL(this.state.selectedFile);
+
     reader.onloadend = () => {
       console.log(reader.result);
         this.uploadFile(reader.result);
@@ -56,7 +56,7 @@ export default class EditFiles extends Component {
       return (
           <div className="pcontainer">
               <h1 className="title">Upload PDF Files</h1>
-              <form onSubmit={e => this.handleSubmitFile(e)} className="account-form gallery-form">
+              <form onSubmit={e => this.handleSubmitFile(e)} className="gallery-form">
                   <input
                       type="file"
                       name="pdf"
@@ -107,16 +107,13 @@ class RenderFiles extends Component {
       const { files } = this.state;
       return (
           <div className="files">
-              <h1>
-                  Uploaded Files
-              </h1>
-              <div>
+              <div className="fedit-container">
                   {
                       files.map((x, i) => {
                           console.log(x);
                           return(
-                              <div>
-                                  <img src={ x }/>
+                              <div className="f-edit-tile">
+                                  <img src={ x } className="fedit-img"/>
                               </div>
                           )
                       })
