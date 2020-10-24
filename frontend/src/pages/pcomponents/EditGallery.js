@@ -74,12 +74,12 @@ export default class EditGallery extends Component {
         reader.onloadend = () => {
             this.uploadImage(reader.result);
             sessionStorage.setItem("activeTab", this.props.name);
-            window.location.reload();
+            
         };
         reader.onerror = () => {
             console.error('error on submit');
         };
-
+        window.location.reload();
     };
 
     //stores the image in the database 
