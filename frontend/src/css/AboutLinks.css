@@ -32,6 +32,7 @@
     margin-top: 10px;
 }
 
+/*
 .about-me-page section, .links-page section, .links-page-view section {
     display: flex;
     flex-direction: column;
@@ -43,9 +44,12 @@
     border-radius: 5px;
     padding-bottom: 20px;
 }
+*/
 
 .about-me-page section, .links-page-view section {
     margin-bottom: 40px;
+    width: 50%;
+    margin-left: 25%;
 }
 
 .links-page section {
@@ -60,7 +64,7 @@
 
 .experience, .interest, .education {
     padding: 5px;
-    width: 30%;
+    width: 50%;
     border: 2px solid #ccc;
     margin-bottom: 10px;
     display: block;
@@ -113,9 +117,9 @@
 }
 
 
-.add-remove-buttons {
-    width: 100%;
-    text-align: center;
+.add-remove-button {
+    padding: 5px;
+
 }
 
 .add-remove-button {
