@@ -130,7 +130,7 @@ class EditPortfolio extends Component {
           onChange={ this.handleChange }
         />
         <input
-          className="save-btn"
+          className="save-btn right-btn"
           type="submit"
           value="Save"
         />
@@ -160,7 +160,7 @@ class EditPortfolio extends Component {
               <h1 className="name">
                 {this.state.firstName + " " + this.state.lastName}
               </h1>
-              <h3>
+              <h3 className="title">
                 Contact Information
               </h3>
               <this.contactInfoForm/>

@@ -248,7 +248,7 @@ export default class EditAbout extends Component {
                     <h1>
                         Edit About
                     </h1>
-                    <form>
+                    <form className="about-form">
                         <section>
                             <h2>
                                 Educational Background
@@ -256,7 +256,7 @@ export default class EditAbout extends Component {
                             <label>
                                 Institution:
                                 </label>
-                            <input className="education"
+                            <input className="education p-text-box"
                                 name="institution"
                                 value={this.state.institution}
                                 onChange={ this.handleChange }
@@ -264,7 +264,7 @@ export default class EditAbout extends Component {
                             <label>
                                 Degree:
                                 </label>
-                            <input className="education"
+                            <input className="education p-text-box"
                                 name="degree"
                                 value={this.state.degree}
                                 onChange={ this.handleChange }
@@ -272,12 +272,12 @@ export default class EditAbout extends Component {
                             <label>
                                 Major:
                                 </label>
-                            <input className="education"
+                            <input className="education p-text-box"
                                 name="major"
                                 value={this.state.major}
                                 onChange={ this.handleChange }
                             />
-                            <button className="save-btn-tab" name="educationalBackground" onClick={ this.handleSubmit }>
+                            <button className="save-btn about-btn" name="educationalBackground" onClick={ this.handleSubmit }>
                                 Save
                             </button>
                         </section>
@@ -288,7 +288,7 @@ export default class EditAbout extends Component {
                             {this.state.experienceList.map((x, i) => {
                                 return (
                                     <div key={i}>
-                                        <input className="experience"
+                                        <input className="experience p-text-box"
                                             name="experience"
                                             value={x.experience}
                                             onChange={e => this.handleExperienceChange(e, i)}
@@ -308,12 +308,12 @@ export default class EditAbout extends Component {
         
                                         <div>
                                             {i !== this.state.experienceList.length - 1 &&
-                                                <button className="add-remove-button" onClick={ e => this.handleRemoveExperience(e, i) } >
+                                                <button className="save-btn" onClick={ e => this.handleRemoveExperience(e, i) } >
                                                     Remove Experience
                                                 </button>
                                             }
                                             {this.state.experienceList.length - 1 === i &&
-                                                <button className="add-remove-button" onClick={ this.handleAddExperience }>
+                                                <button className="save-btn" onClick={ this.handleAddExperience }>
                                                     Add Experience
                                                 </button>
                                             }
@@ -321,7 +321,7 @@ export default class EditAbout extends Component {
                                     </div>
                                 )
                             })}
-                            <button className="save-btn-tab" name="experienceList" onClick={ this.handleSubmit }>
+                            <button className="save-btn" name="experienceList" onClick={ this.handleSubmit }>
                                 Save
                             </button>
                         </section>
@@ -332,19 +332,19 @@ export default class EditAbout extends Component {
                             {this.state.interestList.map((x, i) => {
                                 return (
                                     <div key={i}>
-                                        <input className="interest"
+                                        <input className="interest p-text-box"
                                             name="interest"
                                             value={ x }
                                             onChange={ e => this.handleInterestChange(e, i) }
                                         />
                                         <div >
                                             { this.state.interestList.length !== 1 &&
-                                                <button onClick={ e => this.handleRemoveInterest(e, i) } >
+                                                <button classname="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
                                                     Remove interest
                                                     </button>
                                             }
                                             { this.state.interestList.length - 1 === i &&
-                                                <button name="interestList" onClick={ this.handleAddInterest }>
+                                                <button name="interestList" onClick={ this.handleAddInterest } className="save-btn">
                                                     Add interest
                                                 </button>
                                             }
@@ -352,7 +352,7 @@ export default class EditAbout extends Component {
                                     </div>
                                 )
                             })}
-                            <button className="save-btn-tab" name="interestList" onClick={ this.handleSubmit }>
+                            <button className="save-btn" name="interestList" onClick={ this.handleSubmit }>
                                 Save
                             </button>
                         </section>
@@ -366,11 +366,11 @@ export default class EditAbout extends Component {
                                 value={ this.state.description }
                                 onChange={ this.handleChange }
                             />
-                            <button className="save-btn-tab" name="description" onClick={ this.handleSubmit }>
+                            <button className="save-btn" name="description" onClick={ this.handleSubmit }>
                                 Save
                             </button>
                         </section>
-                        <button className="save-btn-tab" name="saveAll" onClick={ this.handleSubmit }>
+                        <button className="save-btn" name="saveAll" onClick={ this.handleSubmit }>
                             Save All
                         </button>
                     </form>

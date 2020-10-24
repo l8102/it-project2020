@@ -109,9 +109,8 @@ export default class EditGallery extends Component {
                         type="file"
                         name="image"
                         onChange={e => this.fileChange(e)}
-                        className="form-input"
                     />
-                    <button className="btn" type="submit">
+                    <button className="save-btn" type="submit">
                         Upload
                     </button>
                 </form>
