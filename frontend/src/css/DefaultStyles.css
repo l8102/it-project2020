@@ -11,12 +11,13 @@
 
     --white: white;
     --black: black;
+    --light-grey: #e6e6e6;
 
     /* This ensure the page fills the whole screen*/
     margin: 0;
 
     /* Set the default background colour*/
-    background-color: var(--light-blue);
+    background-color: var(--light-grey);
 
     /* Set the standard font */
     font-family: arial, serif;
