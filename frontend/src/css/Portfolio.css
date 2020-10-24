@@ -35,12 +35,13 @@
     padding: 1rem 0;
     width: 24.9%;
     text-align: center;
-    background-color: white;
+    background-color: var(--mid-blue);
+    color: white;
+    box-shadow: 0 0 10px var(--dark-blue);
 }
 
 .tab-list-active {
-    background-color: white;
-    border: solid #ccc;
+    background-color: var(--dark-blue);
     border-width: 1px 1px 0 1px;
 }
 
