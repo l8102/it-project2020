@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "../../css/AboutLinks.css"
-import { getAboutMe } from "../../Api.js"
+import "../../css/AboutLinks.css";
+import moment from "moment";
+import { getAboutMe } from "../../Api.js";
 
 
 export default class ViewAbout extends Component {
@@ -30,27 +31,51 @@ export default class ViewAbout extends Component {
     async componentDidMount() {
 
         let aboutMe;
-
+        let dateTo;
+        let dateFrom;
+        
         try {
             aboutMe = await getAboutMe();
         } catch (error) {
             console.error(error);
         }
 
-        console.log(aboutMe.data);
-
         // ensure that there is data
-        if (aboutMe.data.workExperience !== undefined) {
-            this.setState({
-                experienceList: aboutMe.data.workExperience
-            })
+        if (aboutMe.data.workExperience !== undefined && aboutMe.data.workExperience.length !== 0) {
+            let experiences = [];
+            (aboutMe.data.workExperience).forEach((element, i) => {
+                dateFrom = element.dateFrom;
+                dateTo = element.dateTo;
+
+                // When date is retrieved from the database, if empty it is retrieved as null
+                // in EditAbout it is stored as an empty string
+                if(dateFrom === null) {
+                    dateFrom = "";
+                } else {
+                    dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD");
+                }
+                if(dateTo === null) {
+                    dateTo = "";
+                } else {
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD");
+                }
+
+                experiences[i] = { experience: element.experience, dateFrom: dateFrom, dateTo: dateTo };
+            });
+
+            
+            if (experiences[0].experience !== "") {
+                this.setState({ experienceList: [...experiences, { experience: "", dateFrom: "", dateTo: "" }] })
+            } 
         }
 
         // ensure that there is data
-        if (aboutMe.data.interests !== undefined) {
-            this.setState({
-                interestList: aboutMe.data.interests
-            })
+        if (aboutMe.data.interests !== undefined && aboutMe.data.interests.length !== 0) {
+            let interests = aboutMe.data.interests;
+
+            if (interests[0] !== "") {
+                this.setState({ interestList: [...interests, ""] })
+            } 
         }
 
         this.setState({
@@ -61,9 +86,6 @@ export default class ViewAbout extends Component {
 
             isLoaded: true
         })
-        console.log(this.state);
-
-
     }
 
 
