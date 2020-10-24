@@ -77,7 +77,7 @@
     text-align: center;
     padding: 14px 0;
     width: 100%;
-    background-color: var(--mid-green);
+    background-color: var(--mid-blue);
     color: var(--white);
     bottom: 0;
     left: 0;
@@ -95,11 +95,11 @@
     height: 90%;
     border-radius: 5px 5px 0 0;
     z-index: 2;
-    background-color: var(--light-green);
+    background-color: var(--light-blue);
 }
 
 .search-result-button:hover > .search-result-label {
-    background-color: var(--dark-green);
+    background-color: var(--dark-blue);
 }
 
 .search-result-button:hover {

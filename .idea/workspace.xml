@@ -21,13 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a9c7342f-2a9f-4dae-8f39-f05f8ed10465" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/GoogleLoginBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GoogleLoginBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProfilePicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ProfilePicture.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SearchResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SearchResult.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/Portfolio.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Portfolio.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/EditPortfolio.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/EditPortfolio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ViewPortfolio.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ViewPortfolio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/AboutLinks.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/AboutLinks.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/AccessCode.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/AccessCode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Account.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Account.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Browse.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Browse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Files.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Gallery.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Gallery.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Landing.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

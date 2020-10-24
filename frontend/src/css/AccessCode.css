@@ -3,7 +3,7 @@
 .access-code-container {
     margin-top: 50px;
     padding-bottom: 20px;
-    background-color: var(--light-green);
+    background-color: var(--light-blue);
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -14,7 +14,7 @@
 
 .access-code-title {
     padding: 20px;
-    color: var(--dark-green);
+    color: var(--dark-blue);
     font-size: x-large;
 }
 

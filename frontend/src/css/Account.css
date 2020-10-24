@@ -7,8 +7,8 @@
 
 .account-form {
     text-align: center;
-    background-color: var(--light-green);
-    color: var(--dark-green);
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
     margin-top: 10%;
     margin-bottom: 10%;
     padding: 5px;
@@ -48,16 +48,16 @@
     background-color: white;
     box-shadow: 0px 2px 3px #96a39e;
     outline: none;
-    color: var(--dark-green);
+    color: var(--dark-blue);
 }
 
 .account-form input[type=submit]:hover {
     background-color: #ffffffce;
-    color: var(--dark-green);
+    color: var(--dark-blue);
 }
 
 .account-form ::placeholder {
-    color: var(--dark-green);
+    color: var(--dark-blue);
 }
 
 .account-form form {
@@ -75,14 +75,14 @@
 }
 
 .nav-link, .nav-link:visited {
-    color: var(--dark-green);
+    color: var(--dark-blue);
     display: block;
     margin: 20px;
     text-decoration: none;
 }
 
 .nav-link:hover  {
-    color: var(--mid-green);
+    color: var(--mid-blue);
 }
 
 .google-button {

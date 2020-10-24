@@ -1,3 +1,5 @@
+@import "DefaultStyles.css";
+
 .about-me-page, .links-page {
     display: flex;
     flex-direction: column;
@@ -17,8 +19,8 @@
     text-align: center;
     margin-bottom: 30px;
     padding: 20px;
-    background-color: var(--green-border);
-    color: var(--white-text);
+    background-color: var(--mid-blue);
+    color: var(--white);
 }
 
 .about-me-page label, .links-page label {
@@ -36,7 +38,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: var(--green-background);
+    background-color: var(--light-blue);
     overflow-y: auto;
     margin: 0 auto;
     width: 80%;
@@ -62,10 +64,8 @@
     padding: 5px;
     width: 30%;
     border: 2px solid #ccc;
-    margin-bottom: 10px;
     display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
     border-radius: 2px;
 }
 
