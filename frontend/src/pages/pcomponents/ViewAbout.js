@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../css/Portfolio.css"
+import "../../css/AboutLinks.css"
 import { getAboutMe } from "../../Api.js"
 
 

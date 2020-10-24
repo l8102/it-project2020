@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../css/Portfolio.css";
+import "../../css/AboutLinks.css";
 import { updateAboutMe, getAboutMe } from "../../Api.js"
 import { Timestamp } from "mongodb";
 
