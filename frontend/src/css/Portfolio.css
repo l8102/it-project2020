@@ -84,7 +84,6 @@
 
 .save-btn {
     margin-top: 5px;
-    margin-right: 15%;
     padding: 5px;
     border-radius: 5px;
     width: 150px;
@@ -96,6 +95,7 @@
 
 .right-btn {
     float: right;
+    margin-right: 15%;
 }
 
 .save-btn:hover {
