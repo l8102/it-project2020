@@ -20,13 +20,14 @@
 
 .btn {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--green-border);
-    background-color: var(--green-background);
+    border: 1px solid var(--mid-green);
+    background-color: var(--light-green);
     color: var(#176966);
     border-radius: 5px;
     transition: 250ms;
     cursor: pointer;
     font-size: 16px;
+    margin: 5px;
 }
 
 .btn:hover {
@@ -45,8 +46,16 @@
 }
 
 .gallery-form {
-    width: 20%;
+    width: 100px;
     margin: 5%;
+    text-align: center;
+    background-color: var(--light-green);
+    color: var(--dark-green);
+    border-radius: 5px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+    width: 20%;
+    padding: 2%;
+    margin: 7%;
 }
 
 .gedit-container {

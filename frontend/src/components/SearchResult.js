@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../css/Browse.css";
 import { withRouter } from 'react-router-dom';
-import {getPortfolioIsPrivate} from "../Api";
+import {getPortfolio} from "../Api";
 
 class SearchResult extends Component {
 
@@ -16,9 +16,9 @@ class SearchResult extends Component {
   }
 
   async componentDidMount() {
-    const privacy = await getPortfolioIsPrivate(this.props.accountId);
+    const portfolio = await getPortfolio(this.props.accountId);
     this.setState( {
-      isPrivate: privacy.data.isPrivate
+      isPrivate: portfolio.data.isPrivate
     })
   }
 
@@ -28,42 +28,40 @@ class SearchResult extends Component {
     // Prevent it being automatically clicked on load
     e.preventDefault();
 
-    // Store the account Id
-    sessionStorage.setItem("accountId", this.props.accountId);
-
-    // If the portfolio is private, redirect to access code page
+    // If the portfolio is private
     if (this.state.isPrivate) {
 
-      // todo handle permission to view
-
-      // Navigate to the portfolio
+      // The user cannot view the account id yet,
+      // Instead store the account id temporarily
+      sessionStorage.setItem("accountIdTemp",  this.props.accountId);
+      // Redirect to access code page
       this.props.history.push("/enterAccessCode");
 
-    // Otherwise redirect to view portfolio page
+    // Otherwise if the portfolio is not private
     } else {
-
-      // todo handle permission to view
-
-      // Navigate to the portfolio
+      // Store the account id that the user can view
+      sessionStorage.setItem("accountIdForView", this.props.accountId);
+      // Navigate to the view portfolio page
       this.props.history.push("/viewPortfolio");
     }
   }
 
   render() {
     return(
-      <div className="search-result">
+      // <div className="search-result">
         <button
           className="search-result-button"
           onClick={this.handleClick}
         >
+          <div className="picture-background">
+            <img className="search-result-picture" src={this.props.profilePicture} alt="" />
+          </div>
+          <label className="search-result-label">
+            {this.props.firstName + " " + this.props.lastName}
+          </label>
         </button>
-        <div className="search-result-label-background"/>
-        <label className="search-result-label-text">
-          {this.props.firstName + " " + this.props.lastName}
-        </label>
-        <img className="search-result-picture" src={this.props.profilePicture} alt="" />
-      </div>
 
+      // </div>
     )
   }
 }

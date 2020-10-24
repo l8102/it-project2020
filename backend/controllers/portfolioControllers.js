@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
+const RandomString = require("randomstring");
 
 // todo fix this
 // const jwt = require("jsonwebtoken");
@@ -13,9 +14,10 @@ const { UserRefreshClient } = require('google-auth-library');
 const create = function (accountId, email) {
 
   let portfolio = {
-      accountId: accountId,
-      email: email, 
-
+    accountId: accountId,
+    email: email,
+    // Generate a random string of length 6
+    accessCode: RandomString.generate(6)
   };
 
   // creates a new portfolio using the account id
@@ -25,7 +27,6 @@ const create = function (accountId, email) {
   data.save();
   console.log("portfolio created")
 };
-
 
 const contactInfo = async (req, res) => {
   //should be able to see the logged in user based on the token
@@ -111,63 +112,6 @@ const deleteByAccountId = function(req, res, next) {
 
     // todo in future will need to call each of the portfolio components and delete them
 };
-
-/*const getProfilePicture = function(req, res) {
-  Portfolio.findOne({ "accountId": req.query.accountId }, function(err, doc) {
-    console.log(doc);
-    if(err || doc == undefined || doc == null) {
-      console.error("Profile not found")
-    } else {
-      console.log(doc);
-      if(doc.profilePicture != null) {
-        res.send(doc.profilePicture);
-      } else {
-        res.json(doc);
-        console.error("Profile Image not found")
-      }
-    }
-  })
-}
-*/
-/*var getProfilePicture = function(req, res) {
-
-  Portfolio.find({accountId: req.data.accountId}, function(err, doc) {
-      if(err || doc == undefined || doc == null) {
-          console.error("Profile not found")
-      } else {
-        if(doc.profilePicture != null || doc.profilePicture != undefined) {
-          res.send(doc.profilePicture);
-        } else {
-          //res.json(doc);
-          console.error("Profile Image not found")
-        }
-      }
-  })
-}
-*/
-
-
-// todo this can probably be removed, is redundant
-// const getProfilePicture = function (req, res) {
-//
-//   Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
-//
-//       if (err || portfolio === undefined) {
-//           console.error("Portfolio not found");
-//           res.send("false");
-//           return false;
-//       } else {
-//           console.log("Portfolio found");
-//           if(portfolio.profilePicture != null || portfolio.profilePicture !== undefined) {
-//             res.send(portfolio.profilePicture);
-//           } else {
-//             //res.json(doc);
-//             console.error("Profile Image not found")
-//           }
-//           return true;
-//       }
-//   });
-// }
 
 // useful link
 // https://stackoverflow.com/questions/8737082/mongoose-schema-within-schema

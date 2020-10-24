@@ -27,13 +27,20 @@ export default class ViewFiles extends Component {
 		const fileUrls = [];
 		const fileArray = [];
 
-		res.forEach((file, index) => {
-			for (let i = 1; i <= file.filePages; i++) {	
-				fileUrls[index] = BASE_URL + file.fileVersion + "/" + file.filePublicId + ".png";
-				fileArray[i-1] = BASE_URL + "/w_500/pg_" + i + "/v" + file.fileVersion + "/" + file.filePublicId + ".png";
-				console.log(fileArray);
-			}    
-		});   
+		if (res.length === 0) {
+			fileUrls[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+			fileArray[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+		}
+		else {
+
+			res.forEach((file, index) => {
+				for (let i = 1; i <= file.filePages; i++) {	
+					fileUrls[index] = BASE_URL + file.fileVersion + "/" + file.filePublicId + ".png";
+					fileArray[i-1] = BASE_URL + "/pg_" + i + "/v" + file.fileVersion + "/" + file.filePublicId + ".png";
+					console.log(fileArray);
+				}    
+			});   
+		}
 
 		await this.setState({
 			files : fileUrls,
@@ -48,8 +55,8 @@ export default class ViewFiles extends Component {
 		const { files } = this.state;
 		const { pages } = this.state;
 		return (
-			<div className="files">
-				<h1>
+			<div className="v-files">
+				<h1 className="title">
 						View Files
 				</h1>
 				<div className="file-container">
@@ -62,7 +69,7 @@ export default class ViewFiles extends Component {
 									{
 										pages.map((y, i) => {
 											return(
-												<div>
+												<div className="file-img">
 													<img src={ y }/>
 												</div>
 											)
