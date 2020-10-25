@@ -8,6 +8,12 @@ const portfolioSchema = new Schema({
     required: true,
     unique: true
   },
+  email: {
+    type: String,
+  },
+  telephone: {
+    type: String,
+  },
   isPrivate: {
     type: Boolean,
     default: false,
@@ -16,12 +22,10 @@ const portfolioSchema = new Schema({
     type: String,
     required: true
   },
-  email: {
+  colour: {
     type: String,
-  },
-  telephone: {
-    type: String,
-  },
+    default: "blue"
+  }
 }, {
   collection: 'Portfolio',
   timestamps: true,

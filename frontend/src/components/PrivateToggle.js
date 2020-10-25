@@ -5,25 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
 import "../css/Portfolio.css"
 import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
-
-// import the colours from the css
-const midBlue = getComputedStyle(document.documentElement)
-  .getPropertyValue('--mid-blue');
-
-// create custom coloured switch
-const CustomSwitch = withStyles({
-  switchBase: {
-    color: midBlue,
-    '&$checked': {
-      color: midBlue,
-    },
-    '&$checked + $track': {
-      backgroundColor: midBlue,
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
+import {setPortfolioContactInfo} from "../Api";
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -40,38 +22,30 @@ class PrivateToggle extends Component {
     this.displayAccessCode = this.displayAccessCode.bind(this);
   }
 
-  async componentDidMount() {
-
-    console.log("running");
-    let portfolio;
-    const accountId = sessionStorage.getItem("accountId");
-
-    try {
-      portfolio = await getPortfolio(accountId);
-    } catch (error) {
-      console.error(error);
-    }
+  componentDidMount() {
 
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      isToggleOn: portfolio.data.isPrivate,
-      accessCode: portfolio.data.accessCode,
+      isToggleOn: this.props.isPrivate,
+      accessCode: this.props.accessCode,
       isLoaded: true
     })
   }
 
-  handleChange() {
+  async handleChange() {
 
-    // update the isPrivate field in the database
-    setPortfolioIsPrivate(!this.state.isToggleOn);
+    try {
+      // update the isPrivate field in the database
+      await setPortfolioIsPrivate(!this.state.isToggleOn);
+    } catch (error) {
+      console.error(error)
+    }
 
     this.setState(state => ({
       // update the state of the component
       isToggleOn: !state.isToggleOn
     }));
-
-
   }
 
   displayAccessCode() {
@@ -89,6 +63,25 @@ class PrivateToggle extends Component {
   }
 
   render() {
+    // import the colours from the css
+    let style = getComputedStyle(document.getElementById('root'));
+    let midPortfolio = style.getPropertyValue('--mid-portfolio');
+
+    // create custom coloured switch
+    const CustomSwitch = withStyles({
+      switchBase: {
+        color: midPortfolio,
+        '&$checked': {
+          color: midPortfolio,
+        },
+        '&$checked + $track': {
+          backgroundColor: midPortfolio,
+        },
+      },
+      checked: {},
+      track: {},
+    })(Switch);
+
     if (!this.state.isLoaded) {
       return(
         <div>
