@@ -1,16 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend",
     "\\backend\\controllers",
     "\\backend\\models",
     "\\backend\\routes",
     "\\frontend",
     "\\frontend\\src",
-    "\\frontend\\src\\components",
-    "\\frontend\\src\\pages",
     "\\frontend\\src\\pages\\pcomponents"
   ],
-  "SelectedNode": "\\backend\\controllers\\portfolioControllers.js",
+  "SelectedNode": "\\frontend\\src",
   "PreviewInSolutionExplorer": false
 }

@@ -1,15 +1,25 @@
 
 import React from 'react';
 import Login from '../pages/Login';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import App from '../App';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
 afterEach(cleanup);
 
-it('Google Login renders', () => {
+it('Page title renders', () => {
 
-    //var login = render(<Login />);
+    var app = render(<App />);
 
-    //console.log('LOGIN' + login);
+    console.log('App ' + app);
 
-    //expect(app.getByTestId('google-button')).not.toBeNull();
+    expect(app.findAllByText("Eagle ePortfolio"));
+})
+
+it('Home button renders', () => {
+
+    var app = render(<App />);
+
+    console.log('App ' + app);
+
+    expect(app.getAllByRole('button')).
 })
