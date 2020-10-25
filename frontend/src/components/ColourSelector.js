@@ -1,8 +1,42 @@
 import React, {Component} from 'react';
-// todo maybe import some kind of button
-import "../css/Portfolio.css"
-import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
+import "../css/ColourSelector.css"
+import { getPortfolio } from "../Api.js"
+import ColourButton from "./ColourButton"
 
-let styles = document.documentElement.style;
+class ColourSelector extends Component {
 
-styles.setProperty('--test-colour', "blue");
+  constructor(props) {
+    super(props);
+
+    // This binding is necessary to make 'this' work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+
+  }
+
+  handleClick() {
+
+  }
+
+  render() {
+    // todo this.props.currentColour
+    //
+    return(
+      <div>
+        <h2 className="colour-title">Colour</h2>
+        <div className="colour-container">
+          <ColourButton colour="blue" />
+          <ColourButton colour="green" />
+          <ColourButton colour="yellow" />
+          <ColourButton colour="orange" />
+          <ColourButton colour="red" />
+          <ColourButton colour="purple" />
+        </div>
+      </div>
+    )
+  }
+}
+
+export default ColourSelector;
