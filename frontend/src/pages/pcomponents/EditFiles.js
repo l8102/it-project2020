@@ -62,7 +62,7 @@ export default class EditFiles extends Component {
                       name="pdf"
                       onChange={e => this.fileChange(e)}
                   />
-                  <button className="btn" type="submit">
+                  <button className="save-btn" type="submit">
                       Upload
                   </button>
               </form>

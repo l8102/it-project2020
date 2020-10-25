@@ -36,20 +36,21 @@
     padding: 1rem 0;
     width: 24.9%;
     text-align: center;
-    background-color: white;
+    background-color: var(--mid-blue);
+    color: white;
+    box-shadow: 0 0 10px var(--dark-blue);
 }
 
 .tab-list-active {
-    background-color: white;
-    border: solid #ccc;
+    background-color: var(--dark-blue);
     border-width: 1px 1px 0 1px;
 }
 
 .user-info {
     float: right;
     width: 50%;
-    margin-top: 10vh ;
     text-align: center;
+    padding-top: 5%;
  }
 
 .name {
@@ -72,7 +73,6 @@
 
 .p-text-box {
     margin-left: 15%;
-    margin-top: 5px;
     padding: 5px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -84,11 +84,24 @@
 }
 
 .save-btn {
-    float: right;
     margin-top: 5px;
-    margin-right: 15%;
     padding: 5px;
     border-radius: 5px;
+    width: 150px;
+    background-color: var(--mid-blue);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 0 2px var(--dark-blue);
+}
+
+.right-btn {
+    float: right;
+    margin-right: 15%;
+}
+
+.save-btn:hover {
+    background-color: var(--dark-blue);
+
 }
 
 .save-btn-tab {

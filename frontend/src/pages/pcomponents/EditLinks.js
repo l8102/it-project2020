@@ -106,7 +106,7 @@ export default class EditLinks extends Component {
                         { this.state.linksList.map((x, i) => {
                             return (
                                 <div key={ i }>
-                                    <section className="links-page">
+                                    <section className="links-page-view">
                                         <label>
                                             Title:
                                         </label>
@@ -135,12 +135,12 @@ export default class EditLinks extends Component {
                                     </section>
                                     <div className="add-remove-buttons">
                                         { i !== this.state.linksList.length - 1 &&
-                                            <button className="add-remove-button" onClick={ e => this.handleRemove(e, i) } >
+                                            <button className="save-btn" onClick={ e => this.handleRemove(e, i) } >
                                                 Remove
                                             </button>
                                         }
                                         { this.state.linksList.length - 1 === i &&
-                                            <button className="add-remove-button" onClick={ this.handleAdd }>
+                                            <button className="save-btn" onClick={ this.handleAdd }>
                                                 Add Link
                                             </button>
                                         }
@@ -148,7 +148,7 @@ export default class EditLinks extends Component {
                                 </div>
                             );
                         })}
-                        <button className="save-btn-tab" onClick={ this.handleSubmit }>
+                        <button className="save-btn" onClick={ this.handleSubmit }>
                             Save
                         </button>
                     </form>

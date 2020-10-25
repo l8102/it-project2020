@@ -42,13 +42,7 @@
     margin-bottom: 2rem;
 }
 
-.form-input {
-    display: block;
-    margin-bottom: 10px;
-}
-
 .gallery-form {
-    width: 100px;
     margin: 5%;
     text-align: center;
     background-color: var(--light-portfolio);
@@ -56,8 +50,13 @@
     border-radius: 5px;
     filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
     width: 20%;
+    text-align: center;
+    color: var(--black);
     padding: 2%;
-    margin: 7%;
+}
+
+.gallery-form input {
+    padding: 5%;
 }
 
 .gedit-container {

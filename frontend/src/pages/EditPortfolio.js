@@ -140,7 +140,7 @@ class EditPortfolio extends Component {
           onChange={ this.handleChange }
         />
         <input
-          className="save-btn"
+          className="save-btn right-btn"
           type="submit"
           value="Save"
         />
