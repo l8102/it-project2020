@@ -2,16 +2,16 @@
 
 :root {
     --light-blue: #c0d0d7;
-    --mid-blue:#347b98;
+    --mid-blue: #347b98;
     --dark-blue: #10465b;
-
-    --light-green: #c9dbd5;
-    --mid-green: #239d99;
-    --dark-green: #176966;
 
     --white: white;
     --black: black;
     --light-grey: #e6e6e6;
+
+    --light-portfolio: var(--light-blue);
+    --mid-portfolio: var(--mid-blue);
+    --dark-portfolio: var(--dark-blue);
 
     /* This ensure the page fills the whole screen*/
     margin: 0;

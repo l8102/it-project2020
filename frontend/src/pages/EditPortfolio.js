@@ -151,6 +151,11 @@ class EditPortfolio extends Component {
   }
 
   render() {
+    let styles = document.documentElement.style;
+    styles.setProperty('--light-portfolio', "pink");
+    styles.setProperty('--mid-portfolio', "red");
+    styles.setProperty('--dark-portfolio', "darkred");
+
     // If the user is able to edit, render the page normally
     if (this.ableToEdit()) {
       return (

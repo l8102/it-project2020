@@ -6,25 +6,6 @@ import "../css/DefaultStyles.css"
 import "../css/Portfolio.css"
 import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
 
-// import the colours from the css
-const midBlue = getComputedStyle(document.documentElement)
-  .getPropertyValue('--mid-blue');
-
-// create custom coloured switch
-const CustomSwitch = withStyles({
-  switchBase: {
-    color: midBlue,
-    '&$checked': {
-      color: midBlue,
-    },
-    '&$checked + $track': {
-      backgroundColor: midBlue,
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
-
 class PrivateToggle extends Component {
   constructor(props) {
     super(props);
@@ -89,6 +70,25 @@ class PrivateToggle extends Component {
   }
 
   render() {
+    // import the colours from the css
+    let style = getComputedStyle(document.getElementById('root'));
+    let midPortfolio = style.getPropertyValue('--mid-portfolio');
+
+    // create custom coloured switch
+    const CustomSwitch = withStyles({
+      switchBase: {
+        color: midPortfolio,
+        '&$checked': {
+          color: midPortfolio,
+        },
+        '&$checked + $track': {
+          backgroundColor: midPortfolio,
+        },
+      },
+      checked: {},
+      track: {},
+    })(Switch);
+
     if (!this.state.isLoaded) {
       return(
         <div>

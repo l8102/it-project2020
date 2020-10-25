@@ -4,28 +4,29 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
 
-// import the colours from the css
-const blueBorder = getComputedStyle(document.documentElement)
-  .getPropertyValue('--blue-border');
-
-// create custom coloured switch
-const CustomSwitch = withStyles({
-  switchBase: {
-    color: blueBorder,
-    '&$checked': {
-      color: blueBorder,
-    },
-    '&$checked + $track': {
-      backgroundColor: blueBorder,
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
-
 export default class PageToggle extends Component {
 
     render() {
+
+      // import the colours from the css
+      let styles = getComputedStyle(document.documentElement);
+      const midPortfolio = styles.getPropertyValue('--mid-portfolio');
+
+      // create custom coloured switch
+      const CustomSwitch = withStyles({
+        switchBase: {
+          color: midPortfolio,
+          '&$checked': {
+            color: midPortfolio,
+          },
+          '&$checked + $track': {
+            backgroundColor: midPortfolio,
+          },
+        },
+        checked: {},
+        track: {},
+      })(Switch);
+
         return(
         <div>
             <FormControlLabel

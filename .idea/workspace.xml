@@ -21,18 +21,25 @@
   <component name="ChangeListManager">
     <list default="true" id="a9c7342f-2a9f-4dae-8f39-f05f8ed10465" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PageToggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PageToggle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PrivateToggle.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PrivateToggle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/css/AboutLinks.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/AboutLinks.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/AccessCode.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/AccessCode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/Account.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Account.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/Browse.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Browse.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/Files.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/DefaultStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/DefaultStyles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/css/Gallery.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Gallery.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/css/Landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Landing.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/css/Portfolio.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/css/Portfolio.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/EditPortfolio.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/EditPortfolio.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,5 +89,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1344" y="-205" width="998" height="798" key="dock-window-1" timestamp="1603593917682">
+      <screen x="1344" y="-217" width="1920" height="1057" />
+    </state>
+    <state x="1344" y="-205" width="998" height="798" key="dock-window-1/1344.-217.1920.1057/0.23.1344.817@0.23.1344.817" timestamp="1603593917682" />
   </component>
 </project>

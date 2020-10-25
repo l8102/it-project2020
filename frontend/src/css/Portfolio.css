@@ -9,6 +9,7 @@
     padding-top: 5%;
     padding-bottom: 5%;
     overflow: auto;
+    background-color: var(--light-portfolio);
 }
 
 
@@ -154,7 +155,7 @@
 
 .access-denied {
     text-align: center;
-    color: var(--dark-blue);
+    color: var(--dark-portfolio);
     font-weight: bold;
     font-size: xx-large;
     padding: 100px;
