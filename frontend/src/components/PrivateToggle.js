@@ -5,6 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
 import "../css/Portfolio.css"
 import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
+import {setPortfolioContactInfo} from "../Api";
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -21,38 +22,29 @@ class PrivateToggle extends Component {
     this.displayAccessCode = this.displayAccessCode.bind(this);
   }
 
-  async componentDidMount() {
-
-    console.log("running");
-    let portfolio;
-    const accountId = sessionStorage.getItem("accountId");
-
-    try {
-      portfolio = await getPortfolio(accountId);
-    } catch (error) {
-      console.error(error);
-    }
+  componentDidMount() {
 
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      isToggleOn: portfolio.data.isPrivate,
-      accessCode: portfolio.data.accessCode,
+      isToggleOn: this.props.isPrivate,
+      accessCode: this.props.accessCode,
       isLoaded: true
     })
   }
 
-  handleChange() {
+  async handleChange() {
 
-    // update the isPrivate field in the database
-    setPortfolioIsPrivate(!this.state.isToggleOn);
-
-    this.setState(state => ({
-      // update the state of the component
-      isToggleOn: !state.isToggleOn
-    }));
-
-
+    try {
+      // update the isPrivate field in the database
+      await setPortfolioIsPrivate(!this.state.isToggleOn);
+      this.setState(state => ({
+        // update the state of the component
+        isToggleOn: !state.isToggleOn
+      }));
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   displayAccessCode() {

@@ -3,6 +3,8 @@ import "../css/Portfolio.css";
 
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
+import ColourSelector from "../components/ColourSelector";
+import { colours } from "../constants/Colours";
 
 import { setPortfolioContactInfo, getPortfolio, getAccount } from "../Api.js"
 
@@ -31,6 +33,8 @@ class EditPortfolio extends Component {
         emailInput: '',
         telephoneInput: '',
         isPrivate: '',
+        accessCode: '',
+        currentColour: '',
         isLoaded: false
     };
 
@@ -39,6 +43,7 @@ class EditPortfolio extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
     this.ableToEdit = this.ableToEdit.bind(this);
+    this.updateColour = this.updateColour.bind(this);
   }
 
   async componentDidMount() {
@@ -62,8 +67,14 @@ class EditPortfolio extends Component {
         profilePicture: account.data.profilePicture,
         email: portfolio.data.email,
         telephone: portfolio.data.telephone,
+        isPrivate: portfolio.data.isPrivate,
+        accessCode: portfolio.data.accessCode,
+        currentColour: portfolio.data.currentColour,
         isLoaded: true
     })
+
+    // Update the current colour
+    this.updateColour()
   }
 
   handleChange(e) {
@@ -150,14 +161,22 @@ class EditPortfolio extends Component {
     }
   }
 
-  render() {
+  updateColour() {
+    // Get the current styles
     let styles = document.documentElement.style;
-    styles.setProperty('--light-portfolio', "pink");
-    styles.setProperty('--mid-portfolio', "red");
-    styles.setProperty('--dark-portfolio', "darkred");
 
-    // If the user is able to edit, render the page normally
-    if (this.ableToEdit()) {
+    // Get the current colour dictionary
+    let currentColour = colours["red"];
+
+    styles.setProperty('--light-portfolio', currentColour.light);
+    styles.setProperty('--mid-portfolio', currentColour.mid);
+    styles.setProperty('--dark-portfolio', currentColour.dark);
+  }
+
+  render() {
+
+    // If the user is able to edit, and the page is loaded render the page normally
+    if (this.ableToEdit() && this.state.isLoaded) {
       return (
         <div>
           <div className="portfolio-container">
@@ -169,7 +188,11 @@ class EditPortfolio extends Component {
                 Contact Information
               </h3>
               <this.contactInfoForm/>
-              <PrivateToggle/>
+              <PrivateToggle
+                isPrivate={this.state.isPrivate}
+                accessCode={this.state.accessCode}
+              />
+              <ColourSelector/>
             </div>
             <ProfilePicture/>
           </div>
