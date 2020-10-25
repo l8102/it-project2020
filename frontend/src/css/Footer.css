@@ -7,10 +7,10 @@
     bottom: 0;
     text-align: center;
     color: var(--white);
-    background-color: var(--mid-blue);
+    background-color: var(--mid-portfolio);
     padding-top: 5px;
     padding-bottom: 5px;
-    box-shadow: 0 0 10px var(--dark-blue);
+    box-shadow: 0 0 10px var(--dark-portfolio);
     z-index: 10;
 }
 

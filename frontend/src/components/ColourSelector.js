@@ -35,11 +35,6 @@ class ColourSelector extends Component {
       console.error(error)
     }
 
-    // Update the selected colour
-    this.setState({
-      colour: colour
-    })
-
     // Render the colour
     this.props.renderPortfolioColours(colour)
   }

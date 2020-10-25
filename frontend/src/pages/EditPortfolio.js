@@ -170,6 +170,11 @@ class EditPortfolio extends Component {
     styles.setProperty('--light-portfolio', colourSet.light);
     styles.setProperty('--mid-portfolio', colourSet.mid);
     styles.setProperty('--dark-portfolio', colourSet.dark);
+
+    // Update the colour
+    this.setState({
+      colour: colour
+    })
   }
 
   render() {

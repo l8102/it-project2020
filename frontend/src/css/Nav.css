@@ -17,8 +17,8 @@
     display: grid;
     grid-template-columns: 40% 60%;
     color: var(--white);
-    background-color: var(--mid-blue);
-    box-shadow: 0 0 10px var(--dark-blue);
+    background-color: var(--mid-portfolio);
+    box-shadow: 0 0 10px var(--dark-portfolio);
 }
 
 .nav-bar-container h1 {
@@ -58,5 +58,5 @@
 }
 
 .nav-bar a:hover {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-portfolio);
 }

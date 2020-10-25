@@ -11,8 +11,7 @@ class ColourButton extends Component {
   }
 
   // wrapper function needed to handle the event callback
-  handleChange(e) {
-    e.preventDefault();
+  handleChange() {
     this.props.setColour(this.props.btnColour);
   }
 
