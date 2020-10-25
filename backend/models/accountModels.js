@@ -17,6 +17,13 @@ const accountSchema = new Schema({
     trim: true,
     minlength: 1
   },
+  // This is used for searching
+  fullName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1
+  },
   email: {
     type: String,
     required: true,
@@ -31,7 +38,7 @@ const accountSchema = new Schema({
     trim: false, // todo do we need validation on emails / passwords
     minlength: 8
   },
-  profileImage: {
+  profilePicture: {
     type: String,
     required: false,
     unique: false,

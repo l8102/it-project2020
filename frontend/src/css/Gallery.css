@@ -1,3 +1,5 @@
+@import "DefaultStyles.css";
+
 :root {
     --btn-text-color: #f9f9f9;
     --alert-success-bg-color: #d4edda;
@@ -20,13 +22,14 @@
 
 .btn {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--green-border);
-    background-color: var(--green-background);
+    border: 1px solid var(--mid-portfolio);
+    background-color: var(--light-portfolio);
     color: var(#176966);
     border-radius: 5px;
     transition: 250ms;
     cursor: pointer;
     font-size: 16px;
+    margin: 5px;
 }
 
 .btn:hover {
@@ -39,12 +42,30 @@
     margin-bottom: 2rem;
 }
 
-.form-input {
-    display: block;
-    margin-bottom: 10px;
+.gallery-form {
+    margin: 5%;
+    text-align: center;
+    background-color: var(--light-portfolio);
+    color: var(--dark-portfolio);
+    border-radius: 5px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+    width: 20%;
+    text-align: center;
+    color: var(--black);
+    padding: 2%;
 }
 
-.gallery-form {
-    width: 20%;
-    margin: 5%;
+.gallery-form input {
+    padding: 5%;
+}
+
+.gedit-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.gedit-img {
+    width: 25em;
+    border-radius: 7%;
 }

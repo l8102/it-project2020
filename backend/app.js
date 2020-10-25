@@ -24,6 +24,7 @@ const aboutRoutes = require('./routes/aboutRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
 const fileRoutes = require('./routes/fileRoutes');
 const linkRoutes = require('./routes/linkRoutes');
+const adminDeleteRoutes = require('./routes/adminDeleteRoutes');
 
 // specifying the path for each of the routes
 app.use("/api/account", accountRoutes);
@@ -32,6 +33,7 @@ app.use("/api/about", aboutRoutes);
 app.use("/api/gallery", galleryRoutes);
 app.use("/api/file", fileRoutes);
 app.use("/api/link", linkRoutes);
+app.use("/api/adminDelete", adminDeleteRoutes);
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {

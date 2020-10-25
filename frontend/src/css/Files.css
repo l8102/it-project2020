@@ -1,0 +1,37 @@
+@import "DefaultStyles.css";
+
+.file-container {
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+
+.files {
+    text-align: center;
+    width: 100%;
+}
+
+.v-files {
+    text-align: center;
+    width: 50%;
+    padding-left: 25%;
+}
+
+.form {
+    margin-bottom: 2rem;
+}
+
+.form-input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.fedit-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.fedit-img {
+    width: 25em;
+    border-radius: 7%;
+}

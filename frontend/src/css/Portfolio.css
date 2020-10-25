@@ -1,218 +1,175 @@
-@import "ColourScheme.css";
+@import "DefaultStyles.css";
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .portfolio-container {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  overflow: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    overflow: auto;
+    background-color: var(--light-portfolio);
+}
+
+
+.private-toggle-container {
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 50% 50%;
+}
+
+.private-toggle-item {
+    text-align: center;
+    padding: 10px 30px;
 }
 
 .tab-list {  border-bottom: 1px solid #ccc;
-  padding-left: 0;
+    padding-left: 0;
 }
 
 .tab-list-item {
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  padding: 1rem 0;
-  width: 24.9%;
-  text-align: center;
-  background-color: white;
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 1rem 0;
+    width: 24.9%;
+    text-align: center;
+    background-color: var(--mid-blue);
+    color: white;
+    box-shadow: 0 0 10px var(--dark-blue);
 }
 
 .tab-list-active {
-  background-color: white;
-  border: solid #ccc;
-  border-width: 1px 1px 0 1px;
+    background-color: var(--dark-blue);
+    border-width: 1px 1px 0 1px;
 }
 
 .user-info {
-  float: right;
-  width: 60%;
-  text-align: center;
+    float: right;
+    width: 50%;
+    text-align: center;
+    padding-top: 5%;
  }
 
 .name {
-  padding-bottom: 1em;
+    padding-bottom: 1em;
 }
 
 .img-container {
-  width: 25%;
-  padding-left: 10%;
-  text-align: center;
-  position: relative;
-  float: left;
+    width: 25%;
+    padding-left: 10%;
+    text-align: center;
+    position: relative;
+    float: left; 
 }
 
 .img {
-  width: 25vh;
-  height: 25vh;
-  border: 1px dashed black;
+    width: 25vh;
+    height: 25vh;
+    border: 1px dashed black;
 }
 
 .p-text-box {
-  margin-left: 15%;
-  margin-top: 5px;
-  padding: 5px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  resize: none;
+    margin-left: 15%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    width: 70%
 }
 
 .save-btn {
-  float: right;
-  margin-top: 5px;
-  margin-right: 15%;
-  padding: 5px;
-  border-radius: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+    background-color: var(--mid-blue);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 0 2px var(--dark-blue);
+}
+
+.right-btn {
+    float: right;
+    margin-right: 15%;
+}
+
+.save-btn:hover {
+    background-color: var(--dark-blue);
+
 }
 
 .save-btn-tab {
-  display: block;
-  bottom: 0;
-  margin: 50px;
-  padding: 5px;
-  border-radius: 5px;
+    display: block;
+    bottom: 0;
+    margin: 50px;
+    padding: 5px;
+    border-radius: 5px;
 }
-
-.about-me-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.about-me-page h1 {
-  margin: 40px;
-}
-
-.about-me-page form {
-  margin-top: 0;
-}
-
-.about-me-page h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: var(--green-border);
-  color: var(--white-text);
-}
-
-.about-me-page label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: medium;
-  font-weight: bold;
-}
-
-.about-me-page section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--green-background);
-  overflow-y: auto;
-  margin: 0 auto;
-  margin-bottom: 40px;
-  width: 80%;
-  border-radius: 5px;
-  padding-bottom: 20px;
-}
-
-.about-me-page button {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
-}
-
-.experience, .interest, .education {
-  padding: 5px;
-  width: 30%;
-  border: 2px solid #ccc;
-  margin-bottom: 10px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  border-radius: 2px;
-}
-
-.list-table {
-  display: flex;
-  justify-content: center;
-}
-
-.list-table table, .list-table th, .list-table td {
-  text-align: center;
-  padding: 5px;
-}
-
-.list-table th, .list-table td {
-  width: 100%;
-}
-
-.experience-col {
-  max-width: 100%;
-  display: inline-block;
-  word-wrap: break-word;
-  overflow: hidden;
-}
-
-.list-table table {
-  width: 80%;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-
-.description {
-  display: inline-block;
-  text-align: left;
-  max-width: 100%;
-  word-wrap: break-word;
-  overflow: hidden;
-  padding: 40px;
-}
-
-.date {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
-  border: 2px solid #ccc;
-}
-
-.add-remove-buttons {
-  display: block;
-}
-
-.about-me-page .text-box, select {
-  width: 80%;
-  height: 300px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  padding: 5px;
-  resize: vertical;
-  overflow-y: auto;
-  border: 2px solid #ccc;
-  border-radius: 2px;
-}
-
 
 .small-text-box, select {
-  display: block;
-  width: 70%;
-  height: 35px;
-  margin-bottom: 10px;
+    display: block;
+    height: 35px;
+    margin-bottom: 10px;
 }
 
 .text-box, select {
-  display: block;
-  width: 100%;
-  height: 300px;
-  margin-bottom: 10px;
+    display: block;
+    height: 300px;
+    margin-bottom: 10px;
+    resize: vertical;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+}
+
+.pp-container {
+    width: 20%;
+    position: relative;
+}
+
+.img-container {
+    padding-left: 10%;
+    width: 100%;
+}
+
+.upload-img {
+    position: absolute;
+    z-index: 10;
+}
+
+.pp-btn {
+    float: right;
+    margin-right: 0;
+}
+
+.avatar {
+    padding-top: 2%;
+}
+
+.pp-title {
+    text-align: center;
+}
+
+.profile-img {
+    position: absolute;
+    float: right;
+    margin-top: 10%;
+}
+
+.contact-item {
+    display: block;
+}
+
+.access-denied {
+    text-align: center;
+    color: var(--dark-portfolio);
+    font-weight: bold;
+    font-size: xx-large;
+    padding: 100px;
 }

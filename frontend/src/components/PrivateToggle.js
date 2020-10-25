@@ -2,30 +2,10 @@ import React, {Component} from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
-import "../css/ColourScheme.css"
-import { getPortfolioIsPrivate, setPortfolioIsPrivate } from "../Api.js"
-
-// import the colours from the css
-const blueBorder = getComputedStyle(document.documentElement)
-  .getPropertyValue('--blue-border');
-
-// create custom coloured switch
-const CustomSwitch = withStyles({
-  switchBase: {
-    color: blueBorder,
-    '&$checked': {
-      color: blueBorder,
-    },
-    '&$checked + $track': {
-      backgroundColor: blueBorder,
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
-
-// todo clean this up
-// todo is being called twice, how to prevent this? (preventDefault???) - maybe not an issue
+import "../css/DefaultStyles.css"
+import "../css/Portfolio.css"
+import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
+import {setPortfolioContactInfo} from "../Api";
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -33,48 +13,75 @@ class PrivateToggle extends Component {
 
     this.state = {
       isToggleOn: false,
+      accessCode: "",
       isLoaded: false
     };
 
     // This binding is necessary to make 'this' work in the callback
-    // todo learn about bindings
     this.handleChange = this.handleChange.bind(this);
+    this.displayAccessCode = this.displayAccessCode.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
 
-    console.log("running");
-    let res;
-
-    try {
-      res = await getPortfolioIsPrivate();
-    } catch (error) {
-      console.error(error);
-    }
-
-    // todo VERY IMPORTANT ! ! !
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      isToggleOn: res.data.isPrivate,
+      isToggleOn: this.props.isPrivate,
+      accessCode: this.props.accessCode,
       isLoaded: true
     })
   }
 
-  handleChange() {
+  async handleChange() {
 
-    // update the isPrivate field in the database
-    setPortfolioIsPrivate(!this.state.isToggleOn);
+    try {
+      // update the isPrivate field in the database
+      await setPortfolioIsPrivate(!this.state.isToggleOn);
+    } catch (error) {
+      console.error(error)
+    }
 
     this.setState(state => ({
       // update the state of the component
       isToggleOn: !state.isToggleOn
     }));
+  }
 
-
+  displayAccessCode() {
+    if (this.state.isToggleOn) {
+      return (
+        <div className="private-toggle-item" >
+          Your Access Code Is {this.state.accessCode}
+        </div>
+      )
+    } else {
+      return (
+        <div/>
+      )
+    }
   }
 
   render() {
+    // import the colours from the css
+    let style = getComputedStyle(document.getElementById('root'));
+    let midPortfolio = style.getPropertyValue('--mid-portfolio');
+
+    // create custom coloured switch
+    const CustomSwitch = withStyles({
+      switchBase: {
+        color: midPortfolio,
+        '&$checked': {
+          color: midPortfolio,
+        },
+        '&$checked + $track': {
+          backgroundColor: midPortfolio,
+        },
+      },
+      checked: {},
+      track: {},
+    })(Switch);
+
     if (!this.state.isLoaded) {
       return(
         <div>
@@ -83,10 +90,11 @@ class PrivateToggle extends Component {
       )
     } else {
       return(
-        <div>
+        <div className="private-toggle-container">
           <FormControlLabel
             control={
               <CustomSwitch
+                className="private-toggle-item"
                 checked={this.state.isToggleOn}
                 onChange={this.handleChange}
                 color="primary"
@@ -97,6 +105,7 @@ class PrivateToggle extends Component {
             label="Private Mode"
             labelPlacement="start"
           />
+          <this.displayAccessCode/>
         </div>
       )
     }

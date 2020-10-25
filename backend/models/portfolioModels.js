@@ -8,15 +8,23 @@ const portfolioSchema = new Schema({
     required: true,
     unique: true
   },
-  isPrivate: {
-    type: Boolean,
-    default: false,
-  },
   email: {
     type: String,
   },
   telephone: {
     type: String,
+  },
+  isPrivate: {
+    type: Boolean,
+    default: false,
+  },
+  accessCode: {
+    type: String,
+    required: true
+  },
+  colour: {
+    type: String,
+    default: "blue"
   }
 }, {
   collection: 'Portfolio',

@@ -13,7 +13,7 @@ var uploadImage = async function (req, res) {
         });
        // console.log("response");
         console.log(uploadResponse);
-        const id = 1;
+        const id = req.body.accountId;
         console.log(uploadResponse.url);
 
         const galleryInfo = {
@@ -38,8 +38,8 @@ var uploadImage = async function (req, res) {
 }
 
 var getImages = function(req, res) {
-    // TODO: Change to accountId instead of portfolioId
-    Gallery.find({accountId: req.body.accountId}, function(err, doc) {
+
+    Gallery.find({accountId: req.body.accountId, imageUrl: {$exists: true}}, function(err, doc) {
         if(err || doc == undefined) {
             console.error("Images not found")
         } else {
@@ -65,6 +65,9 @@ const create = function (accountId) {
 // UPDATE
 
 // DELETE
+const deleteAllImages = function (req,res) {
+    Gallery.drop();
+}
 
 
 // export controllers
@@ -72,5 +75,6 @@ module.exports = {
     uploadImage, 
     //images, 
     getImages,
-    create
+    create, 
+    deleteAllImages
 }

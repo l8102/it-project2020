@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Account = mongoose.model('accounts');
 const {OAuth2Client} = require('google-auth-library');
 const bcrypt = require('bcrypt');
+const {cloudinary} = require('../utils/cloudinary');
 
 // import controllers to create the portfolio and its components
 const portfolioControllers = require('../controllers/portfolioControllers');
@@ -23,9 +24,10 @@ var createAccount = function(req, res, next) {
         const accountInfo = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            fullName: (req.body.firstName + " " + req.body.lastName).toLowerCase(),
             email: req.body.email,
             password: hash,
-            profileImage: req.body.profileImage,
+            profilePicture: req.body.profilePicture,
         };
 
         const data = new Account(accountInfo);
@@ -92,9 +94,10 @@ var googleLogin = function(req, res) {
                         const newAccount = {
                             firstName: given_name,
                             lastName: family_name,
+                            fullName: (given_name + " " + family_name).toLowerCase(),
                             email: email,
                             password: password,
-                            profileImage: picture
+                            profilePicture: picture
 							          };
                         const data = new Account(newAccount);
                         data.save();
@@ -155,7 +158,7 @@ var readAccount = function(req, res) {
                 firstName: account.firstName,
                 lastName: account.lastName,
                 email: account.email,
-                profileImage: account.profileImage
+                profilePicture: account.profilePicture
             }
 
             res.json(data);
@@ -164,10 +167,45 @@ var readAccount = function(req, res) {
 	});
 } 
 
+const readAllByFullName = function (req, res) {
+
+    // Search for the full name, transforming it to lower case
+    Account.find(
+        { "fullName": {$regex : ".*" + req.query.fullName.toLowerCase() + "*."}},
+        { password: 0, createdAt: 0, updatedAt: 0 },
+        function (err, accounts) {
+
+            if (err) {
+              console.error(err);
+              res.send("false");
+              return false;
+            } else {
+              console.log("Getting accounts with matching full name");
+              res.send(accounts);
+              return true;
+            }
+    });
+}
+
+// Get all account id's
+const readAll = function (req, res) {
+
+    Account.find({}, { password: 0, createdAt: 0, updatedAt: 0 }, function(err, accounts) {
+
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Getting all accounts");
+
+            res.send(accounts);
+
+        }
+    });
+
+}
 
 
-
-
+// todo is this function ever used???
 // Update Name
 var updateName = function(req, res, next) {
     var id = req.body.id;
@@ -179,6 +217,7 @@ var updateName = function(req, res, next) {
         } else {
             doc.firstName = req.body.firstName;
             doc.lastName = req.body.lastName;
+            doc.fullName = req.body.firstName + " " + req.body.lastName;
             console.log('name updated');
 
             doc.save();
@@ -188,26 +227,37 @@ var updateName = function(req, res, next) {
 };
 
 
-// Update Profile Image
-var updateProfileImage = function (req, res, next) {
-    var id = req.body.id;
-
-    //finds account by an id and updates name
-    Account.findById(id, function (err, doc) {
-        if (err || doc == undefined) {
-            console.error('error, no account found');
-        } else {
-            doc.profileImage = req.body.profileImage;
-            console.log('profile Image updated');
-
-            doc.save();
-            res.redirect('/');
-        }
+const updateProfilePicture = async function (req, res) {
+  try {
+    const fileStr = req.body.data;
+    const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
+      upload_preset: 'ProfilePicture',
     });
-};
 
+    console.log(uploadResponse);
+    console.log(uploadResponse.url);
 
+    Account.findById(req.body.accountId, function(err, account) {
 
+      if (err || account === undefined) {
+        console.error("Account not found");
+        res.send("false");
+        return false;
+      } else {
+        account.profilePicture = uploadResponse.url;
+        account.save();
+
+        console.log("Account updated");
+        res.json(account);
+        return true;
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+}
 
 // Delete account
 var deleteAccount = function(req, res, next) {
@@ -218,6 +268,7 @@ var deleteAccount = function(req, res, next) {
     console.log("account removed");
 
     // todo add in portfolio delete as well (by account id)
+    // todo add in delete portfolio components
 
 };
 
@@ -229,6 +280,8 @@ module.exports = {
     login,
     deleteAccount,
     updateName,
-    updateProfileImage,
-    readAccount
+    updateProfilePicture,
+    readAccount,
+    readAllByFullName,
+    readAll
 }

@@ -1,0 +1,147 @@
+@import "DefaultStyles.css";
+
+.about-me-page, .links-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-me-page h1, .links-page h1, .links-page-view h1 {
+    margin: 40px;
+}
+
+.about-me-page form, .links-page form {
+    margin-top: 0;
+}
+
+.about-me-page h2, .links-page-view h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--mid-portfolio);
+    color: var(--white);
+}
+
+.about-me-page label, .links-page label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.links-page label {
+    margin-top: 10px;
+}
+
+/*
+.about-me-page section, .links-page section, .links-page-view section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--light-portfolio);
+    overflow-y: auto;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 5px;
+    padding-bottom: 20px;
+}
+*/
+
+.about-me-page section, .links-page section {
+    margin-bottom: 40px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.links-page section {
+    margin-bottom: 10px;
+}
+
+.about-me-page button, .links-page button {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.experience, .interest, .education {
+    padding: 5px;
+    width: 50%;
+    border: 2px solid #ccc;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 2px;
+}
+
+.list-table {
+    display: flex;
+    justify-content: center;
+}
+
+.list-table table, .list-table th, .list-table td {
+    text-align: center;
+    padding: 5px;
+}
+
+.list-table th, .list-table td {
+    width: 100%;
+}
+
+.experience-col {
+    max-width: 100%;
+    display: inline-block;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.list-table table {
+    width: 80%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.description, .link {
+    display: inline-block;
+    text-align: left;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 40px;
+}
+
+.date {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+}
+
+
+.add-remove-button {
+    padding: 5px;
+
+}
+
+.add-remove-button {
+    display: inline-block;
+}
+
+.about-me-page .text-box, select {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.links-page input, .links-page .text-box, select {
+    border: 2px solid #ccc;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.links-page-view {
+    text-align: center;
+}

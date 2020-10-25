@@ -1,0 +1,40 @@
+@import "DefaultStyles.css";
+
+.access-code-container {
+    margin-top: 50px;
+    padding-bottom: 20px;
+    background-color: var(--light-blue);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50vw;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+}
+
+.access-code-title {
+    padding: 20px;
+    color: var(--dark-blue);
+    font-size: x-large;
+}
+
+.access-code-container form {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+.access-code-container input[type=password] {
+    border: none;
+    padding: 5px 10px;
+    color: var(--black);
+    width: 30vw;
+    height: 30px;
+    background-color: var(--white);
+    outline: none;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.15));
+}
+
+.access-code input ::placeholder {
+    color: var(--dark-blue);
+}

@@ -11,10 +11,18 @@ class Tabs extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeTab: this.props.children[0].props.label,
-    };
+    // For if refresh was called after submitting information to the database
+    const tab = sessionStorage.getItem("activeTab");
+    
+    if(tab === null) {
+      this.state = {
+        activeTab: this.props.children[0].props.label,
+      };
+    } else {
+      this.state = {
+        activeTab: tab
+      };
+    }
   }
 
   onClickTabItem = (tab) => {
@@ -36,7 +44,7 @@ class Tabs extends Component {
         <ol className="tab-list">
           {children.map((child) => {
             const { label } = child.props;
-
+            sessionStorage.removeItem("activeTab");
             return (
               <Tab
                 activeTab={activeTab}

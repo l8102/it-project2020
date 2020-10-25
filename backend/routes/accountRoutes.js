@@ -19,14 +19,17 @@ accountRoutes.post('/login', accountControllers.login);
 
 accountRoutes.get('/read', accountControllers.readAccount);
 
+accountRoutes.get('/readAllByFullName', accountControllers.readAllByFullName)
+
+accountRoutes.get('/readAll', accountControllers.readAll);
+
 
 
 // UPDATE
 
 accountRoutes.put('/updateName', accountControllers.updateName);
 
-
-accountRoutes.put('/updateProfileImage', accountControllers.updateProfileImage);
+accountRoutes.put('/updateProfilePicture', accountControllers.updateProfilePicture);
 
 
 // DELETE

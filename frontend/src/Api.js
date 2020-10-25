@@ -1,9 +1,13 @@
 import axios from "axios";
 
-// todo change this depending on environment
-const BASE_URL = "https://eaglesolutions.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
-
+// Dynamically changes the base URL
+let hostname = window.location.hostname.toString();
+let BASE_URL;
+if (hostname === "localhost") {
+  BASE_URL = "http://localhost:5000";
+} else {
+  BASE_URL = "https://eaglesolutions.herokuapp.com";
+}
 
 export function googleLoginSuccess(req) {
 
@@ -119,14 +123,14 @@ export function createAccount(account) {
 
 // todo this needs to be redone, we are not getting account info, we should be getting portfolio contact info
 // todo pretty sure we should delete this (unless it has another use)
-export async function getAccount() {
+export async function getAccount(accountId) {
 
     return await new Promise(function (resolve) {
         axios({
             method: "get",
             url: BASE_URL + "/api/account/read",
             params: {
-                accountId: sessionStorage.getItem("accountId"),
+                accountId: accountId,
             }
         })
             .then(function (response) {
@@ -137,56 +141,53 @@ export async function getAccount() {
     });
 }
 
-// todo implement this
-export function getPortfolioContactInfo() {
+// *** Browse Page START ***
 
-    // make request for portfolio
+// Get all accounts
+export function getAllAccounts() {
+
     return new Promise(function (resolve) {
         axios({
             method: "get",
-            url: BASE_URL + "/api/portfolio/readByAccountId",
-            params: {
-                accountId: sessionStorage.getItem("accountId"),
-            }
+            url: BASE_URL + "/api/account/readAll",
         })
             .then(function (response) {
                 resolve(response);
+                console.log(response);
             }).catch(function (error) {
                 console.error(error);
             });
     });
 }
 
-// todo implement this
-export function setPortfolioContactInfo(newEmail, newTelephone) {
-
-    return new Promise(function (resolve) {
-        axios({
-            method: "put",
-            url: BASE_URL + "/api/portfolio/updateByAccountId",
-            data: {
-                accountId: sessionStorage.getItem("accountId"),
-                email: newEmail,
-                telephone: newTelephone
-            }
-        })
-            .then(function (response) {
-                resolve(response);
-            }).catch(function (error) {
-                console.error(error);
-            });
+export function getAllAccountsByFullName(fullName) {
+  return new Promise(function (resolve) {
+    axios({
+      method: "get",
+      url: BASE_URL + "/api/account/readAllByFullName",
+      params: {
+        fullName: fullName,
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+        console.log(response);
+      }).catch(function (error) {
+      console.error(error);
     });
-
+  });
 }
 
-
-
+// *** Browse Page END ***
 
 /** sends the encoded image to the backend function upload */
 export function uploadAPI(base64EncodedImage) {
     return fetch(BASE_URL + "/api/gallery/upload", {
         method: 'POST',
-        body: JSON.stringify({ data: base64EncodedImage }),
+        body: JSON.stringify({ 
+          data: base64EncodedImage,
+          accountId: sessionStorage.getItem("accountId")
+        }),
         headers: { 'Content-Type': 'application/json' },
     }).then(res => {
       return res.data;
@@ -196,12 +197,14 @@ export function uploadAPI(base64EncodedImage) {
 }
 
 // TODO: This function retrieves based on portfolioId from older schema, need to test and replace with function below 
-export function getImages(searchId) {
-    const data = { accountId: searchId }
+export function getImages() {
+    //const data = { accountId: searchId }
     return axios({
         method: "post",
         url: BASE_URL + "/api/gallery/getImages",
-        data: data
+        data: {
+          accountId: sessionStorage.getItem("accountId")
+        }
     }).then(res => {
         return res.data;
     })
@@ -227,7 +230,7 @@ export function getImages(searchId) {
 
 
 // ----- getPortfolioByAccountId -----
-export function getPortfolioIsPrivate() {
+export function getPortfolio(accountId) {
 
   // make request for portfolio
   return new Promise( function (resolve) {
@@ -235,7 +238,7 @@ export function getPortfolioIsPrivate() {
       method: "get",
       url: BASE_URL + "/api/portfolio/readByAccountId",
       params: {
-        accountId: sessionStorage.getItem("accountId"),
+        accountId: accountId,
       }
     })
       .then(function (response) {
@@ -266,6 +269,43 @@ export function setPortfolioIsPrivate(isPrivate) {
   });
 }
 
+export function setPortfolioContactInfo(newEmail, newTelephone) {
+
+  return new Promise(function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/portfolio/updateByAccountId",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        email: newEmail,
+        telephone: newTelephone
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+}
+
+export function setPortfolioColour(colour) {
+  return new Promise( function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/portfolio/updateByAccountId",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        colour: colour
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
+}
 
 // Update about Me
 export function updateAboutMe(state) {
@@ -308,3 +348,86 @@ export async function getAboutMe() {
     });
 }
 
+export function updateLinks(state) {
+  console.log(state);
+  
+
+  return new Promise(function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/link/updateLinks",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        state: state
+      }
+    })
+    .then(function (response) {
+      resolve(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    })
+  })
+}
+
+export function getLinks() {
+  
+  return new Promise(function (resolve) {
+    axios({
+      method:"get",
+      url: BASE_URL + "/api/link/readLinks",
+      params: {
+        accountId: sessionStorage.getItem("accountId"),
+      }
+    })
+    .then(function (response) {
+      resolve(response);
+    }).catch(function (error) {
+      console.error(error);
+    })
+  })
+}
+
+/** sends the encoded image to the backend function upload */
+export function fileUploadAPI(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/file/uploadFile", {
+      method: 'POST',
+      body: JSON.stringify({ 
+        data: base64EncodedImage,
+        accountId: sessionStorage.getItem("accountId")
+      }),
+      headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    console.log(res.data);
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
+
+export function getFiles() {
+  return axios({
+      method: "post",
+      url: BASE_URL + "/api/file/getFiles",
+      data: {
+        accountId: sessionStorage.getItem("accountId")
+      }
+  }).then(res => {
+      return res.data;
+  })
+}
+
+export function uploadProfilePicture(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/account/updateProfilePicture", {
+    method: 'PUT',
+    body: JSON.stringify({ 
+      data: base64EncodedImage,
+      accountId: sessionStorage.getItem("accountId")
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    console.log(res.data);
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+});
+}

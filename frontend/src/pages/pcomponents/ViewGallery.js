@@ -14,38 +14,40 @@ export default class ViewGallery extends Component {
 
     }
 
-    async componentDidMount() {
-        // Todo: For now, getImages calls on portfolioId "1" from previous schema for Gallery, needs to be
-        // for account id
-        const res = await getImages("1");
-        //console.log(res);
-    
-        const imageUrls = [];
+  async componentDidMount() {
 
+    const res = await getImages();
+    console.log(res);
+
+    const imageUrls = [];
+
+    if (res.length === 0) {
+        imageUrls[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603497755/Gallery/f21bpwnpss3nf59mfr65.png";
+    }
+    else {
         res.forEach((image, index) => {
             imageUrls[index] = image.imageUrl;
-        });     
-
-        this.setState({images : imageUrls});
-        console.log(this.state.images);
-
+          });    
     }
+
+    this.setState({images : imageUrls});
+    console.log(this.state.images);
+
+  }
 
     render() {
         const { images } = this.state;
         return (
             <div className="pcontainer">
-                <h1>
+                <h1 className="title">
                     View Gallery
                 </h1>
                 <Carousel>
                     {
                         images.map((x, i) => {
-                            console.log(x);
                             return(
-                                <div>
+                                <div key={ i }>
                                     <img src={ x }/>
-                                    <p className="legend"> Legend {i + 1} </p>
                                 </div>
                             )
                         })

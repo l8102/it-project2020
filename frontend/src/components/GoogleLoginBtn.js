@@ -8,23 +8,24 @@ class GoogleLoginBtn extends Component {
     super(props);
 
     // very important, this makes the router work
-    // todo understand this better
     this.handleGoogleFailure = this.handleGoogleFailure.bind(this);
     this.handleGoogleSuccess = this.handleGoogleSuccess.bind(this);
   }
 
   async handleGoogleSuccess(req) {
 
-    // wait for the successful google login to be retrieved from the database
+    // Wait for the successful google login to be retrieved from the database
     let res;
 
     res = await googleLoginSuccess(req);
 
-    // store the account id in session storage, which is returned as a response from the api call
-    sessionStorage.setItem("accountId", res.data);
+    const accountId = res.data;
 
-    // navigate to the portfolio page
-    this.props.history.push("/portfolio");
+    // Store the account id that the user can edit
+    sessionStorage.setItem("accountIdForEdit", accountId);
+
+    // Navigate to the portfolio page
+    this.props.history.push("/editPortfolio");
   }
 
   handleGoogleFailure(req) {

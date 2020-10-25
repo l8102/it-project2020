@@ -31,7 +31,7 @@ const aboutSchema = new Schema({
     },
 
     workExperience: {
-        type: { experience: String, dateFrom: Date, dateTo: Date },
+        type: [{ experience: String, dateFrom: Date, dateTo: Date }],
         value: [{ experience: String, dateFrom: Date, dateTo: Date }],
     },
     

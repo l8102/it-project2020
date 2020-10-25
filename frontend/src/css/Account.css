@@ -1,3 +1,5 @@
+@import "DefaultStyles.css";
+
 .form-container {
    display: flex;
    justify-content: center;
@@ -5,18 +7,14 @@
 
 .account-form {
     text-align: center;
-    background-color: #c9dbd5;
-    color: #176966;
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
     margin-top: 10%;
     margin-bottom: 10%;
     padding: 5px;
     width: 35%;
-    border-radius: 20px;
-    box-shadow: 0px 2px 10px #032533;
-}
-
-form {
-    margin: 40px;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
 }
 
 .account-form h1 {
@@ -29,7 +27,7 @@ form {
 }
 
 
-input[type=text], input[type=password], select {
+.account-form input[type=text], input[type=password], select {
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
@@ -40,7 +38,7 @@ input[type=text], input[type=password], select {
 }
 
 
-input[type=submit], select {
+.account-form input[type=submit], select {
     padding: 10px 50px;
     width: 180px;
     text-align: center;
@@ -50,23 +48,20 @@ input[type=submit], select {
     background-color: white;
     box-shadow: 0px 2px 3px #96a39e;
     outline: none;
-    color: #176966;
+    color: var(--dark-blue);
 }
 
-input[type=submit]:hover {
+.account-form input[type=submit]:hover {
     background-color: #ffffffce;
-    color: #239d99;
+    color: var(--dark-blue);
 }
 
-::placeholder {
-    color: #176966;
+.account-form ::placeholder {
+    color: var(--dark-blue);
 }
 
-
-form {
-    margin-right: 80px;
-    margin-left: 80px;
-    margin-bottom: 100px;
+.account-form form {
+    margin: 40px 80px 100px;
 }
 
 .name-field {
@@ -80,14 +75,14 @@ form {
 }
 
 .nav-link, .nav-link:visited {
-    color: #176966;
+    color: var(--dark-blue);
     display: block;
     margin: 20px;
     text-decoration: none;
 }
 
 .nav-link:hover  {
-    color: #239d99;
+    color: var(--mid-blue);
 }
 
 .google-button {
