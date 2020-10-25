@@ -6,44 +6,80 @@ import "../css/DefaultStyles.css"
 
 export default class PageToggle extends Component {
 
-    render() {
+  constructor(props) {
+    super(props);
 
-      // import the colours from the css
-      let styles = getComputedStyle(document.documentElement);
-      const midPortfolio = styles.getPropertyValue('--mid-portfolio');
+    this.state = {
+      isToggleOn: false,
+    };
 
-      // create custom coloured switch
-      const CustomSwitch = withStyles({
-        switchBase: {
-          color: midPortfolio,
-          '&$checked': {
-            color: midPortfolio,
-          },
-          '&$checked + $track': {
-            backgroundColor: midPortfolio,
-          },
-        },
-        checked: {},
-        track: {},
-      })(Switch);
+    // This binding is necessary to make 'this' work in the callback
+    this.handleChange = this.handleChange.bind(this);
+    this.selectedPage = this.selectedPage.bind(this);
+  }
 
-        return(
+  handleChange() {
+    this.setState(state => ({
+      // update the state of the component
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+
+  selectedPage() {
+    if (this.state.isToggleOn) {
+      return (
         <div>
-            <FormControlLabel
-            control={
-                <CustomSwitch
-                checked={this.props.isToggleOn}
-                onChange={this.props.handleButtonChange}
-                color="primary"
-                name="pageToggle"
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-                />
-            }
-            label="Edit/View Page Toggle"
-            labelPlacement="start"
-            />
+          {this.props.alternatePage}
         </div>
-        )
-    
+      )
+    } else{
+      return (
+        <div>
+          {this.props.defaultPage}
+        </div>
+      )
     }
+  }
+
+  render() {
+
+    // import the colours from the css
+    let style = getComputedStyle(document.getElementById('root'));
+    let midPortfolio = style.getPropertyValue('--mid-portfolio');
+
+    // create custom coloured switch
+    const CustomSwitch = withStyles({
+      switchBase: {
+        color: midPortfolio,
+        '&$checked': {
+          color: midPortfolio,
+        },
+        '&$checked + $track': {
+          backgroundColor: midPortfolio,
+        },
+      },
+      checked: {},
+      track: {},
+    })(Switch);
+
+    return (
+      <div>
+        <FormControlLabel
+          control={
+            <CustomSwitch
+              checked={this.state.isToggleOn}
+              onChange={this.handleChange}
+              color="primary"
+              name="pageToggle"
+              inputProps={{'aria-label': 'primary checkbox'}}
+            />
+          }
+          label="Edit/View Page Toggle"
+          labelPlacement="start"
+        />
+        <this.selectedPage/>
+      </div>
+    )
+
+  }
 }
