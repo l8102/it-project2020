@@ -38,13 +38,14 @@ class PrivateToggle extends Component {
     try {
       // update the isPrivate field in the database
       await setPortfolioIsPrivate(!this.state.isToggleOn);
-      this.setState(state => ({
-        // update the state of the component
-        isToggleOn: !state.isToggleOn
-      }));
     } catch (error) {
       console.error(error)
     }
+
+    this.setState(state => ({
+      // update the state of the component
+      isToggleOn: !state.isToggleOn
+    }));
   }
 
   displayAccessCode() {

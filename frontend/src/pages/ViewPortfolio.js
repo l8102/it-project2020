@@ -7,6 +7,7 @@ import ViewGallery from "./pcomponents/ViewGallery";
 import ViewFiles from "./pcomponents/ViewFiles";
 import ViewLinks from "./pcomponents/ViewLinks";
 import Tabs from "./pcomponents/Tabs";
+import {colours} from "../constants/Colours";
 
 class ViewPortfolio extends Component {
 
@@ -19,11 +20,13 @@ class ViewPortfolio extends Component {
       profileImage: '',
       email: '',
       telephone: '',
+      colour: '',
       isLoaded: false
     };
 
     // This binding is necessary to make 'this' work in the callback
     this.ableToView = this.ableToView.bind(this);
+    this.renderPortfolioColours = this.renderPortfolioColours.bind(this);
   }
 
   async componentDidMount() {
@@ -47,8 +50,11 @@ class ViewPortfolio extends Component {
       profilePicture: account.data.profilePicture,
       email: portfolio.data.email,
       telephone: portfolio.data.telephone,
+      colour: portfolio.data.colour,
       isLoaded: true
     })
+
+    this.renderPortfolioColours(this.state.colour)
   }
 
   // Returns if there is an account id that the user can view
@@ -61,6 +67,19 @@ class ViewPortfolio extends Component {
     } else {
       return false;
     }
+  }
+
+  renderPortfolioColours(colour) {
+    // Get the current styles
+    let styles = document.documentElement.style;
+
+    // Get the colour set from the colours dictionary
+    let colourSet = colours[colour];
+
+    // Use this colour set to render the portfolio colours
+    styles.setProperty('--light-portfolio', colourSet.light);
+    styles.setProperty('--mid-portfolio', colourSet.mid);
+    styles.setProperty('--dark-portfolio', colourSet.dark);
   }
 
   render() {

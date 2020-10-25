@@ -34,7 +34,7 @@ class EditPortfolio extends Component {
         telephoneInput: '',
         isPrivate: '',
         accessCode: '',
-        currentColour: '',
+        colour: '',
         isLoaded: false
     };
 
@@ -43,12 +43,11 @@ class EditPortfolio extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
     this.ableToEdit = this.ableToEdit.bind(this);
-    this.updateColour = this.updateColour.bind(this);
+    this.renderPortfolioColours = this.renderPortfolioColours.bind(this);
   }
 
   async componentDidMount() {
 
-    console.log("running");
     let portfolio, account;
     const accountId = sessionStorage.getItem("accountId");
 
@@ -69,12 +68,11 @@ class EditPortfolio extends Component {
         telephone: portfolio.data.telephone,
         isPrivate: portfolio.data.isPrivate,
         accessCode: portfolio.data.accessCode,
-        currentColour: portfolio.data.currentColour,
+        colour: portfolio.data.colour,
         isLoaded: true
     })
 
-    // Update the current colour
-    this.updateColour()
+    this.renderPortfolioColours(this.state.colour)
   }
 
   handleChange(e) {
@@ -161,62 +159,74 @@ class EditPortfolio extends Component {
     }
   }
 
-  updateColour() {
+  renderPortfolioColours(colour) {
     // Get the current styles
     let styles = document.documentElement.style;
 
-    // Get the current colour dictionary
-    let currentColour = colours["red"];
+    // Get the colour set from the colours dictionary
+    let colourSet = colours[colour];
 
-    styles.setProperty('--light-portfolio', currentColour.light);
-    styles.setProperty('--mid-portfolio', currentColour.mid);
-    styles.setProperty('--dark-portfolio', currentColour.dark);
+    // Use this colour set to render the portfolio colours
+    styles.setProperty('--light-portfolio', colourSet.light);
+    styles.setProperty('--mid-portfolio', colourSet.mid);
+    styles.setProperty('--dark-portfolio', colourSet.dark);
   }
 
   render() {
-
     // If the user is able to edit, and the page is loaded render the page normally
-    if (this.ableToEdit() && this.state.isLoaded) {
-      return (
-        <div>
-          <div className="portfolio-container">
-            <div className="user-info">
-              <h1 className="name">
-                {this.state.firstName + " " + this.state.lastName}
-              </h1>
-              <h3>
-                Contact Information
-              </h3>
-              <this.contactInfoForm/>
-              <PrivateToggle
-                isPrivate={this.state.isPrivate}
-                accessCode={this.state.accessCode}
-              />
-              <ColourSelector/>
+    if (this.ableToEdit()) {
+      if (this.state.isLoaded) {
+        return (
+          <div>
+            <div className="portfolio-container">
+              <div className="user-info">
+                <h1 className="name">
+                  {this.state.firstName + " " + this.state.lastName}
+                </h1>
+                <h3>
+                  Contact Information
+                </h3>
+                <this.contactInfoForm/>
+                <PrivateToggle
+                  isPrivate={this.state.isPrivate}
+                  accessCode={this.state.accessCode}
+                />
+                <ColourSelector
+                  colour={this.state.colour}
+                  renderPortfolioColours={this.renderPortfolioColours}
+                />
+              </div>
+              <ProfilePicture/>
             </div>
-            <ProfilePicture/>
+            <Tabs>
+              <div label="About Me">
+                <EditAbout />
+                <ViewAbout />
+              </div>
+              <div label="Gallery">
+                <EditGallery />
+                <ViewGallery />
+              </div>
+              <div label="Files">
+                <EditFiles />
+                <ViewFiles />
+              </div>
+              <div label="Links">
+                <EditLinks />
+                <ViewLinks />
+              </div>
+            </Tabs>
           </div>
-          <Tabs>
-            <div label="About Me">
-              <EditAbout />
-              <ViewAbout />
-            </div>
-            <div label="Gallery">
-              <EditGallery />
-              <ViewGallery />
-            </div>
-            <div label="Files">
-              <EditFiles />
-              <ViewFiles />
-            </div>
-            <div label="Links">
-              <EditLinks />
-              <ViewLinks />
-            </div>
-          </Tabs>
-        </div>
-      );
+        );
 
+      // Otherwise if not loaded, show the page is loading
+      } else {
+        return (
+          <div>
+            Loading...
+          </div>
+        )
+      }
     // Otherwise, deny access
     } else {
       return (
