@@ -12,6 +12,11 @@
     background-color: var(--light-portfolio);
 }
 
+.portfolio-page h1, .portfolio-page h2, .portfolio-page h3, .portfolio-page label, .portfolio-page th {
+    color: var(--dark-portfolio);
+}
+
+
 
 .private-toggle-container {
     padding: 20px;
@@ -52,6 +57,8 @@
     text-align: center;
     padding-top: 5%;
  }
+
+
 
 .name {
     padding-bottom: 1em;
