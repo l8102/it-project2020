@@ -8,6 +8,7 @@
 .portfolio-container {
     padding-top: 5%;
     padding-bottom: 5%;
+    padding-right: 5%;
     overflow: auto;
     background-color: var(--light-portfolio);
 }
@@ -140,12 +141,14 @@
 
 .upload-img {
     position: absolute;
+    padding-left: 60%;
+    padding-top: 10%;
     z-index: 10;
 }
 
 .pp-btn {
     float: right;
-    margin-right: 0;
+    margin-right: 2px;
 }
 
 .avatar {
@@ -159,7 +162,13 @@
 .profile-img {
     position: absolute;
     float: right;
+    padding-left: 60%;
+    padding-top: 10%;
     margin-top: 10%;
+}
+
+.contact-title {
+    padding-bottom: 15px;
 }
 
 .contact-item {
@@ -172,6 +181,10 @@
     font-weight: bold;
     font-size: xx-large;
     padding: 100px;
+}
+
+.page-toggle {
+    padding: 2%;
 }
 
 .view-edit-container {
