@@ -5,17 +5,16 @@
     padding: 0;
 }
 
+.portfolio-page  {
+    color: var(--dark-portfolio);
+}
+
 .portfolio-container {
     padding-top: 5%;
     padding-bottom: 5%;
     overflow: auto;
     background-color: var(--light-portfolio);
 }
-
-.portfolio-page h1, .portfolio-page h2, .portfolio-page h3, .portfolio-page label, .portfolio-page th {
-    color: var(--dark-portfolio);
-}
-
 
 
 .private-toggle-container {
