@@ -42,7 +42,7 @@ export default class ViewGallery extends Component {
                 <h1 className="title">
                     View Gallery
                 </h1>
-                <Carousel>
+                <Carousel className="carousel">
                     {
                         images.map((x, i) => {
                             return(
