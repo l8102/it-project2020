@@ -86,7 +86,7 @@ class ViewPortfolio extends Component {
     // If the user is able to view, render the page normally
     if (this.ableToView()) {
       return (
-        <div>
+        <div className="portfolio-page">
           <div className="portfolio-container">
             <div className="user-info">
               <h1 className="name">

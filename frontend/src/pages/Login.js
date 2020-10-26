@@ -41,29 +41,33 @@ class Login extends Component {
       password: this.state.password
     }
 
-    let res;
+    if(loginDetails.email !== "" && loginDetails.password !== "") {
 
-    try {
-      res = await login(loginDetails);
-    } catch (error) {
-      console.error(error)
-    }
+      let res;
 
-    const accountId = res.data;
+      try {
+        res = await login(loginDetails);
+      } catch (error) {
+        console.error(error)
+      }
 
-    // If there is a valid response
-    if (accountId !== "False") {
+      const accountId = res.data;
 
-      // Store the account id that the user can edit
-      sessionStorage.setItem("accountIdForEdit", accountId);
+      // If there is a valid response
+      if (accountId !== "False") {
 
-      // Redirect the user to their portfolio
-      this.props.history.push("/editPortfolio");
+        // Store the account id that the user can edit
+        sessionStorage.setItem("accountIdForEdit", accountId);
 
+        // Redirect the user to their portfolio
+        this.props.history.push("/editPortfolio");
+
+      } else {
+        alert("Invalid login credentials")
+      }
     } else {
-      alert("Invalid login credentials")
+      alert("Fields are empty");
     }
-
   }
 
   // Function represents form for entering an email & password for logging into the website

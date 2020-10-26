@@ -183,7 +183,7 @@ class EditPortfolio extends Component {
     if (this.ableToEdit()) {
       if (this.state.isLoaded) {
         return (
-          <div>
+          <div className="portfolio-page">
             <div className="portfolio-container">
               <div className="user-info">
                 <h1 className="name">
@@ -207,8 +207,8 @@ class EditPortfolio extends Component {
             <Tabs>
               <div label="About Me">
                 <ViewEditButton
-                  defaultPage={<ViewAbout />}
-                  alternatePage={<EditAbout />}
+                  defaultPage={<ViewAbout firstName= { this.state.firstName }/>}
+                  alternatePage={<EditAbout firstName= { this.state.firstName } />}
                 />
               </div>
               <div label="Gallery">
