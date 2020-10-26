@@ -4,45 +4,7 @@ import "../../css/Gallery.css";
 import { getImages } from '../../Api.js'
 import ViewGallery from './ViewGallery.js';
 import ViewEditButton from "../../components/ViewEditButton"
-/*
-export default class Gallery extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          isToggleOn: false
-        }
 
-        this.handleButtonChange = this.handleButtonChange.bind(this);
-    }
-
-    handleButtonChange() {
-        console.log(this.state);
-        if(this.isToggleOn) {
-            console.log("hello");
-            this.setState({
-                isToggleOn: !this.state.isToggleOn
-    
-            });
-            return (<ViewGallery /> );
-        }
-        else {
-            this.setState({
-                isToggleOn: !this.state.isToggleOn
-    
-            });
-            return (<EditGallery />)
-
-        }
-    }
-    
-    render() {
-        return (
-            <ViewEditButton onChange={this.handleButtonChange} isToggleOn={this.state.isToggleOn}/>
-        )
-    }
-};
-*/
 
 export default class EditGallery extends Component {
 

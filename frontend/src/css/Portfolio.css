@@ -51,6 +51,7 @@
     width: 50%;
     text-align: center;
     padding-top: 5%;
+    color: var(--dark-portfolio);
  }
 
 .name {

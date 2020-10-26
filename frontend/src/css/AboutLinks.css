@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    color: var(--dark-portfolio);
 }
 
 .about-me-page h1, .links-page h1, .links-page-view h1 {
@@ -157,4 +158,9 @@
 
 .links-page-view {
     text-align: center;
+    color: var(--dark-portfolio);
+}
+
+.about-me-page {
+    color: var(--dark-portfolio);
 }
