@@ -91,15 +91,25 @@ const updateByAccountId = function (req, res, next) {
             res.send("false");
             return false;
         } else {
+          // check that fields are not empty
+          if (req.body.isPrivate !== undefined) {
             portfolio.isPrivate = req.body.isPrivate;
+          }
+          if (req.body.telephone !== undefined) {
             portfolio.telephone = req.body.telephone;
+          }
+          if (req.body.email !== undefined) {
             portfolio.email = req.body.email;
+          }
+          if (req.body.colour !== undefined) {
             portfolio.colour = req.body.colour;
-            portfolio.save();
+          }
 
-            console.log("EditPortfolio updated");
-            res.json(portfolio);
-            return true;
+          portfolio.save();
+
+          console.log("EditPortfolio updated");
+          res.json(portfolio);
+          return true;
         }
     });
 };
