@@ -52,6 +52,13 @@
     margin-bottom: 40px;
     width: 50%;
     margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--light-portfolio);
+    overflow-y: auto;
+    border-radius: 5px;
+    padding-bottom: 20px;
 }
 
 .links-page section {
