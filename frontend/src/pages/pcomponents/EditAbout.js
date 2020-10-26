@@ -289,7 +289,7 @@ export default class EditAbout extends Component {
               />
               <button
                 className="save-btn"
-                id="right-btn"
+                id="mid-btn"
                 name="educationalBackground"
                 onClick={this.handleSubmit}
               >
@@ -347,7 +347,7 @@ export default class EditAbout extends Component {
               })}
               <button
                 className="save-btn"
-                id="right-btn"
+                id="mid-btn"
                 name="experienceList"
                 onClick={this.handleSubmit}
               >
@@ -391,7 +391,7 @@ export default class EditAbout extends Component {
               })}
               <button
                 className="save-btn"
-                id="right-btn"
+                id="mid-btn"
                 name="interestList"
                 onClick={this.handleSubmit}
               >
@@ -411,7 +411,7 @@ export default class EditAbout extends Component {
               />
               <button
                 className="save-btn"
-                id="right-btn"
+                id="mid-btn"
                 name="description"
                 onClick={this.handleSubmit}
               >

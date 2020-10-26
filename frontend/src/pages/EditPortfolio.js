@@ -140,7 +140,7 @@ class EditPortfolio extends Component {
           onChange={ this.handleChange }
         />
         <input
-          className="save-btn right-btn"
+          className="save-btn"
           type="submit"
           value="Save"
         />
@@ -185,7 +185,8 @@ class EditPortfolio extends Component {
         return (
           <div className="portfolio-page">
             <div className="portfolio-container">
-              <div className="user-info">
+              <ProfilePicture/>
+              <div className="user-info-container">
                 <h1 className="name">
                   {this.state.firstName + " " + this.state.lastName}
                 </h1>
@@ -202,7 +203,6 @@ class EditPortfolio extends Component {
                   renderPortfolioColours={this.renderPortfolioColours}
                 />
               </div>
-              <ProfilePicture/>
             </div>
             <Tabs>
               <div label="About Me">

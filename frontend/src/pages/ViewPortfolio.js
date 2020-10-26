@@ -27,6 +27,7 @@ class ViewPortfolio extends Component {
     // This binding is necessary to make 'this' work in the callback
     this.ableToView = this.ableToView.bind(this);
     this.renderPortfolioColours = this.renderPortfolioColours.bind(this);
+    this.renderContactInfo = this.renderContactInfo.bind(this);
   }
 
   async componentDidMount() {
@@ -82,32 +83,51 @@ class ViewPortfolio extends Component {
     styles.setProperty('--dark-portfolio', colourSet.dark);
   }
 
+  renderContactInfo() {
+    if (this.state.email !== undefined ||
+        this.state.telephone !== undefined) {
+      return (
+        <div>
+          <label className="contact-item">
+            {this.state.email}
+          </label>
+          <label className="contact-item">
+            {this.state.telephone}
+          </label>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <label className="contact-item">
+            None
+          </label>
+        </div>
+      )
+    }
+  }
+
   render() {
     // If the user is able to view, render the page normally
     if (this.ableToView()) {
       return (
         <div className="portfolio-page">
           <div className="portfolio-container">
-            <div className="user-info">
+            <div className="profile-picture-container">
+              <img
+                className="profile-img"
+                src={this.state.profilePicture}
+                alt=""
+              />
+            </div>
+            <div className="user-info-container">
               <h1 className="name">
                 {this.state.firstName + " " + this.state.lastName}
               </h1>
               <h3>
                 Contact Information
               </h3>
-              <label className="contact-item">
-                {this.state.email}
-              </label>
-              <label className="contact-item">
-                {this.state.telephone}
-              </label>
-            </div>
-            <div className="pp-container">
-              <div className="profile-img">
-                <img className="img" src={this.state.profilePicture} 
-                resizeMode="contain"
-                alt=""/>
-              </div>
+              <this.renderContactInfo/>
             </div>
           </div>
           <Tabs>
