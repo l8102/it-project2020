@@ -4,7 +4,7 @@ import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
 import ColourSelector from "../components/ColourSelector";
-import { colours } from "../constants/Colours";
+import { getColours } from "../components/GetColours";
 
 import { setPortfolioContactInfo, getPortfolio, getAccount } from "../Api.js"
 
@@ -161,16 +161,19 @@ class EditPortfolio extends Component {
   }
 
   renderPortfolioColours(colour) {
-    // Get the current styles
-    let styles = document.documentElement.style;
+    // Set the current styles
+    let currStyles = getComputedStyle(document.getElementById('root'));
 
     // Get the colour set from the colours dictionary
-    let colourSet = colours[colour];
+    let colourSet = getColours(currStyles,colour);
+
+    // Set the styles that will be updated
+    let newStyles = document.documentElement.style;
 
     // Use this colour set to render the portfolio colours
-    styles.setProperty('--light-portfolio', colourSet.light);
-    styles.setProperty('--mid-portfolio', colourSet.mid);
-    styles.setProperty('--dark-portfolio', colourSet.dark);
+    newStyles.setProperty('--light-portfolio', colourSet.light);
+    newStyles.setProperty('--mid-portfolio', colourSet.mid);
+    newStyles.setProperty('--dark-portfolio', colourSet.dark);
 
     // Update the colour
     this.setState({

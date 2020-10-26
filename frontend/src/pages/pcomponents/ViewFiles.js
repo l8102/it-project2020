@@ -27,7 +27,9 @@ export default class ViewFiles extends Component {
 		let fileArray = [];
 
 		if (res.length === 0) {
-			fileArray[0][0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+		  let singleFile = []
+      singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+		  fileArray[0] = singleFile;
 		}
 		else {
 
