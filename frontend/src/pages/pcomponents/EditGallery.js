@@ -12,10 +12,16 @@ export default class EditGallery extends Component {
         super(props);
     
         this.state = {
-          selectedFile: ""
+          selectedFile: "",
+          images: [""]
         }
     
         this.fileChange = this.fileChange.bind(this);
+        this.renderUpdate = this.renderUpdate.bind(this);
+    }
+
+    async componentDidMount() {
+      await this.renderUpdate();
     }
     
     async fileChange(e) {
@@ -25,7 +31,7 @@ export default class EditGallery extends Component {
         console.log(this.state.selectedFile);
     }
 
-    handleSubmitFile = (event) => {
+    async handleSubmitFile(event) {
         event.preventDefault();
         
         if (!this.state.selectedFile) 
@@ -36,18 +42,19 @@ export default class EditGallery extends Component {
         reader.onloadend = () => {
             this.uploadImage(reader.result);
             //sessionStorage.setItem("activeTab", this.props.name);
-            
         };
         reader.onerror = () => {
             console.error('error on submit');
         };
-        //window.location.reload();
     };
 
     //stores the image in the database 
     async uploadImage(base64EncodedImage) {
         try {
             const upload = await uploadAPI(base64EncodedImage);
+
+            // after it is done uploading, render the update
+            await this.renderUpdate();
             this.setState({
                 selectedFile : ""
             });
@@ -60,6 +67,22 @@ export default class EditGallery extends Component {
         if (this.isToggleOn) {
 
         }
+    }
+
+    async renderUpdate() {
+      const res = await getImages();
+      const imageUrls = [];
+
+      res.forEach((image, index) => {
+        if (image.imageUrl) {
+          imageUrls[index] = image.imageUrl;
+        }
+      });
+
+      this.setState({
+        images : imageUrls
+      });
+      console.log(this.state.images);
     }
 
     render() {
@@ -76,7 +99,7 @@ export default class EditGallery extends Component {
                         Upload
                     </button>
                 </form>
-                <RenderImages />
+                <RenderImages images={this.state.images}/>
             </div>
         );
     }
@@ -87,31 +110,11 @@ class RenderImages extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      images: [""]
-    }
-
-  }
-
-  async componentDidMount() {
-
-    const res = await getImages();
-
-    const imageUrls = [];
-
-    res.forEach((image, index) => {
-      if (image.imageUrl) {
-        imageUrls[index] = image.imageUrl;
-      } 
-    });     
-
-    this.setState({images : imageUrls});
-    console.log(this.state.images);
-
   }
 
   render() {
-    const { images } = this.state;
+    const { images } = this.props;
+    console.log(images)
     return (
       <div className="gedit-container">
         {
@@ -119,7 +122,7 @@ class RenderImages extends Component {
             console.log(x);
             return(
               <div className="gedit-tile">
-                <img src={ x } className="gedit-img"/>
+                <img src={ x } className="gedit-img" alt=""/>
               </div>
             )
           })
@@ -127,6 +130,6 @@ class RenderImages extends Component {
       </div>
     );
   }
-};
+}
 
 
