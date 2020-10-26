@@ -342,7 +342,7 @@ export default class EditAbout extends Component {
                                             onChange={ e => this.handleInterestChange(e, i) }
                                         />
                                         <div >
-                                            { this.state.interestList.length !== 1 &&
+                                            { i !== this.state.interestList.length - 1 &&
                                                 <button classname="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
                                                     Remove interest
                                                     </button>
