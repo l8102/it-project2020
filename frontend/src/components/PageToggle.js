@@ -63,7 +63,7 @@ export default class PageToggle extends Component {
     })(Switch);
 
     return (
-      <div>
+      <div className="page-toggle">
         <FormControlLabel
           control={
             <CustomSwitch

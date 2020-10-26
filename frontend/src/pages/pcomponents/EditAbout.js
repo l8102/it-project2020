@@ -118,7 +118,7 @@ export default class EditAbout extends Component {
         updateAboutMe(this.state);
         // Stores tab, so default tab is set to about on refresh
         sessionStorage.setItem("activeTab", this.props.name);
-        window.location.reload();
+        //window.location.reload();
     }
 
     async componentDidMount() {
@@ -339,7 +339,7 @@ export default class EditAbout extends Component {
                                         />
                                         <div >
                                             { this.state.interestList.length !== 1 &&
-                                                <button classname="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
+                                                <button className="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
                                                     Remove interest
                                                     </button>
                                             }
