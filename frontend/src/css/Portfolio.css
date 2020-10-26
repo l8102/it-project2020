@@ -11,16 +11,13 @@
 
 .portfolio-container {
     padding-bottom: 2%;
-    padding-right: 5%;
-    padding-left: 5%;
+   
     overflow: hidden;
     background-color: var(--light-portfolio);
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
 }
-
-
 
 
 .private-toggle-container {
@@ -61,7 +58,6 @@
     text-align: center;
     flex: 2;
     padding-top: 8%;
-    margin-left: 10%;
     padding-right: 5%;
     color: var(--dark-portfolio);
  }
@@ -84,12 +80,10 @@
 }
 
 .img {
-    min-height: 300px;
-    min-width: 300px;
-
+    height: 300;
+    width: 300;
     margin-top: 10%
 }
-
 
 
 .p-text-box {
@@ -150,20 +144,18 @@
 }
 
 .pp-container {
-    width: 20%;
-    height: 20%;
-    margin-right: 0%;
-    margin-left: 15%;
+    width: 300;
+    height: 250;
+    margin-left: 20%;
     position: relative;
 }
 
 .img-container {
-    padding-left: 10%;
-    width: 100%;
+    padding: 0 auto;
 }
 
 .img-container .profile-img {
-    padding-top: 60%;
+    padding-top: 40%;
 }
 
 .profile-img img {
