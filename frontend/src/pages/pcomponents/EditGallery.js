@@ -3,7 +3,7 @@ import { uploadAPI } from "../../Api.js";
 import "../../css/Gallery.css";
 import { getImages } from '../../Api.js'
 import ViewGallery from './ViewGallery.js';
-import PageToggle from "../../components/PageToggle"
+import ViewEditButton from "../../components/ViewEditButton"
 /*
 export default class Gallery extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export default class Gallery extends Component {
     
     render() {
         return (
-            <PageToggle onChange={this.handleButtonChange} isToggleOn={this.state.isToggleOn}/>
+            <ViewEditButton onChange={this.handleButtonChange} isToggleOn={this.state.isToggleOn}/>
         )
     }
 };

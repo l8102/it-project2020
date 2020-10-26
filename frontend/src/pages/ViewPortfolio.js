@@ -110,7 +110,7 @@ class ViewPortfolio extends Component {
           </div>
           <Tabs>
             <div label="About Me">
-              <ViewAbout/>
+              <ViewAbout firstName={ this.state.firstName }/>
             </div>
             <div label="Gallery">
               <ViewGallery/>

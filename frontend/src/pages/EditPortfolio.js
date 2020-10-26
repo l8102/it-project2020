@@ -18,7 +18,7 @@ import EditFiles from "./pcomponents/EditFiles";
 import ViewFiles from "./pcomponents/ViewFiles";
 import EditLinks from "./pcomponents/EditLinks";
 import ViewLinks from "./pcomponents/ViewLinks";
-import PageToggle from "../components/PageToggle";
+import ViewEditButton from "../components/ViewEditButton";
 
 class EditPortfolio extends Component {
 
@@ -206,25 +206,25 @@ class EditPortfolio extends Component {
             </div>
             <Tabs>
               <div label="About Me">
-                <PageToggle
+                <ViewEditButton
                   defaultPage={<ViewAbout />}
                   alternatePage={<EditAbout />}
                 />
               </div>
               <div label="Gallery">
-                <PageToggle
+                <ViewEditButton
                   defaultPage={<ViewGallery />}
                   alternatePage={<EditGallery />}
                 />
               </div>
               <div label="Files">
-                <PageToggle
+                <ViewEditButton
                   defaultPage={<ViewFiles />}
                   alternatePage={<EditFiles />}
                 />
               </div>
               <div label="Links">
-                <PageToggle
+                <ViewEditButton
                   defaultPage={<ViewLinks />}
                   alternatePage={<EditLinks />}
                 />

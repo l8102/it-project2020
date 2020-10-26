@@ -13,11 +13,10 @@ export default class Landing extends Component {
                   Welcome to Eagle ePortfolio
                 </h1>
                 <p className="landing-desc" >
-                  Description Description Description Description Description Description
-                  Description Description Description Description Description Description
-                  Description Description Description Description Description Description
-                  Description Description Description Description Description Description
-                  Description Description Description Description Description Description
+                  We offer a secure platform for the sharing and viewing of students work. If you're a student
+                  simply create a new account and you can begin uploading your work and personal information all in
+                  the one place. If you're a recruiter, or someone wanting to browse other students' work, please make use of
+                  the browse feature.
                 </p>
               </div>
               <div className="landing-nav">
