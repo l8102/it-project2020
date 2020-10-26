@@ -119,7 +119,7 @@ export default class EditAbout extends Component {
         updateAboutMe(this.state);
         // Stores tab, so default tab is set to about on refresh
         sessionStorage.setItem("activeTab", this.props.name);
-        window.location.reload();
+        //window.location.reload();
     }
 
     async componentDidMount() {

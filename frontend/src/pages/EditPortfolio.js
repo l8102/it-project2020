@@ -189,7 +189,7 @@ class EditPortfolio extends Component {
                 <h1 className="name">
                   {this.state.firstName + " " + this.state.lastName}
                 </h1>
-                <h3>
+                <h3 className="contact-title">
                   Contact Information
                 </h3>
                 <this.contactInfoForm/>
