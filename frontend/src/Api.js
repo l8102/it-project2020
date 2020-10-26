@@ -287,7 +287,24 @@ export function setPortfolioContactInfo(newEmail, newTelephone) {
       console.error(error);
     });
   });
+}
 
+export function setPortfolioColour(colour) {
+  return new Promise( function (resolve) {
+    axios({
+      method: "put",
+      url: BASE_URL + "/api/portfolio/updateByAccountId",
+      data: {
+        accountId: sessionStorage.getItem("accountId"),
+        colour: colour
+      }
+    })
+      .then(function (response) {
+        resolve(response);
+      }).catch(function (error) {
+      console.error(error);
+    });
+  });
 }
 
 // Update about Me

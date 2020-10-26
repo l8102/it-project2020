@@ -1,3 +1,5 @@
+@import "DefaultStyles.css";
+
 .landing-container {
     position: relative;
     padding: 50px 0;
@@ -24,8 +26,8 @@
     height: 300px;
     width: 60vw;
     border-radius: 50px 50px 0 0;
-    background-color: var(--light-green);
-    color: var(--dark-green);
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
     text-align: center;
 }
 
@@ -49,7 +51,7 @@
 }
 
 .landing-button {
-    background-color: var(--mid-green);
+    background-color: var(--mid-blue);
     transition-duration: 0.2s;
     width: 19.6vw;
     height: 100px;
@@ -69,7 +71,7 @@
 }
 
 .landing-button:hover {
-    background-color: var(--dark-green);
+    background-color: var(--dark-blue);
 }
 
 .landing-nav a {

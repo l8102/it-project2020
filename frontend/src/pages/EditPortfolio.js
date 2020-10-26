@@ -3,6 +3,8 @@ import "../css/Portfolio.css";
 
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
+import ColourSelector from "../components/ColourSelector";
+import { colours } from "../constants/Colours";
 
 import { setPortfolioContactInfo, getPortfolio, getAccount } from "../Api.js"
 
@@ -16,6 +18,7 @@ import EditFiles from "./pcomponents/EditFiles";
 import ViewFiles from "./pcomponents/ViewFiles";
 import EditLinks from "./pcomponents/EditLinks";
 import ViewLinks from "./pcomponents/ViewLinks";
+import PageToggle from "../components/PageToggle";
 
 class EditPortfolio extends Component {
 
@@ -31,6 +34,8 @@ class EditPortfolio extends Component {
         emailInput: '',
         telephoneInput: '',
         isPrivate: '',
+        accessCode: '',
+        colour: '',
         isLoaded: false
     };
 
@@ -39,11 +44,11 @@ class EditPortfolio extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.contactInfoForm = this.contactInfoForm.bind(this);
     this.ableToEdit = this.ableToEdit.bind(this);
+    this.renderPortfolioColours = this.renderPortfolioColours.bind(this);
   }
 
   async componentDidMount() {
 
-    console.log("running");
     let portfolio, account;
     const accountId = sessionStorage.getItem("accountId");
 
@@ -62,8 +67,13 @@ class EditPortfolio extends Component {
         profilePicture: account.data.profilePicture,
         email: portfolio.data.email,
         telephone: portfolio.data.telephone,
+        isPrivate: portfolio.data.isPrivate,
+        accessCode: portfolio.data.accessCode,
+        colour: portfolio.data.colour,
         isLoaded: true
     })
+
+    this.renderPortfolioColours(this.state.colour)
   }
 
   handleChange(e) {
@@ -150,45 +160,87 @@ class EditPortfolio extends Component {
     }
   }
 
-  render() {
-    // If the user is able to edit, render the page normally
-    if (this.ableToEdit()) {
-      return (
-        <div>
-          <div className="portfolio-container">
-            <div className="user-info">
-              <h1 className="name">
-                {this.state.firstName + " " + this.state.lastName}
-              </h1>
-              <h3 className="title">
-                Contact Information
-              </h3>
-              <this.contactInfoForm/>
-              <PrivateToggle/>
-            </div>
-            <ProfilePicture/>
-          </div>
-          <Tabs>
-            <div label="About Me">
-              <EditAbout />
-              <ViewAbout />
-            </div>
-            <div label="Gallery">
-              <EditGallery />
-              <ViewGallery />
-            </div>
-            <div label="Files">
-              <EditFiles />
-              <ViewFiles />
-            </div>
-            <div label="Links">
-              <EditLinks />
-              <ViewLinks />
-            </div>
-          </Tabs>
-        </div>
-      );
+  renderPortfolioColours(colour) {
+    // Get the current styles
+    let styles = document.documentElement.style;
 
+    // Get the colour set from the colours dictionary
+    let colourSet = colours[colour];
+
+    // Use this colour set to render the portfolio colours
+    styles.setProperty('--light-portfolio', colourSet.light);
+    styles.setProperty('--mid-portfolio', colourSet.mid);
+    styles.setProperty('--dark-portfolio', colourSet.dark);
+
+    // Update the colour
+    this.setState({
+      colour: colour
+    })
+  }
+
+  render() {
+    // If the user is able to edit, and the page is loaded render the page normally
+    if (this.ableToEdit()) {
+      if (this.state.isLoaded) {
+        return (
+          <div>
+            <div className="portfolio-container">
+              <div className="user-info">
+                <h1 className="name">
+                  {this.state.firstName + " " + this.state.lastName}
+                </h1>
+                <h3>
+                  Contact Information
+                </h3>
+                <this.contactInfoForm/>
+                <PrivateToggle
+                  isPrivate={this.state.isPrivate}
+                  accessCode={this.state.accessCode}
+                />
+                <ColourSelector
+                  colour={this.state.colour}
+                  renderPortfolioColours={this.renderPortfolioColours}
+                />
+              </div>
+              <ProfilePicture/>
+            </div>
+            <Tabs>
+              <div label="About Me">
+                <PageToggle
+                  defaultPage={<ViewAbout />}
+                  alternatePage={<EditAbout />}
+                />
+              </div>
+              <div label="Gallery">
+                <PageToggle
+                  defaultPage={<ViewGallery />}
+                  alternatePage={<EditGallery />}
+                />
+              </div>
+              <div label="Files">
+                <PageToggle
+                  defaultPage={<ViewFiles />}
+                  alternatePage={<EditFiles />}
+                />
+              </div>
+              <div label="Links">
+                <PageToggle
+                  defaultPage={<ViewLinks />}
+                  alternatePage={<EditLinks />}
+                />
+              </div>
+            </Tabs>
+          </div>
+        );
+
+      // Otherwise if not loaded, show the page is loading
+      } else {
+        return (
+          <div>
+            Loading...
+          </div>
+        )
+      }
     // Otherwise, deny access
     } else {
       return (

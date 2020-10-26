@@ -94,6 +94,7 @@ const updateByAccountId = function (req, res, next) {
             portfolio.isPrivate = req.body.isPrivate;
             portfolio.telephone = req.body.telephone;
             portfolio.email = req.body.email;
+            portfolio.colour = req.body.colour;
             portfolio.save();
 
             console.log("EditPortfolio updated");

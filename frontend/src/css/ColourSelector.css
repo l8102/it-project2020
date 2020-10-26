@@ -1,0 +1,63 @@
+/* Import the default colour scheme for the website */
+@import "DefaultStyles.css";
+
+.colour-container {
+    width: 50%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    z-index: 12;
+}
+
+.colour-title {
+    color: var(--dark-portfolio);
+}
+
+.colour-item {
+    margin: auto;
+}
+
+/* Hides the radio buttons */
+[type=radio] {
+   position: absolute;
+   opacity: 0;
+   width: 0;
+   height: 0;
+}
+
+[type=radio] + .colour-display{
+    cursor: pointer;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.15));
+}
+[type=radio]:checked + .colour-display {
+    border-color: var(--white);
+}
+[type=radio]:hover + .colour-display {
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+}
+
+.colour-display {
+    height: 2vw;
+    width: 2vw;
+}
+
+#blue {
+    background-color: var(--mid-blue);
+}
+#green {
+    background-color: var(--mid-green);
+}
+#yellow {
+    background-color: var(--mid-yellow);
+}
+#orange {
+    background-color: var(--mid-orange);
+}
+#red {
+    background-color: var(--mid-red);
+}
+#purple {
+    background-color: var(--mid-purple);
+}
