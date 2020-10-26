@@ -36,13 +36,13 @@
     padding: 1rem 0;
     width: 24.9%;
     text-align: center;
-    background-color: var(--mid-blue);
+    background-color: var(--mid-portfolio);
     color: white;
-    box-shadow: 0 0 10px var(--dark-blue);
+    box-shadow: 0 0 10px var(--dark-portfolio);
 }
 
 .tab-list-active {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-portfolio);
     border-width: 1px 1px 0 1px;
 }
 
@@ -88,10 +88,10 @@
     padding: 5px;
     border-radius: 5px;
     width: 150px;
-    background-color: var(--mid-blue);
+    background-color: var(--mid-portfolio);
     color: var(--white);
     border: none;
-    box-shadow: 0 0 2px var(--dark-blue);
+    box-shadow: 0 0 2px var(--dark-portfolio);
 }
 
 .right-btn {
@@ -100,7 +100,7 @@
 }
 
 .save-btn:hover {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-portfolio);
 
 }
 
@@ -172,4 +172,15 @@
     font-weight: bold;
     font-size: xx-large;
     padding: 100px;
+}
+
+.view-edit-container {
+    padding-top: 50px;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.view-edit-btn {
+    margin-left: auto;
+    margin-right: 25%;
 }
