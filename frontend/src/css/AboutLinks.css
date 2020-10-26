@@ -23,6 +23,10 @@
     color: var(--white);
 }
 
+.about-me-page p {
+    margin-bottom: 10px;
+}
+
 .about-me-page label, .links-page label {
     display: block;
     margin-bottom: 10px;
@@ -33,6 +37,7 @@
 .links-page label {
     margin-top: 10px;
 }
+
 
 /*
 .about-me-page section, .links-page section, .links-page-view section {
@@ -85,10 +90,10 @@
 
 .list-table th, .list-table td {
     width: 100%;
+    word-break: break-word;
 }
 
 .experience-col {
-    max-width: 100%;
     display: inline-block;
     word-wrap: break-word;
     overflow: hidden;
