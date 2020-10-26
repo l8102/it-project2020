@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../css/AboutLinks.css";
-import { updateAboutMe, getAboutMe } from "../../Api.js"
+import { updateAboutMe, getAboutMe } from "../../Api.js";
+import moment from "moment"
 import { Timestamp } from "mongodb";
 
 export default class EditAbout extends Component {
@@ -137,7 +138,6 @@ export default class EditAbout extends Component {
         if (aboutMe.data.workExperience !== undefined && aboutMe.data.workExperience.length !== 0) {
             let experiences = [];
             (aboutMe.data.workExperience).forEach((element, i) => {
-                console.log(element);
                 dateFrom = element.dateFrom;
                 dateTo = element.dateTo;
 
@@ -145,9 +145,13 @@ export default class EditAbout extends Component {
                 // in EditAbout it is stored as an empty string
                 if(dateFrom === null) {
                     dateFrom = "";
+                } else {
+                    dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD");
                 }
                 if(dateTo === null) {
                     dateTo = "";
+                } else {
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD");
                 }
 
                 experiences[i] = { experience: element.experience, dateFrom: dateFrom, dateTo: dateTo };
@@ -338,8 +342,8 @@ export default class EditAbout extends Component {
                                             onChange={ e => this.handleInterestChange(e, i) }
                                         />
                                         <div >
-                                            { this.state.interestList.length !== 1 &&
-                                                <button classname="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
+                                            { i !== this.state.interestList.length - 1 &&
+                                                <button className="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
                                                     Remove interest
                                                     </button>
                                             }
@@ -358,7 +362,7 @@ export default class EditAbout extends Component {
                         </section>
                         <section>
                             <h2>
-                                About 'Name'
+                                About { this.props.firstName }
                             </h2>
                             <textarea className="text-box"
                                 name="description"
