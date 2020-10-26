@@ -11,8 +11,7 @@
 .pcontainer {
     width: 80%;
     margin-left: 10%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 40px;;
     color: var(--dark-portfolio);
 }
 
@@ -24,31 +23,8 @@
 
 .title {
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 20px;
 }
-
-/* todo not used */
-/*.btn {*/
-/*    padding: 0.5rem 1rem;*/
-/*    border: 1px solid var(--mid-portfolio);*/
-/*    background-color: var(--light-portfolio);*/
-/*    color: var(--mid-portfolio);*/
-/*    border-radius: 5px;*/
-/*    transition: 250ms;*/
-/*    cursor: pointer;*/
-/*    font-size: 16px;*/
-/*    margin: 5px;*/
-/*}*/
-
-/*.btn:hover {*/
-/*    border: 1px solid var(--accent-color);*/
-/*    background-color: var(--btn-text-color);*/
-/*    color: var(--acent-color);*/
-/*}*/
-
-/*.form {*/
-/*    margin-bottom: 2rem;*/
-/*}*/
 
 .gallery-form {
     margin: 5% auto;
@@ -73,12 +49,12 @@
     flex-wrap: wrap;
     align-items: center;
     overflow-x: auto;
-    justify-content: left;
+    justify-content: center;
     align-content: center;
 }
 
 .gedit-img {
     margin: 1vw;
-    width: 20vw;
+    height: 20vh;
     border-radius: 7%;
 }
