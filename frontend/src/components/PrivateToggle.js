@@ -92,9 +92,9 @@ class PrivateToggle extends Component {
       return(
         <div className="private-toggle-container">
           <FormControlLabel
+            className="private-toggle-item"
             control={
               <CustomSwitch
-                className="private-toggle-item"
                 checked={this.state.isToggleOn}
                 onChange={this.handleChange}
                 color="primary"
@@ -103,7 +103,7 @@ class PrivateToggle extends Component {
               />
             }
             label="Private Mode"
-            labelPlacement="start"
+            labelPlacement="top"
           />
           <this.displayAccessCode/>
         </div>

@@ -17,17 +17,17 @@
     background-color: var(--light-portfolio);
 }
 
-
 .private-toggle-container {
-    padding: 20px;
+    min-height: 100px;
+    padding: 10px 0 20px 0;
     display: grid;
     justify-content: center;
-    grid-template-columns: 50% 50%;
+    grid-template-rows: 80px auto;
 }
 
 .private-toggle-item {
     text-align: center;
-    padding: 10px 30px;
+    padding: 0;
 }
 
 .tab-list {  border-bottom: 1px solid #ccc;
@@ -102,9 +102,9 @@
     box-shadow: 0 0 2px var(--dark-portfolio);
 }
 
-.right-btn {
-    float: right;
-    margin-right: 15%;
+#right-btn {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .save-btn:hover {
