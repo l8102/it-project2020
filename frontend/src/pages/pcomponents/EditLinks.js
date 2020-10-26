@@ -18,6 +18,7 @@ export default class EditLinks extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderLinks = this.renderLinks.bind(this);
   }
 
   /* The method for having dynamic additional/removable input fields was taken and adapted from
@@ -54,18 +55,31 @@ export default class EditLinks extends Component {
       // If all fields are empty, the entry is not saved to the database
       if (this.state.linksList[i].title !== "" && this.state.linksList[i].description !== "" && this.state.linksList[i].link !== "") {
         list.push(this.state.linksList[i]);
+      } else {
+        // todo handle for deletion separately
+
+        // If it's not the last link and it is empty, alert the user
+        if (i !== this.state.linksList.length - 1) {
+          alert("Link not added, all fields must be entered.")
+        }
       }
     }
-    ;
-
 
     await this.setState({linksList: list});
-    updateLinks(this.state);
-    sessionStorage.setItem("activeTab", this.props.name);
-    window.location.reload();
+    await updateLinks(this.state);
+
+    // Re render the component
+    await this.renderLinks();
+
+    // sessionStorage.setItem("activeTab", this.props.name);
+    // window.location.reload();
   }
 
   async componentDidMount() {
+    await this.renderLinks();
+  }
+
+  async renderLinks() {
     let res
 
     try {

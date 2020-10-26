@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: center;
     color: var(--dark-portfolio);
+    padding-bottom: 20px;
 }
 
 .about-me-page h1, .links-page h1, .links-page-view h1 {

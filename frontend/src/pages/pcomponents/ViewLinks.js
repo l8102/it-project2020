@@ -40,39 +40,55 @@ export default class ViewLinks extends Component {
     //         </div>
     //     )
     // } else {
-    return (
-      <div className="links-page-view">
-        <h1>
-          View Links
-        </h1>
-        {this.state.linksList.map((x, i) => {
-          return (
-            <section key={i}>
-              <h2>
-                {x.title}
-              </h2>
-              <div className="description">
-                <h3>
-                  Description:
-                </h3>
-                <p>
-                  {x.description}
-                </p>
-              </div>
-              <div className="link">
-                <h3>
-                  Link:
-                </h3>
-                <a href={x.link}>
-                  {x.link}
-                </a>
-              </div>
-            </section>
-          )
-        })
-        }
-      </div>
-    )
+    if (this.state.linksList[0] === undefined) {
+      return (
+          <div
+            className="links-page"
+            style={{
+              paddingBottom: "40px"
+            }}
+          >
+            <h1>
+              View Links
+            </h1>
+            None
+          </div>
+        )
+    } else {
+      return (
+        <div className="links-page-view">
+          <h1>
+            View Links
+          </h1>
+          {this.state.linksList.map((x, i) => {
+            return (
+              <section key={i}>
+                <h2>
+                  {x.title}
+                </h2>
+                <div className="description">
+                  <h3>
+                    Description:
+                  </h3>
+                  <p>
+                    {x.description}
+                  </p>
+                </div>
+                <div className="link">
+                  <h3>
+                    Link:
+                  </h3>
+                  <a href={x.link}>
+                    {x.link}
+                  </a>
+                </div>
+              </section>
+            )
+          })
+          }
+        </div>
+      )
+    }
   }
 
   // }
