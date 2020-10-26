@@ -1,13 +1,16 @@
 @import "DefaultStyles.css";
 
 .file-container {
-    padding-top: 2%;
     padding-bottom: 5%;
 }
 
 .files {
     text-align: center;
     width: 100%;
+}
+
+.files h1 {
+    margin-top: 20px;
 }
 
 .v-files {
@@ -27,12 +30,17 @@
 }
 
 .fedit-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-x: auto;
+    justify-content: center;
+    align-content: center;
 }
 
 .fedit-img {
-    width: 25em;
+    height: 50vh;
+    margin: 1em;
     border-radius: 7%;
 }
