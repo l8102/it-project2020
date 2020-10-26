@@ -104,7 +104,9 @@ class ViewPortfolio extends Component {
             </div>
             <div className="pp-container">
               <div className="profile-img">
-                <img src={this.state.profilePicture} alt=""/>
+                <img className="img" src={this.state.profilePicture} 
+                resizeMode="contain"
+                alt=""/>
               </div>
             </div>
           </div>
