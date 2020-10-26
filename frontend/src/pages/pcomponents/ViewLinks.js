@@ -33,13 +33,13 @@ export default class ViewLinks extends Component {
     } 
 
     render() {
-        if(!this.state.isLoaded) {
-            return (
-                <div>
-                    Loading...
-                </div>
-            )
-        } else {
+        // if(!this.state.isLoaded) {
+        //     return (
+        //         <div>
+        //             Loading...
+        //         </div>
+        //     )
+        // } else {
             return (
                 <div className="links-page-view">
                     <h1>
@@ -74,5 +74,5 @@ export default class ViewLinks extends Component {
                 </div>
             )
         }
-    }
+    // }
 }

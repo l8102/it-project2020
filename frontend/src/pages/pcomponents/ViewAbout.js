@@ -88,13 +88,13 @@ async componentDidMount() {
 
 
   render() {
-    if (!this.state.isLoaded) {
-      return (
-        <div>
-          Loading...
-        </div>
-      )
-    } else {
+    // if (!this.state.isLoaded) {
+    //   return (
+    //     <div>
+    //       Loading...
+    //     </div>
+    //   )
+    // } else {
       return (
         <div className="about-me-page">
           <h1>
@@ -197,5 +197,5 @@ async componentDidMount() {
         </div>
       )
     }
-  }
+  // }
 }

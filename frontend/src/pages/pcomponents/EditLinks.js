@@ -90,13 +90,13 @@ export default class EditLinks extends Component {
     } 
    
     render() {
-        if(!this.state.isLoaded) {
-            return (
-                <div>
-                    Loading...
-                </div>
-            )   
-        } else {
+        // if(!this.state.isLoaded) {
+        //     return (
+        //         <div>
+        //             Loading...
+        //         </div>
+        //     )
+        // } else {
             return (
                 <div className="links-page">
                     <h1>
@@ -155,5 +155,5 @@ export default class EditLinks extends Component {
                 </div>
             )
         }
-    }
+    // }
 }
