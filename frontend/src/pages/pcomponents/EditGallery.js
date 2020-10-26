@@ -35,7 +35,7 @@ export default class EditGallery extends Component {
         reader.readAsDataURL(this.state.selectedFile);
         reader.onloadend = () => {
             this.uploadImage(reader.result);
-            sessionStorage.setItem("activeTab", this.props.name);
+            //sessionStorage.setItem("activeTab", this.props.name);
             
         };
         reader.onerror = () => {
