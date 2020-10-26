@@ -207,8 +207,8 @@ class EditPortfolio extends Component {
             <Tabs>
               <div label="About Me">
                 <PageToggle
-                  defaultPage={<ViewAbout />}
-                  alternatePage={<EditAbout />}
+                  defaultPage={<ViewAbout firstName={this.state.firstName}/>}
+                  alternatePage={<EditAbout firstName={this.state.firstName}/>}
                 />
               </div>
               <div label="Gallery">

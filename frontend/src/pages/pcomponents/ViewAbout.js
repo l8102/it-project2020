@@ -21,7 +21,7 @@ export default class ViewAbout extends Component {
 
       interestList: [""],
       description: "",
-      isLoaded: false
+      isLoaded: false,
     }
   }
 
@@ -188,7 +188,7 @@ async componentDidMount() {
           </section>
           <section>
             <h2>
-              About 'Name'
+              About { this.props.firstName }
             </h2>
             <p className="description">
               {this.state.description}

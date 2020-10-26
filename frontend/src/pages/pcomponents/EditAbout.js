@@ -362,7 +362,7 @@ export default class EditAbout extends Component {
                         </section>
                         <section>
                             <h2>
-                                About 'Name'
+                                About { this.props.firstName }
                             </h2>
                             <textarea className="text-box"
                                 name="description"
