@@ -79,7 +79,7 @@ export default class EditGallery extends Component {
         reader.onerror = () => {
             console.error('error on submit');
         };
-        window.location.reload();
+        //window.location.reload();
     };
 
     //stores the image in the database 
