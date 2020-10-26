@@ -343,7 +343,7 @@ export default class EditAbout extends Component {
                                         />
                                         <div >
                                             { i !== this.state.interestList.length - 1 &&
-                                                <button classname="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
+                                                <button className="save-btn" onClick={ e => this.handleRemoveInterest(e, i) } >
                                                     Remove interest
                                                     </button>
                                             }
