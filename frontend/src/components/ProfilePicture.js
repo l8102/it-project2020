@@ -62,31 +62,34 @@ export default class ProfilePicture extends Component {
  
 
   render () {
+
+    let style = getComputedStyle(document.getElementById('root'));
+    let midPortfolio = style.getPropertyValue('--mid-portfolio');
+
     return (
-      <div className="pp-container">
+      <div className="profile-picture-container">
         <div className="img-container">
           { this.state.edit &&
-            <div className="upload-img">
-              <h3 className="pp-title">
-                Click to choose a new profile picture
-              </h3>
-              <div className="avatar">
-                <Avatar
-                  width={300}
-                  height={300}
-                  onCrop={this.onCrop}
-                  onClose={this.onClose}
-                  src={this.state.src}
-                />
-              </div>
+            <div>
+              <Avatar
+                label="Click to upload a new profile picture"
+                labelStyle={{
+                  padding: "140px 20px",
+                }}
+                width={300}
+                height={300}
+                onCrop={this.onCrop}
+                onClose={this.onClose}
+                src={this.state.src}
+              />
               <input
-                className="save-btn pp-btn"
+                className="save-btn right-btn"
                 type="submit"
                 value="Save"
                 onClick={this.handleSave}
               />
               <input
-                className="save-btn pp-btn"
+                className="save-btn left-btn"
                 type="submit"
                 value="Cancel"
                 onClick={ this.cancelEdit }
@@ -94,10 +97,14 @@ export default class ProfilePicture extends Component {
             </div>
           }
           {!this.state.edit &&
-            <div className="profile-img">
-              <img src={this.state.currentImage} alt="" />
+            <div>
+              <img
+                className="profile-img"
+                src={this.state.currentImage}
+                alt=""
+              />
               <input
-                className="save-btn pp-btn"
+                className="save-btn right-btn"
                 type="submit"
                 value="Edit"
                 onClick={ this.switchToEdit }

@@ -7,7 +7,7 @@ import ViewGallery from "./pcomponents/ViewGallery";
 import ViewFiles from "./pcomponents/ViewFiles";
 import ViewLinks from "./pcomponents/ViewLinks";
 import Tabs from "./pcomponents/Tabs";
-import {colours} from "../constants/Colours";
+import {getColours} from "../components/GetColours";
 
 class ViewPortfolio extends Component {
 
@@ -27,6 +27,7 @@ class ViewPortfolio extends Component {
     // This binding is necessary to make 'this' work in the callback
     this.ableToView = this.ableToView.bind(this);
     this.renderPortfolioColours = this.renderPortfolioColours.bind(this);
+    this.renderContactInfo = this.renderContactInfo.bind(this);
   }
 
   async componentDidMount() {
@@ -70,47 +71,77 @@ class ViewPortfolio extends Component {
   }
 
   renderPortfolioColours(colour) {
-    // Get the current styles
-    let styles = document.documentElement.style;
+
+    // Set the current styles
+    let currStyles = getComputedStyle(document.getElementById('root'));
 
     // Get the colour set from the colours dictionary
-    let colourSet = colours[colour];
+    let colourSet = getColours(currStyles,colour);
+
+    // Set the styles that will be updated
+    let newStyles = document.documentElement.style;
 
     // Use this colour set to render the portfolio colours
-    styles.setProperty('--light-portfolio', colourSet.light);
-    styles.setProperty('--mid-portfolio', colourSet.mid);
-    styles.setProperty('--dark-portfolio', colourSet.dark);
+    newStyles.setProperty('--light-portfolio', colourSet.light);
+    newStyles.setProperty('--mid-portfolio', colourSet.mid);
+    newStyles.setProperty('--dark-portfolio', colourSet.dark);
+
+    // Update the colour
+    this.setState({
+      colour: colour
+    })
+  }
+
+  renderContactInfo() {
+    if (this.state.email !== undefined ||
+        this.state.telephone !== undefined) {
+      return (
+        <div>
+          <label className="contact-item">
+            {this.state.email}
+          </label>
+          <label className="contact-item">
+            {this.state.telephone}
+          </label>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <label className="contact-item">
+            None
+          </label>
+        </div>
+      )
+    }
   }
 
   render() {
     // If the user is able to view, render the page normally
     if (this.ableToView()) {
       return (
-        <div>
+        <div className="portfolio-page">
           <div className="portfolio-container">
-            <div className="user-info">
+            <div className="profile-picture-container">
+              <img
+                className="profile-img"
+                src={this.state.profilePicture}
+                alt=""
+              />
+            </div>
+            <div className="user-info-container">
               <h1 className="name">
                 {this.state.firstName + " " + this.state.lastName}
               </h1>
               <h3>
                 Contact Information
               </h3>
-              <label className="contact-item">
-                {this.state.email}
-              </label>
-              <label className="contact-item">
-                {this.state.telephone}
-              </label>
-            </div>
-            <div className="pp-container">
-              <div className="profile-img">
-                <img src={this.state.profilePicture} alt=""/>
-              </div>
+              <this.renderContactInfo/>
             </div>
           </div>
           <Tabs>
             <div label="About Me">
-              <ViewAbout/>
+              <ViewAbout firstName={ this.state.firstName }/>
             </div>
             <div label="Gallery">
               <ViewGallery/>

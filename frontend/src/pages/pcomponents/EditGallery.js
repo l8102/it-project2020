@@ -1,123 +1,102 @@
-import React, { Component } from 'react';
-import { uploadAPI } from "../../Api.js";
+import React, {Component} from 'react';
+import {uploadAPI} from "../../Api.js";
 import "../../css/Gallery.css";
-import { getImages } from '../../Api.js'
+import {getImages} from '../../Api.js'
 import ViewGallery from './ViewGallery.js';
-import PageToggle from "../../components/PageToggle"
-/*
-export default class Gallery extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          isToggleOn: false
-        }
+import ViewEditButton from "../../components/ViewEditButton"
 
-        this.handleButtonChange = this.handleButtonChange.bind(this);
-    }
-
-    handleButtonChange() {
-        console.log(this.state);
-        if(this.isToggleOn) {
-            console.log("hello");
-            this.setState({
-                isToggleOn: !this.state.isToggleOn
-    
-            });
-            return (<ViewGallery /> );
-        }
-        else {
-            this.setState({
-                isToggleOn: !this.state.isToggleOn
-    
-            });
-            return (<EditGallery />)
-
-        }
-    }
-    
-    render() {
-        return (
-            <PageToggle onChange={this.handleButtonChange} isToggleOn={this.state.isToggleOn}/>
-        )
-    }
-};
-*/
 
 export default class EditGallery extends Component {
 
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          selectedFile: ""
-        }
-    
-        this.fileChange = this.fileChange.bind(this);
-    }
-    
-    async fileChange(e) {
-        let file = e.target.files[0];
-        console.log(file);
-        await this.setState({selectedFile: file});
-        console.log(this.state.selectedFile);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedFile: "",
+      images: [""]
     }
 
-    handleSubmitFile = (event) => {
-        event.preventDefault();
-        
-        if (!this.state.selectedFile) 
-            return;
-        
-        const reader = new FileReader();
-        reader.readAsDataURL(this.state.selectedFile);
-        reader.onloadend = () => {
-            this.uploadImage(reader.result);
-            sessionStorage.setItem("activeTab", this.props.name);
-            
-        };
-        reader.onerror = () => {
-            console.error('error on submit');
-        };
-        window.location.reload();
+    this.fileChange = this.fileChange.bind(this);
+    this.renderUpdate = this.renderUpdate.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.renderUpdate();
+  }
+
+  async fileChange(e) {
+    let file = e.target.files[0];
+    console.log(file);
+    await this.setState({selectedFile: file});
+    console.log(this.state.selectedFile);
+  }
+
+  async handleSubmitFile(event) {
+    event.preventDefault();
+
+    if (!this.state.selectedFile)
+      return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.state.selectedFile);
+    reader.onloadend = () => {
+      this.uploadImage(reader.result);
+      //sessionStorage.setItem("activeTab", this.props.name);
     };
-
-    //stores the image in the database 
-    async uploadImage(base64EncodedImage) {
-        try {
-            const upload = await uploadAPI(base64EncodedImage);
-            this.setState({
-                selectedFile : ""
-            });
-        } catch (err) {
-            console.error(err);
-        }
+    reader.onerror = () => {
+      console.error('error on submit');
     };
+  };
 
-    handleButtonChange() {
-        if (this.isToggleOn) {
+  //stores the image in the database
+  async uploadImage(base64EncodedImage) {
+    try {
+      const upload = await uploadAPI(base64EncodedImage);
 
-        }
+      // after it is done uploading, render the update
+      await this.renderUpdate();
+      this.setState({
+        selectedFile: ""
+      });
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    render() {
-        return (
-            <div className="pcontainer">
-                <h1 className="title">Upload Gallery Images</h1>
-                <form onSubmit={e => this.handleSubmitFile(e)} className="gallery-form">
-                    <input
-                        type="file"
-                        name="image"
-                        onChange={e => this.fileChange(e)}
-                    />
-                    <button className="save-btn" type="submit">
-                        Upload
-                    </button>
-                </form>
-                <RenderImages />
-            </div>
-        );
-    }
+  async renderUpdate() {
+    const res = await getImages();
+    const imageUrls = [];
+
+    res.forEach((image, index) => {
+      if (image.imageUrl) {
+        imageUrls[index] = image.imageUrl;
+      }
+    });
+
+    this.setState({
+      images: imageUrls
+    });
+    console.log(this.state.images);
+  }
+
+  render() {
+    return (
+      <div className="pcontainer">
+        <h1 className="title">Upload Gallery Images</h1>
+        <form onSubmit={e => this.handleSubmitFile(e)} className="gallery-form">
+          <input
+            type="file"
+            name="image"
+            onChange={e => this.fileChange(e)}
+          />
+          <button className="save-btn" type="submit">
+            Upload
+          </button>
+        </form>
+        <RenderImages images={this.state.images}/>
+      </div>
+    );
+  }
 };
 
 
@@ -125,46 +104,26 @@ class RenderImages extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      images: [""]
-    }
-
-  }
-
-  async componentDidMount() {
-
-    const res = await getImages();
-
-    const imageUrls = [];
-
-    res.forEach((image, index) => {
-      if (image.imageUrl) {
-        imageUrls[index] = image.imageUrl;
-      } 
-    });     
-
-    this.setState({images : imageUrls});
-    console.log(this.state.images);
-
   }
 
   render() {
-    const { images } = this.state;
+    const {images} = this.props;
+    console.log(images)
     return (
       <div className="gedit-container">
         {
           images.map((x) => {
             console.log(x);
-            return(
+            return (
               <div className="gedit-tile">
-                <img src={ x } className="gedit-img"/>
+                <img src={x} className="gedit-img" alt=""/>
               </div>
             )
           })
-        }   
+        }
       </div>
     );
   }
-};
+}
 
 

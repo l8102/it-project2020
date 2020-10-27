@@ -3,8 +3,8 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
-import "../css/Portfolio.css"
-import { getPortfolio, setPortfolioIsPrivate } from "../Api.js"
+import "../css/PrivateToggle.css"
+import { setPortfolioIsPrivate } from "../Api.js"
 import {setPortfolioContactInfo} from "../Api";
 
 class PrivateToggle extends Component {
@@ -92,9 +92,9 @@ class PrivateToggle extends Component {
       return(
         <div className="private-toggle-container">
           <FormControlLabel
+            className="private-toggle-item"
             control={
               <CustomSwitch
-                className="private-toggle-item"
                 checked={this.state.isToggleOn}
                 onChange={this.handleChange}
                 color="primary"
@@ -103,7 +103,7 @@ class PrivateToggle extends Component {
               />
             }
             label="Private Mode"
-            labelPlacement="start"
+            labelPlacement="top"
           />
           <this.displayAccessCode/>
         </div>

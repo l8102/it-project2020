@@ -5,70 +5,73 @@
     padding: 0;
 }
 
+/* PORTFOLIO PAGE */
+
+.portfolio-page  {
+    color: var(--dark-portfolio);
+}
+
 .portfolio-container {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    overflow: auto;
+    padding: 5% 0;
+    overflow: hidden;
     background-color: var(--light-portfolio);
-}
-
-
-.private-toggle-container {
-    padding: 20px;
     display: grid;
-    justify-content: center;
     grid-template-columns: 50% 50%;
+    justify-content: center;
 }
 
-.private-toggle-item {
-    text-align: center;
-    padding: 10px 30px;
+/* VIEW PROFILE PICTURE */
+
+.profile-picture-container {
+    width: 300px;
+    height: 300px;
+    margin: auto auto;
 }
 
-.tab-list {  border-bottom: 1px solid #ccc;
-    padding-left: 0;
+.profile-img {
+    height: 300px;
+    width: 300px;
 }
 
-.tab-list-item {
-    display: inline-block;
-    list-style: none;
-    margin-bottom: -1px;
-    padding: 1rem 0;
-    width: 24.9%;
-    text-align: center;
-    background-color: var(--mid-blue);
-    color: white;
-    box-shadow: 0 0 10px var(--dark-blue);
+/* EDIT PROFILE PICTURE */
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
 }
 
-.tab-list-active {
-    background-color: var(--dark-blue);
-    border-width: 1px 1px 0 1px;
-}
-
-.user-info {
+.right-btn {
     float: right;
-    width: 50%;
+}
+
+.left-btn {
+    float: left;
+}
+
+
+
+/* USER INFORMATION */
+
+.user-info-container {
+    float: right;
     text-align: center;
-    padding-top: 5%;
+    flex: 2;
+    margin: auto 0;
+    color: var(--dark-portfolio);
  }
 
 .name {
     padding-bottom: 1em;
 }
 
-.img-container {
-    width: 25%;
-    padding-left: 10%;
-    text-align: center;
-    position: relative;
-    float: left; 
+.contact-title {
+    padding-bottom: 15px;
 }
 
-.img {
-    width: 25vh;
-    height: 25vh;
-    border: 1px dashed black;
+.contact-item {
+    padding-top: 5px;
+    display: block;
 }
 
 .p-text-box {
@@ -80,36 +83,7 @@
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
-    width: 70%
-}
-
-.save-btn {
-    margin-top: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    width: 150px;
-    background-color: var(--mid-blue);
-    color: var(--white);
-    border: none;
-    box-shadow: 0 0 2px var(--dark-blue);
-}
-
-.right-btn {
-    float: right;
-    margin-right: 15%;
-}
-
-.save-btn:hover {
-    background-color: var(--dark-blue);
-
-}
-
-.save-btn-tab {
-    display: block;
-    bottom: 0;
-    margin: 50px;
-    padding: 5px;
-    border-radius: 5px;
+    width: 70%;
 }
 
 .small-text-box, select {
@@ -128,43 +102,75 @@
     border-radius: 2px;
 }
 
-.pp-container {
-    width: 20%;
-    position: relative;
+/* SAVE / GENERIC BUTTON */
+
+.save-btn {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+    background-color: var(--mid-portfolio);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 0 2px var(--dark-portfolio);
 }
 
-.img-container {
-    padding-left: 10%;
-    width: 100%;
+.save-btn:hover {
+    background-color: var(--dark-portfolio);
 }
 
-.upload-img {
-    position: absolute;
-    z-index: 10;
+#mid-btn {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.pp-btn {
-    float: right;
-    margin-right: 0;
+/* TABS */
+
+.tab-list {  border-bottom: 1px solid #ccc;
+    padding-left: 0;
 }
 
-.avatar {
-    padding-top: 2%;
-}
-
-.pp-title {
+.tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 1rem 0;
+    width: 24.9%;
     text-align: center;
+    background-color: var(--mid-portfolio);
+    color: white;
+    box-shadow: 0 0 10px var(--dark-portfolio);
 }
 
-.profile-img {
-    position: absolute;
-    float: right;
-    margin-top: 10%;
+.tab-list-active {
+    background-color: var(--dark-portfolio);
+    border-width: 1px 1px 0 1px;
 }
 
-.contact-item {
+/* UNKNOWN */
+/* todo is this still used? */
+.save-btn-tab {
     display: block;
+    bottom: 0;
+    margin: 50px;
+    padding: 5px;
+    border-radius: 5px;
 }
+
+/* VIEW EDIT BUTTON */
+
+.view-edit-container {
+    padding-top: 50px;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.view-edit-btn {
+    margin-left: auto;
+    margin-right: 25%;
+}
+
+/* ACCESS DENIED */
 
 .access-denied {
     text-align: center;

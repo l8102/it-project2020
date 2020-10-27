@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import "../../css/AboutLinks.css"
-import {getAboutMe} from "../../Api.js"
+import React, { Component } from "react";
+import "../../css/AboutLinks.css";
+import moment from "moment";
+import { getAboutMe } from "../../Api.js";
 
 
 export default class ViewAbout extends Component {
@@ -20,61 +21,80 @@ export default class ViewAbout extends Component {
 
       interestList: [""],
       description: "",
-      isLoaded: false
+      isLoaded: false,
     }
   }
 
-
-  // Get about components from api and assign data
+// Get about components from api and assign data
   // to be recorded in 'this.state'
-  async componentDidMount() {
+async componentDidMount() {
+        let aboutMe;
+        let dateTo;
+        let dateFrom;
+        
+        try {
+            aboutMe = await getAboutMe();
+        } catch (error) {
+            console.error(error);
+        }
 
-    let aboutMe;
+        // ensure that there is data
+        if (aboutMe.data.workExperience !== undefined && aboutMe.data.workExperience.length !== 0) {
+            let experiences = [];
+            (aboutMe.data.workExperience).forEach((element, i) => {
+                dateFrom = element.dateFrom;
+                dateTo = element.dateTo;
 
-    try {
-      aboutMe = await getAboutMe();
-    } catch (error) {
-      console.error(error);
-    }
+                // When date is retrieved from the database, if empty it is retrieved as null
+                // in EditAbout it is stored as an empty string
+                if(dateFrom === null) {
+                    dateFrom = "";
+                } else {
+                    dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD");
+                }
+                if(dateTo === null) {
+                    dateTo = "";
+                } else {
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD");
+                }
 
-    console.log(aboutMe.data);
+                experiences[i] = { experience: element.experience, dateFrom: dateFrom, dateTo: dateTo };
+            });
 
-    // ensure that there is data
-    if (aboutMe.data.workExperience !== undefined) {
-      this.setState({
-        experienceList: aboutMe.data.workExperience
-      })
-    }
+            
+            if (experiences[0].experience !== "") {
+                this.setState({ experienceList: [...experiences, { experience: "", dateFrom: "", dateTo: "" }] })
+            } 
+        }
 
-    // ensure that there is data
-    if (aboutMe.data.interests !== undefined) {
-      this.setState({
-        interestList: aboutMe.data.interests
-      })
-    }
+        // ensure that there is data
+        if (aboutMe.data.interests !== undefined && aboutMe.data.interests.length !== 0) {
+            let interests = aboutMe.data.interests;
 
-    this.setState({
-      institution: aboutMe.data.institution,
-      degree: aboutMe.data.degree,
-      major: aboutMe.data.major,
-      description: aboutMe.data.description,
+            if (interests[0] !== "") {
+                this.setState({ interestList: [...interests, ""] })
+            } 
+        }
 
-      isLoaded: true
-    })
-    console.log(this.state);
+        this.setState({
+            institution: aboutMe.data.institution,
+            degree: aboutMe.data.degree,
+            major: aboutMe.data.major,
+            description: aboutMe.data.description,
 
-
+            isLoaded: true
+        })
   }
 
 
   render() {
-    if (!this.state.isLoaded) {
-      return (
-        <div>
-          Loading...
-        </div>
-      )
-    } else {
+    // if (!this.state.isLoaded) {
+    //   return (
+    //     <div>
+    //       Loading...
+    //     </div>
+    //   )
+    // } else {
       return (
         <div className="about-me-page">
           <h1>
@@ -168,7 +188,7 @@ export default class ViewAbout extends Component {
           </section>
           <section>
             <h2>
-              About 'Name'
+              About { this.props.firstName }
             </h2>
             <p className="description">
               {this.state.description}
@@ -177,5 +197,5 @@ export default class ViewAbout extends Component {
         </div>
       )
     }
-  }
+  // }
 }
