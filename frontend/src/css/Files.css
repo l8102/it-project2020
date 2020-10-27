@@ -1,38 +1,47 @@
 @import "DefaultStyles.css";
 
-.file-container {
-    padding-top: 2%;
+/* VIEW PORTFOLIO */
+
+.v-files {
+    margin: auto;
+    width: 50vw;
+    text-align: center;
+    color: var(--dark-portfolio);
     padding-bottom: 5%;
 }
 
-.files {
+.files-title {
+    text-align: center;
+    margin: 20px;
+}
+
+.file-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-x: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.file-img img {
+    height: 30vw;
+}
+
+/* EDIT PORTFOLIO */
+
+.e-files {
     text-align: center;
     width: 100%;
 }
 
-.v-files {
-    text-align: center;
-    width: 50%;
-    padding-left: 25%;
-    color: var(--dark-portfolio);
-}
-
-.form {
-    margin-bottom: 2rem;
-}
-
-.form-input {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.fedit-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+.e-files h1 {
+    margin-top: 20px;
 }
 
 .fedit-img {
-    width: 25em;
+    height: 50vh;
+    margin: 1em;
     border-radius: 7%;
 }

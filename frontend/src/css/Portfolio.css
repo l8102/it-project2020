@@ -5,32 +5,126 @@
     padding: 0;
 }
 
+/* PORTFOLIO PAGE */
+
 .portfolio-page  {
     color: var(--dark-portfolio);
 }
 
 .portfolio-container {
-    padding-bottom: 2%;
-   
+    padding: 5% 0;
     overflow: hidden;
     background-color: var(--light-portfolio);
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-
-.private-toggle-container {
-    min-height: 100px;
-    padding: 10px 0 20px 0;
     display: grid;
+    grid-template-columns: 50% 50%;
     justify-content: center;
-    grid-template-rows: 80px auto;
 }
 
-.private-toggle-item {
-    text-align: center;
-    padding: 0;
+/* VIEW PROFILE PICTURE */
+
+.profile-picture-container {
+    width: 300px;
+    height: 300px;
+    margin: auto auto;
 }
+
+.profile-img {
+    height: 300px;
+    width: 300px;
+}
+
+/* EDIT PROFILE PICTURE */
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.right-btn {
+    float: right;
+}
+
+.left-btn {
+    float: left;
+}
+
+
+
+/* USER INFORMATION */
+
+.user-info-container {
+    float: right;
+    text-align: center;
+    flex: 2;
+    margin: auto 0;
+    color: var(--dark-portfolio);
+ }
+
+.name {
+    padding-bottom: 1em;
+}
+
+.contact-title {
+    padding-bottom: 15px;
+}
+
+.contact-item {
+    padding-top: 5px;
+    display: block;
+}
+
+.p-text-box {
+    margin-left: 15%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    width: 70%;
+}
+
+.small-text-box, select {
+    display: block;
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+.text-box, select {
+    display: block;
+    height: 300px;
+    margin-bottom: 10px;
+    resize: vertical;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+}
+
+/* SAVE / GENERIC BUTTON */
+
+.save-btn {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+    background-color: var(--mid-portfolio);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 0 2px var(--dark-portfolio);
+}
+
+.save-btn:hover {
+    background-color: var(--dark-portfolio);
+}
+
+#mid-btn {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* TABS */
 
 .tab-list {  border-bottom: 1px solid #ccc;
     padding-left: 0;
@@ -53,72 +147,8 @@
     border-width: 1px 1px 0 1px;
 }
 
-.user-info {
-    float: right;
-    text-align: center;
-    flex: 2;
-    padding-top: 8%;
-    padding-right: 5%;
-    color: var(--dark-portfolio);
- }
-
-
-
-.name {
-    padding-bottom: 1em;
-}
-
-.img-container {
-   display: flex;
-   justify-content: center;
-}
-
-.img-container .img {
-    width: 25vh;
-    height: 25vh;
-    border: 1px dashed black;
-}
-
-.img {
-    height: 300;
-    width: 300;
-    margin-top: 10%
-}
-
-
-.p-text-box {
-    margin-left: 15%;
-    padding: 5px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
-    width: 70%;
-}
-
-.save-btn {
-    margin-top: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    width: 150px;
-    background-color: var(--mid-portfolio);
-    color: var(--white);
-    border: none;
-    box-shadow: 0 0 2px var(--dark-portfolio);
-}
-
-#right-btn {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.save-btn:hover {
-    background-color: var(--dark-portfolio);
-
-}
-
+/* UNKNOWN */
+/* todo is this still used? */
 .save-btn-tab {
     display: block;
     bottom: 0;
@@ -127,82 +157,7 @@
     border-radius: 5px;
 }
 
-.small-text-box, select {
-    display: block;
-    height: 35px;
-    margin-bottom: 10px;
-}
-
-.text-box, select {
-    display: block;
-    height: 300px;
-    margin-bottom: 10px;
-    resize: vertical;
-    overflow-y: auto;
-    border: 2px solid #ccc;
-    border-radius: 2px;
-}
-
-.pp-container {
-    width: 300;
-    height: 250;
-    margin-left: 20%;
-    position: relative;
-}
-
-.img-container {
-    padding: 0 auto;
-}
-
-.img-container .profile-img {
-    padding-top: 40%;
-}
-
-.profile-img img {
-    margin-bottom: 5px;
-}
-
-.upload-img {
-    z-index: 1;
-    padding-top: 25%;
-    padding-left: 40%;
-    padding-right: 50%;
-}
-
-.pp-btn {
-    float: right;
-    margin-right: 2px;
-}
-
-.avatar {
-    padding-top: 5%;
-}
-
-.pp-title {
-    text-align: center;
-}
-
-
-
-.contact-title {
-    padding-bottom: 15px;
-}
-
-.contact-item {
-    display: block;
-}
-
-.access-denied {
-    text-align: center;
-    color: var(--dark-portfolio);
-    font-weight: bold;
-    font-size: xx-large;
-    padding: 100px;
-}
-
-.page-toggle {
-    padding: 2%;
-}
+/* VIEW EDIT BUTTON */
 
 .view-edit-container {
     padding-top: 50px;
@@ -213,4 +168,14 @@
 .view-edit-btn {
     margin-left: auto;
     margin-right: 25%;
+}
+
+/* ACCESS DENIED */
+
+.access-denied {
+    text-align: center;
+    color: var(--dark-portfolio);
+    font-weight: bold;
+    font-size: xx-large;
+    padding: 100px;
 }

@@ -8,9 +8,15 @@ export default class ViewFiles extends Component {
 	constructor(props) {
 		super(props);
 
+    let singleFile = [];
+    let fileArray = [];
+    singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+    fileArray[0] = singleFile;
+
 		this.state = {
-			files: [""], 
-			pages: [""]
+		  // todo clean this up later
+			fileArray: fileArray,
+      isLoaded: false
 		}
 	}
 
@@ -21,67 +27,98 @@ export default class ViewFiles extends Component {
 		console.log(res);
 		
 		//base url of the cloudinary account 
-		const BASE_URL = "https://res.cloudinary.com/dbk5wcucj/image/upload/"
+		const BASE_URL = "https://res.cloudinary.com/dbk5wcucj/image/upload/";
 
-		//fileUrls holds the unique file urls, fileArray contains the pages of the file
-		const fileUrls = [];
-		const fileArray = [];
+		// fileArray contains the pages of the file
+		let fileArray = [];
 
+		// todo clean up
 		if (res.length === 0) {
-			fileUrls[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
-			fileArray[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+		  let singleFile = []
+      singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+		  fileArray[0] = singleFile;
 		}
 		else {
 
 			res.forEach((file, index) => {
-				for (let i = 1; i <= file.filePages; i++) {	
-					fileUrls[index] = BASE_URL + file.fileVersion + "/" + file.filePublicId + ".png";
-					fileArray[i-1] = BASE_URL + "/pg_" + i + "/v" + file.fileVersion + "/" + file.filePublicId + ".png";
-					console.log(fileArray);
-				}    
-			});   
+
+			  // add each page to the file
+        let singleFile = [];
+				for (let i = 1; i <= file.filePages; i++) {
+          singleFile[i-1] = BASE_URL + "/pg_" + i + "/v" + file.fileVersion + "/" + file.filePublicId + ".png";
+				}
+
+				// add the new file to the fileArray
+        fileArray[index] = singleFile;
+			});
+      console.log(fileArray);
 		}
 
-		await this.setState({
-			files : fileUrls,
-			pages : fileArray
+		// Update the states
+		this.setState({
+			fileArray : fileArray,
+      isLoaded: true
 		});
-		console.log(this.state.files);
 
 	}
 
 	//creates a new carousel for a file containing all pages of the file 
 	render() {
-		const { files } = this.state;
-		const { pages } = this.state;
+		const { fileArray } = this.state;
 		return (
 			<div className="v-files">
-				<h1 className="title">
+				<h1 className="files-title">
 						View Files
 				</h1>
 				<div className="file-container">
 					{
-						files.map((x, i) => {
-							console.log(x);
-							
+						fileArray.map((singleFile, i) => {
+							console.log(singleFile);
+
+							// For each file load a file carousel
 							return (
-								<Carousel> 
-									{
-										pages.map((y, i) => {
-											return(
-												<div className="file-img">
-													<img src={ y }/>
-												</div>
-											)
-										})
-									}
-								</Carousel>
+								<FilesCarousel
+                  singleFile={singleFile}
+                  isLoaded={this.state.isLoaded}
+                />
 							)
-							
 						})
 					}   
 				</div>
 			</div>
 		);
 	}
+}
+
+class FilesCarousel extends Component{
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+
+    // If the carousel is loaded then render it, otherwise wait
+    if (this.props.isLoaded) {
+      return (
+        <Carousel>
+          {
+            this.props.singleFile.map((y, j) => {
+              return (
+                <div className="file-img">
+                  <img src={y} alt=""/>
+                </div>
+              )
+            })
+          }
+        </Carousel>
+      )
+    } else {
+      return (
+        // todo fix the page jumping
+        <div>
+          Loading...
+        </div>
+      )
+    }
+  }
 }
