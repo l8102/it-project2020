@@ -63,7 +63,7 @@ export default class ViewFiles extends Component {
 				<h1 className="title">
 						View Files
 				</h1>
-				<div className="file-container">
+				<div className="file-container fedit-container">
 					{
 						fileArray.map((singleFile, i) => {
 							console.log(singleFile);
