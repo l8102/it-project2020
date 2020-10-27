@@ -115,8 +115,8 @@ class RenderFiles extends Component {
   render() {
     const {files} = this.props;
     return (
-      <div className="files">
-        <div className="fedit-container">
+      <div className="e-files">
+        <div className="file-container">
           {
             files.map((x, i) => {
               console.log(x);

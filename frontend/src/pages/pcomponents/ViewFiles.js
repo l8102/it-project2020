@@ -8,8 +8,14 @@ export default class ViewFiles extends Component {
 	constructor(props) {
 		super(props);
 
+    let singleFile = [];
+    let fileArray = [];
+    singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
+    fileArray[0] = singleFile;
+
 		this.state = {
-			fileArray: [],
+		  // todo clean this up later
+			fileArray: fileArray,
       isLoaded: false
 		}
 	}
@@ -26,6 +32,7 @@ export default class ViewFiles extends Component {
 		// fileArray contains the pages of the file
 		let fileArray = [];
 
+		// todo clean up
 		if (res.length === 0) {
 		  let singleFile = []
       singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
@@ -60,10 +67,10 @@ export default class ViewFiles extends Component {
 		const { fileArray } = this.state;
 		return (
 			<div className="v-files">
-				<h1 className="title">
+				<h1 className="files-title">
 						View Files
 				</h1>
-				<div className="file-container fedit-container">
+				<div className="file-container">
 					{
 						fileArray.map((singleFile, i) => {
 							console.log(singleFile);
@@ -107,6 +114,7 @@ class FilesCarousel extends Component{
       )
     } else {
       return (
+        // todo fix the page jumping
         <div>
           Loading...
         </div>
