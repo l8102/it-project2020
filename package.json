@@ -11,7 +11,9 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-backend && npm run install-frontend",
     "install-frontend": "cd frontend && npm install && npm run build",
     "install-backend": "cd backend && npm install",
-    "dev-test": "cd frontend && npm test"
+    "test-frontend": "cd frontend && npm test",
+    "test-backend": "cd backend && npm test",
+    "dev-test": "concurrently -n 'frontend,backend' -c 'red,green' \"npm run test-frontend\" \"npm run test-backend\""
   },
   "author": "",
   "license": "ISC",
