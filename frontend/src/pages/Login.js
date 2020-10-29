@@ -96,7 +96,7 @@ class Login extends Component {
           <h3>
             Or
           </h3>
-          <GoogleLoginBtn className="google-button"/>
+          <GoogleLoginBtn data-testid = "googleBtnTag" className="google-button"/>
           <NavLink className="nav-link" to="/createAccount">
             Create an account
           </NavLink>

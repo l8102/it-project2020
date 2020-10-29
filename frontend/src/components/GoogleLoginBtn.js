@@ -34,7 +34,7 @@ class GoogleLoginBtn extends Component {
 
   render() {
     return (
-      <GoogleLogin className="google-button"
+      <GoogleLogin data-testid = "googleBtnTag" className="google-button"
         clientId="897229494960-nm4q7ik3qroekhmuccva0p20a0bnk00q.apps.googleusercontent.com"
         buttonText="Login with Google"
         onSuccess={this.handleGoogleSuccess}

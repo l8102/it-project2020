@@ -37,9 +37,9 @@ class NavBar extends Component {
       // Return the nav list for a logged out user
       return(
         <ul>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/browse">Browse</a></li>
-          <li><a href="/">Home</a></li>
+          <li data-testid = "loginTag"><a href="/login">Login</a></li>
+          <li data-testid = "browseTag"><a href="/browse">Browse</a></li>
+          <li data-testid = "homeTag"><a href="/">Home</a></li>
         </ul>
       );
     }
@@ -54,7 +54,7 @@ class NavBar extends Component {
           Nav Bar Offset
         </div>
         <div className="nav-bar-container">
-          <h1> Eagle ePortfolio </h1>
+          <h1 data-testid = "titleTag"> Eagle ePortfolio </h1>
           <div className="nav-bar">
             {this.populateNavBar()}
           </div>
