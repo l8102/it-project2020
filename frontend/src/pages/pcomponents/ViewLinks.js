@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {getLinks} from "../../Api.js";
-import "../../css/AboutLinks.css"
+import "../../css/AboutLinks.css";
+import validator from "validator";
 
 export default class ViewLinks extends Component {
 
@@ -14,6 +15,7 @@ export default class ViewLinks extends Component {
       }],
       isLoaded: false
     }
+    this.formatURL = this.formatURL.bind(this);
   }
 
   async componentDidMount() {
@@ -30,6 +32,25 @@ export default class ViewLinks extends Component {
         this.setState({linksList: links.data.links, isLoaded: true})
       }
     }
+  }
+
+  formatURL(link) {
+
+    let url;
+
+    // Checks if URL is already in correct format e.g. https://www.example.com,
+    if (validator.isURL(link, { require_protocol: true })) {
+      url = link;
+    // If not, the URL is appended with "https://" protocol by default
+    } else {
+      url = "https://" + link;
+    }
+   
+    return (
+      <a href={url} target="_blank">
+        {link}
+      </a>
+    ) 
   }
 
   render() {
@@ -78,9 +99,7 @@ export default class ViewLinks extends Component {
                   <h3>
                     Link:
                   </h3>
-                  <a href={x.link}>
-                    {x.link}
-                  </a>
+                  { this.formatURL(x.link) }
                 </div>
               </section>
             )
