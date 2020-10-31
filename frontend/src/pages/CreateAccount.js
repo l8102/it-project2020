@@ -106,7 +106,7 @@ class CreateAccount extends Component {
                         onChange={ this.handleChange } />
                     <input 
                         type="submit" 
-                        text="Create Account" />
+                        value="Create Account" />
                     <h3>
                         Or
                     </h3>
