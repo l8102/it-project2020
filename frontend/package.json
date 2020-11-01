@@ -16,7 +16,8 @@
     "react-google-login": "^5.1.21",
     "react-responsive-carousel": "^3.2.10",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4"
+    "react-scripts": "^3.4.4",
+    "validator": "^13.1.17"
   },
   "scripts": {
     "start": "react-scripts start",

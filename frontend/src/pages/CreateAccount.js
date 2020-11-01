@@ -46,15 +46,21 @@ class CreateAccount extends Component {
             password: this.state.password,
         }
 
-        const res = createAccount(account);
-
-        // todo still not sure if res is working as intended
-        // If there is a valid response, redirect to login page
-        if (res != null) {
-            alert("Account created successfully");
-            this.props.history.push("/login");
+        if(account.firstName === "" || account.lastName === "" 
+            || account.email === "" || account.password === "") {
+                alert("Fields are empty");
         } else {
-            alert("ERROR: Failed to create account.");
+
+            const res = createAccount(account);
+
+            // todo still not sure if res is working as intended
+            // If there is a valid response, redirect to login page
+            if (res != null) {
+                alert("Account created successfully");
+                this.props.history.push("/login");
+            } else {
+                alert("Failed to create account.");
+            }
         }
 
         // console.log(res);
