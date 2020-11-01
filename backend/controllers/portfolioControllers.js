@@ -115,11 +115,19 @@ const updateByAccountId = function (req, res, next) {
 };
 
 // todo implement this | Not working properly
-const deleteByAccountId = function(req, res, next) {
+const deleteByAccountId = function(accountID) {
 
     //find account by id and deletes
-    Portfolio.remove({ "accountId": req.body.accountId });
-    console.log("EditPortfolio removed");
+    Portfolio.deleteOne({ "accountId": accountID }, function (err, portfolio) {
+        if (err || portfolio == undefined) {
+            console.error(err);
+        } else {
+            res.send(portfolio);
+            console.log("Portfolio Deleted");
+        }
+
+
+    });
 
     // todo in future will need to call each of the portfolio components and delete them
 };

@@ -263,6 +263,11 @@ const updateProfilePicture = async function (req, res) {
 var deleteAccount = function(req, res, next) {
     var id = req.body.id;
 
+    fileControllers.deleteAllFiles(id);
+    linkControllers.deleteAllLinks(id);
+    galleryControllers.deleteUserGallery(id);
+    aboutControllers.deleteAboutAcc(id);
+    portfolioControllers.deleteByAccountId(id);
     //find account by id and deletes
     Account.findByIdAndRemove(id).exec();
     console.log("account removed");

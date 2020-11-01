@@ -66,11 +66,32 @@ const updateByAccountId = function (req, res, next) {
 
 
 // DELETE
+const deleteAbout = function (req, res) {
+    var id = req.body.id;
 
+    About.findByIdAndDelete(id);
+    console.log("Aboute Me Deleted");
+
+}
+
+const deleteAboutAcc = function (accountID) {
+    About.deleteOne({ "accountId": accountID }, function (err, about) {
+        if (err || about == undefined) {
+            console.error(err);
+        } else {
+            res.send(about);
+            console.log("About Me Deleted");
+        }
+
+
+    });
+}
 
 // export controllers
 module.exports = {
     create,
     updateByAccountId,
-    readAbout
+    readAbout,
+    deleteAboutAcc,
+    deleteAbout
 }

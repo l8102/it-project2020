@@ -65,16 +65,38 @@ const create = function (accountId) {
 // UPDATE
 
 // DELETE
+const deleteImage = function (req, res) {
+    var id = req.body.id;
+
+    Gallery.findByIdAndDelete(id);
+    console.log("Image Deleted");
+
+}
+
 const deleteAllImages = function (req,res) {
     Gallery.drop();
 }
 
+const deleteUserGallery = function (accountID) {
+    Gallery.deleteMany({ "accountId": req.body.accountId }, function (err, gallery) {
+        if (err || gallery == undefined) {
+            console.error(err);
+        } else {
+            res.send(gallery);
+            console.log("User Gallery Deleted");
+        }
+
+
+    });
+}
 
 // export controllers
 module.exports = {
     uploadImage, 
     //images, 
     getImages,
-    create, 
+    create,
+    deleteImage,
+    deleteUserGallery,
     deleteAllImages
 }

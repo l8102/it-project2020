@@ -72,11 +72,33 @@ var getFiles = function(req, res) {
 // UPDATE
 
 // DELETE
+const deleteFile = function (req, res) {
+    var id = req.body.id;
+
+    File.findByIdAndDelete(id);
+    console.log("File Deleted");
+
+}
+
+const deleteAllFiles = function (accountID) {
+    File.deleteMany({ "accountId": req.body.accountId }, function (err, file) {
+        if (err || file == undefined) {
+            console.error(err);
+        } else {
+            res.send(file);
+            console.log("File Deleted");
+        }
+
+
+    });
+}
 
 
 // export controllers
 module.exports = {
   create, 
   uploadFile, 
-  getFiles
+  getFiles,
+  deleteFile,
+  deleteAllFiles
 }

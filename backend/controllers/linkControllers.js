@@ -51,11 +51,34 @@ const updateByAccountId = function(req, res, next) {
 }
 
 // DELETE
+const deleteLink = function (req, res) {
+    var id = req.body.id;
+
+    Link.findByIdAndDelete(id);
+    console.log("Link Deleted");
+
+}
+
+const deleteAllLinks = function (accountID) {
+    Link.deleteMany({ "accountId": req.body.accountId }, function (err, link) {
+        if (err || link == undefined) {
+            console.error(err);
+        } else {
+            res.send(link);
+            console.log("All Links Deleted");
+        }
+
+
+    });
+
+}
 
 
 // export controllers
 module.exports = {
   create,
   readLink,
-  updateByAccountId
+  updateByAccountId,
+  deleteLink,
+  deleteAllLinks
 }
