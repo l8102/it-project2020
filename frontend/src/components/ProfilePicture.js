@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Avatar from 'react-avatar-edit';
-import { uploadProfilePicture, getAccount } from '../Api.js';
+import {uploadProfilePicture, getAccount} from '../Api.js';
 import "../css/Portfolio.css";
 
-/** handles the upload and viewing of the profile picture */
+// handles the upload and viewing of the profile picture
 export default class ProfilePicture extends Component {
   constructor(props) {
     super(props)
@@ -20,12 +20,12 @@ export default class ProfilePicture extends Component {
     this.switchToEdit = this.switchToEdit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
   }
-  
+
   // if cancel in avatar pressed 
   onClose() {
     this.setState({preview: null})
   }
-  
+
   //saves the portion of the cropped image
   async onCrop(preview) {
     await this.setState({preview})
@@ -36,7 +36,7 @@ export default class ProfilePicture extends Component {
   async handleSave() {
     try {
       await uploadProfilePicture(this.state.preview);
-      await this.setState({ currentImage: this.state.preview, edit: false});
+      await this.setState({currentImage: this.state.preview, edit: false});
     } catch (err) {
       console.error(err);
     }
@@ -50,9 +50,9 @@ export default class ProfilePicture extends Component {
     console.log(res.data);
 
     if (res) {
-      await this.setState({currentImage : res.data.profilePicture});
+      await this.setState({currentImage: res.data.profilePicture});
       console.log(this.state.currentImage);
-    }   
+    }
 
   }
 
@@ -63,10 +63,10 @@ export default class ProfilePicture extends Component {
   async cancelEdit() {
     await this.setState({edit: false});
   }
-  
- 
+
+
   //renders the avatar for the profile picture, or the uploaded profile picture
-  render () {
+  render() {
 
     let style = getComputedStyle(document.getElementById('root'));
     let midPortfolio = style.getPropertyValue('--mid-portfolio');
@@ -74,47 +74,47 @@ export default class ProfilePicture extends Component {
     return (
       <div className="profile-picture-container">
         <div className="img-container">
-          { this.state.edit &&
-            <div>
-              <Avatar
-                label="Click to upload a new profile picture"
-                labelStyle={{
-                  padding: "140px 20px",
-                }}
-                width={300}
-                height={300}
-                onCrop={this.onCrop}
-                onClose={this.onClose}
-                src={this.state.src}
-              />
-              <input
-                className="save-btn right-btn"
-                type="submit"
-                value="Save"
-                onClick={this.handleSave}
-              />
-              <input
-                className="save-btn left-btn"
-                type="submit"
-                value="Cancel"
-                onClick={ this.cancelEdit }
-              />
-            </div>
+          {this.state.edit &&
+          <div>
+            <Avatar
+              label="Click to upload a new profile picture"
+              labelStyle={{
+                padding: "140px 20px",
+              }}
+              width={300}
+              height={300}
+              onCrop={this.onCrop}
+              onClose={this.onClose}
+              src={this.state.src}
+            />
+            <input
+              className="save-btn right-btn"
+              type="submit"
+              value="Save"
+              onClick={this.handleSave}
+            />
+            <input
+              className="save-btn left-btn"
+              type="submit"
+              value="Cancel"
+              onClick={this.cancelEdit}
+            />
+          </div>
           }
           {!this.state.edit &&
-            <div>
-              <img
-                className="profile-img"
-                src={this.state.currentImage}
-                alt=""
-              />
-              <input
-                className="save-btn right-btn"
-                type="submit"
-                value="Edit"
-                onClick={ this.switchToEdit }
-              />
-            </div>
+          <div>
+            <img
+              className="profile-img"
+              src={this.state.currentImage}
+              alt=""
+            />
+            <input
+              className="save-btn right-btn"
+              type="submit"
+              value="Edit"
+              onClick={this.switchToEdit}
+            />
+          </div>
           }
         </div>
       </div>

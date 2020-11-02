@@ -4,8 +4,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../css/DefaultStyles.css"
 import "../css/PrivateToggle.css"
-import { setPortfolioIsPrivate } from "../Api.js"
-import {setPortfolioContactInfo} from "../Api";
+import {setPortfolioIsPrivate} from "../Api.js"
 
 class PrivateToggle extends Component {
   constructor(props) {
@@ -22,10 +21,8 @@ class PrivateToggle extends Component {
     this.displayAccessCode = this.displayAccessCode.bind(this);
   }
 
+  // Read in the props when the component is loaded
   componentDidMount() {
-
-    // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
-    // instead of the class
     this.setState({
       isToggleOn: this.props.isPrivate,
       accessCode: this.props.accessCode,
@@ -33,6 +30,7 @@ class PrivateToggle extends Component {
     })
   }
 
+  // Handles a change in the private toggle (when it changes state)
   async handleChange() {
 
     try {
@@ -42,16 +40,19 @@ class PrivateToggle extends Component {
       console.error(error)
     }
 
+    // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
+    // instead of the class
     this.setState(state => ({
       // update the state of the component
       isToggleOn: !state.isToggleOn
     }));
   }
 
+  // Displays the access code when the private toggle is on
   displayAccessCode() {
     if (this.state.isToggleOn) {
       return (
-        <div className="private-toggle-item" >
+        <div className="private-toggle-item">
           Your Access Code Is {this.state.accessCode}
         </div>
       )
@@ -83,13 +84,13 @@ class PrivateToggle extends Component {
     })(Switch);
 
     if (!this.state.isLoaded) {
-      return(
+      return (
         <div>
           Loading...
         </div>
       )
     } else {
-      return(
+      return (
         <div className="private-toggle-container">
           <FormControlLabel
             className="private-toggle-item"
@@ -99,7 +100,7 @@ class PrivateToggle extends Component {
                 onChange={this.handleChange}
                 color="primary"
                 name="privateMode"
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{'aria-label': 'primary checkbox'}}
               />
             }
             label="Private Mode"

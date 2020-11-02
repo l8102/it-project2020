@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "../css/Browse.css";
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {getPortfolio} from "../Api";
 
 class SearchResult extends Component {
@@ -16,9 +16,11 @@ class SearchResult extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+
+  // When the component loads, set if the search results are private
   async componentDidMount() {
     const portfolio = await getPortfolio(this.props.accountId);
-    this.setState( {
+    this.setState({
       isPrivate: portfolio.data.isPrivate,
       hasLoaded: true
     })
@@ -35,11 +37,11 @@ class SearchResult extends Component {
 
       // The user cannot view the account id yet,
       // Instead store the account id temporarily
-      sessionStorage.setItem("accountIdTemp",  this.props.accountId);
+      sessionStorage.setItem("accountIdTemp", this.props.accountId);
       // Redirect to access code page
       this.props.history.push("/enterAccessCode");
 
-    // Otherwise if the portfolio is not private
+      // Otherwise if the portfolio is not private
     } else {
       // Store the account id that the user can view
       sessionStorage.setItem("accountIdForView", this.props.accountId);
@@ -50,21 +52,20 @@ class SearchResult extends Component {
 
   render() {
     if (this.state.hasLoaded) {
-      return(
+      return (
         <button
           className="search-result-button"
           onClick={this.handleClick}
         >
           <div className="picture-background">
-            <img className="search-result-picture" src={this.props.profilePicture} alt="" />
+            <img className="search-result-picture" src={this.props.profilePicture} alt=""/>
           </div>
           <label className="search-result-label">
             {this.props.firstName + " " + this.props.lastName}
           </label>
         </button>
       )
-    }
-    else {
+    } else {
       return (
         <div/>
       )
