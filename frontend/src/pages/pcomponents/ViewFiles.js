@@ -35,7 +35,6 @@ export default class ViewFiles extends Component {
     // fileArray contains the pages of the file
     let fileArray = [];
 
-    // todo clean up
     if (res.length === 0) {
       let singleFile = []
       singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
@@ -117,7 +116,6 @@ class FilesCarousel extends Component {
       )
     } else {
       return (
-        // todo fix the page jumping
         <div>
           Loading...
         </div>

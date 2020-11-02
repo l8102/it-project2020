@@ -72,7 +72,7 @@ export default class ViewLinks extends Component {
         </div>
       )
 
-    // Otherwise render the links from the database, stored in the linksList
+      // Otherwise render the links from the database, stored in the linksList
     } else {
       return (
         <div className="links-page-view">

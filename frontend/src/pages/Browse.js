@@ -38,17 +38,15 @@ class Browse extends Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   // This runs when a new search is submitted
   async handleSubmit(e) {
     e.preventDefault();
 
-    // todo could use res, not sure if necessary
     let res;
 
-    // todo validate the input a bit more (for security reasons)
     // if there is no search input return all accounts
     if (this.state.searchInput === "") {
       res = await getAllAccounts();
@@ -72,23 +70,25 @@ class Browse extends Component {
     return (
       <div className="browse-container">
         <h2 className="browse-title"> Browse Portfolios </h2>
-        <form onSubmit={ this.handleSubmit } className="search-bar">
+        <form onSubmit={this.handleSubmit} className="search-bar">
           <input
             className="search-bar"
             type="text"
             name="searchInput"
             value={this.state.searchInput}
             placeholder="Search"
-            onChange={ this.handleChange }
+            onChange={this.handleChange}
           />
         </form>
         <div className="results-container">
+
+          {/* Renders each search result */}
           {this.state.results.map((result) => (
             <SearchResult
-              accountId = {result._id.toString()}
-              firstName = {result.firstName}
-              lastName = {result.lastName}
-              profilePicture = {result.profilePicture}
+              accountId={result._id.toString()}
+              firstName={result.firstName}
+              lastName={result.lastName}
+              profilePicture={result.profilePicture}
             />
           ))}
         </div>
