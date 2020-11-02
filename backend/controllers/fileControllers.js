@@ -20,9 +20,11 @@ const create = function (accountId) {
   console.log("file created")
 };
 
-// Adds the cloudinary url of a new file to the database
+// uploads the file to cloudinary and the url of the file is stored in the database
 var uploadFile = async function (req, res) {
   try {
+
+    //uploads file to cloudinary 
     const fileStr = req.body.data;
     const uploadResponse = await cloudinary.v2.uploader.upload(fileStr, {
       upload_preset: 'FileUpload',
@@ -30,12 +32,14 @@ var uploadFile = async function (req, res) {
 
     var pages = 1;
 
+    //if file has more than 1 page, assign pages to page number 
     if (uploadResponse.pages) {
       pages = uploadResponse.pages;
     }
     console.log(uploadResponse);
     console.log(pages);
 
+    //creates a new entry with account id and the components of a cloudinary url 
     const fileInfo = {
       accountId: req.body.accountId,
       fileVersion: uploadResponse.version,
@@ -45,6 +49,7 @@ var uploadFile = async function (req, res) {
 
     const data = new File(fileInfo);
 
+    //saves the entry in the database
     data.save((function (err, doc) {
       if (err || doc == undefined) {
         res.json(err);
@@ -61,7 +66,7 @@ var uploadFile = async function (req, res) {
 
 // READ
 
-// Gets all the files from the database for a specific account id
+// Gets all the files from the database for a specific account id, and filters for entries with an filePublicId
 var getFiles = function (req, res) {
   File.find({accountId: req.body.accountId, filePublicId: {$exists: true}}, function (err, doc) {
     if (err || doc == undefined) {
@@ -72,11 +77,9 @@ var getFiles = function (req, res) {
   })
 }
 
-
 // UPDATE
 
 // DELETE
-
 
 // export controllers
 module.exports = {
