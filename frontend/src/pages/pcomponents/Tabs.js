@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Tab from './Tab';
 
@@ -12,8 +12,8 @@ export default class Tabs extends Component {
     super(props);
     // For if refresh was called after submitting information to the database
     const tab = sessionStorage.getItem("activeTab");
-    
-    if(tab === null) {
+
+    if (tab === null) {
       this.state = {
         activeTab: this.props.children[0].props.label,
       };
@@ -26,7 +26,7 @@ export default class Tabs extends Component {
 
   //set the state of the active tab if it is clicked 
   onClickTabItem = (tab) => {
-    this.setState({ activeTab: tab });
+    this.setState({activeTab: tab});
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class Tabs extends Component {
       <div className="tabs">
         <ol className="tab-list">
           {children.map((child) => {
-            const { label } = child.props;
+            const {label} = child.props;
             sessionStorage.removeItem("activeTab");
             return (
               <Tab

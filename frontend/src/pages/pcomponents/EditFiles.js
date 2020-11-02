@@ -12,6 +12,7 @@ export default class EditFiles extends Component {
       files: [""]
     }
 
+    // Bindings for the class methods
     this.fileChange = this.fileChange.bind(this);
     this.renderUpdate = this.renderUpdate.bind(this);
   }
@@ -20,7 +21,7 @@ export default class EditFiles extends Component {
     await this.renderUpdate();
   }
 
-  //sets the state if a file is selected 
+  // Sets the state if a file is selected
   async fileChange(e) {
     let file = e.target.files[0];
     console.log(file);
@@ -63,7 +64,7 @@ export default class EditFiles extends Component {
     }
   };
 
-    //retrieves the uploaded files of the currently logged in user
+  //retrieves the uploaded files of the currently logged in user
   async renderUpdate() {
     const res = await getFiles();
     console.log(res);
