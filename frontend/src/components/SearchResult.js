@@ -9,7 +9,8 @@ class SearchResult extends Component {
     super(props);
 
     this.state = {
-      isPrivate: ''
+      isPrivate: '',
+      hasLoaded: ''
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -18,7 +19,8 @@ class SearchResult extends Component {
   async componentDidMount() {
     const portfolio = await getPortfolio(this.props.accountId);
     this.setState( {
-      isPrivate: portfolio.data.isPrivate
+      isPrivate: portfolio.data.isPrivate,
+      hasLoaded: true
     })
   }
 
@@ -47,8 +49,8 @@ class SearchResult extends Component {
   }
 
   render() {
-    return(
-      // <div className="search-result">
+    if (this.state.hasLoaded) {
+      return(
         <button
           className="search-result-button"
           onClick={this.handleClick}
@@ -60,9 +62,13 @@ class SearchResult extends Component {
             {this.props.firstName + " " + this.props.lastName}
           </label>
         </button>
-
-      // </div>
-    )
+      )
+    }
+    else {
+      return (
+        <div/>
+      )
+    }
   }
 }
 
