@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 /** handles the display of a single tab component */
@@ -10,7 +10,7 @@ export default class Tab extends Component {
   };
 
   onClick = () => {
-    const { label, onClick } = this.props;
+    const {label, onClick} = this.props;
     onClick(label);
   }
 
