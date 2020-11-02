@@ -10,18 +10,10 @@ galleryRoutes.post('/upload', galleryControllers.uploadImage);
 //galleryRoutes.get('/images', galleryControllers.images);
 galleryRoutes.post('/getImages', galleryControllers.getImages);
 
+// UPDATE
 
-// // CREATE
-// // handled by create account
-//
-// // READ
-// galleryRoutes.get('/readGallery', galleryControllers.readGallery);
-//
-// // UPDATE
-// galleryRoutes.put('/updateGallery', galleryControllers.updateGallery);
-//
-// // DELETE
-// // handled by delete account
+// DELETE
+// handled by delete account
 galleryRoutes.delete('deleteAll', galleryControllers.deleteAllImages);
 
 module.exports = galleryRoutes;

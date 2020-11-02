@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const gallerySchema  = new Schema({
+const gallerySchema = new Schema({
   accountId: {
     type: String,
     required: true
