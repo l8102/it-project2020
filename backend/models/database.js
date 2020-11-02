@@ -1,13 +1,8 @@
-/*
-Header
- */
-
 // Import libraries
 const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Username, password are hard coded
-// TODO change to dotenv
 var connection = process.env.CONNECTION_STRING;
 
 mongoose.connect(connection || "mongodb://localhost/eagle-solutions", {
