@@ -6,7 +6,7 @@ class ColourButton extends Component {
   constructor(props) {
     super(props);
 
-    // binding
+    // bindings
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,7 +23,9 @@ class ColourButton extends Component {
             type="radio"
             name="colour"
             value={this.props.btnColour}
-            defaultChecked={this.props.btnColour === this.props.colour}
+            defaultChecked={
+              // Button is checked if its colour matches the selected colour
+              this.props.btnColour === this.props.colour}
             onChange={this.handleChange}
           />
           <div

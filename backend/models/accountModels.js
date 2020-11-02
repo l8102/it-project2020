@@ -35,7 +35,7 @@ const accountSchema = new Schema({
     type: String,
     required: true,
     unique: false,
-    trim: false, // todo do we need validation on emails / passwords
+    trim: false,
     minlength: 8
   },
   profilePicture: {

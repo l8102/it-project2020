@@ -4,13 +4,11 @@ const Account = mongoose.model('accounts');
 const Portfolio = mongoose.model('portfolios');
 const RandomString = require("randomstring");
 
-// todo fix this
-// const jwt = require("jsonwebtoken");
-
-const { UserRefreshClient } = require('google-auth-library');
+const {UserRefreshClient} = require('google-auth-library');
 
 // CREATE
 
+// Creates a new portfolio based on the specified account id
 const create = function (accountId, email) {
 
   let portfolio = {
@@ -35,6 +33,7 @@ const contactInfo = async (req, res) => {
 
 };
 
+// Check if a json web token is valid, currently not used
 const tokenIsValid = async (req, res) => {
   try {
 
@@ -57,81 +56,82 @@ const tokenIsValid = async (req, res) => {
     return res.json(true);
 
   } catch (err) {
-    res.status(500).json({ error: err.mesage });
+    res.status(500).json({error: err.mesage});
   }
 };
 
 
 // READ
 
+// Returns the portfolio that matches the account id
 const readByAccountId = function (req, res, next) {
 
-    Portfolio.findOne({ "accountId": req.query.accountId }, function (err, portfolio) {
+  Portfolio.findOne({"accountId": req.query.accountId}, function (err, portfolio) {
 
-        if (err || portfolio === undefined) {
-            console.error("EditPortfolio not found");
-            res.send("false");
-            return false;
-        } else {
-            console.log("EditPortfolio found");
-            res.json(portfolio);
-            return true;
-        }
-    });
+    if (err || portfolio === undefined) {
+      console.error("EditPortfolio not found");
+      res.send("false");
+      return false;
+    } else {
+      console.log("EditPortfolio found");
+      res.json(portfolio);
+      return true;
+    }
+  });
 };
 
 
-// UPDATE 
+// UPDATE
+
+// Updates the portfolio that matches the account id
 const updateByAccountId = function (req, res, next) {
 
-    Portfolio.findOne({ "accountId": req.body.accountId }, function (err, portfolio) {
+  Portfolio.findOne({"accountId": req.body.accountId}, function (err, portfolio) {
 
-        if (err || portfolio === undefined) {
-            console.error("EditPortfolio not found");
-            res.send("false");
-            return false;
-        } else {
-          // check that fields are not empty
-          if (req.body.isPrivate !== undefined) {
-            portfolio.isPrivate = req.body.isPrivate;
-          }
-          if (req.body.telephone !== undefined) {
-            portfolio.telephone = req.body.telephone;
-          }
-          if (req.body.email !== undefined) {
-            portfolio.email = req.body.email;
-          }
-          if (req.body.colour !== undefined) {
-            portfolio.colour = req.body.colour;
-          }
+    if (err || portfolio === undefined) {
+      console.error("EditPortfolio not found");
+      res.send("false");
+      return false;
+    } else {
+      // check that fields are not empty
+      if (req.body.isPrivate !== undefined) {
+        portfolio.isPrivate = req.body.isPrivate;
+      }
+      if (req.body.telephone !== undefined) {
+        portfolio.telephone = req.body.telephone;
+      }
+      if (req.body.email !== undefined) {
+        portfolio.email = req.body.email;
+      }
+      if (req.body.colour !== undefined) {
+        portfolio.colour = req.body.colour;
+      }
 
-          portfolio.save();
+      portfolio.save();
 
-          console.log("EditPortfolio updated");
-          res.json(portfolio);
-          return true;
-        }
-    });
+      console.log("EditPortfolio updated");
+      res.json(portfolio);
+      return true;
+    }
+  });
 };
 
-// todo implement this | Not working properly
-const deleteByAccountId = function(req, res, next) {
+// Currently not used
+const deleteByAccountId = function (req, res, next) {
 
-    //find account by id and deletes
-    Portfolio.remove({ "accountId": req.body.accountId });
-    console.log("EditPortfolio removed");
-
-    // todo in future will need to call each of the portfolio components and delete them
+  //find account by id and deletes
+  Portfolio.remove({"accountId": req.body.accountId});
+  console.log("EditPortfolio removed");
 };
 
 // useful link
 // https://stackoverflow.com/questions/8737082/mongoose-schema-within-schema
 
 module.exports = {
-    create,
-    contactInfo,
-    readByAccountId,
-    updateByAccountId,
-    deleteByAccountId,
-    tokenIsValid,
+  create,
+  contactInfo,
+  readByAccountId,
+  updateByAccountId,
+  deleteByAccountId,
+  tokenIsValid,
 }

@@ -11,6 +11,8 @@ class Login extends Component {
       email: '',
       password: '',
     };
+
+    // Bindings for each of the class methods
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.loginForm = this.loginForm.bind(this);
@@ -41,7 +43,7 @@ class Login extends Component {
       password: this.state.password
     }
 
-    if(loginDetails.email !== "" && loginDetails.password !== "") {
+    if (loginDetails.email !== "" && loginDetails.password !== "") {
 
       let res;
 

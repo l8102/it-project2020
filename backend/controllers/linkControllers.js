@@ -4,13 +4,15 @@ const Link = mongoose.model('links');
 
 
 // CREATE
+
+// Create a new link record in the database using the account id
 const create = function (accountId) {
 
   let link = {
     accountId: accountId,
   };
 
-  // creates a new portfolio using the account id
+  // creates a new link using the account id
   const data = new Link(link);
 
   // saves entry to the database
@@ -19,9 +21,10 @@ const create = function (accountId) {
 };
 
 // READ
-const readLink = function(req, res) {
-  Link.findOne({ "accountId": req.query.accountId }, function(err, links) {
-    if(err || links === undefined) {
+// Returns the links for a specified account id
+const readLink = function (req, res) {
+  Link.findOne({"accountId": req.query.accountId}, function (err, links) {
+    if (err || links === undefined) {
       console.error("Links not found");
       res.send("false");
       return false;
@@ -30,13 +33,15 @@ const readLink = function(req, res) {
       res.json(links);
       return true;
     }
-  })  
+  })
 }
 
 // UPDATE
-const updateByAccountId = function(req, res, next) {
-  Link.findOne({ "accountId": req.body.accountId }, function(err, link) {
-    if(err || link === undefined) {
+
+// Updates the links for a specified account id
+const updateByAccountId = function (req, res, next) {
+  Link.findOne({"accountId": req.body.accountId}, function (err, link) {
+    if (err || link === undefined) {
       console.error("Links not found");
       res.send("false");
       return false;
@@ -47,7 +52,7 @@ const updateByAccountId = function(req, res, next) {
       res.json(link);
       return true;
     }
-  })  
+  })
 }
 
 // DELETE

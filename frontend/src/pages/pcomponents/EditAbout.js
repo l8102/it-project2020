@@ -9,6 +9,7 @@ export default class EditAbout extends Component {
   constructor(props) {
     super(props);
 
+    // States for each of the page elements
     this.state = {
       institution: "",
       degree: "",
@@ -21,7 +22,6 @@ export default class EditAbout extends Component {
       }],
       interestList: [""],
       description: "",
-      isLoaded: false
     }
 
     this.originalState = {
@@ -38,6 +38,7 @@ export default class EditAbout extends Component {
       description: "",
     }
 
+    // Bindings for each of the methods
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -122,7 +123,6 @@ export default class EditAbout extends Component {
     updateAboutMe(this.state);
     // Stores tab, so default tab is set to about on refresh
     sessionStorage.setItem("activeTab", this.props.name);
-    //window.location.reload();
   }
 
   async componentDidMount() {
@@ -182,8 +182,6 @@ export default class EditAbout extends Component {
       degree: aboutMe.data.degree,
       major: aboutMe.data.major,
       description: aboutMe.data.description,
-
-      isLoaded: true
     })
 
     this.originalState.institution = aboutMe.data.institution;
@@ -243,191 +241,183 @@ export default class EditAbout extends Component {
 
 
   render() {
-    // if (!this.state.isLoaded) {
-    //   return (
-    //     <div>
-    //       Loading...
-    //     </div>
-    //   )
-    // } else {
-      return (
-        <div className="about-me-page">
-          <h1>
-            Edit About
-          </h1>
-          <form className="about-form">
-            <section>
-              <h2>
-                Educational Background
-              </h2>
-              <label>
-                Institution:
-              </label>
-              <input
-                className="education p-text-box"
-                name="institution"
-                value={this.state.institution}
-                onChange={this.handleChange}
-              />
-              <label>
-                Degree:
-              </label>
-              <input
-                className="education p-text-box"
-                name="degree"
-                value={this.state.degree}
-                onChange={this.handleChange}
-              />
-              <label>
-                Major:
-              </label>
-              <input
-                className="education p-text-box"
-                name="major"
-                value={this.state.major}
-                onChange={this.handleChange}
-              />
-              <button
-                className="save-btn"
-                id="mid-btn"
-                name="educationalBackground"
-                onClick={this.handleSubmit}
-              >
-                Save
-              </button>
-            </section>
-            <section>
-              <h2>
-                Work Experience/Internships
-              </h2>
-              {this.state.experienceList.map((x, i) => {
-                return (
-                  <div key={i}>
-                    <input
-                      className="experience p-text-box"
-                      name="experience"
-                      value={x.experience}
-                      onChange={e => this.handleExperienceChange(e, i)}
-                    />
-                    <input
-                      className="date"
-                      name="dateFrom"
-                      type="date"
-                      value={x.dateFrom}
-                      onChange={e => this.handleExperienceChange(e, i)}
-                    />
-                    <input
-                      className="date"
-                      name="dateTo"
-                      type="date"
-                      value={x.dateTo}
-                      onChange={e => this.handleExperienceChange(e, i)}
-                    />
-
-                    <div>
-                      {i !== this.state.experienceList.length - 1 &&
-                      <button
-                        className="save-btn"
-                        onClick={e => this.handleRemoveExperience(e, i)}
-                      >
-                        Remove Experience
-                      </button>
-                      }
-                      {this.state.experienceList.length - 1 === i &&
-                      <button
-                        className="save-btn"
-                        onClick={this.handleAddExperience}
-                      >
-                        Add Experience
-                      </button>
-                      }
-                    </div>
-                  </div>
-                )
-              })}
-              <button
-                className="save-btn"
-                id="mid-btn"
-                name="experienceList"
-                onClick={this.handleSubmit}
-              >
-                Save
-              </button>
-            </section>
-            <section>
-              <h2>
-                Interests
-              </h2>
-              {this.state.interestList.map((x, i) => {
-                return (
-                  <div key={i}>
-                    <input
-                      className="interest p-text-box"
-                      name="interest"
-                      value={x}
-                      onChange={e => this.handleInterestChange(e, i)}
-                    />
-                    <div>
-                      {i !== this.state.interestList.length - 1 &&
-                      <button
-                        className="save-btn"
-                        onClick={e => this.handleRemoveInterest(e, i)}
-                      >
-                        Remove interest
-                      </button>
-                      }
-                      {this.state.interestList.length - 1 === i &&
-                      <button
-                        name="interestList"
-                        onClick={this.handleAddInterest}
-                        className="save-btn"
-                      >
-                        Add interest
-                      </button>
-                      }
-                    </div>
-                  </div>
-                )
-              })}
-              <button
-                className="save-btn"
-                id="mid-btn"
-                name="interestList"
-                onClick={this.handleSubmit}
-              >
-                Save
-              </button>
-            </section>
-            <section>
-              <h2>
-                About {this.props.firstName}
-              </h2>
-              <textarea
-                className="text-box"
-                name="description"
-                placeholder="Describe yourself here..."
-                value={this.state.description}
-                onChange={this.handleChange}
-              />
-              <button
-                className="save-btn"
-                id="mid-btn"
-                name="description"
-                onClick={this.handleSubmit}
-              >
-                Save
-              </button>
-            </section>
+    return (
+      <div className="about-me-page">
+        <h1>
+          Edit About
+        </h1>
+        <form className="about-form">
+          <section>
+            <h2>
+              Educational Background
+            </h2>
+            <label>
+              Institution:
+            </label>
+            <input
+              className="education p-text-box"
+              name="institution"
+              value={this.state.institution}
+              onChange={this.handleChange}
+            />
+            <label>
+              Degree:
+            </label>
+            <input
+              className="education p-text-box"
+              name="degree"
+              value={this.state.degree}
+              onChange={this.handleChange}
+            />
+            <label>
+              Major:
+            </label>
+            <input
+              className="education p-text-box"
+              name="major"
+              value={this.state.major}
+              onChange={this.handleChange}
+            />
             <button
               className="save-btn"
-              name="saveAll"
+              id="mid-btn"
+              name="educationalBackground"
               onClick={this.handleSubmit}
             >
-              Save All
+              Save
             </button>
-          </form>
-        </div>
-      )
-    }
-  // }
+          </section>
+          <section>
+            <h2>
+              Work Experience/Internships
+            </h2>
+            {this.state.experienceList.map((x, i) => {
+              return (
+                <div key={i}>
+                  <input
+                    className="experience p-text-box"
+                    name="experience"
+                    value={x.experience}
+                    onChange={e => this.handleExperienceChange(e, i)}
+                  />
+                  <input
+                    className="date"
+                    name="dateFrom"
+                    type="date"
+                    value={x.dateFrom}
+                    onChange={e => this.handleExperienceChange(e, i)}
+                  />
+                  <input
+                    className="date"
+                    name="dateTo"
+                    type="date"
+                    value={x.dateTo}
+                    onChange={e => this.handleExperienceChange(e, i)}
+                  />
+
+                  <div>
+                    {i !== this.state.experienceList.length - 1 &&
+                    <button
+                      className="save-btn"
+                      onClick={e => this.handleRemoveExperience(e, i)}
+                    >
+                      Remove Experience
+                    </button>
+                    }
+                    {this.state.experienceList.length - 1 === i &&
+                    <button
+                      className="save-btn"
+                      onClick={this.handleAddExperience}
+                    >
+                      Add Experience
+                    </button>
+                    }
+                  </div>
+                </div>
+              )
+            })}
+            <button
+              className="save-btn"
+              id="mid-btn"
+              name="experienceList"
+              onClick={this.handleSubmit}
+            >
+              Save
+            </button>
+          </section>
+          <section>
+            <h2>
+              Interests
+            </h2>
+            {this.state.interestList.map((x, i) => {
+              return (
+                <div key={i}>
+                  <input
+                    className="interest p-text-box"
+                    name="interest"
+                    value={x}
+                    onChange={e => this.handleInterestChange(e, i)}
+                  />
+                  <div>
+                    {i !== this.state.interestList.length - 1 &&
+                    <button
+                      className="save-btn"
+                      onClick={e => this.handleRemoveInterest(e, i)}
+                    >
+                      Remove interest
+                    </button>
+                    }
+                    {this.state.interestList.length - 1 === i &&
+                    <button
+                      name="interestList"
+                      onClick={this.handleAddInterest}
+                      className="save-btn"
+                    >
+                      Add interest
+                    </button>
+                    }
+                  </div>
+                </div>
+              )
+            })}
+            <button
+              className="save-btn"
+              id="mid-btn"
+              name="interestList"
+              onClick={this.handleSubmit}
+            >
+              Save
+            </button>
+          </section>
+          <section>
+            <h2>
+              About {this.props.firstName}
+            </h2>
+            <textarea
+              className="text-box"
+              name="description"
+              placeholder="Describe yourself here..."
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+            <button
+              className="save-btn"
+              id="mid-btn"
+              name="description"
+              onClick={this.handleSubmit}
+            >
+              Save
+            </button>
+          </section>
+          <button
+            className="save-btn"
+            name="saveAll"
+            onClick={this.handleSubmit}
+          >
+            Save All
+          </button>
+        </form>
+      </div>
+    )
+  }
 }

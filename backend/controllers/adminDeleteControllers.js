@@ -8,7 +8,7 @@ const File = mongoose.model('files');
 const Link = mongoose.model('links');
 
 // Deletes the entire database if the admin password is entered
-const deleteAll = function(req, res, next) {
+const deleteAll = function (req, res, next) {
 
   // Read in the password
   const password = req.body.password;
@@ -22,14 +22,14 @@ const deleteAll = function(req, res, next) {
     deleteItems(File, res);
     deleteItems(Link, res);
     console.log("Deleted all accounts");
-  }
-  else {
+  } else {
     console.log("Incorrect password");
   }
 };
 
-const deleteItems = function(item, res) {
-  item.deleteMany({}, function(err) {
+// Deletes the items (records) from a specified collection
+const deleteItems = function (item, res) {
+  item.deleteMany({}, function (err) {
     if (err) {
       console.log(err)
     } else {

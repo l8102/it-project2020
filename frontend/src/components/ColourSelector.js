@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "../css/ColourSelector.css"
-import { getPortfolio, setPortfolioColour } from "../Api.js"
+import {setPortfolioColour} from "../Api.js"
 import ColourButton from "./ColourButton"
 
 class ColourSelector extends Component {
@@ -17,6 +17,7 @@ class ColourSelector extends Component {
     this.setColour = this.setColour.bind(this);
   }
 
+  // When the component mounts read in the selected colour
   async componentDidMount() {
 
     this.setState({
@@ -25,6 +26,8 @@ class ColourSelector extends Component {
     })
   }
 
+  // When any of the colours are selected, store this in the database
+  // Also render the new portfolio colours
   async setColour(colour) {
     console.log(colour);
 
@@ -42,7 +45,7 @@ class ColourSelector extends Component {
   render() {
 
     if (this.state.isLoaded) {
-      return(
+      return (
         <div>
           <h2 className="colour-title">Colour</h2>
           <div className="colour-container">

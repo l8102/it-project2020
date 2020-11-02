@@ -4,9 +4,9 @@ import "../css/Portfolio.css";
 import PrivateToggle from "../components/PrivateToggle";
 import ProfilePicture from "../components/ProfilePicture";
 import ColourSelector from "../components/ColourSelector";
-import { getColours } from "../components/GetColours";
+import {getColours} from "../components/GetColours";
 
-import { setPortfolioContactInfo, getPortfolio, getAccount } from "../Api.js"
+import {setPortfolioContactInfo, getPortfolio, getAccount} from "../Api.js"
 
 // Import page components
 import Tabs from "./pcomponents/Tabs";
@@ -25,18 +25,19 @@ class EditPortfolio extends Component {
   constructor(props) {
     super(props);
 
-      this.state = {
-        firstName: '',
-        lastName: '',
-        profilePicture: '',
-        email: '',
-        telephone: '',
-        emailInput: '',
-        telephoneInput: '',
-        isPrivate: '',
-        accessCode: '',
-        colour: '',
-        isLoaded: false
+    // Stores the state of each of the page elements
+    this.state = {
+      firstName: '',
+      lastName: '',
+      profilePicture: '',
+      email: '',
+      telephone: '',
+      emailInput: '',
+      telephoneInput: '',
+      isPrivate: '',
+      accessCode: '',
+      colour: '',
+      isLoaded: false
     };
 
     // This binding is necessary to make 'this' work in the callback
@@ -47,37 +48,39 @@ class EditPortfolio extends Component {
     this.renderPortfolioColours = this.renderPortfolioColours.bind(this);
   }
 
+  // Read in all the attributes from the database when the component first loads
   async componentDidMount() {
 
     let portfolio, account;
     const accountId = sessionStorage.getItem("accountId");
 
     try {
-        portfolio = await getPortfolio(accountId);
-        account = await getAccount(accountId);
+      portfolio = await getPortfolio(accountId);
+      account = await getAccount(accountId);
     } catch (error) {
       console.error(error);
     }
 
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
-      this.setState({
-        firstName: account.data.firstName,
-        lastName: account.data.lastName,
-        profilePicture: account.data.profilePicture,
-        email: portfolio.data.email,
-        telephone: portfolio.data.telephone,
-        isPrivate: portfolio.data.isPrivate,
-        accessCode: portfolio.data.accessCode,
-        colour: portfolio.data.colour,
-        isLoaded: true
+    this.setState({
+      firstName: account.data.firstName,
+      lastName: account.data.lastName,
+      profilePicture: account.data.profilePicture,
+      email: portfolio.data.email,
+      telephone: portfolio.data.telephone,
+      isPrivate: portfolio.data.isPrivate,
+      accessCode: portfolio.data.accessCode,
+      colour: portfolio.data.colour,
+      isLoaded: true
     })
 
+    // Render the updated portfolio colours
     this.renderPortfolioColours(this.state.colour)
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   async handleSubmit(e) {
@@ -107,8 +110,6 @@ class EditPortfolio extends Component {
       console.error(error)
     }
 
-    // todo could implement validation
-
     // update the state
     this.setState(state => ({
       email: newEmail,
@@ -116,9 +117,10 @@ class EditPortfolio extends Component {
     }));
   }
 
+  // A form containing all of the contact information for a particular portfolio
   contactInfoForm() {
-    return(
-      <form className="portfolio-form" onSubmit={ this.handleSubmit }>
+    return (
+      <form className="portfolio-form" onSubmit={this.handleSubmit}>
         <label>
           Email:
         </label>
@@ -126,8 +128,8 @@ class EditPortfolio extends Component {
           className="small-text-box p-text-box"
           name="emailInput"
           value={this.state.emailInput}
-          placeholder={ this.state.email }
-          onChange={ this.handleChange }
+          placeholder={this.state.email}
+          onChange={this.handleChange}
         />
         <label>
           Telephone:
@@ -136,8 +138,8 @@ class EditPortfolio extends Component {
           className="small-text-box p-text-box"
           name="telephoneInput"
           value={this.state.telephoneInput}
-          placeholder={ this.state.telephone }
-          onChange={ this.handleChange }
+          placeholder={this.state.telephone}
+          onChange={this.handleChange}
         />
         <input
           className="save-btn"
@@ -165,7 +167,7 @@ class EditPortfolio extends Component {
     let currStyles = getComputedStyle(document.getElementById('root'));
 
     // Get the colour set from the colours dictionary
-    let colourSet = getColours(currStyles,colour);
+    let colourSet = getColours(currStyles, colour);
 
     // Set the styles that will be updated
     let newStyles = document.documentElement.style;
@@ -210,33 +212,33 @@ class EditPortfolio extends Component {
             <Tabs>
               <div label="About Me">
                 <ViewEditButton
-                  defaultPage={<ViewAbout firstName= { this.state.firstName }/>}
-                  alternatePage={<EditAbout firstName= { this.state.firstName } />}
+                  defaultPage={<ViewAbout firstName={this.state.firstName}/>}
+                  alternatePage={<EditAbout firstName={this.state.firstName}/>}
                 />
               </div>
               <div label="Gallery">
                 <ViewEditButton
-                  defaultPage={<ViewGallery />}
-                  alternatePage={<EditGallery />}
+                  defaultPage={<ViewGallery/>}
+                  alternatePage={<EditGallery/>}
                 />
               </div>
               <div label="Files">
                 <ViewEditButton
-                  defaultPage={<ViewFiles />}
-                  alternatePage={<EditFiles />}
+                  defaultPage={<ViewFiles/>}
+                  alternatePage={<EditFiles/>}
                 />
               </div>
               <div label="Links">
                 <ViewEditButton
-                  defaultPage={<ViewLinks />}
-                  alternatePage={<EditLinks />}
+                  defaultPage={<ViewLinks/>}
+                  alternatePage={<EditLinks/>}
                 />
               </div>
             </Tabs>
           </div>
         );
 
-      // Otherwise if not loaded, show the page is loading
+        // Otherwise if not loaded, show the page is loading
       } else {
         return (
           <div>
@@ -244,7 +246,7 @@ class EditPortfolio extends Component {
           </div>
         )
       }
-    // Otherwise, deny access
+      // Otherwise, deny access
     } else {
       return (
         <div className="access-denied">

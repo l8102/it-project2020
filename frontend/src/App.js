@@ -19,7 +19,6 @@ import EnterAccessCode from "./pages/EnterAccessCode";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
-// todo rewrite this in class notation
 function App() {
   return (
     <Router>

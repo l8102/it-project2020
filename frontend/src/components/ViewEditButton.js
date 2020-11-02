@@ -22,31 +22,33 @@ export default class ViewEditButton extends Component {
   }
 
   render() {
+    // When toggles on render the alternate page
     if (this.state.isToggleOn) {
-    return (
-      <div className="view-edit-container">
-        <input
-        className="save-btn view-edit-btn"
-        type="submit"
-        value="View"
-        onClick={ this.handleChange }
-        />
-        {this.props.alternatePage}
-      </div>
-    )
-  } else{
-    return (
-      <div className="view-edit-container">
-        <input
-        className="save-btn view-edit-btn"
-        type="submit"
-        value="Edit"
-        onClick={ this.handleChange }
-        />
-        {this.props.defaultPage}
-      </div>
-    )
-  }
+      return (
+        <div className="view-edit-container">
+          <input
+            className="save-btn view-edit-btn"
+            type="submit"
+            value="View"
+            onClick={this.handleChange}
+          />
+          {this.props.alternatePage}
+        </div>
+      )
+      // When toggled off render the default page
+    } else {
+      return (
+        <div className="view-edit-container">
+          <input
+            className="save-btn view-edit-btn"
+            type="submit"
+            value="Edit"
+            onClick={this.handleChange}
+          />
+          {this.props.defaultPage}
+        </div>
+      )
+    }
 
 
   }

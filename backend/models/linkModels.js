@@ -8,8 +8,8 @@ const linkSchema = new Schema({
     required: true
   },
   links: {
-    type: [{ title: String, description: String, link: String}],
-    value: [{ title: String, description: String, link: String}],
+    type: [{title: String, description: String, link: String}],
+    value: [{title: String, description: String, link: String}],
   }
 }, {
   collection: 'Link',

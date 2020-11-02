@@ -10,8 +10,7 @@ export default class EditLinks extends Component {
         title: "",
         description: "",
         link: ""
-      }],
-      isLoaded: false
+      }]
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,8 +55,6 @@ export default class EditLinks extends Component {
       if (this.state.linksList[i].title !== "" && this.state.linksList[i].description !== "" && this.state.linksList[i].link !== "") {
         list.push(this.state.linksList[i]);
       } else {
-        // todo handle for deletion separately
-
         // If it's not the last link and it is empty, alert the user
         if (i !== this.state.linksList.length - 1) {
           alert("Link not added, all fields must be entered.")
@@ -70,9 +67,6 @@ export default class EditLinks extends Component {
 
     // Re render the component
     await this.renderLinks();
-
-    // sessionStorage.setItem("activeTab", this.props.name);
-    // window.location.reload();
   }
 
   async componentDidMount() {
@@ -89,7 +83,6 @@ export default class EditLinks extends Component {
     }
 
     if (res != null) {
-      this.setState({isLoaded: true})
       if (res.data.links !== undefined && res.data.links.length !== 0) {
         console.log(res.data.links);
         let links = [];
@@ -105,13 +98,6 @@ export default class EditLinks extends Component {
   }
 
   render() {
-    // if(!this.state.isLoaded) {
-    //     return (
-    //         <div>
-    //             Loading...
-    //         </div>
-    //     )
-    // } else {
     return (
       <div className="links-page">
         <h1>
@@ -170,6 +156,4 @@ export default class EditLinks extends Component {
       </div>
     )
   }
-
-  // }
 }
