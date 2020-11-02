@@ -4,8 +4,11 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../css/Files.css";
 
+/** class renders all uploaded files of the currently logged in user, with a new carousel per file */
 export default class ViewFiles extends Component {
-	constructor(props) {
+  
+  //sets the base file to be a please upload image 
+  constructor(props) {
 		super(props);
 
     let singleFile = [];
@@ -14,15 +17,15 @@ export default class ViewFiles extends Component {
     fileArray[0] = singleFile;
 
 		this.state = {
-		  // todo clean this up later
 			fileArray: fileArray,
       isLoaded: false
 		}
 	}
 
+  //retieves files from database and adds them to the fileArray
 	async componentDidMount() {
 		
-		//gets all files that match the account id of the logged in user 
+		//gets all files that match the accountId of the logged in user 
 		const res = await getFiles();
 		console.log(res);
 		
@@ -68,7 +71,7 @@ export default class ViewFiles extends Component {
 		return (
 			<div className="v-files">
 				<h1 className="files-title">
-						View Files
+          View Files
 				</h1>
 				<div className="file-container">
 					{
@@ -90,6 +93,7 @@ export default class ViewFiles extends Component {
 	}
 }
 
+/** adds the pages within the file to the carousel */
 class FilesCarousel extends Component{
   constructor(props) {
     super(props);

@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {uploadAPI} from "../../Api.js";
+import {uploadAPI, getImages} from "../../Api.js";
 import "../../css/Gallery.css";
-import {getImages} from '../../Api.js'
-import ViewGallery from './ViewGallery.js';
-import ViewEditButton from "../../components/ViewEditButton"
 
-
+/** renders the upload component and handles the image upload */
 export default class EditGallery extends Component {
 
   constructor(props) {
@@ -24,13 +21,14 @@ export default class EditGallery extends Component {
     await this.renderUpdate();
   }
 
+  //sets the state if an image is selected 
   async fileChange(e) {
     let file = e.target.files[0];
     console.log(file);
     await this.setState({selectedFile: file});
-    console.log(this.state.selectedFile);
   }
 
+  //changes the image into an encoded url 
   async handleSubmitFile(event) {
     event.preventDefault();
 
@@ -41,14 +39,13 @@ export default class EditGallery extends Component {
     reader.readAsDataURL(this.state.selectedFile);
     reader.onloadend = () => {
       this.uploadImage(reader.result);
-      //sessionStorage.setItem("activeTab", this.props.name);
     };
     reader.onerror = () => {
       console.error('error on submit');
     };
   };
 
-  //stores the image in the database
+  //sends the encoded image to the upload API, for upload into the database
   async uploadImage(base64EncodedImage) {
     try {
       const upload = await uploadAPI(base64EncodedImage);
@@ -63,10 +60,12 @@ export default class EditGallery extends Component {
     }
   };
 
+  //retrieves the uploaded images of the currently logged in user
   async renderUpdate() {
     const res = await getImages();
     const imageUrls = [];
 
+    //stores images in the imageUrl
     res.forEach((image, index) => {
       if (image.imageUrl) {
         imageUrls[index] = image.imageUrl;
@@ -79,6 +78,7 @@ export default class EditGallery extends Component {
     console.log(this.state.images);
   }
 
+  //render upload component
   render() {
     return (
       <div className="pcontainer">
@@ -99,7 +99,7 @@ export default class EditGallery extends Component {
   }
 };
 
-
+/** renders each stored image as a tile */
 class RenderImages extends Component {
   constructor(props) {
     super(props);

@@ -147,16 +147,6 @@
     border-width: 1px 1px 0 1px;
 }
 
-/* UNKNOWN */
-/* todo is this still used? */
-.save-btn-tab {
-    display: block;
-    bottom: 0;
-    margin: 50px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
 /* VIEW EDIT BUTTON */
 
 .view-edit-container {

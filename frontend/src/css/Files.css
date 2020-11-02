@@ -1,7 +1,5 @@
 @import "DefaultStyles.css";
 
-/* VIEW PORTFOLIO */
-
 .v-files {
     margin: auto;
     width: 50vw;
@@ -28,8 +26,6 @@
 .file-img img {
     height: 30vw;
 }
-
-/* EDIT PORTFOLIO */
 
 .e-files {
     text-align: center;

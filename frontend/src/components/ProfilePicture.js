@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Avatar from 'react-avatar-edit'
+import Avatar from 'react-avatar-edit';
+import { uploadProfilePicture, getAccount } from '../Api.js';
 import "../css/Portfolio.css";
-import { uploadProfilePicture } from '../Api.js'
-import { getAccount } from '../Api.js'
 
+/** handles the upload and viewing of the profile picture */
 export default class ProfilePicture extends Component {
   constructor(props) {
     super(props)
@@ -21,15 +21,18 @@ export default class ProfilePicture extends Component {
     this.cancelEdit = this.cancelEdit.bind(this);
   }
   
+  // if cancel in avatar pressed 
   onClose() {
     this.setState({preview: null})
   }
   
+  //saves the portion of the cropped image
   async onCrop(preview) {
     await this.setState({preview})
     console.log(this.state.preview);
   }
 
+  //uploads the portion of the image to the database through the API 
   async handleSave() {
     try {
       await uploadProfilePicture(this.state.preview);
@@ -39,6 +42,8 @@ export default class ProfilePicture extends Component {
     }
   }
 
+  //retrieves the profile picture from the database base on the currently 
+  // logged in user 
   async componentDidMount() {
 
     const res = await getAccount(sessionStorage.getItem("accountId"));
@@ -60,7 +65,7 @@ export default class ProfilePicture extends Component {
   }
   
  
-
+  //renders the avatar for the profile picture, or the uploaded profile picture
   render () {
 
     let style = getComputedStyle(document.getElementById('root'));

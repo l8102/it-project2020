@@ -9,6 +9,8 @@ if (hostname === "localhost") {
   BASE_URL = "https://eaglesolutions.herokuapp.com";
 }
 
+/** GOOGLE LOGIN **/
+
 export function googleLoginSuccess(req) {
 
   // Send to backend
@@ -52,6 +54,8 @@ export function deleteAccount(account) {
 	})
 
 }
+
+/** ACCOUNT **/
 
 export function login(loginDetails) {
 
@@ -141,7 +145,7 @@ export async function getAccount(accountId) {
     });
 }
 
-// *** Browse Page START ***
+/** BROWSE PAGE **/
 
 // Get all accounts
 export function getAllAccounts() {
@@ -178,56 +182,7 @@ export function getAllAccountsByFullName(fullName) {
   });
 }
 
-// *** Browse Page END ***
-
-/** sends the encoded image to the backend function upload */
-export function uploadAPI(base64EncodedImage) {
-    return fetch(BASE_URL + "/api/gallery/upload", {
-        method: 'POST',
-        body: JSON.stringify({ 
-          data: base64EncodedImage,
-          accountId: sessionStorage.getItem("accountId")
-        }),
-        headers: { 'Content-Type': 'application/json' },
-    }).then(res => {
-      return res.data;
-    }).catch(function (error) {
-      console.error(error);
-    });
-}
-
-// TODO: This function retrieves based on portfolioId from older schema, need to test and replace with function below 
-export function getImages() {
-    //const data = { accountId: searchId }
-    return axios({
-        method: "post",
-        url: BASE_URL + "/api/gallery/getImages",
-        data: {
-          accountId: sessionStorage.getItem("accountId")
-        }
-    }).then(res => {
-        return res.data;
-    })
-}
-
-
-// // Retrieves all recorded images associated with a specified account id
-// export function getImages() {
-//   // Retrieves accountId from session storage
-//   const data = { accountId: sessionStorage.getItem("accountId") }
-//   //console.log(data.accountId);
-
-//   return axios({
-//     method: "post",
-//     url: BASE_URL + "/api/gallery/getImages",
-//     data: data
-//   }).then(res => {
-//     return res.data;
-//   }).catch(err => {
-//     console.error("Error, something went wrong")
-//   }) 
-// }
-
+/** PORTFOLIO **/
 
 // ----- getPortfolioByAccountId -----
 export function getPortfolio(accountId) {
@@ -307,6 +262,28 @@ export function setPortfolioColour(colour) {
   });
 }
 
+/** function takes the encoded picture and sends it to the backend function 
+ * updateProfilePicture based on the current logged in user (accountId)
+*/
+export function uploadProfilePicture(base64EncodedImage) {
+  
+  return fetch(BASE_URL + "/api/account/updateProfilePicture", {
+    method: 'PUT',
+    body: JSON.stringify({ 
+      data: base64EncodedImage,
+      accountId: sessionStorage.getItem("accountId")
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    console.log(res.data);
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
+
+/** ABOUT ME PAGE **/
+
 // Update about Me
 export function updateAboutMe(state) {
 
@@ -348,6 +325,79 @@ export async function getAboutMe() {
     });
 }
 
+/** GALLERY PAGE **/
+
+/** function takes the encoded picture and sends it to the backend function 
+ * upload based on the current logged in user (accountId)
+*/
+export function uploadAPI(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/gallery/upload", {
+      method: 'POST',
+      body: JSON.stringify({ 
+        data: base64EncodedImage,
+        accountId: sessionStorage.getItem("accountId")
+      }),
+      headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
+
+/** function retrieves all the images stored in the database based on the 
+ * accountId of the currently logged in user
+ */
+export function getImages() {
+  return axios({
+      method: "post",
+      url: BASE_URL + "/api/gallery/getImages",
+      data: {
+        accountId: sessionStorage.getItem("accountId")
+      }
+  }).then(res => {
+      return res.data;
+  })
+}
+
+/** FILE PAGE **/
+
+/** function takes the encoded file and sends it to the backend function 
+ * uploadFile based on the current logged in user (accountId)
+*/
+export function fileUploadAPI(base64EncodedImage) {
+  return fetch(BASE_URL + "/api/file/uploadFile", {
+      method: 'POST',
+      body: JSON.stringify({ 
+        data: base64EncodedImage,
+        accountId: sessionStorage.getItem("accountId")
+      }),
+      headers: { 'Content-Type': 'application/json' },
+  }).then(res => {
+    console.log(res.data);
+    return res.data;
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
+
+/** function retrieves all the files stored in the database based on the 
+ * accountId of the currently logged in user
+ */
+export function getFiles() {
+  return axios({
+      method: "post",
+      url: BASE_URL + "/api/file/getFiles",
+      data: {
+        accountId: sessionStorage.getItem("accountId")
+      }
+  }).then(res => {
+      return res.data;
+  })
+}
+
+/** LINKS PAGE **/
+
 export function updateLinks(state) {
   console.log(state);
   
@@ -385,49 +435,4 @@ export function getLinks() {
       console.error(error);
     })
   })
-}
-
-/** sends the encoded image to the backend function upload */
-export function fileUploadAPI(base64EncodedImage) {
-  return fetch(BASE_URL + "/api/file/uploadFile", {
-      method: 'POST',
-      body: JSON.stringify({ 
-        data: base64EncodedImage,
-        accountId: sessionStorage.getItem("accountId")
-      }),
-      headers: { 'Content-Type': 'application/json' },
-  }).then(res => {
-    console.log(res.data);
-    return res.data;
-  }).catch(function (error) {
-    console.error(error);
-  });
-}
-
-export function getFiles() {
-  return axios({
-      method: "post",
-      url: BASE_URL + "/api/file/getFiles",
-      data: {
-        accountId: sessionStorage.getItem("accountId")
-      }
-  }).then(res => {
-      return res.data;
-  })
-}
-
-export function uploadProfilePicture(base64EncodedImage) {
-  return fetch(BASE_URL + "/api/account/updateProfilePicture", {
-    method: 'PUT',
-    body: JSON.stringify({ 
-      data: base64EncodedImage,
-      accountId: sessionStorage.getItem("accountId")
-    }),
-    headers: { 'Content-Type': 'application/json' },
-  }).then(res => {
-    console.log(res.data);
-    return res.data;
-  }).catch(function (error) {
-    console.error(error);
-});
 }
