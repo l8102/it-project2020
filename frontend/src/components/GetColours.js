@@ -1,5 +1,6 @@
 import "../css/DefaultStyles.css"
 
+// Returns all the colour variants for one specific colour (light, mid, dark)
 export function getColours(style, colour) {
 
   if (colour === "blue") {

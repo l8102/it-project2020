@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {fileUploadAPI} from "../../Api.js";
-import {getFiles} from '../../Api.js';
+import {fileUploadAPI, getFiles} from "../../Api.js";
 
+/** renders the upload component and handles the file upload */
 export default class EditFiles extends Component {
 
   constructor(props) {
@@ -12,6 +12,7 @@ export default class EditFiles extends Component {
       files: [""]
     }
 
+    // Bindings for the class methods
     this.fileChange = this.fileChange.bind(this);
     this.renderUpdate = this.renderUpdate.bind(this);
   }
@@ -20,13 +21,14 @@ export default class EditFiles extends Component {
     await this.renderUpdate();
   }
 
+  // Sets the state if a file is selected
   async fileChange(e) {
     let file = e.target.files[0];
     console.log(file);
     await this.setState({selectedFile: file});
-    console.log(this.state.selectedFile);
   }
 
+  //changes the file into an encoded url 
   async handleSubmitFile(event) {
     event.preventDefault();
 
@@ -46,7 +48,7 @@ export default class EditFiles extends Component {
     };
   };
 
-  //stores the image in the database
+  //sends the encoded file to the upload API, for upload into the database
   async uploadFile(base64EncodedImage) {
     try {
       const upload = await fileUploadAPI(base64EncodedImage);
@@ -62,15 +64,15 @@ export default class EditFiles extends Component {
     }
   };
 
+  //retrieves the uploaded files of the currently logged in user
   async renderUpdate() {
-    // Todo: For now, getImages calls on portfolioId "1" from previous schema for Gallery, needs to be
-    // for account id
     const res = await getFiles();
     console.log(res);
     const BASE_URL = "https://res.cloudinary.com/dbk5wcucj/image/upload/w_500/v"
 
     const fileUrls = [];
 
+    //stores files in the fileUrls
     res.forEach((file, index) => {
       fileUrls[index] = BASE_URL + file.fileVersion + "/" + file.filePublicId + ".png";
       console.log(fileUrls);
@@ -80,6 +82,7 @@ export default class EditFiles extends Component {
     console.log(this.state.files);
   }
 
+  //render upload component
   render() {
     return (
       <div className="pcontainer">
@@ -102,14 +105,13 @@ export default class EditFiles extends Component {
   }
 }
 
+/** renders each stored file as a tile (preview the first page of the file) */
 class RenderFiles extends Component {
   constructor(props) {
     super(props);
   }
 
   async componentDidMount() {
-
-
   }
 
   render() {

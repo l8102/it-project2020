@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {getLinks} from "../../Api.js";
-import "../../css/AboutLinks.css"
+import "../../css/AboutLinks.css";
+import validator from "validator";
 
 export default class ViewLinks extends Component {
 
@@ -12,10 +13,11 @@ export default class ViewLinks extends Component {
         description: "",
         link: ""
       }],
-      isLoaded: false
     }
+    this.formatURL = this.formatURL.bind(this);
   }
 
+  // When the component loads, fetch the links data from the database
   async componentDidMount() {
     let links
 
@@ -27,33 +29,50 @@ export default class ViewLinks extends Component {
 
     if (links !== null) {
       if (links.data.links !== undefined) {
-        this.setState({linksList: links.data.links, isLoaded: true})
+        this.setState({
+          linksList: links.data.links
+        })
       }
     }
   }
 
+  formatURL(link) {
+
+    let url;
+
+    // Checks if URL is already in correct format e.g. https://www.example.com,
+    if (validator.isURL(link, {require_protocol: true})) {
+      url = link;
+      // If not, the URL is appended with "https://" protocol by default
+    } else {
+      url = "https://" + link;
+    }
+
+    return (
+      <a href={url} target="_blank">
+        {link}
+      </a>
+    )
+  }
+
   render() {
-    // if(!this.state.isLoaded) {
-    //     return (
-    //         <div>
-    //             Loading...
-    //         </div>
-    //     )
-    // } else {
+    // If there are no links, render "None"
     if (this.state.linksList[0] === undefined) {
       return (
-          <div
-            className="links-page"
-            style={{
-              paddingBottom: "40px"
-            }}
-          >
-            <h1>
-              View Links
-            </h1>
-            None
-          </div>
-        )
+        <div
+          className="links-page"
+          style={{
+            paddingBottom: "40px"
+          }}
+        >
+          <h1>
+            View Links
+          </h1>
+          None
+        </div>
+      )
+
+      // Otherwise render the links from the database, stored in the linksList
     } else {
       return (
         <div className="links-page-view">
@@ -78,9 +97,7 @@ export default class ViewLinks extends Component {
                   <h3>
                     Link:
                   </h3>
-                  <a href={x.link}>
-                    {x.link}
-                  </a>
+                  {this.formatURL(x.link)}
                 </div>
               </section>
             )
@@ -90,6 +107,4 @@ export default class ViewLinks extends Component {
       )
     }
   }
-
-  // }
 }

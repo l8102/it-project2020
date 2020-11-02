@@ -1,10 +1,9 @@
-//https://www.digitalocean.com/community/tutorials/react-tabs-component#conclusion
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Tab from './Tab';
 
-class Tabs extends Component {
+/** class creates a list of tabs, and keeps track of the active tab */
+export default class Tabs extends Component {
   static propTypes = {
     children: PropTypes.instanceOf(Array).isRequired,
   }
@@ -13,8 +12,8 @@ class Tabs extends Component {
     super(props);
     // For if refresh was called after submitting information to the database
     const tab = sessionStorage.getItem("activeTab");
-    
-    if(tab === null) {
+
+    if (tab === null) {
       this.state = {
         activeTab: this.props.children[0].props.label,
       };
@@ -25,9 +24,11 @@ class Tabs extends Component {
     }
   }
 
+  //set the state of the active tab if it is clicked 
   onClickTabItem = (tab) => {
-    this.setState({ activeTab: tab });
+    this.setState({activeTab: tab});
   }
+
   render() {
     const {
       onClickTabItem,
@@ -39,11 +40,12 @@ class Tabs extends Component {
       }
     } = this;
 
+    //maps the tab list
     return (
       <div className="tabs">
         <ol className="tab-list">
           {children.map((child) => {
-            const { label } = child.props;
+            const {label} = child.props;
             sessionStorage.removeItem("activeTab");
             return (
               <Tab
@@ -65,5 +67,3 @@ class Tabs extends Component {
     );
   }
 }
-
-export default Tabs;

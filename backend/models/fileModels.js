@@ -8,15 +8,15 @@ const fileSchema = new Schema({
     required: true
   },
   fileVersion: {
-    type: String, 
+    type: String,
     required: false
-  }, 
+  },
   filePublicId: {
-    type: String, 
+    type: String,
     required: false
-  }, 
+  },
   filePages: {
-    type: Number, 
+    type: Number,
     required: false
   }
 }, {

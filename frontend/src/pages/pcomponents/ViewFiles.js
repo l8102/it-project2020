@@ -1,96 +1,98 @@
-import React, { Component } from "react";
-import { getFiles } from '../../Api.js'
-import { Carousel } from 'react-responsive-carousel';
+import React, {Component} from "react";
+import {getFiles} from '../../Api.js'
+import {Carousel} from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../css/Files.css";
 
+/** class renders all uploaded files of the currently logged in user, with a new carousel per file */
 export default class ViewFiles extends Component {
-	constructor(props) {
-		super(props);
+
+  //sets the base file to be a please upload image 
+  constructor(props) {
+    super(props);
 
     let singleFile = [];
     let fileArray = [];
     singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
     fileArray[0] = singleFile;
 
-		this.state = {
-		  // todo clean this up later
-			fileArray: fileArray,
+    this.state = {
+      fileArray: fileArray,
       isLoaded: false
-		}
-	}
+    }
+  }
 
-	async componentDidMount() {
-		
-		//gets all files that match the account id of the logged in user 
-		const res = await getFiles();
-		console.log(res);
-		
-		//base url of the cloudinary account 
-		const BASE_URL = "https://res.cloudinary.com/dbk5wcucj/image/upload/";
+  //retieves files from database and adds them to the fileArray
+  async componentDidMount() {
 
-		// fileArray contains the pages of the file
-		let fileArray = [];
+    //gets all files that match the accountId of the logged in user
+    const res = await getFiles();
+    console.log(res);
 
-		// todo clean up
-		if (res.length === 0) {
-		  let singleFile = []
+    //base url of the cloudinary account
+    const BASE_URL = "https://res.cloudinary.com/dbk5wcucj/image/upload/";
+
+    // fileArray contains the pages of the file
+    let fileArray = [];
+
+    if (res.length === 0) {
+      let singleFile = []
       singleFile[0] = "http://res.cloudinary.com/dbk5wcucj/image/upload/v1603500490/Files/kusdwm3jjqod4bpqull8.png";
-		  fileArray[0] = singleFile;
-		}
-		else {
+      fileArray[0] = singleFile;
+    } else {
 
-			res.forEach((file, index) => {
+      res.forEach((file, index) => {
 
-			  // add each page to the file
+        // add each page to the file
         let singleFile = [];
-				for (let i = 1; i <= file.filePages; i++) {
-          singleFile[i-1] = BASE_URL + "/pg_" + i + "/v" + file.fileVersion + "/" + file.filePublicId + ".png";
-				}
+        for (let i = 1; i <= file.filePages; i++) {
+          singleFile[i - 1] = BASE_URL + "/pg_" + i + "/v" + file.fileVersion + "/" + file.filePublicId + ".png";
+        }
 
-				// add the new file to the fileArray
+        // add the new file to the fileArray
         fileArray[index] = singleFile;
-			});
+      });
       console.log(fileArray);
-		}
+    }
 
-		// Update the states
-		this.setState({
-			fileArray : fileArray,
+    // Update the states
+    this.setState({
+      fileArray: fileArray,
       isLoaded: true
-		});
+    });
 
-	}
+  }
 
-	//creates a new carousel for a file containing all pages of the file 
-	render() {
-		const { fileArray } = this.state;
-		return (
-			<div className="v-files">
-				<h1 className="files-title">
-						View Files
-				</h1>
-				<div className="file-container">
-					{
-						fileArray.map((singleFile, i) => {
-							console.log(singleFile);
+  //creates a new carousel for a file containing all pages of the file
+  render() {
+    const {fileArray} = this.state;
+    return (
+      <div className="v-files">
+        <h1 className="files-title">
+          View Files
+        </h1>
+        <div className="file-container">
+          {
+            fileArray.map((singleFile, i) => {
+              console.log(singleFile);
 
-							// For each file load a file carousel
-							return (
-								<FilesCarousel
+              // For each file load a file carousel
+              return (
+                <FilesCarousel
                   singleFile={singleFile}
                   isLoaded={this.state.isLoaded}
                 />
-							)
-						})
-					}   
-				</div>
-			</div>
-		);
-	}
+              )
+            })
+          }
+        </div>
+      </div>
+    );
+  }
 }
 
-class FilesCarousel extends Component{
+/** adds the pages within the file to the carousel */
+class FilesCarousel extends Component {
   constructor(props) {
     super(props);
   }
@@ -114,7 +116,6 @@ class FilesCarousel extends Component{
       )
     } else {
       return (
-        // todo fix the page jumping
         <div>
           Loading...
         </div>

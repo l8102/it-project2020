@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../css/Portfolio.css";
 
-import { getPortfolio, getAccount } from "../Api.js"
+import {getPortfolio, getAccount} from "../Api.js"
 import ViewAbout from "./pcomponents/ViewAbout";
 import ViewGallery from "./pcomponents/ViewGallery";
 import ViewFiles from "./pcomponents/ViewFiles";
@@ -14,6 +14,7 @@ class ViewPortfolio extends Component {
   constructor(props) {
     super(props);
 
+    // Store the states for each of the elements on the page
     this.state = {
       firstName: '',
       lastName: '',
@@ -30,6 +31,7 @@ class ViewPortfolio extends Component {
     this.renderContactInfo = this.renderContactInfo.bind(this);
   }
 
+  // When the component loads read in the portfolio information
   async componentDidMount() {
     console.log("running");
     let portfolio;
@@ -55,6 +57,7 @@ class ViewPortfolio extends Component {
       isLoaded: true
     })
 
+    // Render the updated portfolio colours
     this.renderPortfolioColours(this.state.colour)
   }
 
@@ -76,7 +79,7 @@ class ViewPortfolio extends Component {
     let currStyles = getComputedStyle(document.getElementById('root'));
 
     // Get the colour set from the colours dictionary
-    let colourSet = getColours(currStyles,colour);
+    let colourSet = getColours(currStyles, colour);
 
     // Set the styles that will be updated
     let newStyles = document.documentElement.style;
@@ -92,9 +95,10 @@ class ViewPortfolio extends Component {
     })
   }
 
+  // Renders the contact information of the specified portfolio, if it exists
   renderContactInfo() {
     if (this.state.email !== undefined ||
-        this.state.telephone !== undefined) {
+      this.state.telephone !== undefined) {
       return (
         <div>
           <label className="contact-item">
@@ -141,7 +145,7 @@ class ViewPortfolio extends Component {
           </div>
           <Tabs>
             <div label="About Me">
-              <ViewAbout firstName={ this.state.firstName }/>
+              <ViewAbout firstName={this.state.firstName}/>
             </div>
             <div label="Gallery">
               <ViewGallery/>
@@ -156,7 +160,7 @@ class ViewPortfolio extends Component {
         </div>
       );
 
-    // Otherwise, deny access
+      // Otherwise, deny access
     } else {
       return (
         <div className="access-denied">

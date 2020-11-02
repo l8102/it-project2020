@@ -4,13 +4,15 @@ const About = mongoose.model('abouts');
 
 
 // CREATE
+
+// Creates a new about record in the database
 const create = function (accountId) {
 
   let about = {
     accountId: accountId,
-    };
+  };
 
-  // creates a new portfolio using the account id
+  // creates a new about using the account id
   const data = new About(about);
 
   // saves entry to the database
@@ -19,49 +21,51 @@ const create = function (accountId) {
 };
 
 // READ
+
+// Returns the about information for a single account
 const readAbout = function (req, res) {
+  About.findOne({"accountId": req.query.accountId}, function (err, about) {
 
-    About.findOne({ "accountId": req.query.accountId }, function (err, about) {
-
-        if (err || about === undefined) {
-            console.error("AboutMe not found");
-            res.send("false");
-            return false;
-        } else {
-            console.log("AboutMe found");
-            res.json(about);
-            return true;
-        }
-    });
+    if (err || about === undefined) {
+      console.error("AboutMe not found");
+      res.send("false");
+      return false;
+    } else {
+      console.log("AboutMe found");
+      res.json(about);
+      return true;
+    }
+  });
 }
 
 
-
 // UPDATE
+
+// Updates the about information for a single account
 const updateByAccountId = function (req, res, next) {
 
-    About.findOne({ "accountId": req.body.accountId }, function (err, about) {
+  About.findOne({"accountId": req.body.accountId}, function (err, about) {
 
-        if (err || about === undefined) {
-            console.error("aboutMe not found");
-            res.send("false");
-            return false;
-        } else {
-            state = req.body.state;
+    if (err || about === undefined) {
+      console.error("aboutMe not found");
+      res.send("false");
+      return false;
+    } else {
+      state = req.body.state;
 
-            about.institution = state.institution;
-            about.degree = state.degree;
-            about.major = state.major;
-            about.description = state.description;
-            about.interests = state.interestList;
-            about.workExperience = state.experienceList;
-            
-            about.save();
-            console.log("aboutMe updated");
-            res.json(about);
-            return true;
-        }
-    });
+      about.institution = state.institution;
+      about.degree = state.degree;
+      about.major = state.major;
+      about.description = state.description;
+      about.interests = state.interestList;
+      about.workExperience = state.experienceList;
+
+      about.save();
+      console.log("aboutMe updated");
+      res.json(about);
+      return true;
+    }
+  });
 };
 
 
@@ -70,7 +74,7 @@ const updateByAccountId = function (req, res, next) {
 
 // export controllers
 module.exports = {
-    create,
-    updateByAccountId,
-    readAbout
+  create,
+  updateByAccountId,
+  readAbout
 }
