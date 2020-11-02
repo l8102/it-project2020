@@ -11,7 +11,8 @@ class Browse extends Component {
       accountId: "",
       results: [],
       searchInput: "",
-      profilePicture: undefined
+      profilePicture: undefined,
+      hasLoaded: false
     }
 
     // binding ensures that 'this' works properly
@@ -33,7 +34,8 @@ class Browse extends Component {
     // this needs to be called OUTSIDE of the function call, otherwise 'this.setState' points to the function
     // instead of the class
     this.setState({
-      results: res.data
+      results: res.data,
+      hasLoaded: true
     })
   }
 
@@ -44,6 +46,11 @@ class Browse extends Component {
   // This runs when a new search is submitted
   async handleSubmit(e) {
     e.preventDefault();
+
+    // Signal that new data needs to be loaded
+    this.setState({
+      hasLoaded: false
+    })
 
     let res;
 
@@ -63,37 +70,45 @@ class Browse extends Component {
     // update the results
     this.setState(state => ({
       results: res.data,
+      hasLoaded: true
     }));
   }
 
   render() {
-    return (
-      <div className="browse-container">
-        <h2 className="browse-title"> Browse Portfolios </h2>
-        <form onSubmit={this.handleSubmit} className="search-bar">
-          <input
-            className="search-bar"
-            type="text"
-            name="searchInput"
-            value={this.state.searchInput}
-            placeholder="Search"
-            onChange={this.handleChange}
-          />
-        </form>
-        <div className="results-container">
-
-          {/* Renders each search result */}
-          {this.state.results.map((result) => (
-            <SearchResult
-              accountId={result._id.toString()}
-              firstName={result.firstName}
-              lastName={result.lastName}
-              profilePicture={result.profilePicture}
+    // Check that the site is loaded before rendering
+    if (this.state.hasLoaded) {
+      return (
+        <div className="browse-container">
+          <h2 className="browse-title"> Browse Portfolios </h2>
+          <form onSubmit={this.handleSubmit} className="search-bar">
+            <input
+              className="search-bar"
+              type="text"
+              name="searchInput"
+              value={this.state.searchInput}
+              placeholder="Search"
+              onChange={this.handleChange}
             />
-          ))}
+          </form>
+          <div className="results-container">
+
+            {/* Renders each search result */}
+            {this.state.results.map((result) => (
+              <SearchResult
+                accountId={result._id.toString()}
+                firstName={result.firstName}
+                lastName={result.lastName}
+                profilePicture={result.profilePicture}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div/>
+      )
+    }
   }
 }
 

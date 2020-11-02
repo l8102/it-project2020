@@ -19,7 +19,21 @@ class SearchResult extends Component {
 
   // When the component loads, set if the search results are private
   async componentDidMount() {
-    const portfolio = await getPortfolio(this.props.accountId);
+
+    // Signal that the component is loading
+    // This ensures on a refresh it does not display prematurely
+    this.setState({
+      hasLoaded: false
+    })
+
+    let portfolio;
+
+    try {
+      portfolio = await getPortfolio(this.props.accountId);
+    } catch (error) {
+      console.log(error);
+    }
+
     this.setState({
       isPrivate: portfolio.data.isPrivate,
       hasLoaded: true
