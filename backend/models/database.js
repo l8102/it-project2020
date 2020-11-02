@@ -4,12 +4,13 @@ Header
 
 // Import libraries
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // Username, password are hard coded
 // TODO change to dotenv
-CONNECTION_STRING = 'mongodb+srv://admin:eagle@eagle-solutions.hn0sb.mongodb.net/eagle-solutions?retryWrites=true&w=majority'
+var connection = process.env.CONNECTION_STRING;
 
-mongoose.connect(CONNECTION_STRING || "mongodb://localhost/eagle-solutions", {
+mongoose.connect(connection || "mongodb://localhost/eagle-solutions", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
