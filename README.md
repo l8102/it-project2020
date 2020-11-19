@@ -16,7 +16,7 @@ Repository for IT Project Semester 2 2020
 | Name |
 | :--- |
 | Glenn Phillips |
-| Gemma Seely |
+| Gemma Seeley |
 | Michael Lowe |
 | Jasmine Bond |
 
